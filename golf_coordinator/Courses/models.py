@@ -7,6 +7,7 @@ from django.urls import reverse
 
 class Golf_Course(models.Model):
     name = models.CharField(max_length=255, unique=False)
+    tee = models.ForeignKey('Golf_Tee', related_name='course_tee', on_delete=models.CASCADE, default="")
 
     def __str__(self):
         return self.name
