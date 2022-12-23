@@ -1,0 +1,16 @@
+<fieldset>
+    <legend>Add Course</legend>
+    <form method="post">
+        {% csrf_token %}
+        {{ AddCourse_form }}
+        <input name="response" type="submit" value="Submit" />
+    </form>
+</fieldset>
+<fieldset>
+    <legend>Add a comment</legend>
+    <form method="post">
+        {% csrf_token %}
+        {{ AddCourseTee_form }}
+        <input name="comment" type="submit" value="Submit" />
+    </form>
+</fieldset>
