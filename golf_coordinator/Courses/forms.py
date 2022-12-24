@@ -7,11 +7,13 @@ class AddCourseForm(forms.ModelForm):
     class Meta():
         model = Golf_Course
         fields = ('name',)
-        widgets = {
-            'Name': forms.TextInput(attrs={'class': 'textinputclass'}),
-        }
+        
 
 class AddCourseTeeForm(forms.ModelForm):
     class Meta():
         model = Golf_Tee
         fields = ('tee_color', 'tee_name', 'par', 'slope', 'rating', 'yardage',)
+
+class AddCourseHoleForm(forms.ModelForm):
+    class Meta():
+        model = Golf_Hole
