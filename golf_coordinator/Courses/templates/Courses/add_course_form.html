@@ -1,11 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="submit">
+{%for field in form%}
+{% endfor %}
 
-<form>
-
-  
-</form>
+{% comment %} <form class="" action="" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="courseName">Golf Course Name</label>
+    <input type="text" class="form-control" id="courseName" placeholder="Augusta National">
+  </div>
+  <div class="form-group">
+    <label for="teeName">Golf Tee Name</label>
+    <input type="text" class="form-control" id="teeName" placeholder="Championship">
+  </div>
+  <div class="form-group">
+    <label for="teeColor">Golf Tee Color</label>
+    <input type="text" class="form-control" id="teeColor" placeholder="Black">
+  </div>
+  <div class="form-group">
+    <label for="par">Par</label>
+    <input type="number" class="form-control" id="par" placeholder="72">
+  </div>
+  <div class="form-group">
+    <label for="slope">Slope</label>
+    <input type="number" class="form-control" id="slope" placeholder="138" step="any">
+  </div>
+  <div class="form-group">
+    <label for="rating">Rating</label>
+    <input type="number" class="form-control" id="rating" placeholder="74.6" step="any">
+  </div>
+  <div class="form-group">
+    <label for="yardage">Yardage</label>
+    <input type="number" class="form-control" id="yardage" placeholder="7300">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form> {% endcomment %}
 
 
   {% endblock %}
