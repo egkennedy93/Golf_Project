@@ -60,37 +60,63 @@ class Golf_Tee(models.Model):
         return "{}_{}".format(self.course_name, self.tee_name)
 
 
-
-
 class New_Course_Entry(models.Model):
-    # course_name = ''
-    # course_tee = ''
-    # course_tee_color = ''
-    # course_par = ''
-    # course_slope = ''
-    # course_rating = ''
-    # course_yardage = ''
+    HOLE_CHOICES = (
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+        ('11', '11'),
+        ('12', '12'),
+        ('13', '13'),
+        ('14', '14'),
+        ('15', '15'),
+        ('16', '16'),
+        ('17', '17'),
+        ('18', '18'),
+    )
+    PAR_CHOICES = (
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+    )
+    course_name = models.CharField(max_length=255, unique=False)
+    tee_name = models.CharField(max_length=255, unique=False)
+    par = models.IntegerField()
+    slope = models.DecimalField(decimal_places=2, max_digits=5)
+    rating = models.DecimalField(decimal_places=2, max_digits=5)
+    yardage = models.IntegerField()
     
-    # hole_2 = ''
-    # hole_3 = ''
-    # hole_4 = ''
-    # hole_5 = ''
-    # hole_6 = ''
-    # hole_7 = ''
-    # hole_8 = ''
-    # hole_9 = ''
-    # hole_10 = ''
-    # hole_11 = ''
-    # hole_12 = ''
-    # hole_13 = ''
-    # hole_14 = ''
-    # hole_15 = ''
-    # hole_16 = ''
-    # hole_17 = ''
-    # hole_18 = ''
-    # class Meta:
-    #     unique_together = ('course_name', 'course_tee')
+    hole_1_number = models.CharField(choices=HOLE_CHOICES, max_length=2)
+    hole_1_par = models.CharField(choices=PAR_CHOICES,  max_length=2)
+    hole_1_yardage = models.IntegerField()
+    hcp_index = models.CharField(choices=HOLE_CHOICES,  max_length=2)
 
-    def __str__(self):
-        return "{}_{}_{}".format(self.id, self.course, self.tee)
+
+#     hole_2 = models.ForeignKey(Golf_Hole, related_name='tee_hole_3', on_delete=models.CASCADE)
+#     hole_3 = models.ForeignKey(Golf_Hole, related_name='tee_hole_4', on_delete=models.CASCADE)
+#     hole_5 = models.ForeignKey(Golf_Hole, related_name='tee_hole_5', on_delete=models.CASCADE)
+#     hole_6 = models.ForeignKey(Golf_Hole, related_name='tee_hole_6', on_delete=models.CASCADE)
+#     hole_7 = models.ForeignKey(Golf_Hole, related_name='tee_hole_7', on_delete=models.CASCADE)
+#     hole_8 = models.ForeignKey(Golf_Hole, related_name='tee_hole_8', on_delete=models.CASCADE)
+#     hole_9 = models.ForeignKey(Golf_Hole, related_name='tee_hole_9', on_delete=models.CASCADE)
+#     hole_10 = models.ForeignKey(Golf_Hole, related_name='tee_hole_10', on_delete=models.CASCADE)
+#     hole_11 = models.ForeignKey(Golf_Hole, related_name='tee_hole_11', on_delete=models.CASCADE)
+#     hole_12 = models.ForeignKey(Golf_Hole, related_name='tee_hole_12', on_delete=models.CASCADE)
+#     hole_13 = models.ForeignKey(Golf_Hole, related_name='tee_hole_13', on_delete=models.CASCADE)
+#     hole_14 = models.ForeignKey(Golf_Hole, related_name='tee_hole_14', on_delete=models.CASCADE)
+#     hole_15 = models.ForeignKey(Golf_Hole, related_name='tee_hole_15', on_delete=models.CASCADE)
+#     hole_16 = models.ForeignKey(Golf_Hole, related_name='tee_hole_16', on_delete=models.CASCADE)
+#     hole_17 = models.ForeignKey(Golf_Hole, related_name='tee_hole_17', on_delete=models.CASCADE)
+#     hole_18 = models.ForeignKey(Golf_Hole, related_name='tee_hole_18', on_delete=models.CASCADE)
+#     # class Meta:
+#     #     unique_together = ('course_name', 'course_tee')
+
+#     def __str__(self):
+#         return "{}_{}_{}".format(self.id, self.course, self.tee)
     

@@ -1,44 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="submit">
-{%for field in form%}
-{% endfor %}
+<title>Django ModelForms</title>
+    </head>
+    <body>
 
-{% comment %} <form class="" action="" method="post">
-  {% csrf_token %}
-  <div class="form-group">
-    <label for="courseName">Golf Course Name</label>
-    <input type="text" class="form-control" id="courseName" placeholder="Augusta National">
-  </div>
-  <div class="form-group">
-    <label for="teeName">Golf Tee Name</label>
-    <input type="text" class="form-control" id="teeName" placeholder="Championship">
-  </div>
-  <div class="form-group">
-    <label for="teeColor">Golf Tee Color</label>
-    <input type="text" class="form-control" id="teeColor" placeholder="Black">
-  </div>
-  <div class="form-group">
-    <label for="par">Par</label>
-    <input type="number" class="form-control" id="par" placeholder="72">
-  </div>
-  <div class="form-group">
-    <label for="slope">Slope</label>
-    <input type="number" class="form-control" id="slope" placeholder="138" step="any">
-  </div>
-  <div class="form-group">
-    <label for="rating">Rating</label>
-    <input type="number" class="form-control" id="rating" placeholder="74.6" step="any">
-  </div>
-  <div class="form-group">
-    <label for="yardage">Yardage</label>
-    <input type="number" class="form-control" id="yardage" placeholder="7300">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form> {% endcomment %}
+      {% load crispy_forms_tags %}  
 
+        
+        <div class="container">
+          <!--Django Model Form-->
+          <h2 class="my-4">Add a new Golf Course</h2>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                {{course_form|crispy}}
+                {{tee_form|crispy}}
+                <button class="btn btn-primary my-4" type="submit">Submit</button>
+          </form>
+          <!--Django Model-->
+          <div class="row">
+            {% for m in courses %}
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+              <div class="card h-100 p-4">
+                <h4>{{m.course_name}}</h4>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+    
 
-  {% endblock %}
+ {% endblock %}

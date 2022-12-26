@@ -5,13 +5,13 @@ from Courses.models import Golf_Course, Golf_Tee, Golf_Hole
 class AddCourseForm(forms.ModelForm):
 
     class Meta():
-        fields = ('course_name',)
+        fields = ('course_name', 'tee_name')
         model = Golf_Course
         
 
 class AddTeeForm(forms.ModelForm):
     class Meta():
-        fields = ('course_name', 'tee_name', 'par', 'slope', 'rating', 'yardage')
+        fields = ('__all__')
         widgets = {
             'rating': forms.NumberInput(attrs={'step': 0.25}),
         }
