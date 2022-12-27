@@ -1,33 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 
-<title>Django ModelForms</title>
-    </head>
-    <body>
 
-      {% load crispy_forms_tags %}  
-
-        
-        <div class="container">
-          <!--Django Model Form-->
-          <h2 class="my-4">Add a new Golf Course</h2>
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-                {{course_form|crispy}}
-                {{tee_form|crispy}}
-                <button class="btn btn-primary my-4" type="submit">Submit</button>
-          </form>
-          <!--Django Model-->
-          <div class="row">
-            {% for m in courses %}
-            <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
-              <div class="card h-100 p-4">
-                <h4>{{m.course_name}}</h4>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ formset.management_form }}
+  {% for form in formset %}
+  {{ formset.as_p }}
+  {% endfor %}
+  <input type="submit" value="Submit">
+</form>
     
 
  {% endblock %}
