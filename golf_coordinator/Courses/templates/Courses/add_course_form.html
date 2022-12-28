@@ -1,13 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 
 <form method="POST" enctype="multipart/form-data">
   {% csrf_token %}
-  {{ formset.management_form }}
-  {% for form in formset %}
-  {{ formset.as_p }}
+  {{ course_form|crispy }}
+  {{ teeformset.management_form }}
+  {% for teeform in teeformset %}
+    {{teeform|crispy}}
+    <br>
   {% endfor %}
+
+  {{ holeformset.management_form }}
+  
+  {% for holeform in holeformset %}
+      {{holeform|crispy}}
+      <br>
+    {% endfor %}
   <input type="submit" value="Submit">
 </form>
     

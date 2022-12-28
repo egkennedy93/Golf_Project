@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from Courses.models import Golf_Course, Golf_Tee, Golf_Hole
-from Courses.forms import AddCourseForm, AddTeeForm, AddHoleForm, HoleFormSet
+from Courses.forms import AddCourseForm, AddTeeForm, AddHoleForm, HoleFormSet, TeeFormSet
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView)
@@ -15,13 +15,29 @@ from django.forms import formset_factory
 
 
 def CreateCourseView(request):
-    formset = HoleFormSet(request.POST)
-    if formset.is_valid():
-        for form in formset:
+    if request.method == "POST":
+        course_form = AddCourseForm(request.POST)
+        teeformset = TeeFormSet(request.POST)
+        holeformset = HoleFormSet(request.POST)
         
-            form.save()
-    context = {"formset":formset}
-    return render(request=request, template_name="Courses/add_course_form.html", context=context)
+            # Do something. Should generally end with a redirect. For example:
+        if course_form.is_valid():
+            course_form.save()
+
+        if holeformset.is_valid():
+            holeformset.save()
+
+        if teeformset.is_valid():
+             teeformset.save()
+
+       
+        return redirect("/")
+    else:
+        holeformset = HoleFormSet
+        teeformset = TeeFormSet
+        course_form = AddCourseForm()
+        tee_form = AddTeeForm()
+    return render(request, "Courses/add_course_form.html", {'holeformset': holeformset, 'teeformset': teeformset,'course_form': course_form, 'tee_form': tee_form})
 
 # def CreateCourseView(request):
 #     context = {}
