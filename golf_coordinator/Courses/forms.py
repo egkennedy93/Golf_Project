@@ -1,5 +1,5 @@
 from django import forms
-from Courses.models import Golf_Course, Golf_Tee
+from Courses.models import Golf_Course, Golf_Tee, Golf_Hole
 from django.forms import inlineformset_factory
 
 
@@ -19,4 +19,10 @@ class AddTeeForm(forms.ModelForm):
         }
         model = Golf_Tee
 
+
+class AddHoleForm(forms.ModelForm):
+    class Meta():
+        # fields = ('hole_number', 'par', 'yardage', 'hcp_index',)
+        fields = '__all__'
+        model = Golf_Hole
 

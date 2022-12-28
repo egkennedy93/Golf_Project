@@ -28,17 +28,17 @@ class Golf_Tee(models.Model):
         return "{}_{}".format(self.course_name, self.tee_name) 
 
 class Golf_Hole(models.Model):
-    referred_tee_name = models.ForeignKey(Golf_Tee, related_name='hole_tee', on_delete=models.CASCADE)
+    tee_name = models.ForeignKey(Golf_Tee, on_delete=models.CASCADE)
     hole_number = models.IntegerField()
     par = models.IntegerField()
     yardage = models.IntegerField()
     hcp_index = models.IntegerField()
 
     class Meta:
-        unique_together = ('referred_tee_name', 'hole_number')
+        unique_together = ('tee_name', 'hole_number')
         
 
     def __str__(self):
-        return "{}_{}".format(self.referred_tee_name, self.hole_number) 
+        return "{}_{}".format(self.tee_name, self.hole_number) 
     
       
