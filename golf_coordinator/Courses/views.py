@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from Courses.models import Golf_Course, Golf_Tee, Golf_Hole
-from Courses.forms import AddCourseForm, AddTeeForm, AddHoleForm, HoleFormSet, TeeFormSet
+from Courses.forms import AddCourseForm, AddTeeForm
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView)
@@ -9,35 +9,30 @@ from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from django.forms import formset_factory
+from django.forms import inlineformset_factory
 # Create your views here.
 
 
 
 def CreateCourseView(request):
+
+    TeeFormSet = inlineformset_factory(Golf_Course, Golf_Tee, form=AddTeeForm, fields=('tee_name', 'course_par', 'slope', 'rating', 'yardage',), extra=1,)
     if request.method == "POST":
+        
         course_form = AddCourseForm(request.POST)
-        teeformset = TeeFormSet(request.POST, instance=Golf_Course)
-        holeformset = HoleFormSet(request.POST)
+        teeformset = TeeFormSet(request.POST, instance=course_form.instance)
         
             # Do something. Should generally end with a redirect. For example:
         if course_form.is_valid():
             course_form.save()
 
-        if holeformset.is_valid():
-            holeformset.save()
-
         if teeformset.is_valid():
-            teeformset.course_name = request.POST.get("course_name")
             teeformset.save()
-
-       
         return redirect("/")
     else:
-        holeformset = HoleFormSet
         teeformset = TeeFormSet
         course_form = AddCourseForm()
-    return render(request, "Courses/add_course_form.html", {'holeformset': holeformset, 'teeformset': teeformset,'course_form': course_form,})
+    return render(request, "Courses/add_course_form.html", {'teeformset': teeformset,'course_form': course_form,})
 
 # def CreateCourseView(request):
 #     context = {}

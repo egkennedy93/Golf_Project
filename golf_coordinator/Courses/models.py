@@ -6,11 +6,11 @@ from django.urls import reverse
 # Create your models here.
 
 class Golf_Course(models.Model):
+    golf_course_id = models. AutoField(primary_key=True)
     course_name = models.CharField(max_length=255, unique=False)
 
     def __str__(self):
         return "{}".format(self.course_name)
-
 
 
 class Golf_Tee(models.Model):
