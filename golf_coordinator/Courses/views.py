@@ -17,7 +17,7 @@ from django.forms import formset_factory
 def CreateCourseView(request):
     if request.method == "POST":
         course_form = AddCourseForm(request.POST)
-        teeformset = TeeFormSet(request.POST)
+        teeformset = TeeFormSet(request.POST, instance=Golf_Course)
         holeformset = HoleFormSet(request.POST)
         
             # Do something. Should generally end with a redirect. For example:
@@ -28,7 +28,8 @@ def CreateCourseView(request):
             holeformset.save()
 
         if teeformset.is_valid():
-             teeformset.save()
+            teeformset.course_name = request.POST.get("course_name")
+            teeformset.save()
 
        
         return redirect("/")
@@ -36,8 +37,7 @@ def CreateCourseView(request):
         holeformset = HoleFormSet
         teeformset = TeeFormSet
         course_form = AddCourseForm()
-        tee_form = AddTeeForm()
-    return render(request, "Courses/add_course_form.html", {'holeformset': holeformset, 'teeformset': teeformset,'course_form': course_form, 'tee_form': tee_form})
+    return render(request, "Courses/add_course_form.html", {'holeformset': holeformset, 'teeformset': teeformset,'course_form': course_form,})
 
 # def CreateCourseView(request):
 #     context = {}

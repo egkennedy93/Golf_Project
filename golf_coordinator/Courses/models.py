@@ -28,7 +28,6 @@ class Golf_Tee(models.Model):
         return "{}_{}".format(self.course_name, self.tee_name) 
 
 class Golf_Hole(models.Model):
-    course_name = models.ForeignKey(Golf_Course, related_name='hole_course', on_delete=models.CASCADE)
     referred_tee_name = models.ForeignKey(Golf_Tee, related_name='hole_tee', on_delete=models.CASCADE)
     hole_number = models.IntegerField()
     par = models.IntegerField()
