@@ -6,7 +6,6 @@ from django.urls import reverse
 # Create your models here.
 
 class Golf_Course(models.Model):
-    golf_course_id = models. AutoField(primary_key=True)
     course_name = models.CharField(max_length=255, unique=False)
 
     def __str__(self):
@@ -14,31 +13,114 @@ class Golf_Course(models.Model):
 
 
 class Golf_Tee(models.Model):
+    INDEX = [
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+    ('6', '6'),
+    ('7', '7'),
+    ('8', '8'),
+    ('9', '9'),
+    ('10', '10'),
+    ('11', '11'),
+    ('12', '12'),
+    ('13', '13'),
+    ('14', '14'),
+    ('15', '15'),
+    ('16', '16'),
+    ('17', '17'),
+    ('18', '18'),
+    ]
+
+    PAR = [
+    ('3', '3'),
+    ('4', '4'),
+    ('5', '5'),
+    ]
+
     course_name = models.ForeignKey(Golf_Course, on_delete=models.CASCADE)
     tee_name = models.CharField(max_length=255, unique=True)
     course_par = models.IntegerField()
     slope = models.DecimalField(decimal_places=2, max_digits=5)
     rating = models.DecimalField(decimal_places=2, max_digits=5)
     yardage = models.IntegerField()
-   
+    hole_1_par = models.IntegerField(choices=PAR)
+    hole_1_yardage = models.IntegerField()
+    hole_1_index = models.IntegerField(choices=INDEX)
+
+    hole_2_par = models.IntegerField()
+    hole_2_yardage = models.IntegerField()
+    hole_2_index = models.IntegerField()
+
+    hole_3_par = models.IntegerField()
+    hole_3_yardage = models.IntegerField()
+    hole_3_index = models.IntegerField()
+
+    hole_4_par = models.IntegerField()
+    hole_4_yardage = models.IntegerField()
+    hole_4_index = models.IntegerField()
+
+    hole_5_par = models.IntegerField()
+    hole_5_yardage = models.IntegerField()
+    hole_5_index = models.IntegerField()
+
+    hole_6_par = models.IntegerField()
+    hole_6_yardage = models.IntegerField()
+    hole_6_index = models.IntegerField()
+
+    hole_7_par = models.IntegerField()
+    hole_7_yardage = models.IntegerField()
+    hole_7_index = models.IntegerField()
+
+    hole_8_par = models.IntegerField()
+    hole_8_yardage = models.IntegerField()
+    hole_8_index = models.IntegerField()
+
+    hole_9_par = models.IntegerField()
+    hole_9_yardage = models.IntegerField()
+    hole_9_index = models.IntegerField()
+
+    hole_10_par = models.IntegerField()
+    hole_10_yardage = models.IntegerField()
+    hole_10_index = models.IntegerField()
+
+    hole_11_par = models.IntegerField()
+    hole_11_yardage = models.IntegerField()
+    hole_11_index = models.IntegerField()
+
+    hole_12_par = models.IntegerField()
+    hole_12_yardage = models.IntegerField()
+    hole_12_index = models.IntegerField()
+
+    hole_13_par = models.IntegerField()
+    hole_13_yardage = models.IntegerField()
+    hole_13_index = models.IntegerField()
+
+    hole_14_par = models.IntegerField()
+    hole_14_yardage = models.IntegerField()
+    hole_14_index = models.IntegerField()
+
+    hole_15_par = models.IntegerField()
+    hole_15_yardage = models.IntegerField()
+    hole_15_index = models.IntegerField()
+
+    hole_16_par = models.IntegerField()
+    hole_16_yardage = models.IntegerField()
+    hole_16_index = models.IntegerField()
+
+    hole_17_par = models.IntegerField()
+    hole_17_yardage = models.IntegerField()
+    hole_17_index = models.IntegerField()
+
+    hole_18_par = models.IntegerField()
+    hole_18_yardage = models.IntegerField()
+    hole_18_index = models.IntegerField()
     class Meta:
         unique_together = ('course_name', 'tee_name',)
 
     def __str__(self):
         return "{}_{}".format(self.course_name, self.tee_name) 
-
-class Golf_Hole(models.Model):
-    tee_name = models.ForeignKey(Golf_Tee, on_delete=models.CASCADE)
-    hole_number = models.IntegerField()
-    par = models.IntegerField()
-    yardage = models.IntegerField()
-    hcp_index = models.IntegerField()
-
-    class Meta:
-        unique_together = ('tee_name', 'hole_number')
-        
-
-    def __str__(self):
-        return "{}_{}".format(self.tee_name, self.hole_number) 
     
       

@@ -13,12 +13,6 @@
     <br>
   {% endfor %}
 
-  {{ holeformset.management_form }}
-  
-  {% for holeform in holeformset %}
-      {{holeform|crispy}}
-      <br>
-    {% endfor %}
   <input type="submit" value="Submit">
 </form>
     
