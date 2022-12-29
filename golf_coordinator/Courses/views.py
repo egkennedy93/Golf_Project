@@ -1,14 +1,12 @@
 
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from Courses.models import Golf_Course, Golf_Tee
 from Courses.forms import AddCourseForm, AddTeeForm
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (TemplateView, ListView, DetailView, UpdateView, CreateView, DeleteView)
-from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.contrib import messages
 from django.forms import inlineformset_factory
 # Create your views here.
 
@@ -21,7 +19,6 @@ def CreateCourseView(request):
         
         course_form = AddCourseForm(request.POST)
         teeformset = TeeFormSet(request.POST, instance=course_form.instance)        
-            # Do something. Should generally end with a redirect. For example:
         if course_form.is_valid():
             course_form.save()           
         
