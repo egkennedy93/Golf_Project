@@ -12,8 +12,8 @@ class AddCourseForm(forms.ModelForm):
 
 class AddTeeForm(forms.ModelForm):
     class Meta():
-        # exclude = ('course_name',)
         fields = '__all__'
+
         widgets = {
             'rating': forms.NumberInput(attrs={'step': 1}),
             'hole_1_yardage': forms.TextInput(attrs={'size': 1}),
