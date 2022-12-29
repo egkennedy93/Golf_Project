@@ -16,7 +16,7 @@ from django.forms import inlineformset_factory
 
 def CreateCourseView(request):
 
-    TeeFormSet = inlineformset_factory(Golf_Course, Golf_Tee, form=AddTeeForm, fields=('__all__', ), extra=1,)
+    TeeFormSet = inlineformset_factory(Golf_Course, Golf_Tee, form=AddTeeForm, extra=1,)
     if request.method == "POST":
         
         course_form = AddCourseForm(request.POST)
