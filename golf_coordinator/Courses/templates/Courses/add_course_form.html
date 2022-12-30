@@ -20,9 +20,9 @@
     {{ teeformset.management_form }}
     {% for teeform in teeformset %}
     <div class="row" id="details_row">
-      <div class="col">Tee Name: {{teeform.tee_name}}</div>
-      <div class="col">Course Par: {{teeform.course_par}}</div>
-      <div class="col">Rating: {{teeform.rating}}</div>
+      <div class="col details" >Tee Name: {{teeform.tee_name}}</div>
+      <div class="col details">Course Par: {{teeform.course_par}}</div>
+      <div class="col details">Rating: {{teeform.rating}}</div>
       <div class="col">Slope: {{teeform.slope}}</div>
       <div class="col">Total Yds: {{teeform.yardage}}</div>
     <div>

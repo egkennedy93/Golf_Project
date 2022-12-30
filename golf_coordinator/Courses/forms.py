@@ -2,20 +2,27 @@ from django import forms
 from Courses.models import Golf_Course, Golf_Tee
 from django.forms import inlineformset_factory
 
-
+# form to store data for the Golf_Course model. 
 class AddCourseForm(forms.ModelForm):
 
     class Meta():
         fields = '__all__'
         model = Golf_Course
         
-
+# form to store data for the Golf_Tee Model
 class AddTeeForm(forms.ModelForm):
     class Meta():
-        fields = '__all__'
-
+        exclude = '__all__'
+        # everything here is for sizing purposes. View is on add_course_form.html
         widgets = {
-            'rating': forms.NumberInput(attrs={'step': 1}),
+            # details section of form
+            'tee_name': forms.TextInput(attrs={'size': 8 }),
+            'course_par': forms.TextInput(attrs={'size': 8}),
+            'slope': forms.TextInput(attrs={'size': 8}),
+            'rating': forms.TextInput(attrs={'size': 8}),
+            'yardage': forms.TextInput(attrs={'size': 8, 'padding': 0}),
+
+            #yardage section of form
             'hole_1_yardage': forms.TextInput(attrs={'size': 1}),
             'hole_2_yardage': forms.TextInput(attrs={'size': 1}),
             'hole_3_yardage': forms.TextInput(attrs={'size': 1}),
@@ -35,6 +42,7 @@ class AddTeeForm(forms.ModelForm):
             'hole_17_yardage': forms.TextInput(attrs={'size': 1}),
             'hole_18_yardage': forms.TextInput(attrs={'size': 1}),
 
+            # par section of form
             'hole_1_par': forms.Select(attrs={'style': 'width:50px'}),
             'hole_2_par': forms.Select(attrs={'style': 'width:50px'}),
             'hole_3_par': forms.Select(attrs={'style': 'width:50px'}),
@@ -54,6 +62,7 @@ class AddTeeForm(forms.ModelForm):
             'hole_17_par': forms.Select(attrs={'style': 'width:50px'}),
             'hole_18_par': forms.Select(attrs={'style': 'width:50px'}),
 
+            # index section of form
             'hole_1_index': forms.Select(attrs={'style': 'width:50px'}),
             'hole_2_index': forms.Select(attrs={'style': 'width:50px'}),
             'hole_3_index': forms.Select(attrs={'style': 'width:50px'}),

@@ -13,6 +13,7 @@ class Golf_Course(models.Model):
 
 
 class Golf_Tee(models.Model):
+    # choice list of index values
     INDEX = [
     (1, 1),
     (2, 2),
@@ -34,6 +35,7 @@ class Golf_Tee(models.Model):
     (18, 18),
     ]
 
+    # choice list of par values
     PAR = [
     (3, 3),
     (4, 4),

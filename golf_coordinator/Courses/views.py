@@ -17,7 +17,8 @@ def CreateCourseView(request):
     TeeFormSet = inlineformset_factory(Golf_Course, Golf_Tee, form=AddTeeForm, extra=1,)
     if request.method == "POST":
         course_form = AddCourseForm(request.POST)
-        teeformset = TeeFormSet(request.POST, instance=course_form.instance)        
+        teeformset = TeeFormSet(request.POST, instance=course_form.instance)
+           
         if course_form.is_valid():
             course_form.save()           
         
@@ -29,3 +30,4 @@ def CreateCourseView(request):
         course_form = AddCourseForm()
         teeformset = TeeFormSet()
     return render(request, "Courses/add_course_form.html", {'teeformset': teeformset,'course_form': course_form,})
+
