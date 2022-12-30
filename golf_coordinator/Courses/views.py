@@ -28,4 +28,4 @@ def CreateCourseView(request):
     else:
         course_form = AddCourseForm()
         teeformset = TeeFormSet()
-    return render(request, "Courses/add_course_form.html", {'teeformset': teeformset,'course_form': course_form, })
+    return render(request, "Courses/add_course_form.html", {'teeformset': teeformset,'course_form': course_form,})
