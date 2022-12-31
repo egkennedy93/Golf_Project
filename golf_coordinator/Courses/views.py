@@ -33,3 +33,24 @@ def CreateCourseView(request):
     return render(request, "Courses/add_course_form.html", {'teeformset': teeformset,'course_form': course_form,})
 
 
+
+class Golf_CourseListView(ListView):
+    model = Golf_Course
+
+class Golf_CourseDetailView(DetailView):
+    model = Golf_Course
+    context_object_name = 'golf_course'
+
+class Golf_TeeDetailView(DetailView):
+    model = Golf_Tee
+    context_object_name = 'golf_tee'
+
+class Golf_TeeCreateView(CreateView):
+    model = Golf_Tee
+    context_object_name = 'golf_tee'
+
+
+
+
+
+

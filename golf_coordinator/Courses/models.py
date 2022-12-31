@@ -42,7 +42,7 @@ class Golf_Tee(models.Model):
     (5, 5),
     ]
 
-    course = models.ForeignKey(Golf_Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Golf_Course, related_name="golf_tees", on_delete=models.CASCADE)
     tee_name = models.CharField(max_length=255, unique=True)
     course_par = models.IntegerField()
     slope = models.DecimalField(decimal_places=2, max_digits=5)
@@ -122,6 +122,7 @@ class Golf_Tee(models.Model):
     hole_18_index = models.IntegerField(choices=INDEX, default = INDEX[0][0])
     class Meta:
         unique_together = ('course', 'tee_name',)
+
 
     def __str__(self):
         return "{}_{}".format(self.course, self.tee_name) 

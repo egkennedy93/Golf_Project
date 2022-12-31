@@ -13,6 +13,9 @@
     <head>
         <meta charset="utf-8">
         <title>The Golf Group</title>
+        <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
     </head>
 
     <body>
@@ -30,7 +33,7 @@
                       Courses
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <li><a class="dropdown-item" href="#">Course List</a></li>
+                      <li><a class="dropdown-item" href={% url 'courses:golf_course_list' %}>Course List</a></li>
                       <li><a class="dropdown-item" href={% url 'courses:course_new' %}>Add Course</a></li>
                 </ul>
               </div>

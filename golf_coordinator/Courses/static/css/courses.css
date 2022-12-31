@@ -16,3 +16,12 @@
 #course_submit {
     padding-top: 1em;;
 }
+
+#hole_nums {
+    border-bottom: 1px solid #aaa;
+}
+
+.fa-solid .fa-plus {
+    font-family: 'sarif';
+
+}

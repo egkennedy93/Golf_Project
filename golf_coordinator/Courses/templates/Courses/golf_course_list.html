@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="centerstage">
+    <h1> Course List </h1>
+    {% for course in golf_course_list %}
+        <div class="course">
+            <h1><a href="{% url 'courses:golf_course_detail' pk=course.pk %}">{{ course.course_name }}</a></h1>
+        </div>
+    {% endfor %}
+{% endblock %}
