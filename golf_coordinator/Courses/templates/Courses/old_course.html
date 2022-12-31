@@ -1,7 +1,0 @@
-  {% comment %} {% csrf_token %}
-  {{ course_form|crispy }}
-  {{ teeformset.management_form }}
-  {% for teeform in teeformset %}
-    {{teeform|crispy}}
-    <br>
-  {% endfor %} {% endcomment %}

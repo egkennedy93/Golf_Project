@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'css/courses.css' %}">
+  </head>
+
+  <body>
+    <h2>{{course_data.course_name}} has been submitted successfully!</h4>
+
+{% endblock %}

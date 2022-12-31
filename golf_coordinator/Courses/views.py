@@ -18,6 +18,7 @@ def CreateCourseView(request):
     if request.method == "POST":
         course_form = AddCourseForm(request.POST)
         teeformset = TeeFormSet(request.POST, instance=course_form.instance)
+        cleaned_tee = []
            
         if course_form.is_valid():
             course_form.save()           
@@ -25,9 +26,10 @@ def CreateCourseView(request):
         if teeformset.is_valid():
             teeformset.save()
 
-        return redirect("/")
+        return render(request,'Courses/course_submission.html',{'course_data': course_form.cleaned_data})
     else:
         course_form = AddCourseForm()
         teeformset = TeeFormSet()
     return render(request, "Courses/add_course_form.html", {'teeformset': teeformset,'course_form': course_form,})
+
 
