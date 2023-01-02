@@ -47,6 +47,7 @@ class Golf_TeeDetailView(DetailView):
 
 class Golf_TeeCreateView(CreateView):
     model = Golf_Tee
+    fields = ('__all__')
     context_object_name = 'golf_tee'
 
 

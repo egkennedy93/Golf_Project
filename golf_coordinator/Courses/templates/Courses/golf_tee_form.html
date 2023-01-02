@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<html>
+  <head>
+    <title>Add A Course</title>
+    <link rel="stylesheet" href="{% static 'css/courses.css' %}">
+  </head>
+
+  <form method="POST" enctype="multipart/form-data">
+  
+  {% csrf_token %}
+  <div class="container text-center">
+    <div class="row" id="details_row">
+      <div class="col details" >Course Name: {{form.course}}</div>
+      <div class="col details" >Tee Name: {{form.tee_name}}</div>
+      <div class="col details">Course Par: {{form.course_par}}</div>
+      <div class="col details">Rating: {{form.rating}}</div>
+      <div class="col">Slope: {{form.slope}}</div>
+      <div class="col">Total Yds: {{form.yardage}}</div>
+    <div>
+    <div class="row row-cols-22" id="hole_nums">
+      <div class="col">Holes:</div>
+      <div class="col">Hole 1</div>
+      <div class="col">Hole 2</div>
+      <div class="col">Hole 3</div>
+      <div class="col">Hole 4</div>
+      <div class="col">Hole 5</div>
+      <div class="col">Hole 6</div>
+      <div class="col">Hole 7</div>
+      <div class="col">Hole 8</div>
+      <div class="col">Hole 9</div>
+      <div class="col">Hole 10</div>
+      <div class="col">Hole 11</div>
+      <div class="col">Hole 12</div>
+      <div class="col">Hole 13</div>
+      <div class="col">Hole 14</div>
+      <div class="col">Hole 15</div>
+      <div class="col">Hole 16</div>
+      <div class="col">Hole 17</div>
+      <div class="col">Hole 18</div>
+
+    </div>
+    <div class="row row-cols-22" id="tee_yards">
+      <div class="col tee_yard" id="tee_name">Yds:</div>
+      <div class="col tee_yard">{{form.hole_1_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_2_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_3_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_4_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_5_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_6_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_7_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_8_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_9_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_10_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_11_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_12_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_13_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_14_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_15_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_16_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_17_yardage}}</div>
+      <div class="col tee_yard">{{form.hole_18_yardage}}</div>
+    </div>
+    <div class="row row-cols-22" id="hole_par">
+      <div class="col tee_yard" id="tee_name">Hole Par: </div>
+      <div class="col tee_yard">{{form.hole_1_par}}</div>
+      <div class="col tee_yard">{{form.hole_2_par}}</div>
+      <div class="col tee_yard">{{form.hole_3_par}}</div>
+      <div class="col tee_yard">{{form.hole_4_par}}</div>
+      <div class="col tee_yard">{{form.hole_5_par}}</div>
+      <div class="col tee_yard">{{form.hole_6_par}}</div>
+      <div class="col tee_yard">{{form.hole_7_par}}</div>
+      <div class="col tee_yard">{{form.hole_8_par}}</div>
+      <div class="col tee_yard">{{form.hole_9_par}}</div>
+      <div class="col tee_yard">{{form.hole_10_par}}</div>
+      <div class="col tee_yard">{{form.hole_11_par}}</div>
+      <div class="col tee_yard">{{form.hole_12_par}}</div>
+      <div class="col tee_yard">{{form.hole_13_par}}</div>
+      <div class="col tee_yard">{{form.hole_14_par}}</div>
+      <div class="col tee_yard">{{form.hole_15_par}}</div>
+      <div class="col tee_yard">{{form.hole_16_par}}</div>
+      <div class="col tee_yard">{{form.hole_17_par}}</div>
+      <div class="col tee_yard">{{form.hole_18_par}}</div>
+    </div>
+    <div class="row row-cols-22" id="hole_index">
+      <div class="col tee_yard" id="tee_name">Index: </div>
+      <div class="col tee_yard">{{form.hole_1_index}}</div>
+      <div class="col tee_yard">{{form.hole_2_index}}</div>
+      <div class="col tee_yard">{{form.hole_3_index}}</div>
+      <div class="col tee_yard">{{form.hole_4_index}}</div>
+      <div class="col tee_yard">{{form.hole_5_index}}</div>
+      <div class="col tee_yard">{{form.hole_6_index}}</div>
+      <div class="col tee_yard">{{form.hole_7_index}}</div>
+      <div class="col tee_yard">{{form.hole_8_index}}</div>
+      <div class="col tee_yard">{{form.hole_9_index}}</div>
+      <div class="col tee_yard">{{form.hole_10_index}}</div>
+      <div class="col tee_yard">{{form.hole_11_index}}</div>
+      <div class="col tee_yard">{{form.hole_12_index}}</div>
+      <div class="col tee_yard">{{form.hole_13_index}}</div>
+      <div class="col tee_yard">{{form.hole_14_index}}</div>
+      <div class="col tee_yard">{{form.hole_15_index}}</div>
+      <div class="col tee_yard">{{form.hole_16_index}}</div>
+      <div class="col tee_yard">{{form.hole_17_index}}</div>
+      <div class="col tee_yard">{{form.hole_18_index}}</div>
+    </div>
+  </div>
+    <div class="row-col" id="course_submit">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+</html>
+    
+
+ {% endblock %}
