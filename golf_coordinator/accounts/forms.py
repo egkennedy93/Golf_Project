@@ -11,27 +11,11 @@ class UserForm(forms.ModelForm):
 
     class Meta():
         model = User
-        fields = '__all__'
+        fields = ('username', 'password','first_name', 'last_name', 'email')
 
 class GolferInfoForm(forms.ModelForm):
 
     class Meta():
         model = Golfer
-        fields = ('portfolio', 'picture', 'hcp_index')
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['username'].label = 'Display Name'
-    #     self.fields['email'].label = "Email Address"
-
-
-# class UserCreateForm(UserCreationForm):
-
-#     class Meta:
-#         fields = ('username', 'email', 'password1', 'password2')
-#         model = get_user_model()
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['username'].label = 'Display Name'
-#         self.fields['email'].label = "Email Address"
+        fields = ('picture', 'hcp_index')
+        picture = forms.ImageField(required=False)
