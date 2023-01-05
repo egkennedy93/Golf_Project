@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<html>
+  <head>
+    <title>Add A Round</title>
+    <link rel="stylesheet" href="{% static 'css/golfround.css' %}">
+  </head>
+
+ <h1>New Comment</h1>
+ <form class="post-form" method="post">
+     {% csrf_token %}
+     {{ round_form.as_p}}
+
+     {{ roundholescore_formset.management_form }}
+        {% for holescore in roundholescore_formset %}
+          {{holescore.round}}
+        {% endfor %}
+     <button type="submit" class='save btn btn-default'>Start Round</button>
+ </form>
+
+ {% endblock %}
