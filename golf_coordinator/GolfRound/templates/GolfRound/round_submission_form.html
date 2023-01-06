@@ -12,9 +12,16 @@
 
  <form class="post-form" id="roundsubmissionForm" method="post" data-tees-url="{% url 'round:ajax_load_tees' %}" novalidate>
      {% csrf_token %}
-      {{ form.as_p }}
+     <div class="container-fluid" style="margin: auto">
+      <h1>Submit Round Details</h1>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          {{ form|crispy }}
+        </div>
+      </div>
+    </div>
 
-     <button type="submit" class='save btn btn-default'>Submit Round</button>
+    <button type="submit" class='save btn btn-secondary'>submit</button>
  </form>
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

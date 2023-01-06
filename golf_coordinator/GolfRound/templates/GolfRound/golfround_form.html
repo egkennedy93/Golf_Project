@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{% static 'css/golfround.css' %}">
   </head>
 
- <h1>New Comment</h1>
  <form class="post-form" id="roundForm" method="post" data-tees-url="{% url 'round:ajax_load_tees' %}" novalidate>
      {% csrf_token %}
       {{ round_form.as_p }}

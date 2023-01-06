@@ -42,7 +42,7 @@ class Golf_Tee(models.Model):
     (5, 5),
     ]
 
-    course = models.ForeignKey(Golf_Course, related_name="golf_tees", unique=True, on_delete=models.CASCADE)
+    course = models.ForeignKey(Golf_Course, related_name="golf_tees", default='please select', unique=True, on_delete=models.CASCADE)
     tee_name = models.CharField(max_length=255, unique=True)
     course_par = models.IntegerField()
     slope = models.DecimalField(decimal_places=2, max_digits=5)

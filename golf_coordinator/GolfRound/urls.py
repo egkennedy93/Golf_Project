@@ -5,6 +5,6 @@ app_name = 'round'
 
 urlpatterns = [
     path(r'submit/', views.CreateRoundSubmissionView.as_view(), name='round_submit'),
-    path(r'new/<int:pk>', views.CreateRoundView, name='round_new'),
+    path(r'round/<int:pk>', views.RoundDetailView.as_view(), name='round_detail'),
     path('ajax/load-tees/', views.load_tees, name='ajax_load_tees'),  # <-- this one here
 ]
