@@ -1,0 +1,13 @@
+{% extends 'teams/team_base.html' %}
+{% load bootstrap5 %}
+
+{% block team_content %}
+<h4>Create a New Team!!</h4>
+
+    <form action="{% url 'teams:create' %}" method="POST" id='teamForm'>
+        {% csrf_token %}
+        {% bootstrap_form form%}
+        <input type="submit" class='btn btn-primary btn-large' value="Create">
+    </form>
+
+{% endblock  %}
