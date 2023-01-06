@@ -11,15 +11,30 @@
   </head>
 
  <h1>New Comment</h1>
- <form class="post-form" method="post">
+ <form class="post-form" id="roundForm" method="post" data-tees-url="{% url 'round:ajax_load_tees' %}" novalidate>
      {% csrf_token %}
-     {{ round_form.as_p}}
+      {{ round_form.as_p }}
 
-     {{ roundholescore_formset.management_form }}
-        {% for holescore in roundholescore_formset %}
-          {{holescore.round}}
-        {% endfor %}
      <button type="submit" class='save btn btn-default'>Start Round</button>
  </form>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $("#id_course").change(function () {
+      var url = $("#roundForm").attr("data-tees-url");  // get the url of the `load_cities` view
+      var courseId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'course': courseId      // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_tee").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
 
  {% endblock %}
