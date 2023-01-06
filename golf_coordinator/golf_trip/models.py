@@ -2,9 +2,8 @@ from django.db import models
 from django import template
 from django.urls import reverse
 from teams.models import Team
-from Courses.models import Golf_Course
+from Courses.models import Golf_Course, Golf_Tee
 from accounts.models import Golfer
-from GolfRound.models import GolfRound
 
 
 # Create your models here.
@@ -21,18 +20,19 @@ class Golf_Trip(models.Model):
 class Trip_Course(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
     course = models.ForeignKey(Golf_Course, on_delete=models.PROTECT)
+    tee = models.ForeignKey(Golf_Tee,  on_delete=models.PROTECT)
 
     def __str__(self):
-        return "{}_{}".format(self.trip, self.course)
+        return "{}_{}_{}".format(self.trip, self.course, self.tee)
 
 
 class Trip_Team(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
     team = models.ForeignKey(Team, on_delete=models.PROTECT)
-    team_score = models.DecimalField(max_digits=3, decimal_places=1)
+    team_score = models.DecimalField(max_digits=3, decimal_places=1, blank=True)
 
     def __str__(self):
-        return "{}_{}".format(self.trip, self.course)
+        return "{}".format(self.team)
 
 
 class Trip_Golfer(models.Model):
@@ -40,4 +40,7 @@ class Trip_Golfer(models.Model):
     team = models.ForeignKey(Team, on_delete=models.PROTECT)
     golfer = models.ForeignKey(Golfer, on_delete=models.PROTECT)
     score = models.DecimalField(max_digits=3, decimal_places=1)
+
+    def __str__(self):
+        return "{}_{}".format(self.team, self.golfer)
 
