@@ -4,21 +4,17 @@ from GolfRound.models import Golf_Round
 from Courses.models import Golf_Tee
 from django.urls import reverse_lazy
 from django.forms import inlineformset_factory
-from GolfRound.forms import CreateGolfRoundForm
- 
+from GolfRound.forms import CreateGolfRoundForm, RoundSubmissionForm
+from GolfRound.models import Round_Submission
 
 # Create your views here.
 def CreateRoundView(request):
-    # inlineformet is being used to update the Golf_Tee and Golf_Course under the same form POST 
-    # roundholescore_formset = inlineformset_factory(Golf_Round, Round_Hole_Player, form=CreateGolfRoundScoreForm, extra=4,)
+
     if request.method == "POST":
         round_form = CreateGolfRoundForm(request.POST)
-        
-        # validating and saving the course_form data
 
         if round_form.is_valid():
-            round_form.save()           
-       
+            round_form.save()            
 
         # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
         return render(request,'Courses/course_submission.html',{'round_form': round_form.cleaned_data})
@@ -27,7 +23,17 @@ def CreateRoundView(request):
         round_form = CreateGolfRoundForm()
         tee_data = Golf_Tee.objects.all()
 
-    return render(request, "GolfRound/golfround_form.html", {'round_form': round_form, 'tee_data': tee_data})
+    return render(request, "GolfRound/golfround_form.html", {'round_form': round_form})
+
+
+class CreateRoundSubmissionView(CreateView):
+    form_class = RoundSubmissionForm
+    model = Round_Submission
+
+    def form_valid(self, form):
+        form.instance.tee_slope = self.kwargs.get('pk')
+        return super(PhonCreateRoundSubmissionVieweCreate, self).form_valid(form)
+    
 
 
 def load_tees(request):

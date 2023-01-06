@@ -28,21 +28,12 @@ class Golf_Round(models.Model):
         return "{}.{}.{}.{}".format(self.id, self.tee.course, self.tee.tee_name, self.round_create_date)
 
 
-# class Round_Player(models.Model):
-#     round = models.ForeignKey(Golf_Round, related_name='' ,to_field='id' ,on_delete=models.CASCADE)
-#     player = models.ForeignKey(Golfer, on_delete=models.CASCADE)
-#     hole_1_score = models.IntegerField(default=0, blank=True)
-#     hole_2_score = models.IntegerField(default=0, blank=True)
-#     hole_3_score = models.IntegerField(default=0, blank=True)
-#     hole_4_score = models.IntegerField(default=0, blank=True)
-#     hole_5_score = models.IntegerField(default=0, blank=True)
-#     hole_6_score = models.IntegerField(default=0, blank=True)
-#     hole_7_score = models.IntegerField(default=0, blank=True)
-#     hole_8_score = models.IntegerField(default=0, blank=True)
-#     hole_9_score = models.IntegerField(default=0, blank=True)
-
-#     def __str__(self):
-#         return "{}.{}".format(self.round, self.player)
-
-# class Round_Score(models.Model):
+class Round_Submission(models.Model):
+    course = models.CharField(max_length=255)
+    round_submission_date = models.DateTimeField(default=now())
+    tee = models.ForeignKey(Golf_Tee, on_delete=models.CASCADE)
+    golfer_1 = models.ForeignKey(Golfer, related_name='player_1', on_delete=models.CASCADE)
+    # golfer_2 = models.ForeignKey(Golfer, related_name='player_2', on_delete=models.CASCADE, blank=True)
+    # golfer_3 = models.ForeignKey(Golfer, related_name='player_3', on_delete=models.CASCADE, blank=True)
+    # golfer_4 = models.ForeignKey(Golfer, related_name='player_4', on_delete=models.CASCADE, blank=True)
 
