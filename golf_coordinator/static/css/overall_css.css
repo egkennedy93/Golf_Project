@@ -1,4 +1,11 @@
 #index_img{
     /* height: 200px; */
     width: 75%;
+    border-radius: 8px;
+}
+
+body {background-color: #CDCCCC;}
+
+#page_header{
+    border-bottom:4px solid black;
 }
