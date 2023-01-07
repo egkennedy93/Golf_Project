@@ -42,8 +42,8 @@ class Golf_Tee(models.Model):
     (5, 5),
     ]
 
-    course = models.ForeignKey(Golf_Course, related_name="golf_tees", default='please select', unique=True, on_delete=models.CASCADE)
-    tee_name = models.CharField(max_length=255, unique=True)
+    course = models.ForeignKey(Golf_Course, related_name="golf_tees", default='please select', on_delete=models.CASCADE)
+    tee_name = models.CharField(max_length=255)
     course_par = models.IntegerField()
     slope = models.DecimalField(decimal_places=2, max_digits=5)
     rating = models.DecimalField(decimal_places=2, max_digits=5)
@@ -127,4 +127,73 @@ class Golf_Tee(models.Model):
     def __str__(self):
         return "{}_{}".format(self.course, self.tee_name) 
     
-      
+
+class Golf_Tee_9_Hole(models.Model):
+
+    INDEX = [
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10),
+    (11, 11),
+    (12, 12),
+    (13, 13),
+    (14, 14),
+    (15, 15),
+    (16, 16),
+    (17, 17),
+    (18, 18),
+    ]
+    PAR = [
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    ]
+
+
+    course = models.ForeignKey(Golf_Course, related_name="golf_tees_9", default='please select', on_delete=models.CASCADE)
+    tee_name = models.CharField(max_length=255)
+    course_par = models.IntegerField()
+    yardage = models.IntegerField()
+
+    hole_1_par = models.IntegerField(choices=PAR, default = PAR[1][1])
+    hole_1_yardage = models.IntegerField(default = 0)
+    hole_1_index = models.IntegerField(choices=INDEX, default = INDEX[0][0])
+
+    hole_2_par = models.IntegerField(choices=PAR, default = PAR[1][1])
+    hole_2_yardage = models.IntegerField(default = 0)
+    hole_2_index = models.IntegerField(choices=INDEX, default = INDEX[0][0])
+
+    hole_3_par = models.IntegerField(choices=PAR, default = PAR[1][1])
+    hole_3_yardage = models.IntegerField(default = 0)
+    hole_3_index = models.IntegerField(choices=INDEX, default = INDEX[0][0])
+
+    hole_4_par = models.IntegerField(choices=PAR, default = PAR[1][1])
+    hole_4_yardage = models.IntegerField(default = 0)
+    hole_4_index = models.IntegerField(choices=INDEX, default = INDEX[0][0])
+
+    hole_5_par = models.IntegerField(choices=PAR, default = PAR[1][1])
+    hole_5_yardage = models.IntegerField(default = 0)
+    hole_5_index = models.IntegerField(choices=INDEX, default = INDEX[0][0])
+
+    hole_6_par = models.IntegerField(choices=PAR, default = PAR[1][1])
+    hole_6_yardage = models.IntegerField(default = 0)
+    hole_6_index = models.IntegerField(choices=INDEX, default = INDEX[0][0])
+
+    hole_7_par = models.IntegerField(choices=PAR, default = PAR[1][1])
+    hole_7_yardage = models.IntegerField(default = 0)
+    hole_7_index = models.IntegerField(choices=INDEX, default = INDEX[0][0])
+
+    hole_8_par = models.IntegerField(choices=PAR, default = PAR[1][1])
+    hole_8_yardage = models.IntegerField(default = 0)
+    hole_8_index = models.IntegerField(choices=INDEX, default = INDEX[0][0])
+
+    hole_9_par = models.IntegerField(choices=PAR, default = PAR[1][1])
+    hole_9_yardage = models.IntegerField(default = 0)
+    hole_9_index = models.IntegerField(choices=INDEX, default = INDEX[0][0])

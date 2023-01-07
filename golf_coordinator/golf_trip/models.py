@@ -29,7 +29,7 @@ class Trip_Course(models.Model):
 class Trip_Team(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
     team = models.ForeignKey(Team, on_delete=models.PROTECT)
-    team_score = models.DecimalField(max_digits=3, decimal_places=1, blank=True)
+    team_score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
     def __str__(self):
         return "{}".format(self.team)

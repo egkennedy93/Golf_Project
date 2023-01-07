@@ -1,11 +1,11 @@
 - model: Courses.golf_course
-  pk: 2
+  pk: 1
   fields:
     course_name: 'Signature'
 - model: Courses.Golf_Tee
-  pk: 2
+  pk: 1
   fields:
-    course: 2
+    course: 1
     tee_name: 'black'
     course_par: 70
     slope: 140
@@ -66,9 +66,9 @@
     hole_17_index: 3
     hole_18_index: 4
 - model: Courses.Golf_Tee
-  pk: 3
+  pk: 2
   fields:
-    course: 2
+    course: 1
     tee_name: 'black/Blue'
     course_par: 70
     slope: 140
@@ -129,9 +129,9 @@
     hole_17_index: 3
     hole_18_index: 4
 - model: Courses.Golf_Tee
-  pk: 4
+  pk: 3
   fields:
-    course: 2
+    course: 1
     tee_name: 'Blue'
     course_par: 70
     slope: 139
@@ -192,9 +192,9 @@
     hole_17_index: 3
     hole_18_index: 4
 - model: Courses.Golf_Tee
-  pk: 5
+  pk: 4
   fields:
-    course: 2
+    course: 1
     tee_name: 'Blue/White'
     course_par: 70
     slope: 138
@@ -255,9 +255,9 @@
     hole_17_index: 3
     hole_18_index: 4
 - model: Courses.Golf_Tee
-  pk: 6
+  pk: 5
   fields:
-    course: 2
+    course: 1
     tee_name: 'White'
     course_par: 70
     slope: 135
@@ -318,13 +318,13 @@
     hole_17_index: 3
     hole_18_index: 4
 - model: Courses.golf_course
-  pk: 3
+  pk: 2
   fields:
-    course_name:'Premier'
+    course_name: 'Premier'
 - model: Courses.Golf_Tee
-  pk: 7
+  pk: 6
   fields:
-    course: 3
+    course: 2
     tee_name: 'black'
     course_par: 72
     slope: 139
@@ -385,9 +385,9 @@
     hole_17_index: 14
     hole_18_index: 6
 - model: Courses.Golf_Tee
-  pk: 8
+  pk: 7
   fields:
-    course: 3
+    course: 2
     tee_name: 'black/Blue'
     course_par: 72
     slope: 135
@@ -448,9 +448,9 @@
     hole_17_index: 14
     hole_18_index: 6
 - model: Courses.Golf_Tee
-  pk: 9
+  pk: 8
   fields:
-    course: 3
+    course: 2
     tee_name: 'Blue'
     course_par: 72
     slope: 132
@@ -511,9 +511,9 @@
     hole_17_index: 14
     hole_18_index: 6
 - model: Courses.Golf_Tee
-  pk: 10
+  pk: 9
   fields:
-    course: 3
+    course: 2
     tee_name: 'Blue/White'
     course_par: 72
     slope: 129
@@ -574,13 +574,13 @@
     hole_17_index: 14
     hole_18_index: 6
 - model: Courses.golf_course
-  pk: 4
+  pk: 3
   fields:
     course_name: 'Masterpiece'
 - model: Courses.Golf_Tee
-  pk: 11
+  pk: 10
   fields:
-    course: 4
+    course: 3
     tee_name: 'black'
     course_par: 71
     slope: 147
@@ -641,9 +641,9 @@
     hole_17_index: 8
     hole_18_index: 10
 - model: Courses.Golf_Tee
-  pk: 12
+  pk: 11
   fields:
-    course: 4
+    course: 3
     tee_name: 'black/Blue'
     course_par: 71
     slope: 140
@@ -704,9 +704,9 @@
     hole_17_index: 8
     hole_18_index: 10
 - model: Courses.Golf_Tee
-  pk: 13
+  pk: 12
   fields:
-    course: 4
+    course: 3
     tee_name: 'Blue'
     course_par: 71
     slope: 137
@@ -767,9 +767,9 @@
     hole_17_index: 8
     hole_18_index: 10
 - model: Courses.Golf_Tee
-  pk: 14
+  pk: 13
   fields:
-    course: 4
+    course: 3
     tee_name: 'Blue/White'
     course_par: 71
     slope: 133
@@ -830,9 +830,9 @@
     hole_17_index: 8
     hole_18_index: 10
 - model: Courses.Golf_Tee
-  pk: 15
+  pk: 14
   fields:
-    course: 4
+    course: 3
     tee_name: 'White'
     course_par: 71
     slope: 132
@@ -891,16 +891,15 @@
     hole_15_index: 16
     hole_16_index: 18
     hole_17_index: 8
-    hole_18_index: 10
-  
+    hole_18_index: 10  
 - model: Courses.golf_course
-  pk: 5
+  pk: 4
   fields:
     course_name: 'Tradition'
 - model: Courses.Golf_Tee
-  pk: 16
+  pk: 15
   fields:
-    course: 5
+    course: 4
     tee_name: 'black'
     course_par: 70
     slope: 130
@@ -961,9 +960,9 @@
     hole_17_index: 8
     hole_18_index: 10
 - model: Courses.Golf_Tee
-  pk: 17
+  pk: 16
   fields:
-    course: 5
+    course: 4
     tee_name: 'black/Blue'
     course_par: 71
     slope: 140
@@ -1024,9 +1023,9 @@
     hole_17_index: 8
     hole_18_index: 10
 - model: Courses.Golf_Tee
-  pk: 18
+  pk: 17
   fields:
-    course: 5
+    course: 4
     tee_name: 'Blue'
     course_par: 71
     slope: 137
@@ -1087,9 +1086,9 @@
     hole_17_index: 8
     hole_18_index: 10
 - model: Courses.Golf_Tee
-  pk: 19
+  pk: 18
   fields:
-    course: 5
+    course: 4
     tee_name: 'Blue/White'
     course_par: 71
     slope: 133
@@ -1150,9 +1149,9 @@
     hole_17_index: 8
     hole_18_index: 10
 - model: Courses.Golf_Tee
-  pk: 20
+  pk: 19
   fields:
-    course: 5
+    course: 4
     tee_name: 'White'
     course_par: 71
     slope: 132
@@ -1212,15 +1211,75 @@
     hole_16_index: 18
     hole_17_index: 8
     hole_18_index: 10
-  
-
 - model: Courses.golf_course
-  pk: 6
-  fields:
-    course_name: 'Himalayas'
-
-- model: Courses.golf_course
-  pk: 7
+  pk: 5
   fields:
     course_name: 'threetops'
-
+- model: Courses.Golf_Tee_9_Hole
+  pk: 1
+  fields:
+    course: 5
+    tee_name: 'Back'
+    course_par: 27
+    yardage: 1435
+    hole_1_par: 3
+    hole_2_par: 3
+    hole_3_par: 3
+    hole_4_par: 3
+    hole_5_par: 3
+    hole_6_par: 3
+    hole_7_par: 3
+    hole_8_par: 3
+    hole_9_par: 3
+    hole_1_yardage: 143
+    hole_2_yardage: 156
+    hole_3_yardage: 219
+    hole_4_yardage: 168
+    hole_5_yardage: 150
+    hole_6_yardage: 169
+    hole_7_yardage: 150
+    hole_8_yardage: 140
+    hole_9_yardage: 140
+    hole_1_index: 7
+    hole_2_index: 4
+    hole_3_index: 1
+    hole_4_index: 9
+    hole_5_index: 3
+    hole_6_index: 5
+    hole_7_index: 6
+    hole_8_index: 8
+    hole_9_index: 2
+- model: Courses.Golf_Tee_9_Hole
+  pk: 2
+  fields:
+    course: 5
+    tee_name: 'Middle'
+    course_par: 27
+    yardage: 1287
+    hole_1_par: 3
+    hole_2_par: 3
+    hole_3_par: 3
+    hole_4_par: 3
+    hole_5_par: 3
+    hole_6_par: 3
+    hole_7_par: 3
+    hole_8_par: 3
+    hole_9_par: 3
+    hole_1_yardage: 125
+    hole_2_yardage: 139
+    hole_3_yardage: 207
+    hole_4_yardage: 140
+    hole_5_yardage: 135
+    hole_6_yardage: 147
+    hole_7_yardage: 135
+    hole_8_yardage: 124
+    hole_9_yardage: 135
+    hole_1_index: 7
+    hole_2_index: 4
+    hole_3_index: 1
+    hole_4_index: 9
+    hole_5_index: 3
+    hole_6_index: 5
+    hole_7_index: 6
+    hole_8_index: 8
+    hole_9_index: 2

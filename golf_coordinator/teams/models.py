@@ -12,7 +12,7 @@ class Team(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, default='')
     members = models.ManyToManyField(Golfer, through='TeamMember')
-    team_score = models.DecimalField(max_digits=3, decimal_places=1)
+    team_score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
 
     def __str__(self):
