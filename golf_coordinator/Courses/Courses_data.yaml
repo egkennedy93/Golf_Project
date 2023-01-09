@@ -1215,12 +1215,14 @@
   pk: 5
   fields:
     course_name: 'threetops'
-- model: Courses.Golf_Tee_9_Hole
-  pk: 1
+- model: Courses.Golf_Tee
+  pk: 22
   fields:
     course: 5
     tee_name: 'Back'
     course_par: 27
+    slope: 0
+    rating: 0
     yardage: 1435
     hole_1_par: 3
     hole_2_par: 3
@@ -1231,6 +1233,15 @@
     hole_7_par: 3
     hole_8_par: 3
     hole_9_par: 3
+    hole_10_par: 0
+    hole_11_par: 0
+    hole_12_par: 0
+    hole_13_par: 0
+    hole_14_par: 0
+    hole_15_par: 0
+    hole_16_par: 0
+    hole_17_par: 0
+    hole_18_par: 0
     hole_1_yardage: 143
     hole_2_yardage: 156
     hole_3_yardage: 219
@@ -1240,6 +1251,15 @@
     hole_7_yardage: 150
     hole_8_yardage: 140
     hole_9_yardage: 140
+    hole_10_yardage: 0
+    hole_11_yardage: 0
+    hole_12_yardage: 0
+    hole_13_yardage: 0
+    hole_14_yardage: 0
+    hole_15_yardage: 0
+    hole_16_yardage: 0
+    hole_17_yardage: 0
+    hole_18_yardage: 0
     hole_1_index: 7
     hole_2_index: 4
     hole_3_index: 1
@@ -1249,12 +1269,23 @@
     hole_7_index: 6
     hole_8_index: 8
     hole_9_index: 2
-- model: Courses.Golf_Tee_9_Hole
-  pk: 2
+    hole_10_index: 0
+    hole_11_index: 0
+    hole_12_index: 0
+    hole_13_index: 0
+    hole_14_index: 0
+    hole_15_index: 0
+    hole_16_index: 0
+    hole_17_index: 0
+    hole_18_index: 0
+- model: Courses.Golf_Tee
+  pk: 23
   fields:
     course: 5
     tee_name: 'Middle'
     course_par: 27
+    slope: 0
+    rating: 0
     yardage: 1287
     hole_1_par: 3
     hole_2_par: 3
@@ -1265,6 +1296,15 @@
     hole_7_par: 3
     hole_8_par: 3
     hole_9_par: 3
+    hole_10_par: 0
+    hole_11_par: 0
+    hole_12_par: 0
+    hole_13_par: 0
+    hole_14_par: 0
+    hole_15_par: 0
+    hole_16_par: 0
+    hole_17_par: 0
+    hole_18_par: 0
     hole_1_yardage: 125
     hole_2_yardage: 139
     hole_3_yardage: 207
@@ -1274,6 +1314,15 @@
     hole_7_yardage: 135
     hole_8_yardage: 124
     hole_9_yardage: 135
+    hole_10_yardage: 0
+    hole_11_yardage: 0
+    hole_12_yardage: 0
+    hole_13_yardage: 0
+    hole_14_yardage: 0
+    hole_15_yardage: 0
+    hole_16_yardage: 0
+    hole_17_yardage: 0
+    hole_18_yardage: 0
     hole_1_index: 7
     hole_2_index: 4
     hole_3_index: 1
@@ -1283,3 +1332,142 @@
     hole_7_index: 6
     hole_8_index: 8
     hole_9_index: 2
+    hole_10_index: 0
+    hole_11_index: 0
+    hole_12_index: 0
+    hole_13_index: 0
+    hole_14_index: 0
+    hole_15_index: 0
+    hole_16_index: 0
+    hole_17_index: 0
+    hole_18_index: 0
+- model: Courses.golf_course
+  pk: 6
+  fields:
+    course_name: 'Arcadia Bluffs - Bluffs'
+- model: Courses.Golf_Tee
+  pk: 20
+  fields:
+    course: 6
+    tee_name: 'Blue'
+    course_par: 72
+    slope: 140
+    rating: 72.7
+    yardage: 6913
+    hole_1_par: 5
+    hole_2_par: 3
+    hole_3_par: 5
+    hole_4_par: 4
+    hole_5_par: 5
+    hole_6_par: 3
+    hole_7_par: 4
+    hole_8_par: 4
+    hole_9_par: 3
+    hole_10_par: 4
+    hole_11_par: 5
+    hole_12_par: 4
+    hole_13_par: 3
+    hole_14_par: 4
+    hole_15_par: 5
+    hole_16_par: 4
+    hole_17_par: 3
+    hole_18_par: 4
+    hole_1_yardage: 498
+    hole_2_yardage: 182
+    hole_3_yardage: 524
+    hole_4_yardage: 410
+    hole_5_yardage: 578
+    hole_6_yardage: 190
+    hole_7_yardage: 434
+    hole_8_yardage: 389
+    hole_9_yardage: 196
+    hole_10_yardage: 424
+    hole_11_yardage: 594
+    hole_12_yardage: 430
+    hole_13_yardage: 181
+    hole_14_yardage: 340
+    hole_15_yardage: 470
+    hole_16_yardage: 459
+    hole_17_yardage: 170
+    hole_18_yardage: 435
+    hole_1_index: 15
+    hole_2_index: 17
+    hole_3_index: 7
+    hole_4_index: 13
+    hole_5_index: 3
+    hole_6_index: 9
+    hole_7_index: 1
+    hole_8_index: 5
+    hole_9_index: 11
+    hole_10_index: 2
+    hole_11_index: 12
+    hole_12_index: 10
+    hole_13_index: 8
+    hole_14_index: 14
+    hole_15_index: 18
+    hole_16_index: 4
+    hole_17_index: 16
+    hole_18_index: 6
+- model: Courses.Golf_Tee
+  pk: 21
+  fields:
+    course: 6
+    tee_name: 'White'
+    course_par: 72
+    slope: 134
+    rating: 70.5
+    yardage: 6389
+    hole_1_par: 5
+    hole_2_par: 3
+    hole_3_par: 5
+    hole_4_par: 4
+    hole_5_par: 5
+    hole_6_par: 3
+    hole_7_par: 4
+    hole_8_par: 4
+    hole_9_par: 3
+    hole_10_par: 4
+    hole_11_par: 5
+    hole_12_par: 4
+    hole_13_par: 3
+    hole_14_par: 4
+    hole_15_par: 5
+    hole_16_par: 4
+    hole_17_par: 3
+    hole_18_par: 4
+    hole_1_yardage: 459
+    hole_2_yardage: 160
+    hole_3_yardage: 502
+    hole_4_yardage: 367
+    hole_5_yardage: 557
+    hole_6_yardage: 161
+    hole_7_yardage: 425
+    hole_8_yardage: 352
+    hole_9_yardage: 162
+    hole_10_yardage: 399
+    hole_11_yardage: 563
+    hole_12_yardage: 378
+    hole_13_yardage: 160
+    hole_14_yardage: 310
+    hole_15_yardage: 460
+    hole_16_yardage: 441
+    hole_17_yardage: 158
+    hole_18_yardage: 375
+    hole_1_index: 15
+    hole_2_index: 17
+    hole_3_index: 7
+    hole_4_index: 13
+    hole_5_index: 3
+    hole_6_index: 9
+    hole_7_index: 1
+    hole_8_index: 5
+    hole_9_index: 11
+    hole_10_index: 2
+    hole_11_index: 12
+    hole_12_index: 10
+    hole_13_index: 8
+    hole_14_index: 14
+    hole_15_index: 18
+    hole_16_index: 4
+    hole_17_index: 16
+    hole_18_index: 6

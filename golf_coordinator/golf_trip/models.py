@@ -23,7 +23,7 @@ class Trip_Course(models.Model):
     tee = models.ForeignKey(Golf_Tee,  on_delete=models.PROTECT)
 
     def __str__(self):
-        return "{}_{}_{}".format(self.trip, self.course, self.tee)
+        return "{}".format(self.tee)
 
 
 class Trip_Team(models.Model):
@@ -32,15 +32,24 @@ class Trip_Team(models.Model):
     team_score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
     def __str__(self):
-        return "{}".format(self.team)
+        return "{}_{}".format(self.trip, self.team)
 
 
 class Trip_Golfer(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
-    team = models.ForeignKey(Team, on_delete=models.PROTECT)
+    team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.PROTECT)
     golfer = models.ForeignKey(Golfer, on_delete=models.PROTECT)
-    score = models.DecimalField(max_digits=3, decimal_places=1)
+    score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
     def __str__(self):
-        return "{}_{}".format(self.team, self.golfer)
+        return "{}_{}".format(self.trip, self.golfer)
+
+class Trip_Event(models.Model):
+    trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
+    tee_time = models.DateTimeField()
+    course = models.ForeignKey(Trip_Course, on_delete=models.PROTECT)
+    # Players =models.ManyToManyField(Trip_Golfer)
+
+    def __str__(self):
+        return "{}_{}_{}".format(self.trip, self.tee_time, self.course)
 

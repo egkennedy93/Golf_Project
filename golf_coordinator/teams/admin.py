@@ -4,7 +4,5 @@ from . import models
 # Register your models here.
 
 
-class TeamMemberInLine(admin.TabularInline):
-    model = models.TeamMember
-
+admin.site.register(models.TeamMember)
 admin.site.register(models.Team)
