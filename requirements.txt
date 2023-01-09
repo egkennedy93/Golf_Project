@@ -5,12 +5,17 @@ cffi==1.15.1
 Django==4.1.3
 django-bootstrap-v5==1.0.11
 django-crispy-forms==1.14.0
+django-jquery==3.1.0
 fontawesomefree==6.2.1
+icalendar==5.0.4
 misaka==2.1.1
 Pillow==9.4.0
 psycopg2==2.9.5
 psycopg2-binary==2.9.5
 pycparser==2.21
+python-dateutil==2.8.2
 python-dotenv==0.21.0
+pytz==2022.7
+six==1.16.0
 soupsieve==2.3.2.post1
 sqlparse==0.4.3

@@ -9,17 +9,14 @@ User = get_user_model()
 register = template.Library()
 
 class Team(models.Model):
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     description = models.TextField(blank=True, default='')
     members = models.ManyToManyField(Golfer, through='TeamMember')
-    team_score = models.DecimalField(max_digits=3, decimal_places=1)
+    team_score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
 
     def __str__(self):
         return self.name
-        
-    def save(self, *args, **kwargs):
-        pass
 
     def get_absolute_url(self):
         return reverse('teams:single', kwargs={'name':self.name})

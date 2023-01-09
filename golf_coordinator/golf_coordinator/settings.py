@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'Courses',
     'accounts',
     'GolfRound',
+    'golf_trip',
     'teams',
     'jquery',
 ]
