@@ -9,7 +9,6 @@ class Golfer(models.Model):
     # user = models.OneToOneField(User, on_delete=models.PROTECT)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    hcp_index = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
 
     def __str__(self):

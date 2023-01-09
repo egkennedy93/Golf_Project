@@ -17,5 +17,5 @@ class GolferInfoForm(forms.ModelForm):
 
     class Meta():
         model = Golfer
-        fields = ('first_name', 'last_name', 'hcp_index')
+        fields = ('first_name', 'last_name')
         picture = forms.ImageField(required=False)

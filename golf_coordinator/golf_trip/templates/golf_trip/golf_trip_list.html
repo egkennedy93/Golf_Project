@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+{% for trip in golf_trip_list %}
+<a href="{% url 'golf_trip:streamsong' %}">{{trip.trip_date}} - {{trip.trip_name}}</a>
+
+
+{% endfor %}
+
+{% endblock %}
