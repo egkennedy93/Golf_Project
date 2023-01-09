@@ -3,67 +3,56 @@
   fields:
     first_name: 'Everett'
     last_name: 'Kennedy'
-    hcp_index: 7.4
 - model: accounts.Golfer
   pk: 2
   fields:
     first_name: 'Jason'
     last_name: 'Ervin'
-    hcp_index: 17.1
 - model: accounts.Golfer
   pk: 3
   fields:
     first_name: 'Michael'
     last_name: 'Ruff'
-    hcp_index: 6.3
 - model: accounts.Golfer
   pk: 4
   fields:
     first_name: 'Brett'
     last_name: 'Swikle'
-    hcp_index: 12.6
 - model: accounts.Golfer
   pk: 5
   fields:
     first_name: 'Nick'
     last_name: 'Van Nice'
-    hcp_index: 13.6 
 - model: accounts.Golfer
   pk: 6
   fields:
     first_name: 'Julian'
     last_name: 'Velasquez'
-    hcp_index: 13.9
 - model: accounts.Golfer
   pk: 7
   fields:
     first_name: 'Daniel'
     last_name: 'Carnrike'
-    hcp_index: 9.9
 - model: accounts.Golfer
   pk: 8
   fields:
     first_name: 'Evan'
     last_name: 'Appold'
-    hcp_index: 12.5
 - model: accounts.Golfer
   pk: 9
   fields:
     first_name: 'Jordan'
     last_name: 'Zeider'
-    hcp_index: 12.3
 - model: accounts.Golfer
   pk: 10
   fields:
     first_name: 'Justin'
     last_name: 'Laureys'
-    hcp_index: 13.4
 - model: accounts.Golfer
   pk: 11
   fields:
     first_name: 'Luke'
     last_name: 'Lacy'
-    hcp_index: 13.3
 - model: accounts.Golfer
   pk: 12
   fields:
@@ -84,7 +73,6 @@
   fields:
     first_name: 'Daniel'
     last_name: 'Gonsoroski'
-    hcp_index: 11.5
 - model: accounts.Golfer
   pk: 16
   fields:
@@ -105,3 +93,8 @@
   fields:
     first_name: 'Sean'
     last_name: 'Wilson'
+- model: accounts.Golfer
+  pk: 20
+  fields:
+    first_name: 'Daniel'
+    last_name: 'Koester'

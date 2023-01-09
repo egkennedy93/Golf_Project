@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'golf_trip:trip_2023' %}">Home</a>
+      <a class="navbar-brand" href="{% url 'golf_trip:home' %}">Home</a>
       
       {% if user.is_authenticated %}
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -12,20 +12,8 @@
               <li><a class="dropdown-item" href={% url 'courses:course_new' %}>Add Course</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Rounds</a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href={% url 'round:round_submit' %}>Start a New Round</a></li>
-              <li><a class="dropdown-item" href='#'>Active Rounds</a></li>
-              <li><a class="dropdown-item" href='#'>All Rounds</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Teams</a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href={% url 'teams:create' %}>Start a New Team</a></li>
-              <li><a class="dropdown-item" href='#'>View Teams</a></li>
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'golf_trip:event_history' %}">Previous Trips</a>
           </li>
           <li class="nav-item ms-auto"><a class="nav-link" href="{% url 'logout' %}" >Log out</a></li>
         </ul>

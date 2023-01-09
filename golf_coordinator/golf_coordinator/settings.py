@@ -137,11 +137,11 @@ STATICFILES_DIRS = [
 # MEDIA_ROOT = os.path.join(STATIC_ROOT, 'images')
 # MEDIA_URL = 'images/'
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'golf_trip:home'
 LOGOUT_URL = 'logout'
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'golf_trip:home'
+LOGOUT_REDIRECT_URL = 'golf_trip:home'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

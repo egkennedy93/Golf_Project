@@ -16,15 +16,15 @@
 
 <div class="text-center" id="page_header">
   <h1>Golf Trip 2023!</h1>
-  <img  id="index_img" src="{% static 'Tree_Tops_Portrait.jpg' %}" alt="My image">
+  <img  id="index_img" src="{% static 'streamsong.webp' %}" style="width:500px;height:300px;" alt="My image">
 </div>
 <div class="text-center">
   <div class="row align-items-top">
-    <div class="col">
+    <div class="col" id="player_col">
       <h3>Players</h3>
       {% for golfer in golfers%}
-      <div class="container">
-          <div class="row">
+      <div class="container px-10">
+          <div class="row" id="player_row">
             <div class="col">
               <ul class="list-group">{{golfer.golfer.first_name}}</ul>
             </div>
@@ -32,7 +32,7 @@
               <ul class="list-group">{{golfer.golfer.last_name}}<ul>
             </div>
             <div class="col">
-              <ul class="list-group">{{golfer.golfer.hcp_index}}</ul>
+              <ul class="list-group">{{golfer.hcp_index}}</ul>
             </div>
           </div>
       </div>
