@@ -1,0 +1,3243 @@
+- model: admin.logentry
+  pk: 1
+  fields:
+    action_time: 2023-01-09 20:34:20.450079+00:00
+    user: 1
+    content_type: 13
+    object_id: '1'
+    object_repr: Streamsong
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 2
+  fields:
+    action_time: 2023-01-09 20:34:45.799892+00:00
+    user: 1
+    content_type: 14
+    object_id: '1'
+    object_repr: Streamsong - Blue_Black/Silver
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 3
+  fields:
+    action_time: 2023-01-09 20:34:54.464923+00:00
+    user: 1
+    content_type: 14
+    object_id: '2'
+    object_repr: Streamsong - Black_Black/Silver
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 4
+  fields:
+    action_time: 2023-01-09 20:35:00.922445+00:00
+    user: 1
+    content_type: 14
+    object_id: '3'
+    object_repr: Streamsong - Red_Black/Silver
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 5
+  fields:
+    action_time: 2023-01-09 20:40:28.856438+00:00
+    user: 1
+    content_type: 19
+    object_id: '1'
+    object_repr: Red
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 6
+  fields:
+    action_time: 2023-01-09 20:40:34.168539+00:00
+    user: 1
+    content_type: 19
+    object_id: '2'
+    object_repr: Blue
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 7
+  fields:
+    action_time: 2023-01-09 20:40:57.650258+00:00
+    user: 1
+    content_type: 17
+    object_id: '1'
+    object_repr: Streamsong_Red
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 8
+  fields:
+    action_time: 2023-01-09 20:41:01.780269+00:00
+    user: 1
+    content_type: 17
+    object_id: '2'
+    object_repr: Streamsong_Blue
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 9
+  fields:
+    action_time: 2023-01-09 20:49:12.971542+00:00
+    user: 1
+    content_type: 15
+    object_id: '1'
+    object_repr: Streamsong_Everett Kennedy
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 10
+  fields:
+    action_time: 2023-01-09 20:49:45.553906+00:00
+    user: 1
+    content_type: 15
+    object_id: '2'
+    object_repr: Streamsong_Brett Swikle
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 11
+  fields:
+    action_time: 2023-01-09 20:50:02.356115+00:00
+    user: 1
+    content_type: 15
+    object_id: '3'
+    object_repr: Streamsong_Jason Ervin
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 12
+  fields:
+    action_time: 2023-01-09 20:50:22.134648+00:00
+    user: 1
+    content_type: 15
+    object_id: '4'
+    object_repr: Streamsong_Nick Van Nice
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 13
+  fields:
+    action_time: 2023-01-09 20:50:35.211920+00:00
+    user: 1
+    content_type: 15
+    object_id: '5'
+    object_repr: Streamsong_Evan Appold
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 14
+  fields:
+    action_time: 2023-01-09 20:50:45.095740+00:00
+    user: 1
+    content_type: 15
+    object_id: '6'
+    object_repr: Streamsong_Justin Laureys
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 15
+  fields:
+    action_time: 2023-01-09 20:51:00.202494+00:00
+    user: 1
+    content_type: 15
+    object_id: '7'
+    object_repr: Streamsong_Jordan Zeider
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 16
+  fields:
+    action_time: 2023-01-09 20:51:25.369089+00:00
+    user: 1
+    content_type: 15
+    object_id: '8'
+    object_repr: Streamsong_Daniel Koester
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 17
+  fields:
+    action_time: 2023-01-09 20:51:35.825498+00:00
+    user: 1
+    content_type: 15
+    object_id: '9'
+    object_repr: Streamsong_Luke Lacy
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 18
+  fields:
+    action_time: 2023-01-09 20:51:49.637903+00:00
+    user: 1
+    content_type: 15
+    object_id: '10'
+    object_repr: Streamsong_Daniel Carnrike
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 19
+  fields:
+    action_time: 2023-01-09 20:52:01.523209+00:00
+    user: 1
+    content_type: 15
+    object_id: '11'
+    object_repr: Streamsong_Julian Velasquez
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 20
+  fields:
+    action_time: 2023-01-09 20:52:13.001001+00:00
+    user: 1
+    content_type: 15
+    object_id: '12'
+    object_repr: Streamsong_Daniel Gonsoroski
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 21
+  fields:
+    action_time: 2023-01-09 20:55:46.289650+00:00
+    user: 1
+    content_type: 16
+    object_id: '1'
+    object_repr: Trip_TeeTime object (1)
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 22
+  fields:
+    action_time: 2023-01-09 20:58:18.798077+00:00
+    user: 1
+    content_type: 18
+    object_id: '1'
+    object_repr: Streamsong_2022-05-13 12:25:00+00:00_2022-05-13_Streamsong - Blue_Black/Silver
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 23
+  fields:
+    action_time: 2023-01-09 20:58:39.421928+00:00
+    user: 1
+    content_type: 18
+    object_id: '2'
+    object_repr: Streamsong_2022-05-14 12:23:00+00:00_2022-05-13_Streamsong - Black_Black/Silver
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 24
+  fields:
+    action_time: 2023-01-09 20:58:57.900183+00:00
+    user: 1
+    content_type: 18
+    object_id: '3'
+    object_repr: Streamsong_2022-05-15 09:00:00+00:00_2022-05-13_Streamsong - Red_Black/Silver
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 25
+  fields:
+    action_time: 2023-01-09 22:32:23.104596+00:00
+    user: 1
+    content_type: 13
+    object_id: '2'
+    object_repr: Michigan
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 26
+  fields:
+    action_time: 2023-01-09 22:32:51.962920+00:00
+    user: 1
+    content_type: 14
+    object_id: '4'
+    object_repr: 2023-08-17_Arcadia Bluffs - Bluffs_Blue
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 27
+  fields:
+    action_time: 2023-01-09 22:33:32.652671+00:00
+    user: 1
+    content_type: 14
+    object_id: '5'
+    object_repr: 2023-08-17_Premier_black/Blue
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 28
+  fields:
+    action_time: 2023-01-09 22:33:44.031497+00:00
+    user: 1
+    content_type: 14
+    object_id: '6'
+    object_repr: 2023-08-17_Tradition_black/Blue
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 29
+  fields:
+    action_time: 2023-01-09 22:38:07.005832+00:00
+    user: 1
+    content_type: 9
+    object_id: '25'
+    object_repr: threetops_Back
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 30
+  fields:
+    action_time: 2023-01-09 22:38:23.164843+00:00
+    user: 1
+    content_type: 14
+    object_id: '7'
+    object_repr: 2023-08-17_threetops_Back
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 31
+  fields:
+    action_time: 2023-01-09 22:38:44.005229+00:00
+    user: 1
+    content_type: 14
+    object_id: '8'
+    object_repr: 2023-08-17_Masterpiece_black/Blue
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 32
+  fields:
+    action_time: 2023-01-09 22:38:58.664999+00:00
+    user: 1
+    content_type: 14
+    object_id: '9'
+    object_repr: 2023-08-17_Signature_black/Blue
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 33
+  fields:
+    action_time: 2023-01-09 22:40:16.160047+00:00
+    user: 1
+    content_type: 15
+    object_id: '13'
+    object_repr: Streamsong_Everett Kennedy
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 34
+  fields:
+    action_time: 2023-01-09 22:40:30.453165+00:00
+    user: 1
+    content_type: 15
+    object_id: '13'
+    object_repr: Streamsong_Everett Kennedy
+    action_flag: 3
+    change_message: ''
+- model: admin.logentry
+  pk: 35
+  fields:
+    action_time: 2023-01-09 22:40:42.884493+00:00
+    user: 1
+    content_type: 15
+    object_id: '14'
+    object_repr: Michigan_Everett Kennedy
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 36
+  fields:
+    action_time: 2023-01-09 22:40:57.989031+00:00
+    user: 1
+    content_type: 15
+    object_id: '15'
+    object_repr: Michigan_Jason Ervin
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 37
+  fields:
+    action_time: 2023-01-09 22:41:11.367245+00:00
+    user: 1
+    content_type: 15
+    object_id: '16'
+    object_repr: Michigan_Michael Ruff
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 38
+  fields:
+    action_time: 2023-01-09 22:41:24.293279+00:00
+    user: 1
+    content_type: 15
+    object_id: '17'
+    object_repr: Michigan_Brett Swikle
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 39
+  fields:
+    action_time: 2023-01-09 22:41:32.881406+00:00
+    user: 1
+    content_type: 15
+    object_id: '18'
+    object_repr: Michigan_Nick Van Nice
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 40
+  fields:
+    action_time: 2023-01-09 22:41:47.007179+00:00
+    user: 1
+    content_type: 15
+    object_id: '19'
+    object_repr: Michigan_Julian Velasquez
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 41
+  fields:
+    action_time: 2023-01-09 22:44:22.726490+00:00
+    user: 1
+    content_type: 15
+    object_id: '20'
+    object_repr: Michigan_Daniel Carnrike
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 42
+  fields:
+    action_time: 2023-01-09 22:44:34.509916+00:00
+    user: 1
+    content_type: 15
+    object_id: '21'
+    object_repr: Michigan_Daniel Gonsoroski
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 43
+  fields:
+    action_time: 2023-01-09 22:44:59.242164+00:00
+    user: 1
+    content_type: 15
+    object_id: '22'
+    object_repr: Michigan_Evan Appold
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 44
+  fields:
+    action_time: 2023-01-09 22:45:18.999640+00:00
+    user: 1
+    content_type: 15
+    object_id: '23'
+    object_repr: Michigan_Jordan Zeider
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 45
+  fields:
+    action_time: 2023-01-09 22:45:32.264758+00:00
+    user: 1
+    content_type: 15
+    object_id: '24'
+    object_repr: Michigan_Justin Laureys
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 46
+  fields:
+    action_time: 2023-01-09 22:45:55.272296+00:00
+    user: 1
+    content_type: 15
+    object_id: '25'
+    object_repr: Michigan_Luke Lacy
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 47
+  fields:
+    action_time: 2023-01-09 22:46:18.666353+00:00
+    user: 1
+    content_type: 15
+    object_id: '26'
+    object_repr: Michigan_Evan Kruger
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 48
+  fields:
+    action_time: 2023-01-09 22:46:28.474768+00:00
+    user: 1
+    content_type: 15
+    object_id: '27'
+    object_repr: Michigan_Addison Bullock
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 49
+  fields:
+    action_time: 2023-01-09 22:46:35.263202+00:00
+    user: 1
+    content_type: 15
+    object_id: '28'
+    object_repr: Michigan_Kyle Jones
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 50
+  fields:
+    action_time: 2023-01-09 22:46:40.295737+00:00
+    user: 1
+    content_type: 15
+    object_id: '29'
+    object_repr: Michigan_Matt Magee
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 51
+  fields:
+    action_time: 2023-01-09 22:46:45.201135+00:00
+    user: 1
+    content_type: 15
+    object_id: '30'
+    object_repr: Michigan_Nathan Kintz
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 52
+  fields:
+    action_time: 2023-01-09 22:46:50.107455+00:00
+    user: 1
+    content_type: 15
+    object_id: '31'
+    object_repr: Michigan_Sean Wilson
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 53
+  fields:
+    action_time: 2023-01-09 22:55:04.456976+00:00
+    user: 1
+    content_type: 13
+    object_id: '2'
+    object_repr: Michigan
+    action_flag: 2
+    change_message: '[]'
+- model: auth.permission
+  pk: 1
+  fields:
+    name: Can add log entry
+    content_type: 1
+    codename: add_logentry
+- model: auth.permission
+  pk: 2
+  fields:
+    name: Can change log entry
+    content_type: 1
+    codename: change_logentry
+- model: auth.permission
+  pk: 3
+  fields:
+    name: Can delete log entry
+    content_type: 1
+    codename: delete_logentry
+- model: auth.permission
+  pk: 4
+  fields:
+    name: Can view log entry
+    content_type: 1
+    codename: view_logentry
+- model: auth.permission
+  pk: 5
+  fields:
+    name: Can add permission
+    content_type: 2
+    codename: add_permission
+- model: auth.permission
+  pk: 6
+  fields:
+    name: Can change permission
+    content_type: 2
+    codename: change_permission
+- model: auth.permission
+  pk: 7
+  fields:
+    name: Can delete permission
+    content_type: 2
+    codename: delete_permission
+- model: auth.permission
+  pk: 8
+  fields:
+    name: Can view permission
+    content_type: 2
+    codename: view_permission
+- model: auth.permission
+  pk: 9
+  fields:
+    name: Can add group
+    content_type: 3
+    codename: add_group
+- model: auth.permission
+  pk: 10
+  fields:
+    name: Can change group
+    content_type: 3
+    codename: change_group
+- model: auth.permission
+  pk: 11
+  fields:
+    name: Can delete group
+    content_type: 3
+    codename: delete_group
+- model: auth.permission
+  pk: 12
+  fields:
+    name: Can view group
+    content_type: 3
+    codename: view_group
+- model: auth.permission
+  pk: 13
+  fields:
+    name: Can add user
+    content_type: 4
+    codename: add_user
+- model: auth.permission
+  pk: 14
+  fields:
+    name: Can change user
+    content_type: 4
+    codename: change_user
+- model: auth.permission
+  pk: 15
+  fields:
+    name: Can delete user
+    content_type: 4
+    codename: delete_user
+- model: auth.permission
+  pk: 16
+  fields:
+    name: Can view user
+    content_type: 4
+    codename: view_user
+- model: auth.permission
+  pk: 17
+  fields:
+    name: Can add content type
+    content_type: 5
+    codename: add_contenttype
+- model: auth.permission
+  pk: 18
+  fields:
+    name: Can change content type
+    content_type: 5
+    codename: change_contenttype
+- model: auth.permission
+  pk: 19
+  fields:
+    name: Can delete content type
+    content_type: 5
+    codename: delete_contenttype
+- model: auth.permission
+  pk: 20
+  fields:
+    name: Can view content type
+    content_type: 5
+    codename: view_contenttype
+- model: auth.permission
+  pk: 21
+  fields:
+    name: Can add session
+    content_type: 6
+    codename: add_session
+- model: auth.permission
+  pk: 22
+  fields:
+    name: Can change session
+    content_type: 6
+    codename: change_session
+- model: auth.permission
+  pk: 23
+  fields:
+    name: Can delete session
+    content_type: 6
+    codename: delete_session
+- model: auth.permission
+  pk: 24
+  fields:
+    name: Can view session
+    content_type: 6
+    codename: view_session
+- model: auth.permission
+  pk: 25
+  fields:
+    name: Can add golf_ course
+    content_type: 7
+    codename: add_golf_course
+- model: auth.permission
+  pk: 26
+  fields:
+    name: Can change golf_ course
+    content_type: 7
+    codename: change_golf_course
+- model: auth.permission
+  pk: 27
+  fields:
+    name: Can delete golf_ course
+    content_type: 7
+    codename: delete_golf_course
+- model: auth.permission
+  pk: 28
+  fields:
+    name: Can view golf_ course
+    content_type: 7
+    codename: view_golf_course
+- model: auth.permission
+  pk: 29
+  fields:
+    name: Can add golf_ tee_9_ hole
+    content_type: 8
+    codename: add_golf_tee_9_hole
+- model: auth.permission
+  pk: 30
+  fields:
+    name: Can change golf_ tee_9_ hole
+    content_type: 8
+    codename: change_golf_tee_9_hole
+- model: auth.permission
+  pk: 31
+  fields:
+    name: Can delete golf_ tee_9_ hole
+    content_type: 8
+    codename: delete_golf_tee_9_hole
+- model: auth.permission
+  pk: 32
+  fields:
+    name: Can view golf_ tee_9_ hole
+    content_type: 8
+    codename: view_golf_tee_9_hole
+- model: auth.permission
+  pk: 33
+  fields:
+    name: Can add golf_ tee
+    content_type: 9
+    codename: add_golf_tee
+- model: auth.permission
+  pk: 34
+  fields:
+    name: Can change golf_ tee
+    content_type: 9
+    codename: change_golf_tee
+- model: auth.permission
+  pk: 35
+  fields:
+    name: Can delete golf_ tee
+    content_type: 9
+    codename: delete_golf_tee
+- model: auth.permission
+  pk: 36
+  fields:
+    name: Can view golf_ tee
+    content_type: 9
+    codename: view_golf_tee
+- model: auth.permission
+  pk: 37
+  fields:
+    name: Can add golfer
+    content_type: 10
+    codename: add_golfer
+- model: auth.permission
+  pk: 38
+  fields:
+    name: Can change golfer
+    content_type: 10
+    codename: change_golfer
+- model: auth.permission
+  pk: 39
+  fields:
+    name: Can delete golfer
+    content_type: 10
+    codename: delete_golfer
+- model: auth.permission
+  pk: 40
+  fields:
+    name: Can view golfer
+    content_type: 10
+    codename: view_golfer
+- model: auth.permission
+  pk: 41
+  fields:
+    name: Can add round_ submission
+    content_type: 11
+    codename: add_round_submission
+- model: auth.permission
+  pk: 42
+  fields:
+    name: Can change round_ submission
+    content_type: 11
+    codename: change_round_submission
+- model: auth.permission
+  pk: 43
+  fields:
+    name: Can delete round_ submission
+    content_type: 11
+    codename: delete_round_submission
+- model: auth.permission
+  pk: 44
+  fields:
+    name: Can view round_ submission
+    content_type: 11
+    codename: view_round_submission
+- model: auth.permission
+  pk: 45
+  fields:
+    name: Can add round_ score
+    content_type: 12
+    codename: add_round_score
+- model: auth.permission
+  pk: 46
+  fields:
+    name: Can change round_ score
+    content_type: 12
+    codename: change_round_score
+- model: auth.permission
+  pk: 47
+  fields:
+    name: Can delete round_ score
+    content_type: 12
+    codename: delete_round_score
+- model: auth.permission
+  pk: 48
+  fields:
+    name: Can view round_ score
+    content_type: 12
+    codename: view_round_score
+- model: auth.permission
+  pk: 49
+  fields:
+    name: Can add golf_ trip
+    content_type: 13
+    codename: add_golf_trip
+- model: auth.permission
+  pk: 50
+  fields:
+    name: Can change golf_ trip
+    content_type: 13
+    codename: change_golf_trip
+- model: auth.permission
+  pk: 51
+  fields:
+    name: Can delete golf_ trip
+    content_type: 13
+    codename: delete_golf_trip
+- model: auth.permission
+  pk: 52
+  fields:
+    name: Can view golf_ trip
+    content_type: 13
+    codename: view_golf_trip
+- model: auth.permission
+  pk: 53
+  fields:
+    name: Can add trip_ course
+    content_type: 14
+    codename: add_trip_course
+- model: auth.permission
+  pk: 54
+  fields:
+    name: Can change trip_ course
+    content_type: 14
+    codename: change_trip_course
+- model: auth.permission
+  pk: 55
+  fields:
+    name: Can delete trip_ course
+    content_type: 14
+    codename: delete_trip_course
+- model: auth.permission
+  pk: 56
+  fields:
+    name: Can view trip_ course
+    content_type: 14
+    codename: view_trip_course
+- model: auth.permission
+  pk: 57
+  fields:
+    name: Can add trip_ golfer
+    content_type: 15
+    codename: add_trip_golfer
+- model: auth.permission
+  pk: 58
+  fields:
+    name: Can change trip_ golfer
+    content_type: 15
+    codename: change_trip_golfer
+- model: auth.permission
+  pk: 59
+  fields:
+    name: Can delete trip_ golfer
+    content_type: 15
+    codename: delete_trip_golfer
+- model: auth.permission
+  pk: 60
+  fields:
+    name: Can view trip_ golfer
+    content_type: 15
+    codename: view_trip_golfer
+- model: auth.permission
+  pk: 61
+  fields:
+    name: Can add trip_ tee time
+    content_type: 16
+    codename: add_trip_teetime
+- model: auth.permission
+  pk: 62
+  fields:
+    name: Can change trip_ tee time
+    content_type: 16
+    codename: change_trip_teetime
+- model: auth.permission
+  pk: 63
+  fields:
+    name: Can delete trip_ tee time
+    content_type: 16
+    codename: delete_trip_teetime
+- model: auth.permission
+  pk: 64
+  fields:
+    name: Can view trip_ tee time
+    content_type: 16
+    codename: view_trip_teetime
+- model: auth.permission
+  pk: 65
+  fields:
+    name: Can add trip_ team
+    content_type: 17
+    codename: add_trip_team
+- model: auth.permission
+  pk: 66
+  fields:
+    name: Can change trip_ team
+    content_type: 17
+    codename: change_trip_team
+- model: auth.permission
+  pk: 67
+  fields:
+    name: Can delete trip_ team
+    content_type: 17
+    codename: delete_trip_team
+- model: auth.permission
+  pk: 68
+  fields:
+    name: Can view trip_ team
+    content_type: 17
+    codename: view_trip_team
+- model: auth.permission
+  pk: 69
+  fields:
+    name: Can add trip_ event
+    content_type: 18
+    codename: add_trip_event
+- model: auth.permission
+  pk: 70
+  fields:
+    name: Can change trip_ event
+    content_type: 18
+    codename: change_trip_event
+- model: auth.permission
+  pk: 71
+  fields:
+    name: Can delete trip_ event
+    content_type: 18
+    codename: delete_trip_event
+- model: auth.permission
+  pk: 72
+  fields:
+    name: Can view trip_ event
+    content_type: 18
+    codename: view_trip_event
+- model: auth.permission
+  pk: 73
+  fields:
+    name: Can add team
+    content_type: 19
+    codename: add_team
+- model: auth.permission
+  pk: 74
+  fields:
+    name: Can change team
+    content_type: 19
+    codename: change_team
+- model: auth.permission
+  pk: 75
+  fields:
+    name: Can delete team
+    content_type: 19
+    codename: delete_team
+- model: auth.permission
+  pk: 76
+  fields:
+    name: Can view team
+    content_type: 19
+    codename: view_team
+- model: auth.permission
+  pk: 77
+  fields:
+    name: Can add team member
+    content_type: 20
+    codename: add_teammember
+- model: auth.permission
+  pk: 78
+  fields:
+    name: Can change team member
+    content_type: 20
+    codename: change_teammember
+- model: auth.permission
+  pk: 79
+  fields:
+    name: Can delete team member
+    content_type: 20
+    codename: delete_teammember
+- model: auth.permission
+  pk: 80
+  fields:
+    name: Can view team member
+    content_type: 20
+    codename: view_teammember
+- model: auth.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$390000$FrSTc15LGYse6qm1HVY9oX$Q2WBxKcXu36Qh5EiIV57HCeMTDdB/O/iTWoFlf3WYTk=
+    last_login: 2023-01-09 20:31:54.898380+00:00
+    is_superuser: true
+    username: egkennedy93
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: true
+    is_active: true
+    date_joined: 2023-01-09 20:18:32.269097+00:00
+    groups: []
+    user_permissions: []
+- model: contenttypes.contenttype
+  pk: 1
+  fields:
+    app_label: admin
+    model: logentry
+- model: contenttypes.contenttype
+  pk: 2
+  fields:
+    app_label: auth
+    model: permission
+- model: contenttypes.contenttype
+  pk: 3
+  fields:
+    app_label: auth
+    model: group
+- model: contenttypes.contenttype
+  pk: 4
+  fields:
+    app_label: auth
+    model: user
+- model: contenttypes.contenttype
+  pk: 5
+  fields:
+    app_label: contenttypes
+    model: contenttype
+- model: contenttypes.contenttype
+  pk: 6
+  fields:
+    app_label: sessions
+    model: session
+- model: contenttypes.contenttype
+  pk: 7
+  fields:
+    app_label: Courses
+    model: golf_course
+- model: contenttypes.contenttype
+  pk: 8
+  fields:
+    app_label: Courses
+    model: golf_tee_9_hole
+- model: contenttypes.contenttype
+  pk: 9
+  fields:
+    app_label: Courses
+    model: golf_tee
+- model: contenttypes.contenttype
+  pk: 10
+  fields:
+    app_label: accounts
+    model: golfer
+- model: contenttypes.contenttype
+  pk: 11
+  fields:
+    app_label: GolfRound
+    model: round_submission
+- model: contenttypes.contenttype
+  pk: 12
+  fields:
+    app_label: GolfRound
+    model: round_score
+- model: contenttypes.contenttype
+  pk: 13
+  fields:
+    app_label: golf_trip
+    model: golf_trip
+- model: contenttypes.contenttype
+  pk: 14
+  fields:
+    app_label: golf_trip
+    model: trip_course
+- model: contenttypes.contenttype
+  pk: 15
+  fields:
+    app_label: golf_trip
+    model: trip_golfer
+- model: contenttypes.contenttype
+  pk: 16
+  fields:
+    app_label: golf_trip
+    model: trip_teetime
+- model: contenttypes.contenttype
+  pk: 17
+  fields:
+    app_label: golf_trip
+    model: trip_team
+- model: contenttypes.contenttype
+  pk: 18
+  fields:
+    app_label: golf_trip
+    model: trip_event
+- model: contenttypes.contenttype
+  pk: 19
+  fields:
+    app_label: teams
+    model: team
+- model: contenttypes.contenttype
+  pk: 20
+  fields:
+    app_label: teams
+    model: teammember
+- model: sessions.session
+  pk: 5dmibmu5e0x450g04k78w7nq0gty5ozd
+  fields:
+    session_data: .eJxVjMsOwiAQRf-FtSG8QZfu_QbCzIBUDSSlXRn_3TbpQrf3nHPfLKZ1qXEdeY4TsQuT7PS7QcJnbjugR2r3zrG3ZZ6A7wo_6OC3Tvl1Pdy_g5pG3eqgPBDKYr0pUngFXlsw2iEZKxwpS9pT0FoY62UpmMtWGBE0gjg7gezzBcgLNxE:1pEyoE:ZpHiNTjvL0EKkbDf_nU5Dm5DjuOVAWePFlMIzDIKaP0
+    expire_date: 2023-01-23 20:31:54.914720+00:00
+- model: sessions.session
+  pk: fwqs7as3q69mx3iptvix81wqew1a8guz
+  fields:
+    session_data: e30:1pEygg:juKfrT697gFvBXmnP5b-qKwswsmZE6-KuzILItBoFHw
+    expire_date: 2023-01-23 20:24:06.497248+00:00
+- model: sessions.session
+  pk: gb0i0w9tg7sx5ka342ksc9s75uq062y7
+  fields:
+    session_data: e30:1pEycc:ulJEz7zEM3f2g6OifqH3PFbXl7G6PR9k8vPSy-MaX-A
+    expire_date: 2023-01-23 20:19:54.656663+00:00
+- model: sessions.session
+  pk: o8lprdfk1cbhcdt1yhv2mdonuzmfkc16
+  fields:
+    session_data: e30:1pEylT:YmJNvO3zgAcm8Wc4MuLQjNUe2O5WjUtK0Y1zsF5ENP4
+    expire_date: 2023-01-23 20:29:03.035006+00:00
+- model: sessions.session
+  pk: pe2pjuiqr1snakplp95mxbby9y4b4ds7
+  fields:
+    session_data: e30:1pEyei:Kr00_lfJrONOMMRlZ6ZhJvI_RUckuUzzovqMWNCrKAw
+    expire_date: 2023-01-23 20:22:04.104426+00:00
+- model: sessions.session
+  pk: qvw2rk8r5h3xemspf9tlsmv4al0rn6x3
+  fields:
+    session_data: e30:1pEybZ:GjpjeGGTML3eFXbgeTxBhJKlv0hk2yVUkBmntjqY-QY
+    expire_date: 2023-01-23 20:18:49.134973+00:00
+- model: sessions.session
+  pk: s09luoztqwnfkf1ycl3rq0jpm79ihd2p
+  fields:
+    session_data: e30:1pEyil:ApWJ4I1ktxMU_4W0j4AUR6uhpWtZbDYfbLg5AEqDtdY
+    expire_date: 2023-01-23 20:26:15.113345+00:00
+- model: sessions.session
+  pk: utdeck628lxlimmp7jyaiirs8knvlxzk
+  fields:
+    session_data: e30:1pEynw:aG2taslFoP9zg1ASqVjZiZ6QAeXzFNHuEKZU3vp9Rvc
+    expire_date: 2023-01-23 20:31:36.366658+00:00
+- model: sessions.session
+  pk: zczp6xd3umwxsnca1agwsl9bor0kcki9
+  fields:
+    session_data: e30:1pEyi9:zvxdrDmzGJFK8KtdNKnzjoe6C8Et0zYM8EqCo-goatc
+    expire_date: 2023-01-23 20:25:37.516361+00:00
+- model: Courses.golf_course
+  pk: 1
+  fields:
+    course_name: Signature
+- model: Courses.golf_course
+  pk: 2
+  fields:
+    course_name: Premier
+- model: Courses.golf_course
+  pk: 3
+  fields:
+    course_name: Masterpiece
+- model: Courses.golf_course
+  pk: 4
+  fields:
+    course_name: Tradition
+- model: Courses.golf_course
+  pk: 5
+  fields:
+    course_name: threetops
+- model: Courses.golf_course
+  pk: 6
+  fields:
+    course_name: Arcadia Bluffs - Bluffs
+- model: Courses.golf_course
+  pk: 7
+  fields:
+    course_name: Streamsong - Blue
+- model: Courses.golf_course
+  pk: 8
+  fields:
+    course_name: Streamsong - Black
+- model: Courses.golf_course
+  pk: 9
+  fields:
+    course_name: Streamsong - Red
+- model: Courses.golf_tee
+  pk: 1
+  fields:
+    course: 1
+    tee_name: black
+    course_par: 70
+    slope: '140.00'
+    rating: '72.90'
+    yardage: 6653
+    hole_1_par: 4
+    hole_1_yardage: 447
+    hole_1_index: 7
+    hole_2_par: 3
+    hole_2_yardage: 176
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 467
+    hole_3_index: 3
+    hole_4_par: 3
+    hole_4_yardage: 186
+    hole_4_index: 15
+    hole_5_par: 4
+    hole_5_yardage: 421
+    hole_5_index: 1
+    hole_6_par: 5
+    hole_6_yardage: 512
+    hole_6_index: 5
+    hole_7_par: 4
+    hole_7_yardage: 416
+    hole_7_index: 9
+    hole_8_par: 3
+    hole_8_yardage: 190
+    hole_8_index: 13
+    hole_9_par: 4
+    hole_9_yardage: 411
+    hole_9_index: 11
+    hole_10_par: 5
+    hole_10_yardage: 556
+    hole_10_index: 5
+    hole_11_par: 3
+    hole_11_yardage: 175
+    hole_11_index: 3
+    hole_12_par: 4
+    hole_12_yardage: 423
+    hole_12_index: 4
+    hole_13_par: 4
+    hole_13_yardage: 440
+    hole_13_index: 4
+    hole_14_par: 4
+    hole_14_yardage: 418
+    hole_14_index: 4
+    hole_15_par: 5
+    hole_15_yardage: 485
+    hole_15_index: 5
+    hole_16_par: 4
+    hole_16_yardage: 368
+    hole_16_index: 4
+    hole_17_par: 3
+    hole_17_yardage: 199
+    hole_17_index: 3
+    hole_18_par: 4
+    hole_18_yardage: 363
+    hole_18_index: 4
+- model: Courses.golf_tee
+  pk: 2
+  fields:
+    course: 1
+    tee_name: black/Blue
+    course_par: 70
+    slope: '140.00'
+    rating: '72.00'
+    yardage: 6418
+    hole_1_par: 4
+    hole_1_yardage: 447
+    hole_1_index: 7
+    hole_2_par: 3
+    hole_2_yardage: 176
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 443
+    hole_3_index: 3
+    hole_4_par: 3
+    hole_4_yardage: 167
+    hole_4_index: 15
+    hole_5_par: 4
+    hole_5_yardage: 392
+    hole_5_index: 1
+    hole_6_par: 5
+    hole_6_yardage: 512
+    hole_6_index: 5
+    hole_7_par: 4
+    hole_7_yardage: 378
+    hole_7_index: 9
+    hole_8_par: 3
+    hole_8_yardage: 175
+    hole_8_index: 13
+    hole_9_par: 4
+    hole_9_yardage: 411
+    hole_9_index: 11
+    hole_10_par: 5
+    hole_10_yardage: 523
+    hole_10_index: 5
+    hole_11_par: 3
+    hole_11_yardage: 164
+    hole_11_index: 3
+    hole_12_par: 4
+    hole_12_yardage: 388
+    hole_12_index: 4
+    hole_13_par: 4
+    hole_13_yardage: 420
+    hole_13_index: 4
+    hole_14_par: 4
+    hole_14_yardage: 418
+    hole_14_index: 4
+    hole_15_par: 5
+    hole_15_yardage: 485
+    hole_15_index: 5
+    hole_16_par: 4
+    hole_16_yardage: 368
+    hole_16_index: 4
+    hole_17_par: 3
+    hole_17_yardage: 188
+    hole_17_index: 3
+    hole_18_par: 4
+    hole_18_yardage: 363
+    hole_18_index: 4
+- model: Courses.golf_tee
+  pk: 3
+  fields:
+    course: 1
+    tee_name: Blue
+    course_par: 70
+    slope: '139.00'
+    rating: '71.00'
+    yardage: 6271
+    hole_1_par: 4
+    hole_1_yardage: 422
+    hole_1_index: 7
+    hole_2_par: 3
+    hole_2_yardage: 160
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 443
+    hole_3_index: 3
+    hole_4_par: 3
+    hole_4_yardage: 167
+    hole_4_index: 15
+    hole_5_par: 4
+    hole_5_yardage: 392
+    hole_5_index: 1
+    hole_6_par: 5
+    hole_6_yardage: 503
+    hole_6_index: 5
+    hole_7_par: 4
+    hole_7_yardage: 378
+    hole_7_index: 9
+    hole_8_par: 3
+    hole_8_yardage: 175
+    hole_8_index: 13
+    hole_9_par: 4
+    hole_9_yardage: 394
+    hole_9_index: 11
+    hole_10_par: 5
+    hole_10_yardage: 523
+    hole_10_index: 5
+    hole_11_par: 3
+    hole_11_yardage: 164
+    hole_11_index: 3
+    hole_12_par: 4
+    hole_12_yardage: 388
+    hole_12_index: 4
+    hole_13_par: 4
+    hole_13_yardage: 420
+    hole_13_index: 4
+    hole_14_par: 4
+    hole_14_yardage: 389
+    hole_14_index: 4
+    hole_15_par: 5
+    hole_15_yardage: 461
+    hole_15_index: 5
+    hole_16_par: 4
+    hole_16_yardage: 361
+    hole_16_index: 4
+    hole_17_par: 3
+    hole_17_yardage: 188
+    hole_17_index: 3
+    hole_18_par: 4
+    hole_18_yardage: 343
+    hole_18_index: 4
+- model: Courses.golf_tee
+  pk: 4
+  fields:
+    course: 1
+    tee_name: Blue/White
+    course_par: 70
+    slope: '138.00'
+    rating: '70.10'
+    yardage: 6051
+    hole_1_par: 4
+    hole_1_yardage: 402
+    hole_1_index: 7
+    hole_2_par: 3
+    hole_2_yardage: 160
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 433
+    hole_3_index: 3
+    hole_4_par: 3
+    hole_4_yardage: 149
+    hole_4_index: 15
+    hole_5_par: 4
+    hole_5_yardage: 364
+    hole_5_index: 1
+    hole_6_par: 5
+    hole_6_yardage: 503
+    hole_6_index: 5
+    hole_7_par: 4
+    hole_7_yardage: 378
+    hole_7_index: 9
+    hole_8_par: 3
+    hole_8_yardage: 154
+    hole_8_index: 13
+    hole_9_par: 4
+    hole_9_yardage: 394
+    hole_9_index: 11
+    hole_10_par: 5
+    hole_10_yardage: 523
+    hole_10_index: 5
+    hole_11_par: 3
+    hole_11_yardage: 145
+    hole_11_index: 3
+    hole_12_par: 4
+    hole_12_yardage: 336
+    hole_12_index: 4
+    hole_13_par: 4
+    hole_13_yardage: 392
+    hole_13_index: 4
+    hole_14_par: 4
+    hole_14_yardage: 389
+    hole_14_index: 4
+    hole_15_par: 5
+    hole_15_yardage: 461
+    hole_15_index: 5
+    hole_16_par: 4
+    hole_16_yardage: 361
+    hole_16_index: 4
+    hole_17_par: 3
+    hole_17_yardage: 164
+    hole_17_index: 3
+    hole_18_par: 4
+    hole_18_yardage: 343
+    hole_18_index: 4
+- model: Courses.golf_tee
+  pk: 5
+  fields:
+    course: 1
+    tee_name: White
+    course_par: 70
+    slope: '135.00'
+    rating: '69.20'
+    yardage: 5843
+    hole_1_par: 4
+    hole_1_yardage: 402
+    hole_1_index: 7
+    hole_2_par: 3
+    hole_2_yardage: 144
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 433
+    hole_3_index: 3
+    hole_4_par: 3
+    hole_4_yardage: 149
+    hole_4_index: 15
+    hole_5_par: 4
+    hole_5_yardage: 364
+    hole_5_index: 1
+    hole_6_par: 5
+    hole_6_yardage: 496
+    hole_6_index: 5
+    hole_7_par: 4
+    hole_7_yardage: 354
+    hole_7_index: 9
+    hole_8_par: 3
+    hole_8_yardage: 154
+    hole_8_index: 13
+    hole_9_par: 4
+    hole_9_yardage: 364
+    hole_9_index: 11
+    hole_10_par: 5
+    hole_10_yardage: 492
+    hole_10_index: 5
+    hole_11_par: 3
+    hole_11_yardage: 145
+    hole_11_index: 3
+    hole_12_par: 4
+    hole_12_yardage: 336
+    hole_12_index: 4
+    hole_13_par: 4
+    hole_13_yardage: 392
+    hole_13_index: 4
+    hole_14_par: 4
+    hole_14_yardage: 361
+    hole_14_index: 4
+    hole_15_par: 5
+    hole_15_yardage: 438
+    hole_15_index: 5
+    hole_16_par: 4
+    hole_16_yardage: 347
+    hole_16_index: 4
+    hole_17_par: 3
+    hole_17_yardage: 164
+    hole_17_index: 3
+    hole_18_par: 4
+    hole_18_yardage: 308
+    hole_18_index: 4
+- model: Courses.golf_tee
+  pk: 6
+  fields:
+    course: 2
+    tee_name: black
+    course_par: 72
+    slope: '139.00'
+    rating: '73.30'
+    yardage: 6832
+    hole_1_par: 4
+    hole_1_yardage: 431
+    hole_1_index: 5
+    hole_2_par: 5
+    hole_2_yardage: 517
+    hole_2_index: 11
+    hole_3_par: 4
+    hole_3_yardage: 421
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 162
+    hole_4_index: 13
+    hole_5_par: 4
+    hole_5_yardage: 313
+    hole_5_index: 17
+    hole_6_par: 5
+    hole_6_yardage: 499
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 373
+    hole_7_index: 3
+    hole_8_par: 3
+    hole_8_yardage: 183
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 406
+    hole_9_index: 9
+    hole_10_par: 4
+    hole_10_yardage: 407
+    hole_10_index: 8
+    hole_11_par: 3
+    hole_11_yardage: 195
+    hole_11_index: 16
+    hole_12_par: 5
+    hole_12_yardage: 485
+    hole_12_index: 10
+    hole_13_par: 4
+    hole_13_yardage: 396
+    hole_13_index: 4
+    hole_14_par: 4
+    hole_14_yardage: 451
+    hole_14_index: 2
+    hole_15_par: 4
+    hole_15_yardage: 362
+    hole_15_index: 18
+    hole_16_par: 5
+    hole_16_yardage: 546
+    hole_16_index: 12
+    hole_17_par: 3
+    hole_17_yardage: 214
+    hole_17_index: 14
+    hole_18_par: 4
+    hole_18_yardage: 471
+    hole_18_index: 6
+- model: Courses.golf_tee
+  pk: 7
+  fields:
+    course: 2
+    tee_name: black/Blue
+    course_par: 72
+    slope: '135.00'
+    rating: '71.50'
+    yardage: 6485
+    hole_1_par: 4
+    hole_1_yardage: 399
+    hole_1_index: 5
+    hole_2_par: 5
+    hole_2_yardage: 517
+    hole_2_index: 11
+    hole_3_par: 4
+    hole_3_yardage: 396
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 162
+    hole_4_index: 13
+    hole_5_par: 4
+    hole_5_yardage: 289
+    hole_5_index: 17
+    hole_6_par: 5
+    hole_6_yardage: 499
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 333
+    hole_7_index: 3
+    hole_8_par: 3
+    hole_8_yardage: 183
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 382
+    hole_9_index: 9
+    hole_10_par: 4
+    hole_10_yardage: 362
+    hole_10_index: 8
+    hole_11_par: 3
+    hole_11_yardage: 168
+    hole_11_index: 16
+    hole_12_par: 5
+    hole_12_yardage: 485
+    hole_12_index: 10
+    hole_13_par: 4
+    hole_13_yardage: 396
+    hole_13_index: 4
+    hole_14_par: 4
+    hole_14_yardage: 405
+    hole_14_index: 2
+    hole_15_par: 4
+    hole_15_yardage: 362
+    hole_15_index: 18
+    hole_16_par: 5
+    hole_16_yardage: 546
+    hole_16_index: 12
+    hole_17_par: 3
+    hole_17_yardage: 180
+    hole_17_index: 14
+    hole_18_par: 4
+    hole_18_yardage: 421
+    hole_18_index: 6
+- model: Courses.golf_tee
+  pk: 8
+  fields:
+    course: 2
+    tee_name: Blue
+    course_par: 72
+    slope: '132.00'
+    rating: '70.60'
+    yardage: 6274
+    hole_1_par: 4
+    hole_1_yardage: 399
+    hole_1_index: 5
+    hole_2_par: 5
+    hole_2_yardage: 494
+    hole_2_index: 11
+    hole_3_par: 4
+    hole_3_yardage: 396
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 143
+    hole_4_index: 13
+    hole_5_par: 4
+    hole_5_yardage: 289
+    hole_5_index: 17
+    hole_6_par: 5
+    hole_6_yardage: 462
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 333
+    hole_7_index: 3
+    hole_8_par: 3
+    hole_8_yardage: 167
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 382
+    hole_9_index: 9
+    hole_10_par: 4
+    hole_10_yardage: 362
+    hole_10_index: 8
+    hole_11_par: 3
+    hole_11_yardage: 168
+    hole_11_index: 16
+    hole_12_par: 5
+    hole_12_yardage: 465
+    hole_12_index: 10
+    hole_13_par: 4
+    hole_13_yardage: 380
+    hole_13_index: 4
+    hole_14_par: 4
+    hole_14_yardage: 405
+    hole_14_index: 2
+    hole_15_par: 4
+    hole_15_yardage: 334
+    hole_15_index: 18
+    hole_16_par: 5
+    hole_16_yardage: 494
+    hole_16_index: 12
+    hole_17_par: 3
+    hole_17_yardage: 180
+    hole_17_index: 14
+    hole_18_par: 4
+    hole_18_yardage: 421
+    hole_18_index: 6
+- model: Courses.golf_tee
+  pk: 9
+  fields:
+    course: 2
+    tee_name: Blue/White
+    course_par: 72
+    slope: '129.00'
+    rating: '69.30'
+    yardage: 6026
+    hole_1_par: 4
+    hole_1_yardage: 377
+    hole_1_index: 5
+    hole_2_par: 5
+    hole_2_yardage: 494
+    hole_2_index: 11
+    hole_3_par: 4
+    hole_3_yardage: 375
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 143
+    hole_4_index: 13
+    hole_5_par: 4
+    hole_5_yardage: 279
+    hole_5_index: 17
+    hole_6_par: 5
+    hole_6_yardage: 462
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 333
+    hole_7_index: 3
+    hole_8_par: 3
+    hole_8_yardage: 150
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 367
+    hole_9_index: 9
+    hole_10_par: 4
+    hole_10_yardage: 349
+    hole_10_index: 8
+    hole_11_par: 3
+    hole_11_yardage: 145
+    hole_11_index: 16
+    hole_12_par: 5
+    hole_12_yardage: 465
+    hole_12_index: 10
+    hole_13_par: 4
+    hole_13_yardage: 380
+    hole_13_index: 4
+    hole_14_par: 4
+    hole_14_yardage: 355
+    hole_14_index: 2
+    hole_15_par: 4
+    hole_15_yardage: 334
+    hole_15_index: 18
+    hole_16_par: 5
+    hole_16_yardage: 494
+    hole_16_index: 12
+    hole_17_par: 3
+    hole_17_yardage: 170
+    hole_17_index: 14
+    hole_18_par: 4
+    hole_18_yardage: 354
+    hole_18_index: 6
+- model: Courses.golf_tee
+  pk: 10
+  fields:
+    course: 3
+    tee_name: black
+    course_par: 71
+    slope: '147.00'
+    rating: '74.80'
+    yardage: 7068
+    hole_1_par: 5
+    hole_1_yardage: 524
+    hole_1_index: 13
+    hole_2_par: 3
+    hole_2_yardage: 201
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 419
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 201
+    hole_4_index: 11
+    hole_5_par: 5
+    hole_5_yardage: 539
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 180
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 406
+    hole_7_index: 5
+    hole_8_par: 4
+    hole_8_yardage: 452
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 431
+    hole_9_index: 9
+    hole_10_par: 5
+    hole_10_yardage: 605
+    hole_10_index: 4
+    hole_11_par: 4
+    hole_11_yardage: 431
+    hole_11_index: 6
+    hole_12_par: 4
+    hole_12_yardage: 488
+    hole_12_index: 2
+    hole_13_par: 3
+    hole_13_yardage: 208
+    hole_13_index: 12
+    hole_14_par: 4
+    hole_14_yardage: 446
+    hole_14_index: 14
+    hole_15_par: 4
+    hole_15_yardage: 363
+    hole_15_index: 16
+    hole_16_par: 3
+    hole_16_yardage: 152
+    hole_16_index: 18
+    hole_17_par: 4
+    hole_17_yardage: 443
+    hole_17_index: 8
+    hole_18_par: 5
+    hole_18_yardage: 579
+    hole_18_index: 10
+- model: Courses.golf_tee
+  pk: 11
+  fields:
+    course: 3
+    tee_name: black/Blue
+    course_par: 71
+    slope: '140.00'
+    rating: '72.30'
+    yardage: 6608
+    hole_1_par: 5
+    hole_1_yardage: 465
+    hole_1_index: 13
+    hole_2_par: 3
+    hole_2_yardage: 181
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 376
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 201
+    hole_4_index: 11
+    hole_5_par: 5
+    hole_5_yardage: 539
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 180
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 373
+    hole_7_index: 5
+    hole_8_par: 4
+    hole_8_yardage: 400
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 389
+    hole_9_index: 9
+    hole_10_par: 5
+    hole_10_yardage: 589
+    hole_10_index: 4
+    hole_11_par: 4
+    hole_11_yardage: 431
+    hole_11_index: 6
+    hole_12_par: 4
+    hole_12_yardage: 453
+    hole_12_index: 2
+    hole_13_par: 3
+    hole_13_yardage: 176
+    hole_13_index: 12
+    hole_14_par: 4
+    hole_14_yardage: 446
+    hole_14_index: 14
+    hole_15_par: 4
+    hole_15_yardage: 363
+    hole_15_index: 16
+    hole_16_par: 3
+    hole_16_yardage: 152
+    hole_16_index: 18
+    hole_17_par: 4
+    hole_17_yardage: 378
+    hole_17_index: 8
+    hole_18_par: 5
+    hole_18_yardage: 516
+    hole_18_index: 10
+- model: Courses.golf_tee
+  pk: 12
+  fields:
+    course: 3
+    tee_name: Blue
+    course_par: 71
+    slope: '137.00'
+    rating: '71.70'
+    yardage: 6435
+    hole_1_par: 5
+    hole_1_yardage: 465
+    hole_1_index: 13
+    hole_2_par: 3
+    hole_2_yardage: 181
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 376
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 184
+    hole_4_index: 11
+    hole_5_par: 5
+    hole_5_yardage: 510
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 162
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 373
+    hole_7_index: 5
+    hole_8_par: 4
+    hole_8_yardage: 400
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 389
+    hole_9_index: 9
+    hole_10_par: 5
+    hole_10_yardage: 589
+    hole_10_index: 4
+    hole_11_par: 4
+    hole_11_yardage: 387
+    hole_11_index: 6
+    hole_12_par: 4
+    hole_12_yardage: 453
+    hole_12_index: 2
+    hole_13_par: 3
+    hole_13_yardage: 176
+    hole_13_index: 12
+    hole_14_par: 4
+    hole_14_yardage: 407
+    hole_14_index: 14
+    hole_15_par: 4
+    hole_15_yardage: 343
+    hole_15_index: 16
+    hole_16_par: 3
+    hole_16_yardage: 146
+    hole_16_index: 18
+    hole_17_par: 4
+    hole_17_yardage: 378
+    hole_17_index: 8
+    hole_18_par: 5
+    hole_18_yardage: 516
+    hole_18_index: 10
+- model: Courses.golf_tee
+  pk: 13
+  fields:
+    course: 3
+    tee_name: Blue/White
+    course_par: 71
+    slope: '133.00'
+    rating: '70.20'
+    yardage: 6100
+    hole_1_par: 5
+    hole_1_yardage: 465
+    hole_1_index: 13
+    hole_2_par: 3
+    hole_2_yardage: 140
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 376
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 184
+    hole_4_index: 11
+    hole_5_par: 5
+    hole_5_yardage: 461
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 150
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 357
+    hole_7_index: 5
+    hole_8_par: 4
+    hole_8_yardage: 371
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 389
+    hole_9_index: 9
+    hole_10_par: 5
+    hole_10_yardage: 502
+    hole_10_index: 4
+    hole_11_par: 4
+    hole_11_yardage: 387
+    hole_11_index: 6
+    hole_12_par: 4
+    hole_12_yardage: 419
+    hole_12_index: 2
+    hole_13_par: 3
+    hole_13_yardage: 153
+    hole_13_index: 12
+    hole_14_par: 4
+    hole_14_yardage: 407
+    hole_14_index: 14
+    hole_15_par: 4
+    hole_15_yardage: 343
+    hole_15_index: 16
+    hole_16_par: 3
+    hole_16_yardage: 146
+    hole_16_index: 18
+    hole_17_par: 4
+    hole_17_yardage: 356
+    hole_17_index: 8
+    hole_18_par: 5
+    hole_18_yardage: 494
+    hole_18_index: 10
+- model: Courses.golf_tee
+  pk: 14
+  fields:
+    course: 3
+    tee_name: White
+    course_par: 71
+    slope: '132.00'
+    rating: '69.40'
+    yardage: 5921
+    hole_1_par: 5
+    hole_1_yardage: 430
+    hole_1_index: 13
+    hole_2_par: 3
+    hole_2_yardage: 140
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 343
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 167
+    hole_4_index: 11
+    hole_5_par: 5
+    hole_5_yardage: 461
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 150
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 357
+    hole_7_index: 5
+    hole_8_par: 4
+    hole_8_yardage: 371
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 377
+    hole_9_index: 9
+    hole_10_par: 5
+    hole_10_yardage: 502
+    hole_10_index: 4
+    hole_11_par: 4
+    hole_11_yardage: 368
+    hole_11_index: 6
+    hole_12_par: 4
+    hole_12_yardage: 419
+    hole_12_index: 2
+    hole_13_par: 3
+    hole_13_yardage: 153
+    hole_13_index: 12
+    hole_14_par: 4
+    hole_14_yardage: 384
+    hole_14_index: 14
+    hole_15_par: 4
+    hole_15_yardage: 323
+    hole_15_index: 16
+    hole_16_par: 3
+    hole_16_yardage: 126
+    hole_16_index: 18
+    hole_17_par: 4
+    hole_17_yardage: 356
+    hole_17_index: 8
+    hole_18_par: 5
+    hole_18_yardage: 494
+    hole_18_index: 10
+- model: Courses.golf_tee
+  pk: 15
+  fields:
+    course: 4
+    tee_name: black
+    course_par: 70
+    slope: '130.00'
+    rating: '70.00'
+    yardage: 6354
+    hole_1_par: 4
+    hole_1_yardage: 524
+    hole_1_index: 13
+    hole_2_par: 4
+    hole_2_yardage: 201
+    hole_2_index: 17
+    hole_3_par: 5
+    hole_3_yardage: 419
+    hole_3_index: 1
+    hole_4_par: 4
+    hole_4_yardage: 201
+    hole_4_index: 11
+    hole_5_par: 4
+    hole_5_yardage: 539
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 180
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 406
+    hole_7_index: 5
+    hole_8_par: 4
+    hole_8_yardage: 452
+    hole_8_index: 7
+    hole_9_par: 3
+    hole_9_yardage: 431
+    hole_9_index: 9
+    hole_10_par: 5
+    hole_10_yardage: 605
+    hole_10_index: 4
+    hole_11_par: 4
+    hole_11_yardage: 431
+    hole_11_index: 6
+    hole_12_par: 3
+    hole_12_yardage: 488
+    hole_12_index: 2
+    hole_13_par: 4
+    hole_13_yardage: 208
+    hole_13_index: 12
+    hole_14_par: 4
+    hole_14_yardage: 446
+    hole_14_index: 14
+    hole_15_par: 3
+    hole_15_yardage: 363
+    hole_15_index: 16
+    hole_16_par: 4
+    hole_16_yardage: 152
+    hole_16_index: 18
+    hole_17_par: 3
+    hole_17_yardage: 443
+    hole_17_index: 8
+    hole_18_par: 5
+    hole_18_yardage: 579
+    hole_18_index: 10
+- model: Courses.golf_tee
+  pk: 16
+  fields:
+    course: 4
+    tee_name: black/Blue
+    course_par: 71
+    slope: '140.00'
+    rating: '72.30'
+    yardage: 6608
+    hole_1_par: 5
+    hole_1_yardage: 465
+    hole_1_index: 13
+    hole_2_par: 3
+    hole_2_yardage: 181
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 376
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 201
+    hole_4_index: 11
+    hole_5_par: 5
+    hole_5_yardage: 539
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 180
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 373
+    hole_7_index: 5
+    hole_8_par: 4
+    hole_8_yardage: 400
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 389
+    hole_9_index: 9
+    hole_10_par: 5
+    hole_10_yardage: 589
+    hole_10_index: 4
+    hole_11_par: 4
+    hole_11_yardage: 431
+    hole_11_index: 6
+    hole_12_par: 4
+    hole_12_yardage: 453
+    hole_12_index: 2
+    hole_13_par: 3
+    hole_13_yardage: 176
+    hole_13_index: 12
+    hole_14_par: 4
+    hole_14_yardage: 446
+    hole_14_index: 14
+    hole_15_par: 4
+    hole_15_yardage: 363
+    hole_15_index: 16
+    hole_16_par: 3
+    hole_16_yardage: 152
+    hole_16_index: 18
+    hole_17_par: 4
+    hole_17_yardage: 378
+    hole_17_index: 8
+    hole_18_par: 5
+    hole_18_yardage: 516
+    hole_18_index: 10
+- model: Courses.golf_tee
+  pk: 17
+  fields:
+    course: 4
+    tee_name: Blue
+    course_par: 71
+    slope: '137.00'
+    rating: '71.70'
+    yardage: 6435
+    hole_1_par: 5
+    hole_1_yardage: 465
+    hole_1_index: 13
+    hole_2_par: 3
+    hole_2_yardage: 181
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 376
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 184
+    hole_4_index: 11
+    hole_5_par: 5
+    hole_5_yardage: 510
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 162
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 373
+    hole_7_index: 5
+    hole_8_par: 4
+    hole_8_yardage: 400
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 389
+    hole_9_index: 9
+    hole_10_par: 5
+    hole_10_yardage: 589
+    hole_10_index: 4
+    hole_11_par: 4
+    hole_11_yardage: 387
+    hole_11_index: 6
+    hole_12_par: 4
+    hole_12_yardage: 453
+    hole_12_index: 2
+    hole_13_par: 3
+    hole_13_yardage: 176
+    hole_13_index: 12
+    hole_14_par: 4
+    hole_14_yardage: 407
+    hole_14_index: 14
+    hole_15_par: 4
+    hole_15_yardage: 343
+    hole_15_index: 16
+    hole_16_par: 3
+    hole_16_yardage: 146
+    hole_16_index: 18
+    hole_17_par: 4
+    hole_17_yardage: 378
+    hole_17_index: 8
+    hole_18_par: 5
+    hole_18_yardage: 516
+    hole_18_index: 10
+- model: Courses.golf_tee
+  pk: 18
+  fields:
+    course: 4
+    tee_name: Blue/White
+    course_par: 71
+    slope: '133.00'
+    rating: '70.20'
+    yardage: 6100
+    hole_1_par: 5
+    hole_1_yardage: 465
+    hole_1_index: 13
+    hole_2_par: 3
+    hole_2_yardage: 140
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 376
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 184
+    hole_4_index: 11
+    hole_5_par: 5
+    hole_5_yardage: 461
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 150
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 357
+    hole_7_index: 5
+    hole_8_par: 4
+    hole_8_yardage: 371
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 389
+    hole_9_index: 9
+    hole_10_par: 5
+    hole_10_yardage: 502
+    hole_10_index: 4
+    hole_11_par: 4
+    hole_11_yardage: 387
+    hole_11_index: 6
+    hole_12_par: 4
+    hole_12_yardage: 419
+    hole_12_index: 2
+    hole_13_par: 3
+    hole_13_yardage: 153
+    hole_13_index: 12
+    hole_14_par: 4
+    hole_14_yardage: 407
+    hole_14_index: 14
+    hole_15_par: 4
+    hole_15_yardage: 343
+    hole_15_index: 16
+    hole_16_par: 3
+    hole_16_yardage: 146
+    hole_16_index: 18
+    hole_17_par: 4
+    hole_17_yardage: 356
+    hole_17_index: 8
+    hole_18_par: 5
+    hole_18_yardage: 494
+    hole_18_index: 10
+- model: Courses.golf_tee
+  pk: 19
+  fields:
+    course: 4
+    tee_name: White
+    course_par: 71
+    slope: '132.00'
+    rating: '69.40'
+    yardage: 5921
+    hole_1_par: 5
+    hole_1_yardage: 430
+    hole_1_index: 13
+    hole_2_par: 3
+    hole_2_yardage: 140
+    hole_2_index: 17
+    hole_3_par: 4
+    hole_3_yardage: 343
+    hole_3_index: 1
+    hole_4_par: 3
+    hole_4_yardage: 167
+    hole_4_index: 11
+    hole_5_par: 5
+    hole_5_yardage: 461
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 150
+    hole_6_index: 15
+    hole_7_par: 4
+    hole_7_yardage: 357
+    hole_7_index: 5
+    hole_8_par: 4
+    hole_8_yardage: 371
+    hole_8_index: 7
+    hole_9_par: 4
+    hole_9_yardage: 377
+    hole_9_index: 9
+    hole_10_par: 5
+    hole_10_yardage: 502
+    hole_10_index: 4
+    hole_11_par: 4
+    hole_11_yardage: 368
+    hole_11_index: 6
+    hole_12_par: 4
+    hole_12_yardage: 419
+    hole_12_index: 2
+    hole_13_par: 3
+    hole_13_yardage: 153
+    hole_13_index: 12
+    hole_14_par: 4
+    hole_14_yardage: 384
+    hole_14_index: 14
+    hole_15_par: 4
+    hole_15_yardage: 323
+    hole_15_index: 16
+    hole_16_par: 3
+    hole_16_yardage: 126
+    hole_16_index: 18
+    hole_17_par: 4
+    hole_17_yardage: 356
+    hole_17_index: 8
+    hole_18_par: 5
+    hole_18_yardage: 494
+    hole_18_index: 10
+- model: Courses.golf_tee
+  pk: 20
+  fields:
+    course: 6
+    tee_name: Blue
+    course_par: 72
+    slope: '140.00'
+    rating: '72.70'
+    yardage: 6913
+    hole_1_par: 5
+    hole_1_yardage: 498
+    hole_1_index: 15
+    hole_2_par: 3
+    hole_2_yardage: 182
+    hole_2_index: 17
+    hole_3_par: 5
+    hole_3_yardage: 524
+    hole_3_index: 7
+    hole_4_par: 4
+    hole_4_yardage: 410
+    hole_4_index: 13
+    hole_5_par: 5
+    hole_5_yardage: 578
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 190
+    hole_6_index: 9
+    hole_7_par: 4
+    hole_7_yardage: 434
+    hole_7_index: 1
+    hole_8_par: 4
+    hole_8_yardage: 389
+    hole_8_index: 5
+    hole_9_par: 3
+    hole_9_yardage: 196
+    hole_9_index: 11
+    hole_10_par: 4
+    hole_10_yardage: 424
+    hole_10_index: 2
+    hole_11_par: 5
+    hole_11_yardage: 594
+    hole_11_index: 12
+    hole_12_par: 4
+    hole_12_yardage: 430
+    hole_12_index: 10
+    hole_13_par: 3
+    hole_13_yardage: 181
+    hole_13_index: 8
+    hole_14_par: 4
+    hole_14_yardage: 340
+    hole_14_index: 14
+    hole_15_par: 5
+    hole_15_yardage: 470
+    hole_15_index: 18
+    hole_16_par: 4
+    hole_16_yardage: 459
+    hole_16_index: 4
+    hole_17_par: 3
+    hole_17_yardage: 170
+    hole_17_index: 16
+    hole_18_par: 4
+    hole_18_yardage: 435
+    hole_18_index: 6
+- model: Courses.golf_tee
+  pk: 21
+  fields:
+    course: 6
+    tee_name: White
+    course_par: 72
+    slope: '134.00'
+    rating: '70.50'
+    yardage: 6389
+    hole_1_par: 5
+    hole_1_yardage: 459
+    hole_1_index: 15
+    hole_2_par: 3
+    hole_2_yardage: 160
+    hole_2_index: 17
+    hole_3_par: 5
+    hole_3_yardage: 502
+    hole_3_index: 7
+    hole_4_par: 4
+    hole_4_yardage: 367
+    hole_4_index: 13
+    hole_5_par: 5
+    hole_5_yardage: 557
+    hole_5_index: 3
+    hole_6_par: 3
+    hole_6_yardage: 161
+    hole_6_index: 9
+    hole_7_par: 4
+    hole_7_yardage: 425
+    hole_7_index: 1
+    hole_8_par: 4
+    hole_8_yardage: 352
+    hole_8_index: 5
+    hole_9_par: 3
+    hole_9_yardage: 162
+    hole_9_index: 11
+    hole_10_par: 4
+    hole_10_yardage: 399
+    hole_10_index: 2
+    hole_11_par: 5
+    hole_11_yardage: 563
+    hole_11_index: 12
+    hole_12_par: 4
+    hole_12_yardage: 378
+    hole_12_index: 10
+    hole_13_par: 3
+    hole_13_yardage: 160
+    hole_13_index: 8
+    hole_14_par: 4
+    hole_14_yardage: 310
+    hole_14_index: 14
+    hole_15_par: 5
+    hole_15_yardage: 460
+    hole_15_index: 18
+    hole_16_par: 4
+    hole_16_yardage: 441
+    hole_16_index: 4
+    hole_17_par: 3
+    hole_17_yardage: 158
+    hole_17_index: 16
+    hole_18_par: 4
+    hole_18_yardage: 375
+    hole_18_index: 6
+- model: Courses.golf_tee
+  pk: 22
+  fields:
+    course: 7
+    tee_name: Black/Silver
+    course_par: 72
+    slope: '129.00'
+    rating: '70.70'
+    yardage: 6381
+    hole_1_par: 4
+    hole_1_yardage: 330
+    hole_1_index: 14
+    hole_2_par: 5
+    hole_2_yardage: 530
+    hole_2_index: 10
+    hole_3_par: 4
+    hole_3_yardage: 359
+    hole_3_index: 8
+    hole_4_par: 4
+    hole_4_yardage: 369
+    hole_4_index: 4
+    hole_5_par: 3
+    hole_5_yardage: 115
+    hole_5_index: 16
+    hole_6_par: 4
+    hole_6_yardage: 317
+    hole_6_index: 18
+    hole_7_par: 3
+    hole_7_yardage: 176
+    hole_7_index: 12
+    hole_8_par: 4
+    hole_8_yardage: 338
+    hole_8_index: 2
+    hole_9_par: 5
+    hole_9_yardage: 510
+    hole_9_index: 6
+    hole_10_par: 3
+    hole_10_yardage: 161
+    hole_10_index: 15
+    hole_11_par: 4
+    hole_11_yardage: 427
+    hole_11_index: 1
+    hole_12_par: 4
+    hole_12_yardage: 390
+    hole_12_index: 11
+    hole_13_par: 4
+    hole_13_yardage: 293
+    hole_13_index: 17
+    hole_14_par: 5
+    hole_14_yardage: 510
+    hole_14_index: 9
+    hole_15_par: 4
+    hole_15_yardage: 398
+    hole_15_index: 7
+    hole_16_par: 3
+    hole_16_yardage: 188
+    hole_16_index: 13
+    hole_17_par: 5
+    hole_17_yardage: 525
+    hole_17_index: 5
+    hole_18_par: 4
+    hole_18_yardage: 439
+    hole_18_index: 3
+- model: Courses.golf_tee
+  pk: 23
+  fields:
+    course: 8
+    tee_name: Black/Silver
+    course_par: 73
+    slope: '127.00'
+    rating: '70.80'
+    yardage: 6462
+    hole_1_par: 5
+    hole_1_yardage: 508
+    hole_1_index: 12
+    hole_2_par: 4
+    hole_2_yardage: 326
+    hole_2_index: 16
+    hole_3_par: 4
+    hole_3_yardage: 394
+    hole_3_index: 4
+    hole_4_par: 5
+    hole_4_yardage: 550
+    hole_4_index: 2
+    hole_5_par: 3
+    hole_5_yardage: 158
+    hole_5_index: 6
+    hole_6_par: 4
+    hole_6_yardage: 321
+    hole_6_index: 18
+    hole_7_par: 3
+    hole_7_yardage: 135
+    hole_7_index: 14
+    hole_8_par: 4
+    hole_8_yardage: 408
+    hole_8_index: 8
+    hole_9_par: 4
+    hole_9_yardage: 360
+    hole_9_index: 10
+    hole_10_par: 5
+    hole_10_yardage: 524
+    hole_10_index: 11
+    hole_11_par: 4
+    hole_11_yardage: 378
+    hole_11_index: 3
+    hole_12_par: 5
+    hole_12_yardage: 531
+    hole_12_index: 7
+    hole_13_par: 4
+    hole_13_yardage: 368
+    hole_13_index: 9
+    hole_14_par: 4
+    hole_14_yardage: 286
+    hole_14_index: 15
+    hole_15_par: 3
+    hole_15_yardage: 131
+    hole_15_index: 17
+    hole_16_par: 4
+    hole_16_yardage: 400
+    hole_16_index: 1
+    hole_17_par: 3
+    hole_17_yardage: 189
+    hole_17_index: 13
+    hole_18_par: 5
+    hole_18_yardage: 495
+    hole_18_index: 5
+- model: Courses.golf_tee
+  pk: 24
+  fields:
+    course: 9
+    tee_name: Black/Silver
+    course_par: 72
+    slope: '128.00'
+    rating: '70.60'
+    yardage: 6250
+    hole_1_par: 4
+    hole_1_yardage: 410
+    hole_1_index: 4
+    hole_2_par: 5
+    hole_2_yardage: 461
+    hole_2_index: 2
+    hole_3_par: 4
+    hole_3_yardage: 391
+    hole_3_index: 14
+    hole_4_par: 4
+    hole_4_yardage: 312
+    hole_4_index: 16
+    hole_5_par: 4
+    hole_5_yardage: 344
+    hole_5_index: 6
+    hole_6_par: 3
+    hole_6_yardage: 143
+    hole_6_index: 18
+    hole_7_par: 5
+    hole_7_yardage: 502
+    hole_7_index: 12
+    hole_8_par: 3
+    hole_8_yardage: 119
+    hole_8_index: 10
+    hole_9_par: 4
+    hole_9_yardage: 257
+    hole_9_index: 8
+    hole_10_par: 4
+    hole_10_yardage: 385
+    hole_10_index: 9
+    hole_11_par: 4
+    hole_11_yardage: 408
+    hole_11_index: 5
+    hole_12_par: 4
+    hole_12_yardage: 450
+    hole_12_index: 3
+    hole_13_par: 5
+    hole_13_yardage: 451
+    hole_13_index: 15
+    hole_14_par: 3
+    hole_14_yardage: 166
+    hole_14_index: 11
+    hole_15_par: 4
+    hole_15_yardage: 402
+    hole_15_index: 1
+    hole_16_par: 3
+    hole_16_yardage: 160
+    hole_16_index: 7
+    hole_17_par: 4
+    hole_17_yardage: 384
+    hole_17_index: 13
+    hole_18_par: 5
+    hole_18_yardage: 505
+    hole_18_index: 17
+- model: Courses.golf_tee
+  pk: 25
+  fields:
+    course: 5
+    tee_name: Back
+    course_par: 27
+    slope: '0.00'
+    rating: '0.00'
+    yardage: 1435
+    hole_1_par: 3
+    hole_1_yardage: 143
+    hole_1_index: 7
+    hole_2_par: 3
+    hole_2_yardage: 156
+    hole_2_index: 4
+    hole_3_par: 3
+    hole_3_yardage: 219
+    hole_3_index: 10
+    hole_4_par: 3
+    hole_4_yardage: 168
+    hole_4_index: 9
+    hole_5_par: 3
+    hole_5_yardage: 150
+    hole_5_index: 6
+    hole_6_par: 3
+    hole_6_yardage: 169
+    hole_6_index: 5
+    hole_7_par: 3
+    hole_7_yardage: 150
+    hole_7_index: 6
+    hole_8_par: 3
+    hole_8_yardage: 140
+    hole_8_index: 8
+    hole_9_par: 3
+    hole_9_yardage: 140
+    hole_9_index: 2
+    hole_10_par: 3
+    hole_10_yardage: 0
+    hole_10_index: 18
+    hole_11_par: 3
+    hole_11_yardage: 0
+    hole_11_index: 17
+    hole_12_par: 3
+    hole_12_yardage: 0
+    hole_12_index: 16
+    hole_13_par: 3
+    hole_13_yardage: 0
+    hole_13_index: 15
+    hole_14_par: 3
+    hole_14_yardage: 0
+    hole_14_index: 14
+    hole_15_par: 3
+    hole_15_yardage: 0
+    hole_15_index: 13
+    hole_16_par: 3
+    hole_16_yardage: 0
+    hole_16_index: 12
+    hole_17_par: 3
+    hole_17_yardage: 0
+    hole_17_index: 11
+    hole_18_par: 3
+    hole_18_yardage: 0
+    hole_18_index: 10
+- model: accounts.golfer
+  pk: 1
+  fields:
+    first_name: Everett
+    last_name: Kennedy
+- model: accounts.golfer
+  pk: 2
+  fields:
+    first_name: Jason
+    last_name: Ervin
+- model: accounts.golfer
+  pk: 3
+  fields:
+    first_name: Michael
+    last_name: Ruff
+- model: accounts.golfer
+  pk: 4
+  fields:
+    first_name: Brett
+    last_name: Swikle
+- model: accounts.golfer
+  pk: 5
+  fields:
+    first_name: Nick
+    last_name: Van Nice
+- model: accounts.golfer
+  pk: 6
+  fields:
+    first_name: Julian
+    last_name: Velasquez
+- model: accounts.golfer
+  pk: 7
+  fields:
+    first_name: Daniel
+    last_name: Carnrike
+- model: accounts.golfer
+  pk: 8
+  fields:
+    first_name: Evan
+    last_name: Appold
+- model: accounts.golfer
+  pk: 9
+  fields:
+    first_name: Jordan
+    last_name: Zeider
+- model: accounts.golfer
+  pk: 10
+  fields:
+    first_name: Justin
+    last_name: Laureys
+- model: accounts.golfer
+  pk: 11
+  fields:
+    first_name: Luke
+    last_name: Lacy
+- model: accounts.golfer
+  pk: 12
+  fields:
+    first_name: Marc
+    last_name: Uber
+- model: accounts.golfer
+  pk: 13
+  fields:
+    first_name: Evan
+    last_name: Kruger
+- model: accounts.golfer
+  pk: 14
+  fields:
+    first_name: Addison
+    last_name: Bullock
+- model: accounts.golfer
+  pk: 15
+  fields:
+    first_name: Daniel
+    last_name: Gonsoroski
+- model: accounts.golfer
+  pk: 16
+  fields:
+    first_name: Kyle
+    last_name: Jones
+- model: accounts.golfer
+  pk: 17
+  fields:
+    first_name: Matt
+    last_name: Magee
+- model: accounts.golfer
+  pk: 18
+  fields:
+    first_name: Nathan
+    last_name: Kintz
+- model: accounts.golfer
+  pk: 19
+  fields:
+    first_name: Sean
+    last_name: Wilson
+- model: accounts.golfer
+  pk: 20
+  fields:
+    first_name: Daniel
+    last_name: Koester
+- model: golf_trip.golf_trip
+  pk: 1
+  fields:
+    trip_date: 2022-05-13
+    trip_name: Streamsong
+    trip_description: Blue|Black|Red
+- model: golf_trip.golf_trip
+  pk: 2
+  fields:
+    trip_date: 2023-08-17
+    trip_name: Michigan
+    trip_description: Arcadia Bluffs and Treetops
+- model: golf_trip.trip_course
+  pk: 1
+  fields:
+    trip: 1
+    course: 7
+    tee: 22
+- model: golf_trip.trip_course
+  pk: 2
+  fields:
+    trip: 1
+    course: 8
+    tee: 23
+- model: golf_trip.trip_course
+  pk: 3
+  fields:
+    trip: 1
+    course: 9
+    tee: 24
+- model: golf_trip.trip_course
+  pk: 4
+  fields:
+    trip: 2
+    course: 6
+    tee: 20
+- model: golf_trip.trip_course
+  pk: 5
+  fields:
+    trip: 2
+    course: 2
+    tee: 7
+- model: golf_trip.trip_course
+  pk: 6
+  fields:
+    trip: 2
+    course: 4
+    tee: 16
+- model: golf_trip.trip_course
+  pk: 7
+  fields:
+    trip: 2
+    course: 5
+    tee: 25
+- model: golf_trip.trip_course
+  pk: 8
+  fields:
+    trip: 2
+    course: 3
+    tee: 11
+- model: golf_trip.trip_course
+  pk: 9
+  fields:
+    trip: 2
+    course: 1
+    tee: 2
+- model: golf_trip.trip_team
+  pk: 1
+  fields:
+    trip: 1
+    team: 1
+    team_score: '0.0'
+- model: golf_trip.trip_team
+  pk: 2
+  fields:
+    trip: 1
+    team: 2
+    team_score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 1
+  fields:
+    trip: 1
+    team: 1
+    golfer: 1
+    hcp_index: '9.2'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 2
+  fields:
+    trip: 1
+    team: 1
+    golfer: 4
+    hcp_index: '13.4'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 3
+  fields:
+    trip: 1
+    team: 1
+    golfer: 2
+    hcp_index: '18.8'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 4
+  fields:
+    trip: 1
+    team: 1
+    golfer: 5
+    hcp_index: '15.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 5
+  fields:
+    trip: 1
+    team: 1
+    golfer: 8
+    hcp_index: '12.5'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 6
+  fields:
+    trip: 1
+    team: 1
+    golfer: 10
+    hcp_index: '13.4'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 7
+  fields:
+    trip: 1
+    team: 2
+    golfer: 9
+    hcp_index: '12.3'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 8
+  fields:
+    trip: 1
+    team: 2
+    golfer: 20
+    hcp_index: '9.9'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 9
+  fields:
+    trip: 1
+    team: 2
+    golfer: 11
+    hcp_index: '13.3'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 10
+  fields:
+    trip: 1
+    team: 2
+    golfer: 7
+    hcp_index: '9.9'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 11
+  fields:
+    trip: 1
+    team: 2
+    golfer: 6
+    hcp_index: '16.8'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 12
+  fields:
+    trip: 1
+    team: 2
+    golfer: 15
+    hcp_index: '11.5'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 14
+  fields:
+    trip: 2
+    team: null
+    golfer: 1
+    hcp_index: '7.4'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 15
+  fields:
+    trip: 2
+    team: null
+    golfer: 2
+    hcp_index: '17.1'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 16
+  fields:
+    trip: 2
+    team: null
+    golfer: 3
+    hcp_index: '6.3'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 17
+  fields:
+    trip: 2
+    team: null
+    golfer: 4
+    hcp_index: '12.6'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 18
+  fields:
+    trip: 2
+    team: null
+    golfer: 5
+    hcp_index: '13.6'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 19
+  fields:
+    trip: 2
+    team: null
+    golfer: 6
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 20
+  fields:
+    trip: 2
+    team: null
+    golfer: 7
+    hcp_index: '9.9'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 21
+  fields:
+    trip: 2
+    team: null
+    golfer: 15
+    hcp_index: '11.5'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 22
+  fields:
+    trip: 2
+    team: null
+    golfer: 8
+    hcp_index: '12.5'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 23
+  fields:
+    trip: 2
+    team: null
+    golfer: 9
+    hcp_index: '12.3'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 24
+  fields:
+    trip: 2
+    team: null
+    golfer: 10
+    hcp_index: '13.4'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 25
+  fields:
+    trip: 2
+    team: null
+    golfer: 11
+    hcp_index: '13.4'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 26
+  fields:
+    trip: 2
+    team: null
+    golfer: 13
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 27
+  fields:
+    trip: 2
+    team: null
+    golfer: 14
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 28
+  fields:
+    trip: 2
+    team: null
+    golfer: 16
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 29
+  fields:
+    trip: 2
+    team: null
+    golfer: 17
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 30
+  fields:
+    trip: 2
+    team: null
+    golfer: 18
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 31
+  fields:
+    trip: 2
+    team: null
+    golfer: 19
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_teetime
+  pk: 1
+  fields:
+    trip: 1
+    tee_time: 2022-03-13 12:25:00+00:00
+    tee: 22
+    Players:
+    - 3
+    - 4
+    - 10
+    - 11
+- model: golf_trip.trip_event
+  pk: 1
+  fields:
+    trip: 1
+    tee_time: 2022-05-13 12:25:00+00:00
+    course: 1
+    play_time: []
+- model: golf_trip.trip_event
+  pk: 2
+  fields:
+    trip: 1
+    tee_time: 2022-05-14 12:23:00+00:00
+    course: 2
+    play_time: []
+- model: golf_trip.trip_event
+  pk: 3
+  fields:
+    trip: 1
+    tee_time: 2022-05-15 09:00:00+00:00
+    course: 3
+    play_time: []
+- model: teams.team
+  pk: 1
+  fields:
+    name: Red
+    description: ''
+    team_score: '0.0'
+- model: teams.team
+  pk: 2
+  fields:
+    name: Blue
+    description: ''
+    team_score: '0.0'
