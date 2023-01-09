@@ -42,7 +42,7 @@
       <h3>Trip Details</h3>
       <div class="container">
         {% for event in trip_events  %}
-        <ul class="list-group">{{event.tee_time}} - {{event.course.course}}</ul>
+        <ul class="list-group">{{event.event_time}} - {{event.course.course}}</ul>
         {% endfor %}
       </div>
 
