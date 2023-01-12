@@ -32,7 +32,7 @@
               <ul class="list-group">{{golfer.golfer.last_name}}<ul>
             </div>
             <div class="col">
-              <ul class="list-group">{{golfer.golfer.hcp_index}}</ul>
+              <ul class="list-group">{{golfer.hcp_index}}</ul>
             </div>
           </div>
       </div>

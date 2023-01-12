@@ -16,7 +16,7 @@ class HistoryStreamsong(TemplateView):
 
 
 class HomePage(TemplateView):
-    template_name = 'golf_trip/trip_2023_index.html'
+    template_name = 'golf_trip/trip_michigan_index.html'
     extra_context={'golfers': Trip_Golfer.objects.all().filter(trip__trip_name='Michigan'), 
                    'trip_events':Trip_Event.objects.all().filter(trip__trip_name='Michigan')}
 
