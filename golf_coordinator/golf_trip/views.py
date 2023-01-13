@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import TemplateView, DetailView, ListView
-from golf_trip.models import Trip_Golfer, Trip_Event, Golf_Trip
+from golf_trip.models import Trip_Golfer, Trip_Event, Golf_Trip, Trip_Course
 
 
 class EventHistoryView(ListView):
@@ -38,11 +38,20 @@ class PlayersListView(ListView):
 class EventListView(ListView):
     model = Trip_Event
 
-
-    def get_queryset(self):
-        queryset = Trip_Event.objects.all().filter(trip__trip_name='Michigan').values('event_time').distinct()
+    # def get_queryset(self):
+    #     queryset = Trip_Event.objects.all().filter(trip__trip_name='Michigan').values('event_time').distinct()
         
-        return queryset
+    #     return queryset
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(EventListView, self).get_context_data(**kwargs)
+        # Add in the publisher
+        trip_courses = Trip_Course.objects.all()
+        for course in trip_courses:
+            print(course.course_name)
+        context['courses'] = Trip_Course.objects.all()
+        return context
 
 
 
