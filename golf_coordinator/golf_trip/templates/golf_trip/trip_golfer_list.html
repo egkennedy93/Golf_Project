@@ -23,6 +23,8 @@
                     <td>{{golfer.golfer.last_name}}</td>
                     <td>{{golfer.hcp_index}}</td>
             </tr>
+            {% empty %}
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="static 'Lost-Golf-Balls-Feature-Image.webp" alt="..." />
             {% endfor %}
       </tbody>
   </table>

@@ -6,18 +6,15 @@
 <h1 style='text-align: center; padding-bottom: 15px;'>Course List</h1>
 <div class="row gx-5">
 
-    <h1> Course List </h1>
-    <div class="accordion" id="accordionExample">
+    <div class="accordion" id="courseaccordion">
         <div class="accordion-item">
           {% for course in golf_course_list %}
-          
-          
           <h2 class="accordion-header" id="headingOne">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
               {{course.course_name}}
             </button>
           </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             {% for tee in tees %}
               {% if tee.course|stringformat:"s" == course.course_name|stringformat:"s" %}
               <h1><a href="#">{{tee.tee_name}} | Rating:{{tee.rating}} | Slope:{{tee.slope}} | Yardage:{{tee.yardage}}</a></h1>
