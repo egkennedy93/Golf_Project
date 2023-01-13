@@ -47,10 +47,12 @@ class EventListView(ListView):
         # Call the base implementation first to get a context
         context = super(EventListView, self).get_context_data(**kwargs)
         # Add in the publisher
-        trip_courses = Trip_Course.objects.all()
-        for course in trip_courses:
-            print(course.course_name)
-        context['courses'] = Trip_Course.objects.all()
+        trip_courses = Trip_Event.objects.all()
+
+        print(trip_courses)
+        # for course in trip_courses:
+        #     print(course.course_name)
+        # context['courses'] = Trip_Course.objects.all()
         return context
 
 
