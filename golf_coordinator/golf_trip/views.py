@@ -38,8 +38,9 @@ class PlayersListView(ListView):
 class EventListView(ListView):
     model = Trip_Event
 
+
     def get_queryset(self):
-        queryset = Trip_Event.objects.all().filter(trip__trip_name='Michigan')
+        queryset = Trip_Event.objects.all().filter(trip__trip_name='Michigan').values('event_time').distinct()
         
         return queryset
 
