@@ -5,13 +5,17 @@
 
 <h1 style='text-align: center; padding-bottom: 15px;'>Trip Schedule</h1>
 <div class="row gx-5">
-{% for event in trip_event_list %}
-   
+{% for date in trip_dates %}
         <div class="col-lg-4 mb-5">
             <div class="card h-100 shadow border-0 my-card" >
                 <div class="card-body p-4">
-                    <a class="text-decoration-none link-dark stretched-link" href="#!"><h5 class="card-title mb-3">{{event.event_time}}</h5></a>
-                    <p class="card-text mb-0"></p>
+                    <a class="text-decoration-none link-dark stretched-link" href="{% url 'golf_trip:event_day' event_day=date.event_time %}"><h5 class="card-title mb-3">{{date.event_time}}</h5></a>
+
+                    {% for event in trip_events  %}
+                        {% if date.event_time|date:"M D Y" == event.event_time|date:"M D Y" %}
+                            <p class="card-text mb-0">{{event.course.course}}</p>
+                        {% endif %}
+                    {% endfor %}
                 </div>
                  
             </div>
@@ -21,6 +25,4 @@
 {% for course in courses %}
         {{course.course_name}}
 {% endfor %}
-
-
 {% endblock  %}

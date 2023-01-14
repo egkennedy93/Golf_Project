@@ -38,27 +38,18 @@ class PlayersListView(ListView):
 class EventListView(ListView):
     model = Trip_Event
 
-    # def get_queryset(self):
-    #     queryset = Trip_Event.objects.all().filter(trip__trip_name='Michigan').values('event_time').distinct()
-        
-    #     return queryset
-
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(EventListView, self).get_context_data(**kwargs)
         # Add in the publisher
-        trip_courses = Trip_Event.objects.all()
+        trip_dates = Trip_Event.objects.all().filter(trip__trip_name='Michigan').values('event_time').distinct()
+        trip_courses = Trip_Event.objects.all().filter(trip__trip_name='Michigan')
 
-        print(trip_courses)
-        # for course in trip_courses:
-        #     print(course.course_name)
-        # context['courses'] = Trip_Course.objects.all()
+        context['trip_events'] = trip_courses
+        context['trip_dates'] = trip_dates
         return context
 
 
-
-# class HomePage(TemplateView):
-#     template_name = 'golf_trip/trip_2022_index.html'
-    # try:
-    #     golfers = Trip_Golfer.objects.all.filter
-    # extra_context={'golfers': Trip_Golfer.objects.all()., 'trip_events':Trip_Event.objects.all()}
+class EventDayListView(ListView):
+    model = Trip_Event
+    
