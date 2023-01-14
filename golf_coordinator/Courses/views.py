@@ -39,6 +39,14 @@ def CreateCourseView(request):
 class Golf_CourseListView(ListView):
     model = Golf_Course
 
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(Golf_CourseListView, self).get_context_data(**kwargs)
+        # for course in trip_courses:
+        #     print(course.course_name)
+        context['tees'] = Golf_Tee.objects.all()
+        return context
+
 #view that shows all of the avilable tees for a golfcourse
 class Golf_CourseDetailView(DetailView):
     model = Golf_Course

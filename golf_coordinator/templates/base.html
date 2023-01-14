@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 {% load bootstrap5 %}
 
 {% bootstrap_css %}
@@ -9,21 +8,27 @@
 {% load static %}
 
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta charset="utf-8">
-        <title>The Golf Group</title>
-        <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
-        <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Golf Trip Manager</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css" />
     </head>
-
-    <body>
-        {% comment %} {% include "navbar.html" %} {% endcomment %}
-        
-        {% block content %}
-
-        {% endblock %}
-    </body>
-</html>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+           {% include "navbar.html" %}
+    {% block content %}
     
+    {% endblock %}
+</html>

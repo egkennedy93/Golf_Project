@@ -52,11 +52,15 @@ class Trip_TeeTime(models.Model):
     Players = models.ManyToManyField(Trip_Golfer)
     tee = models.ForeignKey(Golf_Tee,  on_delete=models.PROTECT)
 
+    def __str__(self):
+        return "{}_{}".format(self.trip, self.tee_time)
+
+
 class Trip_Event(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
-    tee_time = models.DateTimeField()
+    event_time = models.DateField()
     course = models.ForeignKey(Trip_Course, on_delete=models.PROTECT)
-    play_time=models.ManyToManyField(Trip_TeeTime, null=True, blank=True)
+    tee_time=models.ManyToManyField(Trip_TeeTime, null=True, blank=True)
 
     def __str__(self):
         return "{}_{}_{}".format(self.trip, self.tee_time, self.course)
