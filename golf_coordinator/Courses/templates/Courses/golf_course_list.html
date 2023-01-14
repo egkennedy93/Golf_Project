@@ -4,6 +4,7 @@
 {% block content %}
 
 <h1 style='text-align: center; padding-bottom: 15px;'>Course List</h1>
+<div class="container">
 <div class="row gx-5">
   <div class="accordion" id="accordionExample">
     {% for course in golf_course_list %}
@@ -13,27 +14,41 @@
           {{course.course_name}}
         </button>
       </h2>
-      {% for tee in tees %}
-        {% if tee.course|stringformat:"s" == course.course_name|stringformat:"s" %}
-        
+      
           <div id="collapse{{course.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{course.id}}" data-bs-parent="#accordionExample">
+         
             <div class="accordion-body">
-              <table class="table">
+              <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Tee Name</th>
+                  <th scope="col">Yardage</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Slope</th>
+                </tr>
+              </thead>
+              {% for tee in tees %}
+              {% if tee.course|stringformat:"s" == course.course_name|stringformat:"s" %}
+              
                 <tr>
                   <td>{{tee.tee_name}} </td>
                   <td>{{tee.yardage}} </td>
                   <td>{{tee.rating}}</td>
                   <td>{{tee.slope}}</td>
                 </tr>
-              </table>
+              
+              {% endif %}
+              {% endfor %}
+            </table>
             </div>
           </div>
-        {% endif %}
-      {% endfor %}
+       
     </div>
     {% endfor %}
   </div>
 </div>
+</div>
+
 {% endblock %}
 
 
