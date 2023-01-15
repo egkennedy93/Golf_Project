@@ -20,7 +20,7 @@
             <div class="accordion-body">
               <table class="table table-striped course-table">
               <thead>
-                <tr>
+                <tr class='course-row'>
                   <th scope="col">Tee Name</th>
                   <th scope="col">Yardage</th>
                   <th scope="col">Rating</th>
@@ -29,7 +29,7 @@
               </thead>
               {% for tee in tees %}
               {% if tee.course|stringformat:"s" == course.course_name|stringformat:"s" %}
-                <tr>
+                <tr class='course-row' data-href="{% url 'courses:golf_tee_detail' tee.pk %}">
                   <td>{{tee.tee_name}} </td>
                   <td>{{tee.yardage}} </td>
                   <td>{{tee.rating}}</td>

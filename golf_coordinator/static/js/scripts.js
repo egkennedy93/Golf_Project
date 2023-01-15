@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $("tr").not(':first').hover(
+  $(".course-row").not(':first').hover(
     function () {
       $(this).css("background","gray");
       $(this).css("cursor", "pointer");
@@ -9,9 +9,10 @@ $(document).ready(function(){
     }
   )});
 
+
 $(document).ready(function(){
-      $('table tr').click(function(){
-        window.location = $(this).data('google.com');
-        return false;
-      });
-    });
+  $('.course-row').not(':first').click(function(){
+    window.location = $(this).data('href');
+    return false;
+  });
+});
