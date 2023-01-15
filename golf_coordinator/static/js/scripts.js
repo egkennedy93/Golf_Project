@@ -1,18 +1,20 @@
-var acc = document.getElementsByClassName("accordion");
-var i;
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    /* Toggle between adding and removing the "active" class,
-    to highlight the button that controls the panel */
-    this.classList.toggle("active");
-
-    /* Toggle between hiding and showing the active panel */
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
+// for the course list, highlights the rows on hover
+$(document).ready(function(){
+  $(".course-row").not(':first').hover(
+    function () {
+      $(this).css("background","gray");
+      $(this).css("cursor", "pointer");
+    }, 
+    function () {
+      $(this).css("background","");
     }
+  )});
+
+// When the row for the course list (which is tees) is selected, trigger the href asocaited with the row
+$(document).ready(function(){
+  $('.course-row').not(':first').click(function(){
+    window.location = $(this).data('href');
+    return false;
   });
-}
+});

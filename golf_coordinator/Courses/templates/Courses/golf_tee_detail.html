@@ -3,6 +3,9 @@
 
 {% load static %}
 
+{% comment %} When a tee is selected, the details of that tee is displayed. Trying to simulate the looks 
+of a scorecard. {% endcomment %}
+
 <head>
     <link rel="stylesheet" href="{% static 'css/courses.css' %}">
 </head>
@@ -101,7 +104,7 @@
           <div class="col tee_index">{{golf_tee.hole_18_index}}</div>
         </div>
         <div style="padding-top:5%"> 
-        <a class="btn btn-primary" style="float:left" href="{% url 'courses:golf_course_detail' pk=golf_tee.course.pk %}" role="button">Back</a>
+        <a class="btn btn-primary" style="float:left" href="{% url 'courses:golf_course_list' %}" role="button">Back</a>
         </div>
     </div>
       

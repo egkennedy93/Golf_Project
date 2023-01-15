@@ -4,6 +4,9 @@
 
 {% load crispy_forms_tags %}
 
+{% comment %} this is currently not being used. Any courses that need to be added should be done using a yaml file and
+uploaded directly to the db. Once the user features are added, this could be brought back for use. {% endcomment %}
+
 <html>
   <head>
     <title>Add A Course</title>
@@ -17,6 +20,7 @@
     <div class="row">
       <div class="col" id="course_id">Course Name: {{course_form.course_name}}</div>
     <div>
+    {% comment %} This is using a inline formset {% endcomment %}
     {{ teeformset.management_form }}
     {% for teeform in teeformset %}
     <div class="row" id="details_row">
