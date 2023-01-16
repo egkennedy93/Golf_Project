@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+{% for teetime in trip_teetime_list %}
+
+{{teetime.tee_time_date}}
+
+{% endfor %}
+
+{% endblock %}
+

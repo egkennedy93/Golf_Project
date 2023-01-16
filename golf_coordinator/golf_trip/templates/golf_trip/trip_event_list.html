@@ -9,7 +9,7 @@
         <div class="col-lg-4 mb-5">
             <div class="card h-100 shadow border-0 my-card" >
                 <div class="card-body p-4">
-                    <a class="text-decoration-none link-dark stretched-link" href="{% url 'golf_trip:event_day' event_day=date.event_time %}"><h5 class="card-title mb-3">{{date.event_time}}</h5></a>
+                    <a class="text-decoration-none link-dark stretched-link" href="{% url 'golf_trip:event_teetime' event_day=date.event_time %}"><h5 class="card-title mb-3">{{date.event_time}}</h5></a>
 
                     {% for event in trip_events  %}
                         {% if date.event_time|date:"M D Y" == event.event_time|date:"M D Y" %}
