@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import TemplateView, DetailView, ListView
-from golf_trip.models import Trip_Golfer, Trip_Event, Golf_Trip, Trip_Course
+from golf_trip.models import Trip_Golfer, Trip_Event, Golf_Trip, Trip_Course, Trip_TeeTime
 
 
 class EventHistoryView(ListView):
@@ -54,6 +54,13 @@ class EventListView(ListView):
         return context
 
 
-class EventDayListView(ListView):
-    model = Trip_Event
+class EventTeeTimeListView(ListView):
+    model = Trip_TeeTime
+
+    
+    def get_queryset(self):
+        queryset = Trip_TeeTime.objects.all().filter(tee_time_date=self.kwargs['event_day'])
+        print(self.kwargs)
+        
+        return queryset
     

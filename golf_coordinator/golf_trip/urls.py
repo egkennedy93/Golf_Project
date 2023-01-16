@@ -13,7 +13,7 @@ urlpatterns = [
     # if it's a current trip, all events are shown by the day
     path('events/', views.EventListView.as_view(), name='events_list'),
     # if the event day is selected, that day's courses and tee times are displayed.
-    re_path(r'^events/(?P<event_day>\d{4}-\d{2}-\d{2})/$', views.EventDayListView.as_view(), name='event_day'),
+    re_path(r'^events/(?P<event_day>\d{4}-\d{2}-\d{2})/$', views.EventTeeTimeListView.as_view(), name='event_teetime'),
     # currently not being used, but intended to show details of the event
     path('events/<int:pk>', views.EventDetailView.as_view(), name='eventDetail'),
     # Lists all players on the trip

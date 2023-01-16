@@ -51,12 +51,13 @@ class Trip_Golfer(models.Model):
 # for each trip events, there wil be multiple tee times to support the trip. This is the sub details on an event.
 class Trip_TeeTime(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
-    tee_time = models.DateTimeField()
-    Players = models.ManyToManyField(Trip_Golfer)
+    tee_time_date = models.DateField()
+    tee_time_time = models.TimeField()
+    Players = models.ManyToManyField(Trip_Golfer, blank=True)
     tee = models.ForeignKey(Golf_Tee,  on_delete=models.PROTECT)
 
     def __str__(self):
-        return "{}_{}".format(self.trip, self.tee_time)
+        return "{}_{}_{}".format(self.trip, self.tee_time_date, self.tee_time_time)
 
 
 # Trip event is ment to be each round of golf. This can occur multipel times on the same day. 
