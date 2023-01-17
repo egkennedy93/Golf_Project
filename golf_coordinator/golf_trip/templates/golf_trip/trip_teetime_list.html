@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
 {% block content %}
 
-{% for teetime in trip_teetime_list %}
-
-{{teetime.tee_time_date}}
-
+<div class="row gx-5">
+    <h1 style='text-align: center; padding-bottom: 15px;'>Tee Time Schedule</h1>
+    {% for teetime in trip_teetime_list %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">{{teetime.tee_time_time}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{teetime.tee.course.course_name}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Tee: {{teetime.tee.tee_name}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Format: {{teetime.gametype}}</h6>
+            {% if not teetime.Players.all %}
+                <p class="card-text">No players assigned </p> 
+            {% else %}
+                {% for players in teetime.Players.all  %}
+                    <p class="card-text">Player #{{forloop.counter}}: {{ players.golfer.first_name}} {{ players.golfer.last_name}}</p>
+                {% endfor %}
+            {% endif %}
+            <a href="{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}" class="card-link">tee details</a>
+        </div>
+    </div> 
 {% endfor %}
+</div>
+<div class="container">
+    <a class="btn btn-primary" style="float:left" onClick="javascript:history.go(-1);" role="button">Back</a>
 
 {% endblock %}
+
 

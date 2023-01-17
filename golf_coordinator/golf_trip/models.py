@@ -50,10 +50,18 @@ class Trip_Golfer(models.Model):
 
 # for each trip events, there wil be multiple tee times to support the trip. This is the sub details on an event.
 class Trip_TeeTime(models.Model):
+    gametypes = [
+    ('2v2 best ball', '2v2 best ball'),
+    ('2v2 best ball - matchplay', '2v2 best ball - matchplay'),
+    ('2v2 scramble', '2v2 scramble'),
+    ('1v1 matchplay', '1v1 matchplay'),
+    ('please select', 'please select'),
+    ]
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
     tee_time_date = models.DateField()
     tee_time_time = models.TimeField()
-    Players = models.ManyToManyField(Trip_Golfer, blank=True)
+    Players = models.ManyToManyField(Trip_Golfer, blank=True, default="N/A")
+    gametype = models.CharField(choices=gametypes, max_length=25, default=gametypes[4][1])
     tee = models.ForeignKey(Golf_Tee,  on_delete=models.PROTECT)
 
     def __str__(self):
