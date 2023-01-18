@@ -61,4 +61,8 @@ class EventTeeTimeListView(ListView):
     def get_queryset(self):
         queryset = Trip_TeeTime.objects.all().filter(tee_time_date=self.kwargs['event_day'])
         return queryset
+
+
+class EventTeeTimeDetailView(DetailView):
+    model = Trip_TeeTime
     

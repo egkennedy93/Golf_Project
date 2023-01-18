@@ -8,17 +8,18 @@
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">{{teetime.tee_time_time}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{teetime.tee.course.course_name}}</h6>
-            <h6 class="card-subtitle mb-2 text-muted">Tee: {{teetime.tee.tee_name}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{teetime.tee.course.course_name}} | <a href="{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}" class="card-link">{{teetime.tee.tee_name}}</a></h6>
+            <h6 class="card-subtitle mb-2 text-muted"></h6>
             <h6 class="card-subtitle mb-2 text-muted">Format: {{teetime.gametype}}</h6>
             {% if not teetime.Players.all %}
                 <p class="card-text">No players assigned </p> 
             {% else %}
                 {% for players in teetime.Players.all  %}
-                    <p class="card-text">Player #{{forloop.counter}}: {{ players.golfer.first_name}} {{ players.golfer.last_name}}</p>
+                    <p class="card-text player-text">Player #{{forloop.counter}}: {{ players.golfer.first_name}} {{ players.golfer.last_name}}</p>
                 {% endfor %}
             {% endif %}
-            <a href="{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}" class="card-link">tee details</a>
+            <a href="{% url 'golf_trip:teetime_detail' pk=teetime.pk %}" class="card-link">view scorecard</a>
+            <a href="{% url 'golf_trip:teetime_detail' pk=teetime.pk %}" class="card-link">Enter Score</a>
         </div>
     </div> 
 {% endfor %}

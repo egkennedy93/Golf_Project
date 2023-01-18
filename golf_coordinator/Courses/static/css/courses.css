@@ -21,8 +21,15 @@ This is styling for the Courses app. Anyt styling for the form is actually in fo
     padding-top: 1em;;
 }
 
-#hole_nums {
+/* #hole_par {
     border-bottom: 1px solid #aaa;
+} */
+
+.hole_score {
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
 }
 
 .fa-solid .fa-plus {

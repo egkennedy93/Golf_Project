@@ -57,6 +57,7 @@ class Trip_TeeTime(models.Model):
     ('1v1 matchplay', '1v1 matchplay'),
     ('please select', 'please select'),
     ]
+    
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
     tee_time_date = models.DateField()
     tee_time_time = models.TimeField()
