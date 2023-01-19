@@ -23,7 +23,7 @@ class AddTeeForm(forms.ModelForm):
             'yardage': forms.TextInput(attrs={'size': 8, 'padding': 0}),
 
             #yardage section of form
-            'hole_1_yardage': forms.TextInput(attrs={'size': 1}),
+            'hole_1_yardage': forms.TextInput(attrs={'size': 1, 'margin': 0, 'padding': 0,}),
             'hole_2_yardage': forms.TextInput(attrs={'size': 1}),
             'hole_3_yardage': forms.TextInput(attrs={'size': 1}),
             'hole_4_yardage': forms.TextInput(attrs={'size': 1}),

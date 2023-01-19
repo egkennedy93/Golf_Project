@@ -1,34 +1,30 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, UpdateView, DetailView
 from Courses.models import Golf_Tee
 from django.urls import reverse_lazy
 from django.forms import inlineformset_factory
 from GolfRound.forms import RoundSubmissionForm, RoundScoreForm
 from GolfRound.models import Round_Submission
+from golf_trip.models import Trip_TeeTime
 
 
 
-def RoundSubmissionView(request):
+def RoundSubmissionView(request, teetime_pk):
     # inlineformet is being used to update the Golf_Tee and Golf_Course under the same form POST 
     # TeeFormSet = inlineformset_factory(Golf_Course, Golf_Tee, form=AddTeeForm, extra=1,)
     if request.method == "POST":
         submission_form = RoundSubmissionForm(request.POST)
-        # teeformset = TeeFormSet(request.POST, instance=course_form.instance)
+        score_form = RoundScoreForm(request.POST)
+                
         
-        # validating and saving the course_form data
-        if submission_form.is_valid():
-            submission_form.save()           
-        
-        # validating and saving the GolfTee_form data
-        # if teeformset.is_valid():
-        #     teeformset.save()
-
         # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
-        return render(request,'Courses/course_submission.html',{'course_data': course_form.cleaned_data})
-    else:
-        course_form = RoundSubmissionForm()
+        return render(request,'GolfRound/round_submission_POST.html',{'submission_form': submission_form.cleaned_data})
+    elif request.method == "GET":
+        teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
+        submission_form = RoundSubmissionForm()
+        score_form = RoundScoreForm()
         # teeformset = TeeFormSet()
-    return render(request, "round/submission.html", {'submission_form': submission_form,})
+    return render(request, "GolfRound/round_score_submission.html", {'submission_form': submission_form, 'score_form': score_form, 'teetime_data': teetime_data})
 
 
 

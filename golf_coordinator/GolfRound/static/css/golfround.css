@@ -1,0 +1,11 @@
+.td-score{
+    width: 25px;
+    text-align: center;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: solid;
+}
+
+.th-score{
+text-align: center;}

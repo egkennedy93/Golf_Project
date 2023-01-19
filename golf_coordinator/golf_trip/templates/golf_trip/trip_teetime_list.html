@@ -19,7 +19,7 @@
                 {% endfor %}
             {% endif %}
             <a href="{% url 'golf_trip:teetime_detail' pk=teetime.pk %}" class="card-link">view scorecard</a>
-            <a href="{% url 'golf_trip:teetime_detail' pk=teetime.pk %}" class="card-link">Enter Score</a>
+            <a href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score</a>
         </div>
     </div> 
 {% endfor %}

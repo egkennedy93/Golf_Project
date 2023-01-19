@@ -10,13 +10,27 @@ from django.utils.timezone import now
 class Round_Submission(models.Model):
     round_submission_date = models.DateTimeField(default=now())
     trip_teetime = models.ForeignKey(Trip_TeeTime, on_delete=models.PROTECT)
-    round_gametype = models.CharField(max_length=200)
     
 
 class Round_Score(models.Model):
-    submission = models.ForeignKey(Round_Submission, related_name='round_submission', on_delete=models.PROTECT)
+    submission = models.ForeignKey(Round_Submission, on_delete=models.PROTECT)
     round_golfer = models.CharField(max_length=255)
-    hole_1_score = models.IntegerField(default=0)
-    hole_2_score = models.IntegerField(default=0)
-    hole_3_score = models.IntegerField(default=0)
+    hole_1_score = models.IntegerField()
+    hole_2_score = models.IntegerField()
+    hole_3_score = models.IntegerField()
+    hole_4_score = models.IntegerField()
+    hole_5_score = models.IntegerField()
+    hole_6_score = models.IntegerField()
+    hole_7_score = models.IntegerField()
+    hole_8_score = models.IntegerField()
+    hole_9_score = models.IntegerField()
+    hole_10_score = models.IntegerField()
+    hole_11_score = models.IntegerField()
+    hole_12_score = models.IntegerField()
+    hole_13_score = models.IntegerField()
+    hole_14_score = models.IntegerField()
+    hole_15_score = models.IntegerField()
+    hole_16_score = models.IntegerField()
+    hole_17_score = models.IntegerField()
+    hole_18_score = models.IntegerField()
 
