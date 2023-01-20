@@ -7,8 +7,12 @@
 
 
 {% for team in trip_teams %}
-
-<p>{{team.team.name}}</p>
+{% if team.team == 'Not Drafted' %}
+    {% for golfer in team.members.all %}
+        {{golfer.first_name}}
+    {% endfor %}
+    
+{% endif %}
 
 {% endfor %}
 
