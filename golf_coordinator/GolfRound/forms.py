@@ -36,6 +36,8 @@ class RoundScoreForm(forms.ModelForm):
             'hole_16_score': forms.TextInput(attrs={'class': 'td-score'}),
             'hole_17_score': forms.TextInput(attrs={'class': 'td-score'}),
             'hole_18_score': forms.TextInput(attrs={'class': 'td-score'}),
+            'total_score': forms.TextInput(attrs={'class': 'td-score'}),
+            'net_score': forms.TextInput(attrs={'class': 'td-score'}),
         }
 
 

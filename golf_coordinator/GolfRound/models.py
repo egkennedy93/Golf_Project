@@ -33,4 +33,6 @@ class Round_Score(models.Model):
     hole_16_score = models.IntegerField()
     hole_17_score = models.IntegerField()
     hole_18_score = models.IntegerField()
+    total_score = models.IntegerField()
+    net_score = models.IntegerField()
 

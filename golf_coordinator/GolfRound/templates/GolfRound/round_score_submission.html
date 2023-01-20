@@ -4,13 +4,15 @@
 
 <head>
     <link rel="stylesheet" href="{% static 'css/golfround.css' %}">
+    <script type="text/javascript" src="{% static 'js/round_submission.js' %}"></script>
 </head>
 
     <h1> {{teetime_data.tee.course.course_name}} - {{teetime_data.tee.tee_name}}</h1>
-    <table class="table" style="table-layout:fixed">
+    <table class="table" id='table1' style="table-layout:fixed">
         <thead>
           <tr>
             <th class="th-score" scope="col">Hole</th>
+            <th class="th-score" scope="col">Index</th>
             <th class="th-score" scope="col">1</th>
             <th class="th-score" scope="col">2</th>
             <th class="th-score" scope="col">3</th>
@@ -29,9 +31,12 @@
             <th class="th-score" scope="col">16</th>
             <th class="th-score" scope="col">17</th>
             <th class="th-score" scope="col">18</th>
+            <th class="th-score" scope="col">Total</th>
+            <th class="th-score" scope="col">Net</th>
           </tr>
           <tr>
             <th class="th-score" scope="col">Yardage</th>
+            <th class="th-score" scope="col"></th>
             <th class="th-score" scope="col">{{teetime_data.tee.hole_1_yardage}}</th>
             <th class="th-score" scope="col">{{teetime_data.tee.hole_2_yardage}}</th>
             <th class="th-score" scope="col">{{teetime_data.tee.hole_3_yardage}}</th>
@@ -56,7 +61,8 @@
             {% for players in teetime_data.Players.all  %}
           <tr>
             <th class="th-score" scope="col">{{players.golfer.first_name}}</th>
-            <th class="td-score" scope="col">{{score_form.hole_1_score}}</td>
+            <th class="th-score" id="index-player-{{forloop.counter}}" scope="col">{{players.hcp_index}}</th>
+            <td class="td-score" scope="col">{{score_form.hole_1_score}}</td>
             <td class="td-score">{{score_form.hole_2_score}}</td>
             <td class="td-score">{{score_form.hole_3_score}}</td>
             <td class="td-score">{{score_form.hole_4_score}}</td>
@@ -74,12 +80,15 @@
             <td class="td-score">{{score_form.hole_16_score}}</td>
             <td class="td-score">{{score_form.hole_17_score}}</td>
             <td class="td-score">{{score_form.hole_18_score}}</td>
+            <td class="td-score">{{score_form.total_score}}</td>
+            <td class="td-score">{{score_form.net_score}}</td>
           </tr>
           {% endfor %}
           <tr>
           </tbody>
           <tfoot>
             <th class="th-score" scope="col">Par</th>
+            <th class="th-score" scope="col"></th>
             <th class="th-score" scope="col">{{teetime_data.tee.hole_1_par}}</th>
             <th class="th-score" scope="col">{{teetime_data.tee.hole_2_par}}</th>
             <th class="th-score" scope="col">{{teetime_data.tee.hole_3_par}}</th>
@@ -101,27 +110,29 @@
           </tr>
           <tr>
             <th class="th-score" scope="col">Index</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_1_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_2_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_3_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_4_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_5_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_6_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_7_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_8_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_9_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_10_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_11_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_12_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_13_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_14_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_15_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_16_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_17_index}}</th>
-            <th class="th-score" scope="col">{{teetime_data.tee.hole_18_index}}</th>
+            <th class="th-score" scope="col"></th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_1_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_2_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_3_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_4_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_5_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_6_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_7_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_8_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_9_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_10_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_11_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_12_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_13_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_14_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_15_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_16_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_17_index}}</th>
+            <th class="th-score tee-index" scope="col">{{teetime_data.tee.hole_18_index}}</th>
           </tr>
         </tfoot>
       </table>
+       <a class="btn btn-primary" style="float:left" onClick="javascript:history.go(-1);" role="button">Back</a>
 
 
 {% endblock %}
