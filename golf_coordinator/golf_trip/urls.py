@@ -19,4 +19,5 @@ urlpatterns = [
     path('events/<int:pk>', views.EventDetailView.as_view(), name='eventDetail'),
     # Lists all players on the trip
     path('players/', views.PlayersListView.as_view(), name='players_list'),
+    path('teams/', views.TeamListView.as_view(), name='team_list'),
 ]

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Team List</h1>
+
+
+{% for team in trip_teams %}
+
+<p>{{team.team.name}}</p>
+
+{% endfor %}
+
+{% endblock %}
