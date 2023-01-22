@@ -68,7 +68,7 @@ class EventTeeTimeDetailView(DetailView):
 
 
 class TeamListView(ListView):
-    model = Trip_Golfer
+    model = Trip_Team
     template_name = 'golf_trip/teams_list.html'
 
     def get_context_data(self, **kwargs):
@@ -76,7 +76,11 @@ class TeamListView(ListView):
         context = super(TeamListView, self).get_context_data(**kwargs)
         # grabbing the dates for all of the events for the trip
         trip_teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan')
+        drafted = Trip_Team.objects.all().filter(trip__trip_name='Michigan').exclude(team="Not Drafted")
+        not_drafted = Trip_Team.objects.all().filter(trip__trip_name='Michigan').filter(team="Not Drafted")
 
 
         context['trip_teams'] = trip_teams
+        context['not_drafted'] = not_drafted
+        context['drafted'] = drafted
         return context

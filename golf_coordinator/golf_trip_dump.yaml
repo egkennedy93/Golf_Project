@@ -64,41 +64,10 @@
     trip: 2
     course: 1
     tee: 2
-- model: golf_trip.trip_team
-  pk: 1
-  fields:
-    trip: 1
-    team: 1
-    team_score: '0.0'
-- model: golf_trip.trip_team
-  pk: 2
-  fields:
-    trip: 1
-    team: 2
-    team_score: '0.0'
-- model: golf_trip.trip_team
-  pk: 3
-  fields:
-    trip: 2
-    team: 3
-    team_score: '0.0'
-- model: golf_trip.trip_team
-  pk: 4
-  fields:
-    trip: 2
-    team: 2
-    team_score: '0.0'
-- model: golf_trip.trip_team
-  pk: 5
-  fields:
-    trip: 2
-    team: 1
-    team_score: '0.0'
 - model: golf_trip.trip_golfer
   pk: 1
   fields:
     trip: 1
-    team: 1
     golfer: 1
     hcp_index: '9.2'
     score: '0.0'
@@ -106,7 +75,6 @@
   pk: 2
   fields:
     trip: 1
-    team: 1
     golfer: 4
     hcp_index: '13.4'
     score: '0.0'
@@ -114,7 +82,6 @@
   pk: 3
   fields:
     trip: 1
-    team: 1
     golfer: 2
     hcp_index: '18.8'
     score: '0.0'
@@ -122,7 +89,6 @@
   pk: 4
   fields:
     trip: 1
-    team: 1
     golfer: 5
     hcp_index: '15.0'
     score: '0.0'
@@ -130,7 +96,6 @@
   pk: 5
   fields:
     trip: 1
-    team: 1
     golfer: 8
     hcp_index: '12.5'
     score: '0.0'
@@ -138,7 +103,6 @@
   pk: 6
   fields:
     trip: 1
-    team: 1
     golfer: 10
     hcp_index: '13.4'
     score: '0.0'
@@ -146,7 +110,6 @@
   pk: 7
   fields:
     trip: 1
-    team: 2
     golfer: 9
     hcp_index: '12.3'
     score: '0.0'
@@ -154,7 +117,6 @@
   pk: 8
   fields:
     trip: 1
-    team: 2
     golfer: 20
     hcp_index: '9.9'
     score: '0.0'
@@ -162,7 +124,6 @@
   pk: 9
   fields:
     trip: 1
-    team: 2
     golfer: 11
     hcp_index: '13.3'
     score: '0.0'
@@ -170,7 +131,6 @@
   pk: 10
   fields:
     trip: 1
-    team: 2
     golfer: 7
     hcp_index: '9.9'
     score: '0.0'
@@ -178,7 +138,6 @@
   pk: 11
   fields:
     trip: 1
-    team: 2
     golfer: 6
     hcp_index: '16.8'
     score: '0.0'
@@ -186,7 +145,6 @@
   pk: 12
   fields:
     trip: 1
-    team: 2
     golfer: 15
     hcp_index: '11.5'
     score: '0.0'
@@ -194,7 +152,6 @@
   pk: 14
   fields:
     trip: 2
-    team: 3
     golfer: 1
     hcp_index: '7.4'
     score: '0.0'
@@ -202,7 +159,6 @@
   pk: 15
   fields:
     trip: 2
-    team: 3
     golfer: 2
     hcp_index: '17.1'
     score: '0.0'
@@ -210,7 +166,6 @@
   pk: 16
   fields:
     trip: 2
-    team: 3
     golfer: 3
     hcp_index: '6.3'
     score: '0.0'
@@ -218,7 +173,6 @@
   pk: 17
   fields:
     trip: 2
-    team: 3
     golfer: 4
     hcp_index: '12.6'
     score: '0.0'
@@ -226,7 +180,6 @@
   pk: 18
   fields:
     trip: 2
-    team: 3
     golfer: 5
     hcp_index: '13.6'
     score: '0.0'
@@ -234,7 +187,6 @@
   pk: 19
   fields:
     trip: 2
-    team: 3
     golfer: 6
     hcp_index: '0.0'
     score: '0.0'
@@ -242,7 +194,6 @@
   pk: 20
   fields:
     trip: 2
-    team: 3
     golfer: 7
     hcp_index: '9.9'
     score: '0.0'
@@ -250,7 +201,6 @@
   pk: 21
   fields:
     trip: 2
-    team: 3
     golfer: 15
     hcp_index: '11.5'
     score: '0.0'
@@ -258,7 +208,6 @@
   pk: 22
   fields:
     trip: 2
-    team: 3
     golfer: 8
     hcp_index: '12.5'
     score: '0.0'
@@ -266,7 +215,6 @@
   pk: 23
   fields:
     trip: 2
-    team: 3
     golfer: 9
     hcp_index: '12.3'
     score: '0.0'
@@ -274,7 +222,6 @@
   pk: 24
   fields:
     trip: 2
-    team: 3
     golfer: 10
     hcp_index: '13.4'
     score: '0.0'
@@ -282,7 +229,6 @@
   pk: 25
   fields:
     trip: 2
-    team: 3
     golfer: 11
     hcp_index: '13.4'
     score: '0.0'
@@ -290,7 +236,6 @@
   pk: 26
   fields:
     trip: 2
-    team: 3
     golfer: 13
     hcp_index: '0.0'
     score: '0.0'
@@ -298,7 +243,6 @@
   pk: 27
   fields:
     trip: 2
-    team: 3
     golfer: 14
     hcp_index: '0.0'
     score: '0.0'
@@ -306,7 +250,6 @@
   pk: 28
   fields:
     trip: 2
-    team: 3
     golfer: 16
     hcp_index: '0.0'
     score: '0.0'
@@ -314,7 +257,6 @@
   pk: 29
   fields:
     trip: 2
-    team: 3
     golfer: 17
     hcp_index: '0.0'
     score: '0.0'
@@ -322,7 +264,6 @@
   pk: 30
   fields:
     trip: 2
-    team: 3
     golfer: 18
     hcp_index: '0.0'
     score: '0.0'
@@ -330,7 +271,6 @@
   pk: 31
   fields:
     trip: 2
-    team: 3
     golfer: 19
     hcp_index: '0.0'
     score: '0.0'
@@ -338,7 +278,6 @@
   pk: 32
   fields:
     trip: 2
-    team: 3
     golfer: 21
     hcp_index: '0.0'
     score: '0.0'
@@ -346,7 +285,6 @@
   pk: 33
   fields:
     trip: 2
-    team: 3
     golfer: 12
     hcp_index: '0.0'
     score: '0.0'

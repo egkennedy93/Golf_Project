@@ -35,13 +35,12 @@ class Trip_Team(models.Model):
     members = models.ManyToManyField(Golfer, through='Trip_TeamMember')
 
     def __str__(self):
-        return "{}_{}".format(self.trip, self.team)
+        return "{}".format(self.team)
 
 
 # extends the golfer model, and then adds an index and score to each golfer for the trip. 
 class Trip_Golfer(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
-    team = models.ForeignKey(Trip_Team, null=True, blank=True, on_delete=models.PROTECT)
     golfer = models.ForeignKey(Golfer, on_delete=models.PROTECT)
     hcp_index = models.DecimalField(max_digits=3, decimal_places=1, default=0)
     score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
@@ -55,7 +54,7 @@ class Trip_TeamMember(models.Model):
     user = models.ForeignKey(Golfer, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{}_{}".format(self.team.team, self.user.first_name)
+        return "{}_{}_{}".format(self.team.team, self.user.first_name, self.user.last_name)
     
     class Meta:
         unique_together = ('team', 'user')

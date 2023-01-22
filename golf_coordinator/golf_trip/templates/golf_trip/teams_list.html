@@ -3,17 +3,18 @@
 
 {% block content %}
 
+
 <h1>Team List</h1>
-
-
-{% for team in trip_teams %}
-{% if team.team == 'Not Drafted' %}
-    {% for golfer in team.members.all %}
-        {{golfer.first_name}}
-    {% endfor %}
-    
-{% endif %}
-
-{% endfor %}
-
+<div class="container">
+    <div class="row align-items-start">
+      {% for teams in drafted  %}
+      <div class="col">
+        <h4>{{teams.team}}</h4>
+        {% for golfer in teams.members.all %}
+            <li>{{golfer.first_name}} {{golfer.last_name}}</li>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+</div>
 {% endblock %}

@@ -18,3 +18,17 @@ $(document).ready(function(){
     return false;
   });
 });
+
+
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+  
+});
+
+$(document).ready(function(){
+  $('[data-toggle="popover"]').hover(
+    function () {
+      $(this).css("cursor", "pointer");
+    }
+    )});
+
