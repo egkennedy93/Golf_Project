@@ -7,10 +7,13 @@
     {% for teetime in trip_teetime_list %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">{{teetime.tee_time_time}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{teetime.tee.course.course_name}} | <a href="{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}" class="card-link">{{teetime.tee.tee_name}}</a></h6>
+            <h5 class="card-title">{{teetime.tee_time_time}}<span style="float: right" class="fa-solid fa-circle-exclamation" data-toggle="popover" data-bs-html="true" title="Tee Time Details" 
+                                                                    data-bs-content="Course: {{ teetime.tee.course.course_name}}<br/>
+                                                                                     Tee: <a href='{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}' class='card-link'>{{teetime.tee.tee_name}}</a><br/>
+                                                                                     Format: {{teetime.gametype}}"></span></h5> 
+            {% comment %} <a href="{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}" class="card-link">{{teetime.tee.tee_name}}</a>
             <h6 class="card-subtitle mb-2 text-muted"></h6>
-            <h6 class="card-subtitle mb-2 text-muted">Format: {{teetime.gametype}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Format: {{teetime.gametype}}</h6> {% endcomment %}
             {% if not teetime.Players.all %}
                 <p class="card-text">No players assigned </p> 
             {% else %}
@@ -18,14 +21,17 @@
                     <p class="card-text player-text">Player #{{forloop.counter}}: {{ players.golfer.first_name}} {{ players.golfer.last_name}}</p>
                 {% endfor %}
             {% endif %}
-            <a href="{% url 'golf_trip:teetime_detail' pk=teetime.pk %}" class="card-link">view scorecard</a>
             <a href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score</a>
+            <a href="{% url 'golf_trip:teetime_detail' pk=teetime.pk %}" class="card-link">view scorecard</a>
+            
         </div>
     </div> 
 {% endfor %}
 </div>
 <div class="container">
     <a class="btn btn-primary" style="float:left" onClick="javascript:history.go(-1);" role="button">Back</a>
+</div>
+
 
 {% endblock %}
 
