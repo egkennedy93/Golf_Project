@@ -1,0 +1,345 @@
+- model: golf_trip.golf_trip
+  pk: 1
+  fields:
+    trip_date: 2022-05-13
+    trip_name: Streamsong
+    trip_description: Blue|Black|Red
+- model: golf_trip.golf_trip
+  pk: 2
+  fields:
+    trip_date: 2023-08-17
+    trip_name: Michigan
+    trip_description: Arcadia Bluffs and Treetops
+- model: golf_trip.trip_course
+  pk: 1
+  fields:
+    trip: 1
+    course: 7
+    tee: 22
+- model: golf_trip.trip_course
+  pk: 2
+  fields:
+    trip: 1
+    course: 8
+    tee: 23
+- model: golf_trip.trip_course
+  pk: 3
+  fields:
+    trip: 1
+    course: 9
+    tee: 24
+- model: golf_trip.trip_course
+  pk: 4
+  fields:
+    trip: 2
+    course: 6
+    tee: 20
+- model: golf_trip.trip_course
+  pk: 5
+  fields:
+    trip: 2
+    course: 2
+    tee: 7
+- model: golf_trip.trip_course
+  pk: 6
+  fields:
+    trip: 2
+    course: 4
+    tee: 16
+- model: golf_trip.trip_course
+  pk: 7
+  fields:
+    trip: 2
+    course: 5
+    tee: 25
+- model: golf_trip.trip_course
+  pk: 8
+  fields:
+    trip: 2
+    course: 3
+    tee: 11
+- model: golf_trip.trip_course
+  pk: 9
+  fields:
+    trip: 2
+    course: 1
+    tee: 2
+- model: golf_trip.trip_golfer
+  pk: 1
+  fields:
+    trip: 1
+    golfer: 1
+    hcp_index: '9.2'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 2
+  fields:
+    trip: 1
+    golfer: 4
+    hcp_index: '13.4'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 3
+  fields:
+    trip: 1
+    golfer: 2
+    hcp_index: '18.8'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 4
+  fields:
+    trip: 1
+    golfer: 5
+    hcp_index: '15.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 5
+  fields:
+    trip: 1
+    golfer: 8
+    hcp_index: '12.5'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 6
+  fields:
+    trip: 1
+    golfer: 10
+    hcp_index: '13.4'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 7
+  fields:
+    trip: 1
+    golfer: 9
+    hcp_index: '12.3'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 8
+  fields:
+    trip: 1
+    golfer: 20
+    hcp_index: '9.9'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 9
+  fields:
+    trip: 1
+    golfer: 11
+    hcp_index: '13.3'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 10
+  fields:
+    trip: 1
+    golfer: 7
+    hcp_index: '9.9'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 11
+  fields:
+    trip: 1
+    golfer: 6
+    hcp_index: '16.8'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 12
+  fields:
+    trip: 1
+    golfer: 15
+    hcp_index: '11.5'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 14
+  fields:
+    trip: 2
+    golfer: 1
+    hcp_index: '7.4'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 15
+  fields:
+    trip: 2
+    golfer: 2
+    hcp_index: '17.1'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 16
+  fields:
+    trip: 2
+    golfer: 3
+    hcp_index: '6.3'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 17
+  fields:
+    trip: 2
+    golfer: 4
+    hcp_index: '12.6'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 18
+  fields:
+    trip: 2
+    golfer: 5
+    hcp_index: '13.6'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 19
+  fields:
+    trip: 2
+    golfer: 6
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 20
+  fields:
+    trip: 2
+    golfer: 7
+    hcp_index: '9.9'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 21
+  fields:
+    trip: 2
+    golfer: 15
+    hcp_index: '11.5'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 22
+  fields:
+    trip: 2
+    golfer: 8
+    hcp_index: '12.5'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 23
+  fields:
+    trip: 2
+    golfer: 9
+    hcp_index: '12.3'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 24
+  fields:
+    trip: 2
+    golfer: 10
+    hcp_index: '13.4'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 25
+  fields:
+    trip: 2
+    golfer: 11
+    hcp_index: '13.4'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 26
+  fields:
+    trip: 2
+    golfer: 13
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 27
+  fields:
+    trip: 2
+    golfer: 14
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 28
+  fields:
+    trip: 2
+    golfer: 16
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 29
+  fields:
+    trip: 2
+    golfer: 17
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 30
+  fields:
+    trip: 2
+    golfer: 18
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 31
+  fields:
+    trip: 2
+    golfer: 19
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 32
+  fields:
+    trip: 2
+    golfer: 21
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_golfer
+  pk: 33
+  fields:
+    trip: 2
+    golfer: 12
+    hcp_index: '0.0'
+    score: '0.0'
+- model: golf_trip.trip_teetime
+  pk: 1
+  fields:
+    trip: 2
+    tee_time_date: 2023-08-17
+    tee_time_time: '16:30:00'
+    gametype: 2v2 best ball
+    tee: 20
+    Players:
+    - 14
+    - 15
+    - 16
+    - 17
+- model: golf_trip.trip_event
+  pk: 1
+  fields:
+    trip: 2
+    event_time: 2023-08-17
+    course: 4
+    tee_time: []
+- model: golf_trip.trip_event
+  pk: 2
+  fields:
+    trip: 2
+    event_time: 2023-08-18
+    course: 5
+    tee_time: []
+- model: golf_trip.trip_event
+  pk: 3
+  fields:
+    trip: 2
+    event_time: 2023-08-18
+    course: 6
+    tee_time: []
+- model: golf_trip.trip_event
+  pk: 4
+  fields:
+    trip: 2
+    event_time: 2023-08-19
+    course: 7
+    tee_time: []
+- model: golf_trip.trip_event
+  pk: 5
+  fields:
+    trip: 2
+    event_time: 2023-08-19
+    course: 8
+    tee_time: []
+- model: golf_trip.trip_event
+  pk: 6
+  fields:
+    trip: 2
+    event_time: 2023-08-20
+    course: 9
+    tee_time: []
