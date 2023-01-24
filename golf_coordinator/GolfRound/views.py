@@ -16,8 +16,11 @@ def RoundSubmissionView(request, teetime_pk):
         scoreformset = scoreform(request.POST)
 
         if scoreformset.is_valid():
-            # scoreform_tee_time = scoreformset.save(commit=False)
-            # scoreform_tee_time.tee_time = teetime_pk
+            scoreform_tee_time = scoreformset.save(commit=False)
+            # for i in scoreformset:
+                # print(i.cleaned_data['round_golfer'])
+
+
             scoreformset.save()
             # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
             return render(request,'GolfRound/round_submission_POST.html', {'scoreformset': scoreformset})
@@ -37,5 +40,4 @@ def RoundSubmissionView(request, teetime_pk):
                                                                                {'tee_time': teetime_pk, 'round_golfer': player_list[2], 'golfer_index': player_hcp_list[2]}, 
                                                                                {'tee_time': teetime_pk, 'round_golfer': player_list[3], 'golfer_index': player_hcp_list[3]},
                                                                                ])
-   
         return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
