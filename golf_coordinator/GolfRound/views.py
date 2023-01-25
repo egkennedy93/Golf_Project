@@ -6,20 +6,23 @@ from django.forms import formset_factory
 from GolfRound.forms import RoundScoreForm, scoreform
 from GolfRound.models import Round_Score
 from golf_trip.models import Trip_TeeTime
+from GolfRound.round_processing import round_processing
+
+
 
 
 
 def RoundSubmissionView(request, teetime_pk):
-    # inlineformet is being used to update the Golf_Tee and Golf_Course under the same form POST 
-    # TeeFormSet = inlineformset_factory(Golf_Course, Golf_Tee, form=AddTeeForm, extra=1,)
     if request.method == "POST":
+        teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
         scoreformset = scoreform(request.POST)
 
         if scoreformset.is_valid():
-            scoreform_tee_time = scoreformset.save(commit=False)
-            # for i in scoreformset:
-                # print(i.cleaned_data['round_golfer'])
+            # print(scoreform_tee_time)
+            round_score_data = round_processing(scoreformset, teetime_data, teetime_data)
 
+            scoreform_tee_time = scoreformset.save(commit=False)
+            
 
             scoreformset.save()
             # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template

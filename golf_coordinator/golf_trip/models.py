@@ -68,6 +68,7 @@ class Trip_TeeTime(models.Model):
     ('2v2 scramble', '2v2 scramble'),
     ('1v1 matchplay', '1v1 matchplay'),
     ('please select', 'please select'),
+    ('4 person scramble', '4 person scramble'),
     ]
     
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
