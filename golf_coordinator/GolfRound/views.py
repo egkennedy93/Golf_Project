@@ -57,9 +57,11 @@ def RoundSubmissionView(request, teetime_pk):
             return render(request,'GolfRound/round_submission_POST.html', {'scoreform_tee_time': scoreform_tee_time, 'net_round_score': net_round_score})
     else:
         teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
+        raw_player_list = teetime_data.Players.all()
         player_list = []
         player_pks = []
         player_hcp_list = []
+
 
         for player in teetime_data.Players.all():
             player_name = "{}".format(player.golfer.last_name)
@@ -68,9 +70,9 @@ def RoundSubmissionView(request, teetime_pk):
             player_hcp_list.append(player_hcp)
             player_pks.append(player.pk)
 
-        scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_pks[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
-                                                                               {'tee_time': teetime_pk, 'round_golfer': player_pks[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
-                                                                               {'tee_time': teetime_pk, 'round_golfer': player_pks[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
-                                                                               {'tee_time': teetime_pk, 'round_golfer': player_pks[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
+        scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': raw_player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
+                                                                               {'tee_time': teetime_pk, 'round_golfer': raw_player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
+                                                                               {'tee_time': teetime_pk, 'round_golfer': raw_player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
+                                                                               {'tee_time': teetime_pk, 'round_golfer': raw_player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
                                                                                ])
         return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
