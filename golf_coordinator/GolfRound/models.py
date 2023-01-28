@@ -1,20 +1,13 @@
 from django.db import models
-from django.urls import reverse
-from Courses.models import Golf_Tee, Golf_Course
-from accounts.models import Golfer
-from golf_trip.models import Trip_TeeTime, Trip_Golfer
-from django.utils.timezone import now
+from golf_trip.models import Trip_TeeTime
 
 
-# Create your models here.
-class Round_Submission(models.Model):
-    round_submission_date = models.DateTimeField(default=now())
-    trip_teetime = models.ForeignKey(Trip_TeeTime, on_delete=models.PROTECT)
     
 
 class Round_Score(models.Model):
-    submission = models.ForeignKey(Round_Submission, on_delete=models.PROTECT)
+    tee_time = models.ForeignKey(Trip_TeeTime, on_delete=models.PROTECT)
     round_golfer = models.CharField(max_length=255)
+    golfer_index = models.DecimalField(decimal_places=1, max_digits=3)
     hole_1_score = models.IntegerField()
     hole_2_score = models.IntegerField()
     hole_3_score = models.IntegerField()

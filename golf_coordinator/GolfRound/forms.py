@@ -1,13 +1,8 @@
 from django import forms
-from GolfRound.models import Round_Submission, Round_Score
-from django.forms import formset_factory
+from GolfRound.models import Round_Score
+from golf_trip.models import Trip_TeeTime
+from django.forms import modelformset_factory
 
-
-class RoundSubmissionForm(forms.ModelForm):
-
-    class Meta():
-        fields = '__all__'
-        model = Round_Submission
 
 
 class RoundScoreForm(forms.ModelForm):
@@ -18,6 +13,8 @@ class RoundScoreForm(forms.ModelForm):
 
         widgets = {
             #score section of form
+            'round_golfer': forms.TextInput(attrs={'style': 'width:75px', 'padding-right':'100px'}),
+            'golfer_index': forms.TextInput(attrs={'class': 'td-score'}),
             'hole_1_score': forms.TextInput(attrs={'class': 'td-score'}),
             'hole_2_score': forms.TextInput(attrs={'class': 'td-score'}),
             'hole_3_score': forms.TextInput(attrs={'class': 'td-score'}),
@@ -40,6 +37,8 @@ class RoundScoreForm(forms.ModelForm):
             'net_score': forms.TextInput(attrs={'class': 'td-score'}),
         }
 
+
+scoreform = modelformset_factory(Round_Score, fields=('__all__'), form=RoundScoreForm, extra=4,  max_num=5)
 
 
 

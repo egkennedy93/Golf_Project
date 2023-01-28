@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import TemplateView, DetailView, ListView
-from golf_trip.models import Trip_Golfer, Trip_Event, Golf_Trip, Trip_Course, Trip_TeeTime
+from golf_trip.models import Trip_Golfer, Trip_Event, Golf_Trip, Trip_Course, Trip_TeeTime, Trip_Team
 
 
 class EventHistoryView(ListView):
@@ -65,4 +65,22 @@ class EventTeeTimeListView(ListView):
 
 class EventTeeTimeDetailView(DetailView):
     model = Trip_TeeTime
-    
+
+
+class TeamListView(ListView):
+    model = Trip_Team
+    template_name = 'golf_trip/teams_list.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(TeamListView, self).get_context_data(**kwargs)
+        # grabbing the dates for all of the events for the trip
+        trip_teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan')
+        drafted = Trip_Team.objects.all().filter(trip__trip_name='Michigan').exclude(team="Not Drafted")
+        not_drafted = Trip_Team.objects.all().filter(trip__trip_name='Michigan').filter(team="Not Drafted")
+
+
+        context['trip_teams'] = trip_teams
+        context['not_drafted'] = not_drafted
+        context['drafted'] = drafted
+        return context

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<h1>Team List</h1>
+<div class="container">
+    <div class="row align-items-start">
+      {% for teams in drafted  %}
+      <div class="col">
+        <h4>{{teams.team}}</h4>
+        {% for golfer in teams.members.all %}
+            <li>{{golfer.first_name}} {{golfer.last_name}}</li>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+</div>
+{% endblock %}

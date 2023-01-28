@@ -30,22 +30,34 @@ class Trip_Course(models.Model):
 # teams need to be setup first in the team app, but is ued here to track team scores during the trip.
 class Trip_Team(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
-    team = models.ForeignKey(Team, on_delete=models.PROTECT)
+    team = models.CharField(max_length=255)
     team_score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
+    members = models.ManyToManyField(Golfer, through='Trip_TeamMember')
 
     def __str__(self):
-        return "{}_{}".format(self.trip, self.team)
+        return "{}".format(self.team)
+
 
 # extends the golfer model, and then adds an index and score to each golfer for the trip. 
 class Trip_Golfer(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
-    team = models.ForeignKey(Team, null=True, blank=True, on_delete=models.PROTECT)
     golfer = models.ForeignKey(Golfer, on_delete=models.PROTECT)
     hcp_index = models.DecimalField(max_digits=3, decimal_places=1, default=0)
     score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
     def __str__(self):
         return "{}_{}".format(self.trip, self.golfer)
+
+
+class Trip_TeamMember(models.Model):
+    team = models.ForeignKey(Trip_Team,on_delete=models.CASCADE)
+    user = models.ForeignKey(Golfer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{}_{}_{}".format(self.team.team, self.user.first_name, self.user.last_name)
+    
+    class Meta:
+        unique_together = ('team', 'user')
 
 
 # for each trip events, there wil be multiple tee times to support the trip. This is the sub details on an event.
@@ -56,6 +68,7 @@ class Trip_TeeTime(models.Model):
     ('2v2 scramble', '2v2 scramble'),
     ('1v1 matchplay', '1v1 matchplay'),
     ('please select', 'please select'),
+    ('4 person scramble', '4 person scramble'),
     ]
     
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)

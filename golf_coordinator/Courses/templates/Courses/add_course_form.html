@@ -18,6 +18,8 @@ uploaded directly to the db. Once the user features are added, this could be bro
   {% csrf_token %}
   <div class="container text-center">
     <div class="row">
+      {{ form.errors }}
+      {{ form.non_field_errors }}
       <div class="col" id="course_id">Course Name: {{course_form.course_name}}</div>
     <div>
     {% comment %} This is using a inline formset {% endcomment %}
