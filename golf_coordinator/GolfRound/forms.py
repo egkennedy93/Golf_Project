@@ -1,12 +1,14 @@
 from django import forms
-from GolfRound.models import Round_Score
+from GolfRound.models import Round_Score, Net_Round_Score
 from golf_trip.models import Trip_TeeTime
 from django.forms import modelformset_factory
 
 
 
 class RoundScoreForm(forms.ModelForm):
-    round_golfer = forms.CharField(disabled=True, widget=forms.TextInput(attrs={'style': 'width:75px', 'padding-right':'100px'}))
+    round_golfer = forms.CharField(widget=forms.TextInput(attrs={'style': 'width:75px; background-color: 	#D3D3D3', 'padding-right':'100px', 'readonly': 'readonly'}))
+    total_score = forms.IntegerField(required=False)
+    net_score = forms.IntegerField(required=False)
 
     class Meta():
         fields = '__all__'
@@ -39,33 +41,4 @@ class RoundScoreForm(forms.ModelForm):
 
 
 scoreform = modelformset_factory(Round_Score, fields=('__all__'), form=RoundScoreForm, extra=4,  max_num=5)
-
-
-
-
-
-
-
-
-
-
-
-
-# class RoundSubmissionForm(forms.ModelForm):
-#     class Meta:
-#         model = Round_Submission
-#         exclude = ['round_submission_date',]
-
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['tee'].queryset = Golf_Tee.objects.none()
-
-#         if 'course' in self.data:
-#             try:
-#                 course_id = int(self.data.get('course'))
-#                 self.fields['tee'].queryset = Golf_Tee.objects.filter(course_id=course_id)
-#             except (ValueError, TypeError):
-#                 pass  # invalid input from the client; ignore and fallback to empty City queryset
-#         elif self.instance.pk:
-#             self.fields['tee'].queryset = self.instance.golf_course.tee_set.order_by('name')
 

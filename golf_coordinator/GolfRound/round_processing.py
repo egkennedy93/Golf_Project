@@ -251,7 +251,7 @@ def determine_bestball_win_stroke(team_1_score, team_2_score):
             team_1_bestball_stroke_score.append(score_diff)
 
     net_stroke_sum = sum(team_1_bestball_stroke_score)
-    score_dict = {'team_1': team_1_bestball_stroke_score, 'net_stroke_sum': net_stroke_sum}
+    score_dict = {'team_1': team_1_bestball_stroke_score, 'net_score': net_stroke_sum}
     return score_dict
 
 
@@ -272,7 +272,7 @@ def determine_bestball_win_match(team_1_score, team_2_score):
             team_1_bestball_match_score.append(score_diff)
 
     net_match_sum = sum(team_1_bestball_match_score)
-    score_dict = {'team_1': team_1_bestball_match_score, 'net_match_sum': net_match_sum}
+    score_dict = {'team_1': team_1_bestball_match_score, 'net_score': net_match_sum}
     return score_dict
 
 
