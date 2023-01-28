@@ -6,6 +6,7 @@ from django.forms import modelformset_factory
 
 
 class RoundScoreForm(forms.ModelForm):
+    round_golfer = forms.CharField(disabled=True, widget=forms.TextInput(attrs={'style': 'width:75px', 'padding-right':'100px'}))
 
     class Meta():
         fields = '__all__'
@@ -13,7 +14,6 @@ class RoundScoreForm(forms.ModelForm):
 
         widgets = {
             #score section of form
-            'round_golfer': forms.TextInput(attrs={'style': 'width:75px', 'padding-right':'100px'}),
             'golfer_index': forms.TextInput(attrs={'class': 'td-score'}),
             'hole_1_score': forms.TextInput(attrs={'class': 'td-score'}),
             'hole_2_score': forms.TextInput(attrs={'class': 'td-score'}),

@@ -38,8 +38,6 @@
           <th class="th-score">16</th>
           <th class="th-score">17</th>
           <th class="th-score">18</th>
-          <th class="th-score">Total</th>
-          <th class="th-score">Net</th>
         </tr>
         <tr>
           <th class="th-score" ></th>
@@ -71,7 +69,7 @@
           <tr>
            
             <th class="th-score">{{scoreform.round_golfer}}</th>
-             <th class="th-score">{{scoreform.tee_time.as_hidden}}</th>
+             
             <th class="th-score">{{scoreform.golfer_index}}</th>
             <td class="td-score">{{scoreform.hole_1_score}}</td>
             <td class="td-score">{{scoreform.hole_2_score}}</td>
@@ -91,9 +89,10 @@
             <td class="td-score">{{scoreform.hole_16_score}}</td>
             <td class="td-score">{{scoreform.hole_17_score}}</td>
             <td class="td-score">{{scoreform.hole_18_score}}</td>
-            <td class="td-score">{{scoreform.total_score}}</td>
-            <td class="td-score">{{scoreform.net_score}}</td>
+         
+            
           </tr>
+          <td class="th-score">{{scoreform.tee_time.as_hidden}}</th>
          {% endfor %} 
           </tbody>
           <tfoot>

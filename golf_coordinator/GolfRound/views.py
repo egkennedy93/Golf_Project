@@ -6,7 +6,7 @@ from django.forms import formset_factory
 from GolfRound.forms import RoundScoreForm, scoreform
 from GolfRound.models import Round_Score
 from golf_trip.models import Trip_TeeTime
-from GolfRound.round_processing import round_processing
+from GolfRound.round_processing import round_processing, determine_2v2_team_scores
 
 
 
@@ -20,6 +20,13 @@ def RoundSubmissionView(request, teetime_pk):
         if scoreformset.is_valid():
             # print(scoreform_tee_time)
             round_score_data = round_processing(scoreformset, teetime_data, teetime_data)
+            
+
+            determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
+            # if round_score_data[0]['team'][0].pk == round_score_data[2]['team'].pk:
+            #     print("YES")
+            # else:
+            #     print("NO")
 
             scoreform_tee_time = scoreformset.save(commit=False)
             
