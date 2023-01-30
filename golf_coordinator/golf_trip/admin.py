@@ -7,10 +7,14 @@ from django.shortcuts import get_object_or_404
 admin.site.register(Golf_Trip)
 admin.site.register(Trip_Course)
 admin.site.register(Trip_Team)
-admin.site.register(Trip_Golfer)
 admin.site.register(Trip_Event)
-# admin.site.register(Trip_TeeTime)
 admin.site.register(Trip_TeamMember)
+
+@admin.register(Trip_Golfer)
+class Trip_GolferAdmin(admin.ModelAdmin):
+    list_display = ('trip', 'golfer', 'hcp_index',)
+    list_filter = ('trip', 'golfer', 'hcp_index',)
+
 
 @admin.register(Trip_TeeTime)
 class Trip_TeeTimeAdmin(admin.ModelAdmin):

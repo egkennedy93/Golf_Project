@@ -46,7 +46,7 @@ class Trip_Golfer(models.Model):
     score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
     def __str__(self):
-        return "{}_{}".format(self.trip, self.golfer)
+        return "{}".format(self.golfer.last_name)
 
 
 class Trip_TeamMember(models.Model):
