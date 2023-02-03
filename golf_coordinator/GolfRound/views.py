@@ -21,14 +21,20 @@ def RoundSubmissionView(request, teetime_pk):
         # if data is not properly formatted this will fail. Currently not handling errors for this
         if scoreformset.is_valid():
             
-            # takes all of the round scores from the scoreformset, the information for the teetime (specifically the gametype)
+            scoreform_tee_time = scoreformset.save(commit=False)
+
+             # takes all of the round scores from the scoreformset, the information for the teetime (specifically the gametype)
             # reference round_processing.py on the output of round_processing, but its a summary of each players scores - net and gross
             round_score_data = round_processing(scoreformset, teetime_data)
+            print(round_score_data[0]['net_score'][0])
 
-            # Using the round_score_data the two team names are passed (which I need to change to be dynamic), and takes in the gametype for the teetime
-            processed_score_data = determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
 
-            scoreform_tee_time = scoreformset.save(commit=False)
+            
+            player_0 = round_score_data[0]['net_score']
+            player_1 = round_score_data[1]['net_score']
+            player_2 = round_score_data[2]['net_score']
+            player_3 = round_score_data[3]['net_score']
+            net_score_list =[player_0, player_1, player_2, player_3]
 
             for idx, round in enumerate(scoreform_tee_time):
                 round.total_score = sum(round_score_data[idx]['gross_score'])
@@ -58,9 +64,14 @@ def RoundSubmissionView(request, teetime_pk):
                                                                 hole_18_score = round_score_data[idx]['net_score'][17],
                                                                 net_score = sum(round_score_data[idx]['net_score']),
                                                                 total_score = sum(round_score_data[idx]['gross_score']))
+
+             # Using the round_score_data the two team names are passed (which I need to change to be dynamic), and takes in the gametype for the teetime
+            processed_score_data = determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
+            # print(processed_score_data)
+
             scoreformset.save()
             # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
-            return render(request,'GolfRound/round_submission_POST.html', {'scoreform_tee_time': scoreform_tee_time, 'net_round_score': net_round_score})
+            return render(request,'GolfRound/round_submission_POST.html', {'scoreformset': scoreformset, 'teetime_data': teetime_data, 'net_score_list': net_score_list, 'processed_score_data': processed_score_data})
     else:
         teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
         raw_player_list = teetime_data.Players.all()
@@ -68,13 +79,11 @@ def RoundSubmissionView(request, teetime_pk):
         player_pks = []
         player_hcp_list = []
 
-
         for player in raw_player_list:
             player_list.append(player)
             player_hcp_list.append(player.hcp_index)
             player_pks.append(player.pk)
         
-       
         scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
                                                                                {'tee_time': teetime_pk, 'round_golfer': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
                                                                                {'tee_time': teetime_pk, 'round_golfer': player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 

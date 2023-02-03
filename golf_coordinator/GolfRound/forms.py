@@ -16,7 +16,7 @@ class RoundScoreForm(forms.ModelForm):
 
         widgets = {
             #score section of form
-            'golfer_index': forms.TextInput(attrs={'class': 'td-score', 'style': 'width: 60px; background-color: #D3D3D3', 'padding-right':'300px', 'readonly': 'readonly'}),
+            'golfer_index': forms.TextInput(attrs={'class': 'td-player', 'style': 'width: 60px; background-color: #D3D3D3', 'padding-right':'300px', 'readonly': 'readonly'}),
             'hole_1_score': forms.TextInput(attrs={'class': 'td-score'}),
             'hole_2_score': forms.TextInput(attrs={'class': 'td-score'}),
             'hole_3_score': forms.TextInput(attrs={'class': 'td-score'}),

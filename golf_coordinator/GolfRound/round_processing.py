@@ -162,8 +162,6 @@ def round_processing(round_formset_data, tee_data):
     return teetime_score_data
 
 
-
-
 def course_handicap_calculation(index, course_slope, course_rating, course_par):
     '''
     Used the USGA Handicap formula: https://www.usga.org/content/usga/home-page/handicapping/roh/Content/rules/6%201%20Course%20Handicap%20Calculation.htm
@@ -274,6 +272,10 @@ def determine_bestball_win_match(team_1_score, team_2_score):
     net_match_sum = sum(team_1_bestball_match_score)
     score_dict = {'team_1': team_1_bestball_match_score, 'net_score': net_match_sum}
     return score_dict
+
+
+
+
 
 
 

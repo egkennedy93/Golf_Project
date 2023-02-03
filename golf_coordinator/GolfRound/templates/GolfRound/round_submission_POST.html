@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+{% load index %}
 
 {% block content %}
 
@@ -67,10 +68,8 @@
           {{ scoreformset.management_form }}
           {% for scoreform in scoreformset %}
           <tr>
-           
-            <th class="th-score">{{scoreform.round_golfer}}</th>
-             
-            <th class="th-score">{{scoreform.golfer_index}}</th>
+            <th class="td-player">{{scoreform.round_golfer}}</th>
+            <th class="td-player">{{scoreform.golfer_index}}</th>
             <td class="td-score">{{scoreform.hole_1_score}}</td>
             <td class="td-score">{{scoreform.hole_2_score}}</td>
             <td class="td-score">{{scoreform.hole_3_score}}</td>
@@ -89,7 +88,28 @@
             <td class="td-score">{{scoreform.hole_16_score}}</td>
             <td class="td-score">{{scoreform.hole_17_score}}</td>
             <td class="td-score">{{scoreform.hole_18_score}}</td>
- 
+          </tr>
+          <tr>
+            <td class="td-score"> </td>
+            <td class="td-score"> </td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:0}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:1}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:2}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:3}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:4}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:5}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:6}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:7}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:8}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:9}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:10}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:11}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:12}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:13}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:14}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:15}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:16}}</td>
+            <td class="td-score">{{net_score_list|index:forloop.counter0|index:17}}</td>
           </tr>
           <td class="td-score">{{scoreform.total_score.as_hidden}}</td>
           <td class="td-score">{{scoreform.net_score.as_hidden}}</td>
