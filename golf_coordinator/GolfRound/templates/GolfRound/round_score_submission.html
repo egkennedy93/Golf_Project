@@ -15,7 +15,7 @@
     {{ form.errors }}
 {{ form.non_field_errors }}
     <h1> {{teetime_data.tee.course.course_name}} - {{teetime_data.tee.tee_name}}</h1>
-    <table class="table" id='table1' style="table-layout:fixed">
+    <table class="table" id='table1'>
       <thead>
         <tr>
           <th class="th-score" >Golfer</th>
@@ -68,7 +68,7 @@
           {% for scoreform in scoreformset %}
           <tr>
            
-            <th class="th-score">{{scoreform.round_golfer}}</th>
+            <th class="td-player">{{scoreform.round_golfer}}</th>
              
             <th class="th-score">{{scoreform.golfer_index}}</th>
             <td class="td-score">{{scoreform.hole_1_score}}</td>

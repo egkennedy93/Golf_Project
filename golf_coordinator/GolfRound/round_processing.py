@@ -1,6 +1,6 @@
 from golf_trip.models import Trip_Team
 
-def round_processing(round_formset_data, tee_data, teetime_data):
+def round_processing(round_formset_data, tee_data):
     '''
     This function is responsible for taking the data from the teetime, and the submitted round.
     It will calculate each players net and gross score.
@@ -22,7 +22,7 @@ def round_processing(round_formset_data, tee_data, teetime_data):
         round_golfer = players_round.cleaned_data['round_golfer']
 
         # golfers assigned team
-        golfer = teetime_data.Players.all().filter(golfer__last_name=round_golfer)
+        golfer = tee_data.Players.all().filter(golfer__last_name=round_golfer)
         
         golfer_team=team_data.filter(members__pk=golfer[0].pk)
 

@@ -9,18 +9,23 @@ from golf_trip.models import Trip_TeeTime, Trip_Golfer
 from GolfRound.round_processing import round_processing, determine_2v2_team_scores
 
 
-
-
-
 def RoundSubmissionView(request, teetime_pk):
+    '''
+    This function takes the values submitted for the tee time score, based on the gametype for the teetime.
+    it will calculate the raw values, as well as calculate the net data, and ultimiately the team who wins
+    '''
     if request.method == "POST":
-        print(request)
         teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
         scoreformset = scoreform(request.POST)
-    
+
+        # if data is not properly formatted this will fail. Currently not handling errors for this
         if scoreformset.is_valid():
             
-            round_score_data = round_processing(scoreformset, teetime_data, teetime_data)
+            # takes all of the round scores from the scoreformset, the information for the teetime (specifically the gametype)
+            # reference round_processing.py on the output of round_processing, but its a summary of each players scores - net and gross
+            round_score_data = round_processing(scoreformset, teetime_data)
+
+            # Using the round_score_data the two team names are passed (which I need to change to be dynamic), and takes in the gametype for the teetime
             processed_score_data = determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
 
             scoreform_tee_time = scoreformset.save(commit=False)
@@ -28,6 +33,7 @@ def RoundSubmissionView(request, teetime_pk):
             for idx, round in enumerate(scoreform_tee_time):
                 round.total_score = sum(round_score_data[idx]['gross_score'])
                 round.net_score = sum(round_score_data[idx]['net_score'])
+
 
                 # taking data and adding to a net_round_score model so displaying and retrieving the data is easier in the future
                 net_round_score = Net_Round_Score.objects.create(tee_time=teetime_data, 
@@ -63,16 +69,15 @@ def RoundSubmissionView(request, teetime_pk):
         player_hcp_list = []
 
 
-        for player in teetime_data.Players.all():
-            player_name = "{}".format(player.golfer.last_name)
-            player_hcp = "{}".format(player.hcp_index)
-            player_list.append(player_name)
-            player_hcp_list.append(player_hcp)
+        for player in raw_player_list:
+            player_list.append(player)
+            player_hcp_list.append(player.hcp_index)
             player_pks.append(player.pk)
-
-        scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': raw_player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
-                                                                               {'tee_time': teetime_pk, 'round_golfer': raw_player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
-                                                                               {'tee_time': teetime_pk, 'round_golfer': raw_player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
-                                                                               {'tee_time': teetime_pk, 'round_golfer': raw_player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
+        
+       
+        scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
+                                                                               {'tee_time': teetime_pk, 'round_golfer': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
+                                                                               {'tee_time': teetime_pk, 'round_golfer': player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
+                                                                               {'tee_time': teetime_pk, 'round_golfer': player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
                                                                                ])
         return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })

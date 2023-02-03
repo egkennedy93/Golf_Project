@@ -7,5 +7,13 @@
     border-bottom: solid;
 }
 
+.td-player{
+    text-align: center;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+
+}
+
 .th-score{
 text-align: center;}
