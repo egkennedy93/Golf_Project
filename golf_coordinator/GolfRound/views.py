@@ -6,7 +6,7 @@ from django.forms import formset_factory
 from GolfRound.forms import RoundScoreForm, scoreform
 from GolfRound.models import Round_Score, Net_Round_Score
 from golf_trip.models import Trip_TeeTime, Trip_Golfer
-from GolfRound.round_processing import round_processing, determine_2v2_team_scores
+from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores
 
 
 def RoundSubmissionView(request, teetime_pk):
@@ -26,16 +26,17 @@ def RoundSubmissionView(request, teetime_pk):
              # takes all of the round scores from the scoreformset, the information for the teetime (specifically the gametype)
             # reference round_processing.py on the output of round_processing, but its a summary of each players scores - net and gross
             round_score_data = round_processing(scoreformset, teetime_data)
-            print(round_score_data[0]['net_score'][0])
 
 
-            
+            # have to separate out the net_score players and add them into a list because its easier to work with in the html template 
             player_0 = round_score_data[0]['net_score']
             player_1 = round_score_data[1]['net_score']
             player_2 = round_score_data[2]['net_score']
             player_3 = round_score_data[3]['net_score']
+            # This is passed into the POST response template
             net_score_list =[player_0, player_1, player_2, player_3]
 
+            # for each player in the teetime data, calculate the total gross and net score and replace the default empty field 
             for idx, round in enumerate(scoreform_tee_time):
                 round.total_score = sum(round_score_data[idx]['gross_score'])
                 round.net_score = sum(round_score_data[idx]['net_score'])
@@ -70,8 +71,15 @@ def RoundSubmissionView(request, teetime_pk):
             # print(processed_score_data)
 
             scoreformset.save()
+            Trip_TeeTime.objects.filter(pk=teetime_pk).update(teeTime_Complete=True)
+
+
+            update_team_scores(processed_score_data[0][0]['team'],processed_score_data[1][0]['team'], processed_score_data[2]['net_score'])
+
+            
             # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
-            return render(request,'GolfRound/round_submission_POST.html', {'scoreformset': scoreformset, 'teetime_data': teetime_data, 'net_score_list': net_score_list, 'processed_score_data': processed_score_data})
+            return render(request,'GolfRound/round_submission_POST.html', {'scoreformset': scoreformset, 'teetime_data': teetime_data, 'net_score_list': net_score_list, 'processed_score_data': processed_score_data, 
+                                                                           'round_score_data': round_score_data})
     else:
         teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
         raw_player_list = teetime_data.Players.all()

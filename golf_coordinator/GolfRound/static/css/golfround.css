@@ -4,7 +4,7 @@
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    border-bottom: solid;
+    font-weight: bold;
 }
 
 .td-player{
@@ -13,8 +13,19 @@
     border-left: 0;
     border-right: 0;
     border-bottom: solid;
-
+    width: 60px;
+    background-color: #D3D3D3;
+   
 }
 
-.th-score{
+.td-post-score:read-only{
+    width: 35px;
+    text-align: center;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: solid;
+}
+
+.th-score:read-only{
 text-align: center;}

@@ -1,4 +1,5 @@
 from golf_trip.models import Trip_Team
+from django.shortcuts import get_object_or_404
 
 def round_processing(round_formset_data, tee_data):
     '''
@@ -155,7 +156,7 @@ def round_processing(round_formset_data, tee_data):
         total_gross_score = sum(gross_score)
 
         # context data that gets passed to teetime_score_data for each golfer
-        player_score_data = {'golfer': round_golfer, 'team': golfer_team, 'net_score': raw_score, 'gross_score': gross_score, 'total_net_score': total_net_score, 'total_gross_score': total_gross_score }
+        player_score_data = {'golfer': round_golfer, 'player_course_hcp':player_course_hcp, 'team': golfer_team, 'net_score': raw_score, 'gross_score': gross_score, 'total_net_score': total_net_score, 'total_gross_score': total_gross_score }
 
         teetime_score_data.append(player_score_data)
 
@@ -173,6 +174,9 @@ def course_handicap_calculation(index, course_slope, course_rating, course_par):
 
 # This would work for 1v1 games as well. Doesn't support scrambles
 def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teetime_gametype):
+    # Output example:
+
+# [[{'golfer': 'Kennedy', 'player_course_hcp': 10, 'team': <QuerySet [<Trip_Team: Red>]>, 'net_score': [5, 3, 4, 4, 4, 2, 3, 3, 3, 3, 5, 3, 2, 4, 5, 3, 3, 3], 'gross_score': [5, 3, 5, 4, 5, 3, 4, 4, 3, 4, 5, 4, 3, 4, 5, 4, 3, 4], 'total_net_score': 62, 'total_gross_score': 72}, {'golfer': 'Ruff', 'player_course_hcp': 9, 'team': <QuerySet [<Trip_Team: Red>]>, 'net_score': [5, 3, 4, 4, 4, 2, 3, 3, 3, 3, 5, 4, 2, 4, 5, 3, 3, 3], 'gross_score': [5, 3, 5, 4, 5, 3, 4, 4, 3, 4, 5, 4, 3, 4, 5, 4, 3, 4], 'total_net_score': 63, 'total_gross_score': 72}], [{'golfer': 'Ervin', 'player_course_hcp': 22, 'team': <QuerySet [<Trip_Team: Blue>]>, 'net_score': [4, 2, 4, 3, 3, 2, 2, 3, 2, 2, 4, 3, 2, 3, 4, 2, 2, 3], 'gross_score': [5, 3, 5, 4, 5, 3, 4, 4, 3, 4, 5, 4, 3, 4, 5, 4, 3, 4], 'total_net_score': 50, 'total_gross_score': 72}, {'golfer': 'Swikle', 'player_course_hcp': 16, 'team': <QuerySet [<Trip_Team: Blue>]>, 'net_score': [4, 3, 4, 3, 4, 2, 3, 3, 2, 3, 4, 3, 2, 3, 5, 3, 2, 3], 'gross_score': [5, 3, 5, 4, 5, 3, 4, 4, 3, 4, 5, 4, 3, 4, 5, 4, 3, 4], 'total_net_score': 56, 'total_gross_score': 72}], {'team_1': [-1, -1, 0, -1, -1, 0, -1, 0, -1, -1, -1, 0, 0, -1, -1, -1, -1, 0], 'net_score': -12}]
     '''
     This function takes the processed round data, and will determine the scores
 
@@ -204,10 +208,7 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
         final_results = determine_bestball_win_stroke(team_1_score, team_2_score)
     elif teetime_gametype == '2v2 best ball - matchplay':
         final_results = determine_bestball_win_match(team_1_score, team_2_score)
-    # print('team_1_score: {}'.format(team_1_score))
-    # print('team_2_score: {}'.format(team_2_score))
-    # print('final_results: {}'.format(final_results))
-    return final_results
+    return [team_1, team_2, final_results]
 
 
 ############once the player's teams are determined, the players' scores are looped through, to determine the "best ball" for each hole##############
@@ -272,6 +273,29 @@ def determine_bestball_win_match(team_1_score, team_2_score):
     net_match_sum = sum(team_1_bestball_match_score)
     score_dict = {'team_1': team_1_bestball_match_score, 'net_score': net_match_sum}
     return score_dict
+
+def update_team_scores(team_1, team_2, net_score):
+    current_team_1_score = get_object_or_404(Trip_Team, pk=team_1.values_list()[0][0])
+    current_team_2_score = get_object_or_404(Trip_Team, pk=team_2.values_list()[0][0])
+    # {'team_1': [-1, -1, 0, -1, -1, 0, -1, 0, -1, -1, -1, 0, 0, -1, -1, -1, -1, 0], 'net_score': -12}]
+    if net_score == 0:
+        current_team_1_score.team_score += .5
+        current_team_2_score.team_score += .5
+
+        Trip_Team.objects.filter(pk=team_1.values_list()[0][0]).update(team_score=current_team_1_score.team_score)
+        Trip_Team.objects.filter(pk=team_2.values_list()[0][0]).update(team_score=current_team_2_score.team_score)
+
+    elif net_score > 0:
+        current_team_1_score.team_score += 1
+        Trip_Team.objects.filter(pk=team_1.values_list()[0][0]).update(team_score=current_team_1_score.team_score)
+    else:
+        current_team_2_score.team_score += 1
+        Trip_Team.objects.filter(pk=team_2.values_list()[0][0]).update(team_score=current_team_2_score.team_score)
+
+    
+    return current_team_1_score, current_team_2_score
+
+
 
 
 
