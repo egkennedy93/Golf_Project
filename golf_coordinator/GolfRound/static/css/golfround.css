@@ -4,8 +4,28 @@
     border-top: 0;
     border-left: 0;
     border-right: 0;
+    font-weight: bold;
+}
+
+.td-player{
+    text-align: center;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: solid;
+    width: 60px;
+    background-color: #D3D3D3;
+   
+}
+
+.td-post-score:read-only{
+    width: 35px;
+    text-align: center;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
     border-bottom: solid;
 }
 
-.th-score{
+.th-score:read-only{
 text-align: center;}

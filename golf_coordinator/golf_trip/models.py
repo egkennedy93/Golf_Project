@@ -46,7 +46,7 @@ class Trip_Golfer(models.Model):
     score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
 
     def __str__(self):
-        return "{}_{}".format(self.trip, self.golfer)
+        return "{}".format(self.golfer.last_name)
 
 
 class Trip_TeamMember(models.Model):
@@ -77,6 +77,7 @@ class Trip_TeeTime(models.Model):
     Players = models.ManyToManyField(Trip_Golfer, blank=True, default="N/A")
     gametype = models.CharField(choices=gametypes, max_length=25, default=gametypes[4][1])
     tee = models.ForeignKey(Golf_Tee,  on_delete=models.PROTECT)
+    teeTime_Complete = models.BooleanField(default=False)
 
     def __str__(self):
         return "{}_{}_{}".format(self.trip, self.tee_time_date, self.tee_time_time)
