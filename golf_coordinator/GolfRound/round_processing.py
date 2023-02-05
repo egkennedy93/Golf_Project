@@ -171,7 +171,6 @@ def course_handicap_calculation(index, course_slope, course_rating, course_par):
     return course_handicap
 
 
-
 # This would work for 1v1 games as well. Doesn't support scrambles
 def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teetime_gametype):
     # Output example:
@@ -292,7 +291,6 @@ def update_team_scores(team_1, team_2, net_score):
         current_team_2_score.team_score += 1
         Trip_Team.objects.filter(pk=team_2.values_list()[0][0]).update(team_score=current_team_2_score.team_score)
 
-    
     return current_team_1_score, current_team_2_score
 
 
