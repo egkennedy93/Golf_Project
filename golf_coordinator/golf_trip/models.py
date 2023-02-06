@@ -1,7 +1,6 @@
 from django.db import models
 from django import template
 from django.urls import reverse
-from teams.models import Team
 from Courses.models import Golf_Course, Golf_Tee
 from accounts.models import Golfer
 
