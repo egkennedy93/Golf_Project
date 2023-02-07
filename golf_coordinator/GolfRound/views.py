@@ -1,12 +1,9 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import CreateView, UpdateView, DetailView
-from Courses.models import Golf_Tee
-from django.urls import reverse_lazy
-from django.forms import formset_factory
-from GolfRound.forms import RoundScoreForm, scoreform
+from django.views.generic import TemplateView, DetailView
+from GolfRound.forms import scoreform
 from GolfRound.models import Round_Score, Net_Round_Score
-from golf_trip.models import Trip_TeeTime, Trip_Golfer
-from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores
+from golf_trip.models import Trip_TeeTime, Trip_Golfer, Trip_Team
+from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores
 
 
 def RoundSubmissionView(request, teetime_pk):
@@ -23,12 +20,13 @@ def RoundSubmissionView(request, teetime_pk):
             
             scoreform_tee_time = scoreformset.save(commit=False)
 
-            if teetime_data['gametype'] == '4 person scramble':
+            if teetime_data.gametype == '4 person scramble':
                 pass
-            if teetime_data['gametype'] == '1v1 matchplay':
+            if teetime_data.gametype == '1v1 matchplay':
                 pass
-            if teetime_data['gametype'] == '2v2 scramble':
+            if teetime_data.gametype == '2v2 scramble':
                 pass
+
             else:
                 # takes all of the round scores from the scoreformset, the information for the teetime (specifically the gametype)
                 # reference round_processing.py on the output of round_processing, but its a summary of each players scores - net and gross
@@ -103,3 +101,36 @@ def RoundSubmissionView(request, teetime_pk):
                                                                                {'tee_time': teetime_pk, 'round_golfer': player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
                                                                                ])
         return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
+
+
+class CompletedRoundView(DetailView):
+    model = Trip_TeeTime
+    template_name = 'GolfRound/CompletedRoundView_detail.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(CompletedRoundView, self).get_context_data(**kwargs)
+        # grabbing the dates for all of the events for the trip
+        player_raw_scores = Round_Score.objects.all().filter(tee_time=self.kwargs['pk']).values()
+        # grabbing all the courses for the trip
+        player_net_scores = Net_Round_Score.objects.all().filter(tee_time=self.kwargs['pk']).values()
+
+        def convert_data_processing_format(player_scores):
+            for player in player_scores:
+                player_team = Trip_Team.objects.all().filter(members__last_name=player['round_golfer']).values('team')[0]['team']
+                player['team'] = player_team
+            return player_scores
+
+
+        processed_score_data = convert_data_processing_format(player_net_scores)
+        scores = viewing_determine_2v2_team_scores(processed_score_data,'Red', 'Blue', context['object'].gametype)
+        context['player_raw_scores'] = convert_data_processing_format(player_raw_scores)
+        context['player_net_scores'] = player_net_scores
+        context['team_1'] = scores[0]
+        context['team_2'] = scores[1]
+        context['match_results'] = scores[2]
+        print(scores[0])
+    
+        print(scores[2])
+        return context
+

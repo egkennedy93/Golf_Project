@@ -21,8 +21,18 @@
                     <p class="card-text player-text">Player #{{forloop.counter}}: {{ players.golfer.first_name}} {{ players.golfer.last_name}}</p>
                 {% endfor %}
             {% endif %}
-            <a href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score</a>
-            <a href="{% url 'golf_trip:teetime_detail' pk=teetime.pk %}" class="card-link">view scorecard</a>
+            {% if teetime.teeTime_Complete is True %}
+                <a></a>
+            {% else %}
+                <a href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score</a>
+            {% endif %}
+
+            {% if teetime.teeTime_Complete is True %}
+                <a href="{% url 'round:completed_round' pk=teetime.pk %}" class="card-link">view scorecard</a>
+            {% else %}
+                <a></a>
+            {% endif %}
+            
             
         </div>
     </div> 

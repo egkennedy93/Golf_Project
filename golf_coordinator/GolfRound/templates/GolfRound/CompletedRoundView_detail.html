@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load index %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/golfround.css' %}">
+    <script type="text/javascript" src="{% static 'js/round_submission.js' %}"></script>
+</head>
+
+    <h1> {{object.tee.course.course_name}} - {{object.tee.tee_name}}</h1>
+    <h4> {{object.gametype}}
+    <table class="table" id='table1' style="table-layout:fixed">
+      <thead>
+        <tr>
+          <th class="th-score">Golfer</th>
+          <th class="th-score">Index</th>
+          <th class="th-score">1</th>
+          <th class="th-score">2</th>
+          <th class="th-score">3</th>
+          <th class="th-score">4</th>
+          <th class="th-score">5</th>
+          <th class="th-score">6</th>
+          <th class="th-score">7</th>
+          <th class="th-score">8</th>
+          <th class="th-score">9</th>
+          <th class="th-score">10</th>
+          <th class="th-score">11</th>
+          <th class="th-score">12</th>
+          <th class="th-score">13</th>
+          <th class="th-score">14</th>
+          <th class="th-score">15</th>
+          <th class="th-score">16</th>
+          <th class="th-score">17</th>
+          <th class="th-score">18</th>
+          <th class="th-score">Total Score</th>
+        </tr>
+        <tr>
+          <th class="th-score" ></th>
+          <th class="th-score" >Yardage</th>
+          <th class="th-score" >{{object.tee.hole_1_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_2_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_3_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_4_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_5_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_6_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_7_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_8_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_9_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_10_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_11_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_12_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_13_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_14_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_15_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_16_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_17_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_18_yardage}}</th>
+        </tr>
+        </thead>
+        <tbody>
+          {% for player in player_raw_scores %}
+          <tr>
+            <th class="td-player" style="border-bottom: 0;">{{player|index:'round_golfer'}}</th>
+            <th class="td-player" style="border-bottom: 0;">{{player|index:'golfer_index'}}</th>
+            <td class="td-score">{{player|index:'hole_1_score'}}</td>
+            <td class="td-score">{{player|index:'hole_2_score'}}</td>
+            <td class="td-score">{{player|index:'hole_3_score'}}</td>
+            <td class="td-score">{{player|index:'hole_4_score'}}</td>
+            <td class="td-score">{{player|index:'hole_5_score'}}</td>
+            <td class="td-score">{{player|index:'hole_6_score'}}</td>
+            <td class="td-score">{{player|index:'hole_7_score'}}</td>
+            <td class="td-score">{{player|index:'hole_8_score'}}</td>
+            <td class="td-score">{{player|index:'hole_9_score'}}</td>
+            <td class="td-score">{{player|index:'hole_10_score'}}</td>
+            <td class="td-score">{{player|index:'hole_11_score'}}</td>
+            <td class="td-score">{{player|index:'hole_12_score'}}</td>
+            <td class="td-score">{{player|index:'hole_13_score'}}</td>
+            <td class="td-score">{{player|index:'hole_14_score'}}</td>
+            <td class="td-score">{{player|index:'hole_15_score'}}</td>
+            <td class="td-score">{{player|index:'hole_16_score'}}</td>
+            <td class="td-score">{{player|index:'hole_17_score'}}</td>
+            <td class="td-score">{{player|index:'hole_18_score'}}</td>
+            <td class="td-score">{{player|index:'total_score'}}</td>
+            <tr>
+          {% comment %} <tr>
+            {% for i in round_score_data|index:forloop.counter0|index:'team' %}
+            <td class="td-post-score">Team: {{i.team}} </td>
+            {% endfor %} {% endcomment %}
+          
+            <tr>
+            <td class="td-post-score">Team: {{player|index:'team'}}</td>
+            <td class="td-post-score"> </td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_1_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_2_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_3_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_4_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_5_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_6_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_7_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_8_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_9_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_10_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_11_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_12_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_13_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_14_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_15_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_16_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_17_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_18_score'}}</td>
+            <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'net_score'}}</td>
+            </tr>
+         {% endfor %} 
+          </tbody>
+          <tfoot>
+            <tr>
+              <th class="th-score" >Par</th>
+              <th class="th-score" ></th>
+              <th class="th-score" >{{object.tee.hole_1_par}}</th>
+              <th class="th-score" >{{object.tee.hole_2_par}}</th>
+              <th class="th-score" >{{object.tee.hole_3_par}}</th>
+              <th class="th-score" >{{object.tee.hole_4_par}}</th>
+              <th class="th-score" >{{object.tee.hole_5_par}}</th>
+              <th class="th-score" >{{object.tee.hole_6_par}}</th>
+              <th class="th-score" >{{object.tee.hole_7_par}}</th>
+              <th class="th-score" >{{object.tee.hole_8_par}}</th>
+              <th class="th-score" >{{object.tee.hole_9_par}}</th>
+              <th class="th-score" >{{object.tee.hole_10_par}}</th>
+              <th class="th-score" >{{object.tee.hole_11_par}}</th>
+              <th class="th-score" >{{object.tee.hole_12_par}}</th>
+              <th class="th-score" >{{object.tee.hole_13_par}}</th>
+              <th class="th-score" >{{object.tee.hole_14_par}}</th>
+              <th class="th-score" >{{object.tee.hole_15_par}}</th>
+              <th class="th-score" >{{object.tee.hole_16_par}}</th>
+              <th class="th-score" >{{object.tee.hole_17_par}}</th>
+              <th class="th-score" >{{object.tee.hole_18_par}}</th>
+            </tr>
+            <tr>
+              <th class="th-score" >Index</th>
+              <th class="th-score" ></th>
+              <th class="th-score tee-index" >{{object.tee.hole_1_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_2_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_3_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_4_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_5_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_6_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_7_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_8_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_9_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_10_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_11_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_12_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_13_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_14_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_15_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_16_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_17_index}}</th>
+              <th class="th-score tee-index" >{{object.tee.hole_18_index}}</th>
+            </tr>
+            <tr> 
+              <td></td>
+            </tr>
+            <tr>
+              <th class="th-score" >{{ team_1|index:0|index:0|index:'round_golfer'}} and {{team_1|index:0|index:1|index:'round_golfer'}} VS <br> {{team_2|index:0|index:0|index:'round_golfer'}} and {{team_2|index:0|index:1|index:'round_golfer'}}</th>
+              <th class="th-score">{{team_1|index:0|index:0|index:'round_golfer'}} and {{team_1|index:0|index:1|index:'round_golfer'}}</th>
+              <td class="td-score">{{match_results|index:'team_1'|index:0}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:1}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:2}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:3}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:4}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:5}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:6}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:7}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:8}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:9}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:10}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:11}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:12}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:13}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:14}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:15}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:16}}</td>
+              <td class="td-score">{{match_results|index:'team_1'|index:17}}</td>
+              <td class="td-score">{{match_results|index:'net_score'}}</td>
+            </tr>       
+        </tfoot>
+      </table>
+       <div class="container text-center">
+        <div class="row">
+          {% if match_results|index:'net_score' == 0 %}
+            <h1>DRAW</h1>
+          {% elif match_results|index:'net_score' > 0 %}
+            <h1>{{ team_1|index:0|index:0|index:'round_golfer'}} and {{team_1|index:0|index:1|index:'round_golfer'}} WIN</h1>
+          {% else %}
+            <h1>{{ team_1|index:0|index:0|index:'round_golfer'}} and {{team_1|index:0|index:1|index:'round_golfer'}} LOST</h1>
+        {% endif %}
+        </div> 
+      </div>
+       <div class="row-col" id="round_submit">
+       <a class="btn btn-danger" style="float:left; margin-left: 50px" onClick="javascript:history.go(-1);" role="button">Back</a>
+      </div> 
+{% endblock %}
