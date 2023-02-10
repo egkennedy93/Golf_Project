@@ -45,6 +45,8 @@ def RoundSubmissionView(request, teetime_pk):
                 for idx, round in enumerate(scoreform_tee_time):
                     round.total_score = sum(round_score_data[idx]['gross_score'])
                     round.net_score = sum(round_score_data[idx]['net_score'])
+                    # round['golfer']['team'] = Trip_Team.objects.all().filter(members__last_name=round.round_golfer)
+                    
 
 
                     # taking data and adding to a net_round_score model so displaying and retrieving the data is easier in the future
@@ -75,11 +77,13 @@ def RoundSubmissionView(request, teetime_pk):
                 processed_score_data = determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
                 # print(processed_score_data)
 
+
             scoreformset.save()
             Trip_TeeTime.objects.filter(pk=teetime_pk).update(teeTime_Complete=True)
 
             update_team_scores(processed_score_data[0][0]['team'],processed_score_data[1][0]['team'], processed_score_data[2]['net_score'])
 
+            
             # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
             return render(request,'GolfRound/round_submission_POST.html', {'scoreformset': scoreformset, 'teetime_data': teetime_data, 'net_score_list': net_score_list, 'processed_score_data': processed_score_data, 
                                                                            'round_score_data': round_score_data})

@@ -24,8 +24,9 @@ def round_processing(round_formset_data, tee_data):
 
         # golfers assigned team
         golfer = tee_data.Players.all().filter(golfer__last_name=round_golfer)
-        
-        golfer_team=team_data.filter(members__pk=golfer[0].pk)
+
+        golfer_team=team_data.filter(members__last_name=golfer[0])
+
 
         # grab course hcp index
         golfer_index = players_round.cleaned_data['golfer_index']
@@ -194,6 +195,7 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
     for golfer in range(len(teetime_score_data)):
         #['team'] is a queryset object, so the index has to be passed in to use the data
         # I want to look at not passing in the team_name as a variable to the function, but was a quicker solution for now
+        # print(teetime_score_data)
         if teetime_score_data[golfer]['team'][0].team == team_name_1:
             team_1.append(teetime_score_data[golfer])
         elif teetime_score_data[golfer]['team'][0].team == team_name_2:
@@ -292,6 +294,10 @@ def update_team_scores(team_1, team_2, net_score):
         Trip_Team.objects.filter(pk=team_2.values_list()[0][0]).update(team_score=current_team_2_score.team_score)
 
     return current_team_1_score, current_team_2_score
+
+def update_player_score(processed_score_data):
+    # take in the winning team, and based on the winning team, take those players and update their score
+    pass
 
 
 # This would work for 1v1 games as well. Doesn't support 4 person scrambles
