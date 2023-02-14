@@ -1,5 +1,6 @@
-from golf_trip.models import Trip_Team
+from golf_trip.models import Trip_Team, Trip_Golfer
 from django.shortcuts import get_object_or_404
+import decimal
 
 def round_processing(round_formset_data, tee_data):
     '''
@@ -209,6 +210,7 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
         final_results = determine_bestball_win_stroke(team_1_score, team_2_score)
     elif teetime_gametype == '2v2 best ball - matchplay':
         final_results = determine_bestball_win_match(team_1_score, team_2_score)
+
     return [team_1, team_2, final_results]
 
 
@@ -296,8 +298,42 @@ def update_team_scores(team_1, team_2, net_score):
     return current_team_1_score, current_team_2_score
 
 def update_player_score(processed_score_data):
+
+    team_1_player_1 = processed_score_data[0][0]['golfer']
+    team_1_player_2 = processed_score_data[0][1]['golfer']
+    team_2_player_1 = processed_score_data[1][0]['golfer']
+    team_2_player_2 = processed_score_data[1][1]['golfer']
+
     # take in the winning team, and based on the winning team, take those players and update their score
-    pass
+    if processed_score_data[2]['net_score'] < 0:
+        t2p1_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).values('score')[0]['score']
+        t2p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).values('score')[0]['score']
+
+        t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).update(score=t2p1_score+decimal.Decimal(.5))
+        t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).update(score=t2p1_score+decimal.Decimal(.5))
+        
+
+    elif processed_score_data[2]['net_score'] > 0:
+        t1p1_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).values('score')[0]['score']
+        t1p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).values('score')[0]['score']
+        
+
+        t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).update(score=t1p1_score+decimal.Decimal(.5))
+        t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).update(score=t1p1_score+decimal.Decimal(.5))
+
+    elif processed_score_data[2]['net_score'] == 0:
+        t1p1_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).values('score')[0]['score']
+        t1p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).values('score')[0]['score']
+        t2p1_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).values('score')[0]['score']
+        t2p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).values('score')[0]['score']
+
+        t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).update(score=t1p1_score+decimal.Decimal(.25))
+        t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).update(score=t1p1_score+decimal.Decimal(.25))
+        t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).update(score=t2p1_score+decimal.Decimal(.25))
+        t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).update(score=t2p1_score+decimal.Decimal(.25))
+
+        return "Complete"
+
 
 
 # This would work for 1v1 games as well. Doesn't support 4 person scrambles

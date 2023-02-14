@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, DetailView
 from GolfRound.forms import scoreform
 from GolfRound.models import Round_Score, Net_Round_Score
 from golf_trip.models import Trip_TeeTime, Trip_Golfer, Trip_Team
-from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores
+from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores, update_player_score
 
 
 def RoundSubmissionView(request, teetime_pk):
@@ -82,7 +82,7 @@ def RoundSubmissionView(request, teetime_pk):
             Trip_TeeTime.objects.filter(pk=teetime_pk).update(teeTime_Complete=True)
 
             update_team_scores(processed_score_data[0][0]['team'],processed_score_data[1][0]['team'], processed_score_data[2]['net_score'])
-
+            update_player_score(processed_score_data)
             
             # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
             return render(request,'GolfRound/round_submission_POST.html', {'scoreformset': scoreformset, 'teetime_data': teetime_data, 'net_score_list': net_score_list, 'processed_score_data': processed_score_data, 
