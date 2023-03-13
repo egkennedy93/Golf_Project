@@ -1,7 +1,6 @@
 from django.db import models
 from django import template
 from django.urls import reverse
-from teams.models import Team
 from Courses.models import Golf_Course, Golf_Tee
 from accounts.models import Golfer
 
@@ -43,7 +42,7 @@ class Trip_Golfer(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
     golfer = models.ForeignKey(Golfer, on_delete=models.PROTECT)
     hcp_index = models.DecimalField(max_digits=3, decimal_places=1, default=0)
-    score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
+    score = models.DecimalField(max_digits=3, decimal_places=2, default=0)
 
     def __str__(self):
         return "{}".format(self.golfer.last_name)

@@ -6,6 +6,7 @@ This is a Django webapp that tries to provide a easy way to manage golf trips. T
 
 The current intent for this proejct is to be used for the golf trip 2023 to understand practical applications, and then will take feedback to build a customer focused product, allowing for customization and a lot more forms for the user to create database objects. The initial version is intended for admin use only.
 
+
 Primary Technologies:
 
 * Django
@@ -17,6 +18,7 @@ Primary Technologies:
     * python3-dev
   * Install requirements.txt file for the necessary python packages
     * pip3 install -r requirements.txt
+
 
 AppOverview
 

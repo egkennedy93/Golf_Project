@@ -84,3 +84,6 @@ class TeamListView(ListView):
         context['not_drafted'] = not_drafted
         context['drafted'] = drafted
         return context
+    
+class TripStandingsTemplateView(TemplateView):
+    template_name = 'golf_trip/trip_standings.html'

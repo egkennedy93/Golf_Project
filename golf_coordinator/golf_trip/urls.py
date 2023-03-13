@@ -20,4 +20,5 @@ urlpatterns = [
     # Lists all players on the trip
     path('players/', views.PlayersListView.as_view(), name='players_list'),
     path('teams/', views.TeamListView.as_view(), name='team_list'),
+    path('standings/', views.TripStandingsTemplateView.as_view(), name='trip_standings'),
 ]
