@@ -25,18 +25,7 @@ class Trip_Course(models.Model):
     def __str__(self):
         return "{}_{}".format(self.trip.trip_date, self.tee)
 
-
-# teams need to be setup first in the team app, but is ued here to track team scores during the trip.
-class Trip_Team(models.Model):
-    trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
-    team = models.CharField(max_length=255)
-    team_score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
-    members = models.ManyToManyField(Golfer, through='Trip_TeamMember')
-
-    def __str__(self):
-        return "{}".format(self.team)
-
-
+1
 # extends the golfer model, and then adds an index and score to each golfer for the trip. 
 class Trip_Golfer(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
@@ -48,12 +37,23 @@ class Trip_Golfer(models.Model):
         return "{}".format(self.golfer.last_name)
 
 
-class Trip_TeamMember(models.Model):
-    team = models.ForeignKey(Trip_Team,on_delete=models.CASCADE)
-    user = models.ForeignKey(Golfer, on_delete=models.CASCADE)
+# teams need to be setup first in the team app, but is ued here to track team scores during the trip.
+class Trip_Team(models.Model):
+    trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)
+    team = models.CharField(max_length=255)
+    team_score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
+    members = models.ManyToManyField(Trip_Golfer, through='Trip_TeamMember')
 
     def __str__(self):
-        return "{}_{}_{}".format(self.team.team, self.user.first_name, self.user.last_name)
+        return "{}".format(self.team)
+
+
+class Trip_TeamMember(models.Model):
+    team = models.ForeignKey(Trip_Team,on_delete=models.CASCADE)
+    user = models.ForeignKey(Trip_Golfer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{}_{}_{}".format(self.team.team, self.user.golfer.first_name, self.user.golfer.last_name)
     
     class Meta:
         unique_together = ('team', 'user')

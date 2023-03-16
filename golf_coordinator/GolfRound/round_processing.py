@@ -26,7 +26,7 @@ def round_processing(round_formset_data, tee_data):
         # golfers assigned team
         golfer = tee_data.Players.all().filter(golfer__last_name=round_golfer)
 
-        golfer_team=team_data.filter(members__last_name=golfer[0])
+        golfer_team=team_data.filter(members__golfer__last_name=golfer[0])
 
 
         # grab course hcp index

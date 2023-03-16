@@ -99,12 +99,22 @@ def RoundSubmissionView(request, teetime_pk):
             player_hcp_list.append(player.hcp_index)
             player_pks.append(player.pk)
         
-        scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
-                                                                               {'tee_time': teetime_pk, 'round_golfer': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
-                                                                               {'tee_time': teetime_pk, 'round_golfer': player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
-                                                                               {'tee_time': teetime_pk, 'round_golfer': player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
-                                                                               ])
-        return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
+        try:
+            scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
+                                                                                  ])
+            return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
+        except:
+            scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': "Not Assigned", 'golfer_index': -1, },  
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': "Not Assigned", 'golfer_index': -1, }, 
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': "Not Assigned", 'golfer_index': -1, }, 
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': "Not Assigned", 'golfer_index': -1, },
+                                                                                  ])
+            return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
+
+        
 
 
 class CompletedRoundView(DetailView):
@@ -121,7 +131,7 @@ class CompletedRoundView(DetailView):
 
         def convert_data_processing_format(player_scores):
             for player in player_scores:
-                player_team = Trip_Team.objects.all().filter(members__last_name=player['round_golfer']).values('team')[0]['team']
+                player_team = Trip_Team.objects.all().filter(members__golfer__last_name=player['round_golfer']).values('team')[0]['team']
                 player['team'] = player_team
             return player_scores
 
