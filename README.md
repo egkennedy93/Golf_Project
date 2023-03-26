@@ -26,6 +26,7 @@ Primary Technologies:
 AppOverview
 
 * accounts - intended to handle authentication (currently not implemented)
+* courses - lists the courses and their tee characteristics
 * golf_trip - Core application that is responsible for the trip
 * GolfRound - Handles process gross and net scores for a round
 * teams - not in use
@@ -38,3 +39,25 @@ Custom and Points of Interest
     * Whenever a round score is submitted, this file is used to ingest the player's scores, the tee/course characteristics, the gametype, and team information. If anything is going wrong with processing, it's here.
   * templatetags/index.py
     * Custom django template filter. This was required because theres a lot of nested lists, and this makes it much easier to display the data in django  templates
+    
+
+
+
+Current pages:
+
+* Scoreboard
+![image](https://user-images.githubusercontent.com/11196366/227752138-fe7e815b-ec9e-4720-830d-3285aa751849.png)
+
+
+* Players list 
+![image](https://user-images.githubusercontent.com/11196366/227752146-d8a017b5-2df6-4fda-8a8a-53b9f7002a64.png)
+
+* Trip Schedule
+![image](https://user-images.githubusercontent.com/11196366/227752158-26a299a5-0938-45e5-aa8f-03d9b669bdb5.png)
+
+
+* Tee Time Schedule
+![image](https://user-images.githubusercontent.com/11196366/227752165-9ac4706e-34d3-45f0-83af-669531f29ce4.png)
+
+* Completed Round View:
+![image](https://user-images.githubusercontent.com/11196366/227752180-bcac27a0-ecc0-4463-9da2-6ea48965c44d.png)
