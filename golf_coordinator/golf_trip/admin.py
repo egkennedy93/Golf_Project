@@ -12,7 +12,7 @@ admin.site.register(Trip_TeamMember)
 
 @admin.register(Trip_Golfer)
 class Trip_GolferAdmin(admin.ModelAdmin):
-    list_display = ('trip', 'golfer', 'hcp_index',)
+    list_display = ('trip', 'golfer', 'hcp_index', 'score')
     list_filter = ('trip', 'golfer', 'hcp_index',)
 
 

@@ -87,21 +87,13 @@ class TeamListView(ListView):
     
 class TripStandingsTemplateView(TemplateView):
     template_name = 'golf_trip/trip_standings.html'
-    teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan')
-#     def get_member_scores(team):
-#         member_score = []
-#         for member in team:
-#             player = Trip_Golfer.objects.all().filter(trip__trip_name='Michigan').filter(golfer__last_name=member.user.last_name)
-#             member_score.append(player.values()[0]['score'])  
-#         return member_score
-    
-
-#   
-#     
+    teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan')   
     team_1_members = Trip_TeamMember.objects.all().filter(team=teams[0]).order_by('-user__score')
     team_2_members = Trip_TeamMember.objects.all().filter(team=teams[1]).order_by('-user__score')
+    completed_rounds = Trip_TeeTime.objects.all().filter(teeTime_Complete=True)
     
     extra_context={'team_1': teams[0], 'team_2': teams[1],
                    'team_1_members': team_1_members,
                    'team_2_members': team_2_members,              
-                   'trip_events':Trip_Event.objects.all().filter(trip__trip_name='Michigan')}
+                   'trip_events':Trip_Event.objects.all().filter(trip__trip_name='Michigan'),
+                   'completed_rounds': completed_rounds}

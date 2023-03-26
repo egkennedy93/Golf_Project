@@ -169,8 +169,28 @@ def course_handicap_calculation(index, course_slope, course_rating, course_par):
     '''
     Used the USGA Handicap formula: https://www.usga.org/content/usga/home-page/handicapping/roh/Content/rules/6%201%20Course%20Handicap%20Calculation.htm
     '''
-    course_handicap = index * (course_slope/113) + (course_rating - course_par)
+    course_handicap = round(index * (course_slope/113) + (course_rating - course_par),0)
     return course_handicap
+
+
+############once the player's teams are determined, the players' scores are looped through, to determine the "best ball" for each hole##############
+def teetime_team_scores(team_list):
+    '''
+    the return value from determine_team_scores() is passed in for each team. Right now this only supports teams of 2.
+    '''
+    teammate_1 = team_list[0]
+    teammate_2 = team_list[1]
+
+    team_score = []
+
+    #this for loop is comparing teammate_1's score to teammate_2. This is to figure out who had the best score for each hole
+    for index in range(len(teammate_1['net_score'])):
+
+        if teammate_1['net_score'][index] <= teammate_2['net_score'][index]:
+            team_score.append(teammate_1['net_score'][index])
+        else:
+            team_score.append(teammate_2['net_score'][index])
+    return team_score
 
 
 # This would work for 1v1 games as well. Doesn't support 4 person scrambles
@@ -214,24 +234,7 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
     return [team_1, team_2, final_results]
 
 
-############once the player's teams are determined, the players' scores are looped through, to determine the "best ball" for each hole##############
-def teetime_team_scores(team_list):
-    '''
-    the return value from determine_team_scores() is passed in for each team. Right now this only supports teams of 2.
-    '''
-    teammate_1 = team_list[0]
-    teammate_2 = team_list[1]
 
-    team_score = []
-
-    #this for loop is comparing teammate_1's score to teammate_2. This is to figure out who had the best score for each hole
-    for index in range(len(teammate_1['net_score'])):
-
-        if teammate_1['net_score'][index] <= teammate_2['net_score'][index]:
-            team_score.append(teammate_1['net_score'][index])
-        else:
-            team_score.append(teammate_2['net_score'][index])
-    return team_score
 
 
 ############Using the data from bestball_team_score, the two team's bestball scores are compared and determined which team wins######################

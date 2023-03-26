@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, DetailView
 from GolfRound.forms import scoreform
 from GolfRound.models import Round_Score, Net_Round_Score
 from golf_trip.models import Trip_TeeTime, Trip_Golfer, Trip_Team
-from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores, update_player_score
+from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores, update_player_score, course_handicap_calculation
 
 
 def RoundSubmissionView(request, teetime_pk):
@@ -76,10 +76,21 @@ def RoundSubmissionView(request, teetime_pk):
                 # Using the round_score_data the two team names are passed (which I need to change to be dynamic), and takes in the gametype for the teetime
                 processed_score_data = determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
                 # print(processed_score_data)
-
-
             scoreformset.save()
-            Trip_TeeTime.objects.filter(pk=teetime_pk).update(teeTime_Complete=True)
+
+            if processed_score_data[2]['net_score'] < 0:
+                print(processed_score_data[0][0]['team'].values()[0]['id'])
+                team = Trip_Team.objects.get(id=processed_score_data[1][0]['team'].values()[0]['id'])
+                winning_team = get_object_or_404(Trip_Team, pk=team.id)
+                winning_score = processed_score_data[2]['net_score'] * -1
+            elif processed_score_data[2]['net_score'] > 0:
+                team = Trip_Team.objects.get(team=processed_score_data[0][0]['team'].values()[0]['id'])
+                winning_team = get_object_or_404(Trip_Team, pk=team.id)
+                winning_score = processed_score_data[2]['net_score']
+            else:
+                winning_team = get_object_or_404(Trip_Team, pk=9)
+
+            Trip_TeeTime.objects.filter(pk=teetime_pk).update(teeTime_Complete=True, Winning_Score=winning_score, Winning_Team=winning_team)
 
             update_team_scores(processed_score_data[0][0]['team'],processed_score_data[1][0]['team'], processed_score_data[2]['net_score'])
             update_player_score(processed_score_data)
@@ -96,7 +107,7 @@ def RoundSubmissionView(request, teetime_pk):
 
         for player in raw_player_list:
             player_list.append(player)
-            player_hcp_list.append(player.hcp_index)
+            player_hcp_list.append(course_handicap_calculation(player.hcp_index,teetime_data.tee.slope, teetime_data.tee.rating, teetime_data.tee.course_par))
             player_pks.append(player.pk)
         
         try:
@@ -143,8 +154,5 @@ class CompletedRoundView(DetailView):
         context['team_1'] = scores[0]
         context['team_2'] = scores[1]
         context['match_results'] = scores[2]
-        print(scores[0])
-    
-        print(scores[2])
         return context
 

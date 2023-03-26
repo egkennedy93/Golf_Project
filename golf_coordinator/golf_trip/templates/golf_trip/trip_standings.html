@@ -6,14 +6,20 @@
 <head>
     <link rel="stylesheet" href="{% static 'css/trip_standings.css' %}">
 </head>
+
 <body class="d-flex flex-column">
     <main class="flex-shrink-0">
         <!-- Navigation-->
         <!-- Header-->
         <header class="py-5">
+            
             <div class="container px-5">
+                <div style="padding-top:5%"> 
+                    <a class="btn btn-primary" style="float:left" onClick="javascript:history.go(-1);" role="button">Back</a>
+                    </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-8 col-xxl-6">
+                        
                         <div class="text-center my-5">
                             <h1 class="fw-bolder mb-3" id="currentStandingsText">Current Standings</h1>
                         
@@ -51,6 +57,33 @@
             <div class="container px-5 my-5">
                 <div class="text-center my-5">
                     <h1 class="fw-bolder mb-3" id="currentStandingsText">Round History</h1>
+                    <table class="table table-striped course-table justify-content-center">
+                        <thead>
+                          <tr class='course-row text-center' >
+                            <th scope="col">Date</th>
+                            <th scope="col">Tee Time</th>
+                            <th scope="col">GameType</th>
+                            <th scope="col">Winning Team</th>
+                            <th scope="col">Winning Score</th>
+                            <th scope="col" class="text-center" colspan="4">Players</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for completed in completed_rounds %}
+                          {% comment %} data-href="{% url 'courses:golf_tee_detail' tee.pk %}" {% endcomment %}
+                            <tr class='course-row'>
+                                <td class="text-center">{{completed.tee_time_date}}</td>
+                                <td class="text-center">{{completed.tee_time_time}} </td>
+                                <td class="text-center">{{completed.gametype}}</td>
+                                <td class="text-center">{{completed.Winning_Team}}</td>
+                                <td class="text-center">{{completed.Winning_Score}}</td>
+                                {% for player in completed.Players.all %}
+                                    <td class="text-center">{{player.golfer.first_name}}</td>
+                                {% endfor %}
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
