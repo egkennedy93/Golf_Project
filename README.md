@@ -53,9 +53,6 @@ Current pages:
 ![image](https://user-images.githubusercontent.com/11196366/227752138-fe7e815b-ec9e-4720-830d-3285aa751849.png)
 
 
-* Players list 
-![image](https://user-images.githubusercontent.com/11196366/227752146-d8a017b5-2df6-4fda-8a8a-53b9f7002a64.png)
-
 * Trip Schedule
 ![image](https://user-images.githubusercontent.com/11196366/227752158-26a299a5-0938-45e5-aa8f-03d9b669bdb5.png)
 
