@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, DetailView
 from GolfRound.forms import scoreform
 from GolfRound.models import Round_Score, Net_Round_Score
 from golf_trip.models import Trip_TeeTime, Trip_Golfer, Trip_Team
-from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores, update_player_score
+from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores, update_player_score, course_handicap_calculation
 
 
 def RoundSubmissionView(request, teetime_pk):
@@ -45,9 +45,8 @@ def RoundSubmissionView(request, teetime_pk):
                 for idx, round in enumerate(scoreform_tee_time):
                     round.total_score = sum(round_score_data[idx]['gross_score'])
                     round.net_score = sum(round_score_data[idx]['net_score'])
-                    # round['golfer']['team'] = Trip_Team.objects.all().filter(members__last_name=round.round_golfer)
-                    
-
+                 
+                
 
                     # taking data and adding to a net_round_score model so displaying and retrieving the data is easier in the future
                     net_round_score = Net_Round_Score.objects.create(tee_time=teetime_data, 
@@ -76,10 +75,23 @@ def RoundSubmissionView(request, teetime_pk):
                 # Using the round_score_data the two team names are passed (which I need to change to be dynamic), and takes in the gametype for the teetime
                 processed_score_data = determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
                 # print(processed_score_data)
-
-
             scoreformset.save()
-            Trip_TeeTime.objects.filter(pk=teetime_pk).update(teeTime_Complete=True)
+
+            if processed_score_data[2]['net_score'] < 0:
+                print(processed_score_data[0][0]['team'].values()[0]['id'])
+                team = Trip_Team.objects.get(id=processed_score_data[1][0]['team'].values()[0]['id'])
+                winning_team = get_object_or_404(Trip_Team, pk=team.id)
+                winning_score = processed_score_data[2]['net_score'] * -1
+
+            elif processed_score_data[2]['net_score'] > 0:
+                team = Trip_Team.objects.get(team=processed_score_data[0][0]['team'].values()[0]['id'])
+                winning_team = get_object_or_404(Trip_Team, pk=team.id)
+                winning_score = processed_score_data[2]['net_score']
+
+            else:
+                winning_team = get_object_or_404(Trip_Team, pk=9)
+
+            Trip_TeeTime.objects.filter(pk=teetime_pk).update(teeTime_Complete=True, Winning_Score=winning_score, Winning_Team=winning_team)
 
             update_team_scores(processed_score_data[0][0]['team'],processed_score_data[1][0]['team'], processed_score_data[2]['net_score'])
             update_player_score(processed_score_data)
@@ -96,15 +108,25 @@ def RoundSubmissionView(request, teetime_pk):
 
         for player in raw_player_list:
             player_list.append(player)
-            player_hcp_list.append(player.hcp_index)
+            player_hcp_list.append(course_handicap_calculation(player.hcp_index,teetime_data.tee.slope, teetime_data.tee.rating, teetime_data.tee.course_par))
             player_pks.append(player.pk)
         
-        scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
-                                                                               {'tee_time': teetime_pk, 'round_golfer': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
-                                                                               {'tee_time': teetime_pk, 'round_golfer': player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
-                                                                               {'tee_time': teetime_pk, 'round_golfer': player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
-                                                                               ])
-        return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
+        try:
+            scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
+                                                                                  ])
+            return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
+        except:
+            scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': "Not Assigned", 'golfer_index': -1, },  
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': "Not Assigned", 'golfer_index': -1, }, 
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': "Not Assigned", 'golfer_index': -1, }, 
+                                                                                   {'tee_time': teetime_pk, 'round_golfer': "Not Assigned", 'golfer_index': -1, },
+                                                                                  ])
+            return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
+
+        
 
 
 class CompletedRoundView(DetailView):
@@ -121,7 +143,7 @@ class CompletedRoundView(DetailView):
 
         def convert_data_processing_format(player_scores):
             for player in player_scores:
-                player_team = Trip_Team.objects.all().filter(members__last_name=player['round_golfer']).values('team')[0]['team']
+                player_team = Trip_Team.objects.all().filter(members__golfer__last_name=player['round_golfer']).values('team')[0]['team']
                 player['team'] = player_team
             return player_scores
 
@@ -133,8 +155,5 @@ class CompletedRoundView(DetailView):
         context['team_1'] = scores[0]
         context['team_2'] = scores[1]
         context['match_results'] = scores[2]
-        print(scores[0])
-    
-        print(scores[2])
         return context
 
