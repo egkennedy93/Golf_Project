@@ -74,6 +74,7 @@ def RoundSubmissionView(request, teetime_pk):
 
                 # Using the round_score_data the two team names are passed (which I need to change to be dynamic), and takes in the gametype for the teetime
                 processed_score_data = determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
+                print(processed_score_data)
                 # print(processed_score_data)
             scoreformset.save()
 

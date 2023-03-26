@@ -265,6 +265,9 @@ def determine_bestball_win_match(team_1_score, team_2_score):
     This only focuses on 1 scoreline, and team_1 is set as the baseline. so if they are -3, that means team 1 lost by 3 holes.
     '''
     team_1_bestball_match_score = []
+    print(team_1_score)
+    print("=======")
+    print(team_2_score)
 
     for index in range(len(team_1_score)):
         if team_1_score[index] < team_2_score[index]:
@@ -272,6 +275,7 @@ def determine_bestball_win_match(team_1_score, team_2_score):
             team_1_bestball_match_score.append(score_diff)
         elif team_1_score[index] == team_2_score[index]:
             score_diff = 0
+            team_1_bestball_match_score.append(score_diff)
         else:
             score_diff = -1
             team_1_bestball_match_score.append(score_diff)
@@ -348,7 +352,6 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
     ################taking the 4 golfers from the teetime data, and breaking them up into two teams#####################
     team_1 = []
     team_2 = []
-
     #it looks gross, but i'm using the index for the teetime_score_data so I could more easily compare values in the list 
     for golfer in range(len(teetime_score_data)):
        
