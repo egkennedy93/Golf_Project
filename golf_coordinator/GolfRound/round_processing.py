@@ -33,7 +33,8 @@ def round_processing(round_formset_data, tee_data):
         golfer_index = players_round.cleaned_data['golfer_index']
 
         # determine players course handicap
-        player_course_hcp = round(course_handicap_calculation(golfer_index, course_slope, course_rating, course_par))
+        # i'm doing handicap outside of this workflow now so that course handicap shows up all the time
+        player_course_hcp = golfer_index
 
         # get hcp index for each hole on the course
         course_hole_hcp_index = []

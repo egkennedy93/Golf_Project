@@ -45,9 +45,8 @@ def RoundSubmissionView(request, teetime_pk):
                 for idx, round in enumerate(scoreform_tee_time):
                     round.total_score = sum(round_score_data[idx]['gross_score'])
                     round.net_score = sum(round_score_data[idx]['net_score'])
-                    # round['golfer']['team'] = Trip_Team.objects.all().filter(members__last_name=round.round_golfer)
-                    
-
+                 
+                
 
                     # taking data and adding to a net_round_score model so displaying and retrieving the data is easier in the future
                     net_round_score = Net_Round_Score.objects.create(tee_time=teetime_data, 
@@ -83,10 +82,12 @@ def RoundSubmissionView(request, teetime_pk):
                 team = Trip_Team.objects.get(id=processed_score_data[1][0]['team'].values()[0]['id'])
                 winning_team = get_object_or_404(Trip_Team, pk=team.id)
                 winning_score = processed_score_data[2]['net_score'] * -1
+
             elif processed_score_data[2]['net_score'] > 0:
                 team = Trip_Team.objects.get(team=processed_score_data[0][0]['team'].values()[0]['id'])
                 winning_team = get_object_or_404(Trip_Team, pk=team.id)
                 winning_score = processed_score_data[2]['net_score']
+
             else:
                 winning_team = get_object_or_404(Trip_Team, pk=9)
 
