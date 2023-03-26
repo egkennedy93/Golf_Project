@@ -50,7 +50,7 @@ Current pages:
 
 
 * Scoreboard
-![image](https://user-images.githubusercontent.com/11196366/227752138-fe7e815b-ec9e-4720-830d-3285aa751849.png)
+![image](https://user-images.githubusercontent.com/11196366/227796971-cd178fbe-2535-452d-a1f0-b71c87eb9574.png)
 
 
 * Trip Schedule
