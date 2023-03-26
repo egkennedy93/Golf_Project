@@ -45,6 +45,10 @@ Custom and Points of Interest
 
 Current pages:
 
+* Course List
+![image](https://user-images.githubusercontent.com/11196366/227752211-11a85f69-da64-43f5-a51f-888079209187.png)
+
+
 * Scoreboard
 ![image](https://user-images.githubusercontent.com/11196366/227752138-fe7e815b-ec9e-4720-830d-3285aa751849.png)
 
