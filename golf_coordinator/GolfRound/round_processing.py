@@ -28,7 +28,6 @@ def round_processing(round_formset_data, tee_data):
 
         golfer_team=team_data.filter(members__golfer__last_name=golfer[0])
 
-
         # grab course hcp index
         golfer_index = players_round.cleaned_data['golfer_index']
 
@@ -194,6 +193,25 @@ def teetime_team_scores(team_list):
     return team_score
 
 
+def teetime_team_scores_scramble(team_list):
+    '''
+    the return value from determine_team_scores() is passed in for each team. Right now this only supports teams of 2.
+    '''
+    teammate_1 = team_list[0]
+    teammate_2 = team_list[1]
+
+    team_score = []
+
+    #this for loop is comparing teammate_1's score to teammate_2. This is to figure out who had the best score for each hole
+    for index in range(len(teammate_1['gross_score'])):
+
+        if teammate_1['gross_score'][index] <= teammate_2['gross_score'][index]:
+            team_score.append(teammate_1['gross_score'][index])
+        else:
+            team_score.append(teammate_2['gross_score'][index])
+    return team_score
+
+
 # This would work for 1v1 games as well. Doesn't support 4 person scrambles
 def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teetime_gametype):
     # Output example:
@@ -227,10 +245,16 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
     team_1_score = teetime_team_scores(team_1)
     team_2_score = teetime_team_scores(team_2)
 
+    team_1_score_gross = teetime_team_scores_scramble(team_1)
+    team_2_score_gross = teetime_team_scores_scramble(team_2)
+
+
     if teetime_gametype == '2v2 best ball':
         final_results = determine_bestball_win_stroke(team_1_score, team_2_score)
     elif teetime_gametype == '2v2 best ball - matchplay':
         final_results = determine_bestball_win_match(team_1_score, team_2_score)
+    elif teetime_gametype == '2v2 scramble':
+        final_results = determine_bestball_win_stroke(team_1_score_gross, team_2_score_gross)
 
     return [team_1, team_2, final_results]
 
@@ -290,8 +314,8 @@ def update_team_scores(team_1, team_2, net_score):
     current_team_2_score = get_object_or_404(Trip_Team, pk=team_2.values_list()[0][0])
     # {'team_1': [-1, -1, 0, -1, -1, 0, -1, 0, -1, -1, -1, 0, 0, -1, -1, -1, -1, 0], 'net_score': -12}]
     if net_score == 0:
-        current_team_1_score.team_score += .5
-        current_team_2_score.team_score += .5
+        current_team_1_score.team_score += decimal.Decimal(.5)
+        current_team_2_score.team_score += decimal.Decimal(.5)
 
         Trip_Team.objects.filter(pk=team_1.values_list()[0][0]).update(team_score=current_team_1_score.team_score)
         Trip_Team.objects.filter(pk=team_2.values_list()[0][0]).update(team_score=current_team_2_score.team_score)
