@@ -180,6 +180,7 @@ def teetime_team_scores(team_list):
     '''
     teammate_1 = team_list[0]
     teammate_2 = team_list[1]
+    
 
     team_score = []
 
@@ -209,6 +210,19 @@ def teetime_team_scores_scramble(team_list):
             team_score.append(teammate_1['gross_score'][index])
         else:
             team_score.append(teammate_2['gross_score'][index])
+    return team_score
+
+def teetime_scores_1v1(team_list):
+    '''
+    the return value from determine_team_scores() is passed in for each team. Right now this only supports teams of 2.
+    '''
+    teammate_1 = team_list[0]
+
+    team_score = []
+
+    #this for loop is comparing teammate_1's score to teammate_2. This is to figure out who had the best score for each hole
+    for index in range(len(teammate_1['gross_score'])):
+            team_score.append(teammate_1['gross_score'][index])
     return team_score
 
 
@@ -242,18 +256,28 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
             team_2.append(teetime_score_data[golfer])
         else: 
             raise Exception
-    team_1_score = teetime_team_scores(team_1)
-    team_2_score = teetime_team_scores(team_2)
-
-    team_1_score_gross = teetime_team_scores_scramble(team_1)
-    team_2_score_gross = teetime_team_scores_scramble(team_2)
-
+        
 
     if teetime_gametype == '2v2 best ball':
+        team_1_score = teetime_team_scores(team_1)
+        team_2_score = teetime_team_scores(team_2)
+
         final_results = determine_bestball_win_stroke(team_1_score, team_2_score)
     elif teetime_gametype == '2v2 best ball - matchplay':
+        team_1_score = teetime_team_scores(team_1)
+        team_2_score = teetime_team_scores(team_2)
+
+        final_results = determine_bestball_win_match(team_1_score, team_2_score)
+    elif teetime_gametype == '1v1 matchplay':
+        team_1_score = teetime_scores_1v1(team_1)
+        team_2_score = teetime_scores_1v1(team_2)
+
+
         final_results = determine_bestball_win_match(team_1_score, team_2_score)
     elif teetime_gametype == '2v2 scramble':
+        team_1_score_gross = teetime_team_scores_scramble(team_1)
+        team_2_score_gross = teetime_team_scores_scramble(team_2)
+
         final_results = determine_bestball_win_stroke(team_1_score_gross, team_2_score_gross)
 
     return [team_1, team_2, final_results]
@@ -289,9 +313,6 @@ def determine_bestball_win_match(team_1_score, team_2_score):
     This only focuses on 1 scoreline, and team_1 is set as the baseline. so if they are -3, that means team 1 lost by 3 holes.
     '''
     team_1_bestball_match_score = []
-    print(team_1_score)
-    print("=======")
-    print(team_2_score)
 
     for index in range(len(team_1_score)):
         if team_1_score[index] < team_2_score[index]:
@@ -332,37 +353,75 @@ def update_team_scores(team_1, team_2, net_score):
 def update_player_score(processed_score_data):
 
     team_1_player_1 = processed_score_data[0][0]['golfer']
-    team_1_player_2 = processed_score_data[0][1]['golfer']
+
+    try:
+        team_1_player_2 = processed_score_data[0][1]['golfer']
+    except IndexError:
+        pass
+
     team_2_player_1 = processed_score_data[1][0]['golfer']
-    team_2_player_2 = processed_score_data[1][1]['golfer']
+
+    try:
+        team_2_player_2 = processed_score_data[1][1]['golfer']
+    except IndexError:
+        pass
 
     # take in the winning team, and based on the winning team, take those players and update their score
     if processed_score_data[2]['net_score'] < 0:
         t2p1_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).values('score')[0]['score']
-        t2p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).values('score')[0]['score']
+        try:
+            t2p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).values('score')[0]['score']
+        except:
+            pass
 
         t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).update(score=t2p1_score+decimal.Decimal(.5))
-        t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).update(score=t2p1_score+decimal.Decimal(.5))
+
+        try:
+            t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).update(score=t2p1_score+decimal.Decimal(.5))
+        except:
+            pass
         
 
     elif processed_score_data[2]['net_score'] > 0:
         t1p1_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).values('score')[0]['score']
-        t1p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).values('score')[0]['score']
+        try:
+            t1p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).values('score')[0]['score']
+        except:
+            pass
         
 
         t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).update(score=t1p1_score+decimal.Decimal(.5))
-        t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).update(score=t1p1_score+decimal.Decimal(.5))
+
+        try:
+            t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).update(score=t1p1_score+decimal.Decimal(.5))
+        except:
+            pass
 
     elif processed_score_data[2]['net_score'] == 0:
         t1p1_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).values('score')[0]['score']
-        t1p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).values('score')[0]['score']
+
+        try:
+            t1p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).values('score')[0]['score']
+        except:
+            pass
+
         t2p1_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).values('score')[0]['score']
-        t2p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).values('score')[0]['score']
+
+        try:
+            t2p2_score = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).values('score')[0]['score']
+        except:
+            pass
 
         t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).update(score=t1p1_score+decimal.Decimal(.25))
-        t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).update(score=t1p1_score+decimal.Decimal(.25))
+        try:
+            t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).update(score=t1p1_score+decimal.Decimal(.25))
+        except:
+            pass
         t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).update(score=t2p1_score+decimal.Decimal(.25))
-        t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).update(score=t2p1_score+decimal.Decimal(.25))
+        try:
+            t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).update(score=t2p1_score+decimal.Decimal(.25))
+        except:
+            pass
 
         return "Complete"
 
