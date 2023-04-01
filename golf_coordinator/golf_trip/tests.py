@@ -4,7 +4,11 @@ from GolfRound.models import *
 import random
 from Courses import models
 from django.test import TestCase
+import os
+import django
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'golf_coordinator.settings')
+django.setup()
 
 def score_definer(hole_par, player_hcp):
     #data from https://golfingfocus.com/how-often-should-you-hit-your-golf-handicap-its-good-news/
