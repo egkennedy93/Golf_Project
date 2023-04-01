@@ -40,8 +40,8 @@ Custom and Points of Interest
   * templatetags/index.py
     * Custom django template filter. This was required because theres a lot of nested lists, and this makes it much easier to display the data in django  templates
     
-Workflow for processing Rounds
-![image](https://user-images.githubusercontent.com/11196366/229310099-6a835e00-f6dc-4103-8693-3b6f49a8075f.png)
+* Workflow for processing Rounds
+- ![image](https://user-images.githubusercontent.com/11196366/229310099-6a835e00-f6dc-4103-8693-3b6f49a8075f.png)
 
 
 
