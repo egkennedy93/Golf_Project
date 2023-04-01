@@ -92,6 +92,7 @@
             <td class="td-score">{{round_score_data|index:forloop.counter0|index:'gross_score'|index:17}}</td>
             <td class="td-score">{{round_score_data|index:forloop.counter0|index:'total_gross_score'}}</td>
           </tr>
+          {% if teetime_data.gametype != '2v2 scramble' %}
           <tr>
             {% for i in round_score_data|index:forloop.counter0|index:'team' %}
             <td class="td-post-score">Team: {{i.team}} </td>
@@ -117,6 +118,7 @@
             <td class="td-post-score">{{net_score_list|index:forloop.counter0|index:17}}</td>
             <td class="td-post-score">{{round_score_data|index:forloop.counter0|index:'total_net_score'}}</td>
           </tr>
+          {% endif %}
          {% endfor %} 
           </tbody>
           <tfoot>
@@ -164,12 +166,82 @@
               <th class="th-score tee-index" >{{teetime_data.tee.hole_17_index}}</th>
               <th class="th-score tee-index" >{{teetime_data.tee.hole_18_index}}</th>
             </tr>
-            <tr> 
-              <td></td>
+            
+            {% comment %} This is all to make the scoring for scramble results to look better {% endcomment %}
+            {% if teetime_data.gametype == '2v2 scramble' %}
+            <tr >
+              <td class="filler">
             </tr>
             <tr>
-              <th class="th-score" >{{processed_score_data|index:0|index:0|index:'golfer'}} and {{processed_score_data|index:0|index:1|index:'golfer'}} VS <br> {{processed_score_data|index:1|index:0|index:'golfer'}} and {{processed_score_data|index:1|index:1|index:'golfer'}}</th>
-              <th class="th-score">{{processed_score_data|index:0|index:0|index:'golfer'}} and {{processed_score_data|index:0|index:1|index:'golfer'}}</th>
+              <td class="filler">
+            </tr>
+            <tr>
+              <td class="filler">
+            </tr>
+            <tr>
+              <td class="filler">
+            </tr>
+                <th class="th-score">{{processed_score_data|index:0|index:0|index:'golfer'}} and {{processed_score_data|index:0|index:1|index:'golfer'}}</th>
+                <th class="th-score" ></th>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:0}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:1}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:2}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:3}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:4}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:5}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:6}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:7}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:8}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:9}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:10}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:11}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:12}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:13}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:14}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:15}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:16}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score'|index:17}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_1_score_sum'}}</td>
+              </tr>
+              <tr>
+                <th class="th-score">{{processed_score_data|index:1|index:0|index:'golfer'}} and {{processed_score_data|index:1|index:1|index:'golfer'}}</th>
+                <th class="th-score" ></th>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:0}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:1}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:2}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:3}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:4}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:5}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:6}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:7}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:8}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:9}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:10}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:11}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:12}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:13}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:14}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:15}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:16}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score'|index:17}}</td>
+                <td class="td-score">{{processed_score_data|index:2|index:'team_2_score_sum'}}</td>
+
+              </tr>
+            {% else %}
+            {% endif %}
+
+
+
+
+            <tr>
+              {% if teetime_data.gametype != '2v2 scramble' %}
+              {% if processed_score_data|index:0|length < 2 %}
+                <th class="th-score" >{{processed_score_data|index:0|index:0|index:'golfer'}}  VS <br> {{processed_score_data|index:1|index:0|index:'golfer'}}</th>
+                <th> </th>
+              {% else %}
+                <th class="th-score" >{{processed_score_data|index:0|index:0|index:'golfer'}} and {{processed_score_data|index:0|index:1|index:'golfer'}} VS <br> {{processed_score_data|index:1|index:0|index:'golfer'}} and {{processed_score_data|index:1|index:1|index:'golfer'}}</th>
+                <th class="th-score">{{processed_score_data|index:0|index:0|index:'golfer'}} and {{processed_score_data|index:0|index:1|index:'golfer'}}</th>
+              {% endif %}
               <td class="td-score">{{processed_score_data|index:2|index:'team_1'|index:0}}</td>
               <td class="td-score">{{processed_score_data|index:2|index:'team_1'|index:1}}</td>
               <td class="td-score">{{processed_score_data|index:2|index:'team_1'|index:2}}</td>
@@ -189,21 +261,35 @@
               <td class="td-score">{{processed_score_data|index:2|index:'team_1'|index:16}}</td>
               <td class="td-score">{{processed_score_data|index:2|index:'team_1'|index:17}}</td>
               <td class="td-score">{{processed_score_data|index:2|index:'net_score'}}</td>
-            </tr>       
+            </tr> 
+            {% endif %}      
         </tfoot>
       </table>
       <div class="container text-center">
         <div class="row">
-          {% if processed_score_data|index:2|index:'net_score' == 0 %}
-            <h1>DRAW</h1>
-          {% elif processed_score_data|index:2|index:'net_score' > 0 %}
-            <h1>{{processed_score_data|index:0|index:0|index:'golfer'}} and {{processed_score_data|index:0|index:1|index:'golfer'}} WIN</h1>
+          {% comment %} this if condition is handling for 1v1 scenarios {% endcomment %}
+          {% if processed_score_data|index:0|length < 2 %}
+            {% if processed_score_data|index:2|index:'net_score' == 0 %}
+              <h1>DRAW</h1>
+            {% elif processed_score_data|index:2|index:'net_score' > 0 %}
+              <h1>{{processed_score_data|index:0|index:0|index:'golfer'}} WON</h1>
+            {% else %}
+              <h1>{{processed_score_data|index:0|index:0|index:'golfer'}} LOST</h1>
+            {% endif %}
+          
+          {% comment %} if it's a team game, this else will be used {% endcomment %}
           {% else %}
-            <h1>{{processed_score_data|index:0|index:0|index:'golfer'}} and {{processed_score_data|index:0|index:1|index:'golfer'}} LOST</h1>
-        {% endif %}
+            {% if processed_score_data|index:2|index:'net_score' == 0 %}
+              <h1>DRAW</h1>
+            {% elif processed_score_data|index:2|index:'net_score' > 0 %}
+              <h1>{{processed_score_data|index:0|index:0|index:'golfer'}} and {{processed_score_data|index:0|index:1|index:'golfer'}} WIN</h1>
+            {% else %}
+              <h1>{{processed_score_data|index:0|index:0|index:'golfer'}} and {{processed_score_data|index:0|index:1|index:'golfer'}} LOST</h1>
+            {% endif %}
+          {% endif %}
         </div>
       </div>
        <div class="row-col" id="round_submit">
-       <a class="btn btn-danger" style="float:left; margin-left: 50px" onClick="javascript:history.go(-1);" role="button">Back</a>
+       <a class="btn btn-danger" style="float:left; margin-left: 50px" href="{% url 'golf_trip:home' %}" role="button">Back</a>
       </div>
 {% endblock %}

@@ -41,4 +41,5 @@ class RoundScoreForm(forms.ModelForm):
 
 
 scoreform = modelformset_factory(Round_Score, fields=('__all__'), form=RoundScoreForm, extra=4,  max_num=5)
+scoreform_1v1 = modelformset_factory(Round_Score, fields=('__all__'), form=RoundScoreForm, extra=2,  max_num=5)
 

@@ -12,13 +12,13 @@ admin.site.register(Trip_TeamMember)
 
 @admin.register(Trip_Golfer)
 class Trip_GolferAdmin(admin.ModelAdmin):
-    list_display = ('trip', 'golfer', 'hcp_index', 'score')
+    list_display = ('trip', 'golfer', 'hcp_index', 'score',)
     list_filter = ('trip', 'golfer', 'hcp_index',)
-
 
 @admin.register(Trip_TeeTime)
 class Trip_TeeTimeAdmin(admin.ModelAdmin):
-    list_filter = ('trip',)
+    list_display = ('trip', 'teeTime_Complete', 'Winning_Score', 'Winning_Team')
+    list_filter = ('trip','teeTime_Complete', 'Winning_Score', 'Winning_Team')
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         filtered_trip_pk = request.GET.get('_changelist_filters', '')
         trip_pk_rex = re.search(r"\d", filtered_trip_pk)

@@ -29,3 +29,7 @@
 
 .th-score:read-only{
 text-align: center;}
+
+.filler{
+    border-style:none;
+}

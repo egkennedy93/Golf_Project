@@ -64,11 +64,9 @@
         </tr>
         </thead>
         <tbody>
-            {% comment %} {% for players in teetime_data.Players.all  %} {% endcomment %}
           {{ scoreformset.management_form }}
           {% for scoreform in scoreformset %}
           <tr>
-           
             <th class="td-player">{{scoreform.round_golfer}}</th>
             <th class="td-player">{{scoreform.golfer_index}}</th>
             <td class="td-score">{{scoreform.hole_1_score}}</td>
