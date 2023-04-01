@@ -1,8 +1,8 @@
 from django.db import models
 from django import template
 from django.urls import reverse
-from Courses.models import Golf_Course, Golf_Tee
-from accounts.models import Golfer
+# from Courses.models import Golf_Course, Golf_Tee
+# from accounts.models import Golfer
 
 
 # Create your models here.

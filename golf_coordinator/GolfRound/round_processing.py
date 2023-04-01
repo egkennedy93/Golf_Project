@@ -289,9 +289,6 @@ def determine_bestball_win_2v2_scramble(team_1_score, team_2_score):
     
     team_1_bestball_stroke_score = []
 
-    print(team_1_score)
-    print(team_2_score)
-
     # this for loop looks at each hole's score for team 1 and compares it to score for team 2. Used indexes so it's easier to compare between the two teams 
     for index in range(len(team_1_score)):
 
