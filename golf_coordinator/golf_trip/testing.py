@@ -11,7 +11,7 @@ from golf_trip.models import Trip_TeeTime
 from GolfRound.models import Round_Score, Net_Round_Score
 
 def score_definer(hole_par, player_hcp):
-    #data from https://golfingfocus.com/how-often-should-you-hit-your-golf-handicap-its-good-news/
+    #data from https://mygolfspy.com/labs/study-overall-golfer-performance-by-handicap/
     scoring_per_handicap = {'1_5': {'bird': 1.5/18, 'par': 9/18, 'bogey': 5.9/18, 'd_bogey': 1.3/18, 'alot': .3/18}, 
                     '6_10':{'bird': .9/18, 'par': 7/18, 'bogey': 7.3/18, 'd_bogey': 2.3/18, 'alot': .5/18},
                     '11_15': {'bird': .5/18, 'par': 5.1/18, 'bogey': 7.7/18, 'd_bogey': 3.5/18, 'alot': 1.1/18},
@@ -32,14 +32,29 @@ def score_definer(hole_par, player_hcp):
 
     if hole_par == 3:
         possible_scores = [1,2,3,4,5,6,7]
-        randomList = random.choices(possible_scores, weights=(.00008, score_percentage['bird']*100, score_percentage['par']*100, score_percentage['bogey']*100, score_percentage['d_bogey']*100, score_percentage['alot']*100, .001))
+        randomList = random.choices(possible_scores, weights=(.00008, 
+                                                              score_percentage['bird']*100, 
+                                                              score_percentage['par']*100, 
+                                                              score_percentage['bogey']*100, 
+                                                              score_percentage['d_bogey']*100, 
+                                                              score_percentage['alot']*100, .001))
     if hole_par == 4:
         possible_scores = [2,3,4,5,6,7,8]
-        randomList = random.choices(possible_scores, weights=(.02, score_percentage['bird']*100, score_percentage['par']*100, score_percentage['bogey']*100, score_percentage['d_bogey']*100, score_percentage['alot']*100, .001))
+        randomList = random.choices(possible_scores, weights=(.02, 
+                                                              score_percentage['bird']*100, 
+                                                              score_percentage['par']*100, 
+                                                              score_percentage['bogey']*100, 
+                                                              score_percentage['d_bogey']*100, 
+                                                              score_percentage['alot']*100, .001))
 
     if hole_par == 5:
         possible_scores = [3,4,5,6,7,8,9]
-        randomList = random.choices(possible_scores, weights=(.001, score_percentage['bird']*100, score_percentage['par']*100, score_percentage['bogey']*100, score_percentage['d_bogey']*100, score_percentage['alot']*100, .001))
+        randomList = random.choices(possible_scores, weights=(.001, 
+                                                              score_percentage['bird']*100, 
+                                                              score_percentage['par']*100, 
+                                                              score_percentage['bogey']*100, 
+                                                              score_percentage['d_bogey']*100, 
+                                                              score_percentage['alot']*100, .001))
 
 
     return randomList[0]
