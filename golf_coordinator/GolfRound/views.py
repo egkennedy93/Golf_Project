@@ -106,8 +106,19 @@ def RoundSubmissionView(request, teetime_pk):
         player_pks = []
         player_hcp_list = []
 
+        team_1 = []
+        team_2 = []
         for player in raw_player_list:
-            player_list.append(player)
+
+            # This is so when players are displayed in the get view for tee times, they are next to their teammate
+            players_team = get_object_or_404(Trip_TeamMember, user=player)
+            if players_team.team.id == 7:
+                team_1.append(player)
+            elif players_team.team.id == 8:
+                team_2.append(player)
+            player_list = team_1+team_2
+
+            # player_list.append(player)
             team_data = get_object_or_404(Trip_TeamMember, user__golfer__last_name = player.golfer.last_name)
             team_list.append(team_data.team)
             player_hcp_list.append(course_handicap_calculation(player.hcp_index,teetime_data.tee.slope, teetime_data.tee.rating, teetime_data.tee.course_par))
