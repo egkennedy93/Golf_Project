@@ -98,7 +98,6 @@ def round_processing(round_formset_data, tee_data):
 
         # get which holes the player gets strokes
          #before maniuplating the data, setting the raw_holes to the gross score.
-
         stroking_holes = []
         for idx, hole_hcp in enumerate(course_hole_hcp_index):
             # if a player is a 13, this will populate the stroking_holes list with the index of which holes those 13 are.
@@ -460,6 +459,10 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
         
         else: 
             raise Exception
+        
+        
+    
+    
 
     def view_teetime_team_scores(team_list):
 

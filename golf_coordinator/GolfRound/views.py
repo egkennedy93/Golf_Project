@@ -106,8 +106,8 @@ def RoundSubmissionView(request, teetime_pk):
 
         team_1 = []
         team_2 = []
-        for player in raw_player_list:
 
+        for player in raw_player_list:
             # This is so when players are displayed in the get view for tee times, they are next to their teammate
             players_team = get_object_or_404(Trip_TeamMember, user=player)
             if players_team.team.id == 7:
@@ -116,6 +116,8 @@ def RoundSubmissionView(request, teetime_pk):
                 team_2.append(player)
             player_list = team_1+team_2
 
+        # now that the players have been organized to be by their teammate, need to grab the player meta
+        for player in player_list:
             # player_list.append(player)
             team_data = get_object_or_404(Trip_TeamMember, user__golfer__last_name = player.golfer.last_name)
             team_list.append(team_data.team)
@@ -155,8 +157,10 @@ class CompletedRoundView(DetailView):
         context = super(CompletedRoundView, self).get_context_data(**kwargs)
         # grabbing the dates for all of the events for the trip
         player_raw_scores = Round_Score.objects.all().filter(tee_time=self.kwargs['pk']).values()
+        print(player_raw_scores)
         # grabbing all the courses for the trip
         player_net_scores = Net_Round_Score.objects.all().filter(tee_time=self.kwargs['pk']).values()
+        # print(player_net_scores)
 
         def convert_data_processing_format(player_scores):
             for player in player_scores:
