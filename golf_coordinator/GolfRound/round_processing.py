@@ -180,8 +180,8 @@ def teetime_team_scores(team_list, gametype):
         team_score = []
 
         #this for loop is comparing teammate_1's score to teammate_2. This is to figure out who had the best score for each hole
-        for index in range(len(teammate_1['gross_score'])):
-                team_score.append(teammate_1['gross_score'][index])
+        for index in range(len(teammate_1['net_score'])):
+                team_score.append(teammate_1['net_score'][index])
         return team_score
     else:    
         if gametype == '2v2 scramble':
@@ -309,7 +309,8 @@ def determine_bestball_win_match(team_1_score, team_2_score):
     This only focuses on 1 scoreline, and team_1 is set as the baseline. so if they are -3, that means team 1 lost by 3 holes.
     '''
     team_1_bestball_match_score = []
-
+    print(team_1_score)
+    print(team_2_score)
     for index in range(len(team_1_score)):
         if team_1_score[index] < team_2_score[index]:
             score_diff = 1
@@ -344,6 +345,7 @@ def update_team_scores(team_1, team_2, net_score):
         current_team_2_score.save()
 
     return current_team_1_score, current_team_2_score
+
 
 def update_player_score(processed_score_data):
 
