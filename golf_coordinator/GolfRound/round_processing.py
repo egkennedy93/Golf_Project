@@ -332,16 +332,16 @@ def update_team_scores(team_1, team_2, net_score):
     current_team_2_score = get_object_or_404(Trip_Team, pk=team_2.values_list()[0][0])
     # {'team_1': [-1, -1, 0, -1, -1, 0, -1, 0, -1, -1, -1, 0, 0, -1, -1, -1, -1, 0], 'net_score': -12}]
     if net_score == 0:
-        current_team_1_score.team_score += decimal.Decimal(.5)
-        current_team_2_score.team_score += decimal.Decimal(.5)
+        current_team_1_score.team_score + decimal.Decimal(.5)
+        current_team_2_score.team_score + decimal.Decimal(.5)
 
         current_team_1_score.save()
         current_team_2_score.save()
     elif net_score > 0:
-        current_team_1_score.team_score += 1
+        current_team_1_score.team_score + 1
         current_team_1_score.save()
     else:
-        current_team_2_score.team_score += 1
+        current_team_2_score.team_score + 1
         current_team_2_score.save()
 
     return current_team_1_score, current_team_2_score
