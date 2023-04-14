@@ -64,108 +64,6 @@
     trip: 2
     course: 1
     tee: 2
-- model: golf_trip.trip_team
-  pk: 4
-  fields:
-    trip: 1
-    team: Red
-    team_score: '0.0'
-- model: golf_trip.trip_team
-  pk: 5
-  fields:
-    trip: 1
-    team: Blue
-    team_score: '13.0'
-- model: golf_trip.trip_team
-  pk: 6
-  fields:
-    trip: 1
-    team: Not Drafted
-    team_score: '0.0'
-- model: golf_trip.trip_golfer
-  pk: 1
-  fields:
-    trip: 1
-    golfer: 1
-    hcp_index: '9.2'
-    score: '1.00'
-- model: golf_trip.trip_golfer
-  pk: 2
-  fields:
-    trip: 1
-    golfer: 4
-    hcp_index: '13.4'
-    score: '0.00'
-- model: golf_trip.trip_golfer
-  pk: 3
-  fields:
-    trip: 1
-    golfer: 2
-    hcp_index: '18.8'
-    score: '0.00'
-- model: golf_trip.trip_golfer
-  pk: 4
-  fields:
-    trip: 1
-    golfer: 5
-    hcp_index: '15.0'
-    score: '0.00'
-- model: golf_trip.trip_golfer
-  pk: 5
-  fields:
-    trip: 1
-    golfer: 8
-    hcp_index: '12.5'
-    score: '0.00'
-- model: golf_trip.trip_golfer
-  pk: 6
-  fields:
-    trip: 1
-    golfer: 10
-    hcp_index: '13.4'
-    score: '0.00'
-- model: golf_trip.trip_golfer
-  pk: 7
-  fields:
-    trip: 1
-    golfer: 9
-    hcp_index: '12.3'
-    score: '0.00'
-- model: golf_trip.trip_golfer
-  pk: 8
-  fields:
-    trip: 1
-    golfer: 20
-    hcp_index: '9.9'
-    score: '0.00'
-- model: golf_trip.trip_golfer
-  pk: 9
-  fields:
-    trip: 1
-    golfer: 11
-    hcp_index: '13.3'
-    score: '0.00'
-- model: golf_trip.trip_golfer
-  pk: 10
-  fields:
-    trip: 1
-    golfer: 7
-    hcp_index: '9.9'
-    score: '0.00'
-- model: golf_trip.trip_golfer
-  pk: 11
-  fields:
-    trip: 1
-    golfer: 6
-    hcp_index: '16.8'
-    score: '0.00'
-- model: golf_trip.trip_golfer
-  pk: 12
-  fields:
-    trip: 1
-    golfer: 15
-    hcp_index: '11.5'
-    score: '0.00'
 - model: golf_trip.trip_golfer
   pk: 14
   fields:
@@ -186,7 +84,7 @@
     trip: 2
     golfer: 3
     hcp_index: '6.3'
-    score: '0.50'
+    score: '0.00'
 - model: golf_trip.trip_golfer
   pk: 17
   fields:
@@ -206,8 +104,8 @@
   fields:
     trip: 2
     golfer: 6
-    hcp_index: '0.0'
-    score: '0.00'
+    hcp_index: '15.2'
+    score: '0.50'
 - model: golf_trip.trip_golfer
   pk: 20
   fields:
@@ -221,7 +119,7 @@
     trip: 2
     golfer: 15
     hcp_index: '11.5'
-    score: '0.00'
+    score: '0.50'
 - model: golf_trip.trip_golfer
   pk: 22
   fields:
@@ -306,26 +204,124 @@
     golfer: 12
     hcp_index: '0.0'
     score: '0.00'
+- model: golf_trip.trip_team
+  pk: 7
+  fields:
+    trip: 2
+    team: Red
+    team_score: '0.0'
+- model: golf_trip.trip_team
+  pk: 8
+  fields:
+    trip: 2
+    team: Blue
+    team_score: '2.0'
+- model: golf_trip.trip_team
+  pk: 9
+  fields:
+    trip: 2
+    team: N/A
+    team_score: '0.0'
+- model: golf_trip.trip_teammember
+  pk: 1
+  fields:
+    team: 7
+    user: 14
+- model: golf_trip.trip_teammember
+  pk: 2
+  fields:
+    team: 8
+    user: 15
+- model: golf_trip.trip_teammember
+  pk: 3
+  fields:
+    team: 7
+    user: 16
+- model: golf_trip.trip_teammember
+  pk: 4
+  fields:
+    team: 8
+    user: 17
+- model: golf_trip.trip_teammember
+  pk: 5
+  fields:
+    team: 7
+    user: 18
+- model: golf_trip.trip_teammember
+  pk: 6
+  fields:
+    team: 8
+    user: 19
 - model: golf_trip.trip_teammember
   pk: 7
   fields:
-    team: 4
-    user: 1
+    team: 7
+    user: 20
 - model: golf_trip.trip_teammember
   pk: 8
   fields:
-    team: 4
-    user: 3
+    team: 8
+    user: 21
 - model: golf_trip.trip_teammember
   pk: 9
   fields:
-    team: 5
-    user: 2
+    team: 7
+    user: 22
 - model: golf_trip.trip_teammember
   pk: 10
   fields:
-    team: 5
-    user: 4
+    team: 8
+    user: 23
+- model: golf_trip.trip_teammember
+  pk: 11
+  fields:
+    team: 7
+    user: 24
+- model: golf_trip.trip_teammember
+  pk: 12
+  fields:
+    team: 8
+    user: 25
+- model: golf_trip.trip_teammember
+  pk: 13
+  fields:
+    team: 7
+    user: 26
+- model: golf_trip.trip_teammember
+  pk: 14
+  fields:
+    team: 8
+    user: 27
+- model: golf_trip.trip_teammember
+  pk: 15
+  fields:
+    team: 7
+    user: 28
+- model: golf_trip.trip_teammember
+  pk: 16
+  fields:
+    team: 8
+    user: 29
+- model: golf_trip.trip_teammember
+  pk: 17
+  fields:
+    team: 7
+    user: 30
+- model: golf_trip.trip_teammember
+  pk: 18
+  fields:
+    team: 8
+    user: 31
+- model: golf_trip.trip_teammember
+  pk: 19
+  fields:
+    team: 7
+    user: 32
+- model: golf_trip.trip_teammember
+  pk: 20
+  fields:
+    team: 8
+    user: 33
 - model: golf_trip.trip_teetime
   pk: 1
   fields:
@@ -335,6 +331,8 @@
     gametype: 2v2 best ball
     tee: 20
     teeTime_Complete: true
+    Winning_Score: '12.0'
+    Winning_Team: 8
     Players:
     - 14
     - 15
@@ -346,10 +344,16 @@
     trip: 2
     tee_time_date: 2023-08-17
     tee_time_time: '16:40:00'
-    gametype: 2v2 best ball
+    gametype: 2v2 best ball - matchplay
     tee: 20
-    teeTime_Complete: false
-    Players: []
+    teeTime_Complete: true
+    Winning_Score: '2.0'
+    Winning_Team: 8
+    Players:
+    - 18
+    - 19
+    - 20
+    - 21
 - model: golf_trip.trip_teetime
   pk: 3
   fields:
@@ -359,7 +363,13 @@
     gametype: 2v2 best ball
     tee: 20
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 22
+    - 23
+    - 24
+    - 25
 - model: golf_trip.trip_teetime
   pk: 4
   fields:
@@ -369,7 +379,13 @@
     gametype: 2v2 best ball
     tee: 20
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 26
+    - 27
+    - 28
+    - 29
 - model: golf_trip.trip_teetime
   pk: 5
   fields:
@@ -379,7 +395,13 @@
     gametype: 2v2 best ball
     tee: 20
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 30
+    - 31
+    - 32
+    - 33
 - model: golf_trip.trip_teetime
   pk: 6
   fields:
@@ -389,7 +411,13 @@
     gametype: 2v2 best ball - matchplay
     tee: 8
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 14
+    - 15
+    - 16
+    - 17
 - model: golf_trip.trip_teetime
   pk: 7
   fields:
@@ -399,7 +427,13 @@
     gametype: 2v2 best ball - matchplay
     tee: 8
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 18
+    - 19
+    - 20
+    - 21
 - model: golf_trip.trip_teetime
   pk: 8
   fields:
@@ -409,7 +443,13 @@
     gametype: 2v2 best ball - matchplay
     tee: 8
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 22
+    - 23
+    - 24
+    - 25
 - model: golf_trip.trip_teetime
   pk: 9
   fields:
@@ -419,7 +459,13 @@
     gametype: 2v2 best ball - matchplay
     tee: 8
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 26
+    - 27
+    - 28
+    - 29
 - model: golf_trip.trip_teetime
   pk: 10
   fields:
@@ -429,7 +475,13 @@
     gametype: 2v2 best ball - matchplay
     tee: 8
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 30
+    - 31
+    - 32
+    - 33
 - model: golf_trip.trip_teetime
   pk: 11
   fields:
@@ -439,7 +491,13 @@
     gametype: 2v2 best ball
     tee: 17
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 14
+    - 15
+    - 16
+    - 17
 - model: golf_trip.trip_teetime
   pk: 12
   fields:
@@ -449,7 +507,13 @@
     gametype: 2v2 best ball
     tee: 17
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 18
+    - 19
+    - 20
+    - 21
 - model: golf_trip.trip_teetime
   pk: 13
   fields:
@@ -459,7 +523,13 @@
     gametype: 2v2 best ball
     tee: 17
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 22
+    - 23
+    - 24
+    - 25
 - model: golf_trip.trip_teetime
   pk: 14
   fields:
@@ -469,7 +539,13 @@
     gametype: 2v2 best ball
     tee: 17
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 26
+    - 27
+    - 28
+    - 29
 - model: golf_trip.trip_teetime
   pk: 15
   fields:
@@ -479,7 +555,13 @@
     gametype: 2v2 best ball
     tee: 17
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 30
+    - 31
+    - 32
+    - 33
 - model: golf_trip.trip_teetime
   pk: 16
   fields:
@@ -489,7 +571,13 @@
     gametype: 2v2 best ball - matchplay
     tee: 25
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 14
+    - 15
+    - 16
+    - 17
 - model: golf_trip.trip_teetime
   pk: 17
   fields:
@@ -499,7 +587,13 @@
     gametype: 2v2 best ball - matchplay
     tee: 25
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 18
+    - 19
+    - 20
+    - 21
 - model: golf_trip.trip_teetime
   pk: 18
   fields:
@@ -509,7 +603,13 @@
     gametype: 2v2 best ball - matchplay
     tee: 25
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 22
+    - 23
+    - 24
+    - 25
 - model: golf_trip.trip_teetime
   pk: 19
   fields:
@@ -519,7 +619,13 @@
     gametype: 2v2 best ball - matchplay
     tee: 25
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 26
+    - 27
+    - 28
+    - 29
 - model: golf_trip.trip_teetime
   pk: 20
   fields:
@@ -529,7 +635,13 @@
     gametype: 2v2 best ball - matchplay
     tee: 25
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 30
+    - 31
+    - 32
+    - 33
 - model: golf_trip.trip_teetime
   pk: 21
   fields:
@@ -539,7 +651,13 @@
     gametype: 2v2 scramble
     tee: 12
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 14
+    - 15
+    - 16
+    - 17
 - model: golf_trip.trip_teetime
   pk: 22
   fields:
@@ -549,7 +667,13 @@
     gametype: 2v2 scramble
     tee: 12
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 18
+    - 19
+    - 20
+    - 21
 - model: golf_trip.trip_teetime
   pk: 23
   fields:
@@ -559,7 +683,13 @@
     gametype: 2v2 scramble
     tee: 12
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 22
+    - 23
+    - 24
+    - 25
 - model: golf_trip.trip_teetime
   pk: 24
   fields:
@@ -569,7 +699,13 @@
     gametype: 2v2 scramble
     tee: 12
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 26
+    - 27
+    - 28
+    - 29
 - model: golf_trip.trip_teetime
   pk: 25
   fields:
@@ -579,7 +715,13 @@
     gametype: 2v2 scramble
     tee: 12
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 30
+    - 31
+    - 32
+    - 33
 - model: golf_trip.trip_teetime
   pk: 26
   fields:
@@ -589,7 +731,11 @@
     gametype: 1v1 matchplay
     tee: 3
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 14
+    - 17
 - model: golf_trip.trip_teetime
   pk: 27
   fields:
@@ -599,7 +745,11 @@
     gametype: 1v1 matchplay
     tee: 3
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 15
+    - 16
 - model: golf_trip.trip_teetime
   pk: 28
   fields:
@@ -609,7 +759,11 @@
     gametype: 1v1 matchplay
     tee: 3
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 18
+    - 19
 - model: golf_trip.trip_teetime
   pk: 29
   fields:
@@ -619,7 +773,11 @@
     gametype: 1v1 matchplay
     tee: 3
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 20
+    - 21
 - model: golf_trip.trip_teetime
   pk: 30
   fields:
@@ -629,7 +787,11 @@
     gametype: 1v1 matchplay
     tee: 3
     teeTime_Complete: false
-    Players: []
+    Winning_Score: '0.0'
+    Winning_Team: 9
+    Players:
+    - 22
+    - 23
 - model: golf_trip.trip_event
   pk: 1
   fields:

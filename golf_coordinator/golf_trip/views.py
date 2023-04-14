@@ -87,21 +87,23 @@ class TeamListView(ListView):
     
 class TripStandingsTemplateView(TemplateView):
     template_name = 'golf_trip/trip_standings.html'
-    teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan') 
+    team_1_members = 'N/A'
+    team_2_members = 'N/A'
     try:  
+        teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan') 
         team_1_members = Trip_TeamMember.objects.all().filter(team=teams[0]).order_by('-user__score')
         team_2_members = Trip_TeamMember.objects.all().filter(team=teams[1]).order_by('-user__score')
-    except IndexError:
+    except:
         team_1_members = Trip_TeamMember.objects.all().filter(team=9)
         team_2_members = Trip_TeamMember.objects.all().filter(team=9)
+    
 
     completed_rounds = Trip_TeeTime.objects.all().filter(teeTime_Complete=True)
     
     try:
         team_1 = teams[0]
         team_2 = teams[1]
-    except IndexError:
-
+    except:
         team_1 = 'N/A'
         team_2 = 'N/A'
 

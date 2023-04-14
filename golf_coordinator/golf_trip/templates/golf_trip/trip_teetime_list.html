@@ -24,11 +24,14 @@
             {% if teetime.teeTime_Complete is True %}
                 <a></a>
             {% else %}
-                <a href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score</a>
-            {% endif %}
+                <a href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score</a>  
+                <a style="float: right;" id='bet_icon' href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Place Bet  <i  class="fa-solid fa-coins fa-xl"></i></a>
+                {% endif %}
+               
 
             {% if teetime.teeTime_Complete is True %}
-                <a href="{% url 'round:completed_round' pk=teetime.pk %}" class="card-link">view scorecard</a>
+                <a href="{% url 'round:completed_round' pk=teetime.pk %}" class="card-link">view scorecard</a> <span style="float: right">Bets Closed</span>
+                
             {% else %}
                 <a></a>
             {% endif %}
