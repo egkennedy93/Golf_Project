@@ -25,14 +25,14 @@
                 <a></a>
             {% else %}
                 <a class="btn btn-success btn-sm" href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score  <i class="fa-solid fa-pencil"></i></a>  
-                <button style="float: right;" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"> Place Bet  <i class="fa-solid fa-coins fa-xl"></i>
+                <button style="float: right;" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#BetSelectModal"> Place Bet  <i class="fa-solid fa-coins fa-xl"></i>
                 </button>
             {% endif %}
                
 
             {% if teetime.teeTime_Complete is True %}
-            <a class="btn btn-success btn-sm" href="{% url 'round:completed_round' pk=teetime.pk %}" class="card-link">View Card <i class="fa-solid fa-binoculars"></i></a>
-            <button style="float: right;"class="btn btn-danger btn-sm">Closed <i class="fa-solid fa-coins fa-xl"></i>
+            <a class="btn btn-success btn-sm" href="{% url 'round:completed_round' pk=teetime.pk %}" class="card-link" style="padding-right:15px">View Card <i class="fa-solid fa-binoculars"></i></a>
+            <button style="float: right; padding-left:15px"class="btn btn-danger btn-sm">Closed <i class="fa-solid fa-coins fa-xl"></i>
                 {% comment %} <a href="{% url 'round:completed_round' pk=teetime.pk %}" class="card-link">view scorecard</a> <span style="float: right">Bets Closed</span> {% endcomment %}
                 
             {% else %}
@@ -54,7 +54,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="BetSelectModal" tabindex="-1" aria-labelledby="BetSelectModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -62,23 +62,26 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="playerselected" checked>
-                <label class="form-check-label" for="flexRadioDefault1">
-                    <i class="fa-solid fa-user-large"></i> Bet against a player
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="teamselected">
-                <label class="form-check-label" for="flexRadioDefault2">
-                    <i class="fa-solid fa-people-group"></i> Bet on a team
-                </label>
-              </div>
+            <form>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="playerselected" checked>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        <i class="fa-solid fa-user-large"></i> Bet against a player
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="teamselected">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        <i class="fa-solid fa-people-group"></i> Bet on a team
+                    </label>
+                </div>
+            
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Confirm</button>
+        <button type="submit" class="btn btn-primary">Confirm</button>
         </div>
+        </form>
     </div>
     </div>
 </div>
