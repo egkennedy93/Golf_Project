@@ -3,6 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import TemplateView, DetailView, ListView
 from golf_trip.models import *
+from bookie.models import *
+from bookie.forms import BetTeeTimeForm
 
 
 class EventHistoryView(ListView):
@@ -61,6 +63,11 @@ class EventTeeTimeListView(ListView):
     def get_queryset(self):
         queryset = Trip_TeeTime.objects.all().filter(tee_time_date=self.kwargs['event_day'])
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super(EventTeeTimeListView, self).get_context_data(**kwargs)
+        context['form'] = BetTeeTimeForm()
+        return context
 
 
 class EventTeeTimeDetailView(DetailView):

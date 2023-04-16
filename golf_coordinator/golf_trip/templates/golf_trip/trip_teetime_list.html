@@ -11,6 +11,7 @@
                                                                     data-bs-content="Course: {{ teetime.tee.course.course_name}}<br/>
                                                                                      Tee: <a href='{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}' class='card-link'>{{teetime.tee.tee_name}}</a><br/>
                                                                                      Format: {{teetime.gametype}}"></span></h5> 
+                
             {% comment %} <a href="{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}" class="card-link">{{teetime.tee.tee_name}}</a>
             <h6 class="card-subtitle mb-2 text-muted"></h6>
             <h6 class="card-subtitle mb-2 text-muted">Format: {{teetime.gametype}}</h6> {% endcomment %}
@@ -25,8 +26,23 @@
                 <a></a>
             {% else %}
                 <a class="btn btn-success btn-sm" href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score  <i class="fa-solid fa-pencil"></i></a>  
-                <button style="float: right;" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#BetSelectModal"> Place Bet  <i class="fa-solid fa-coins fa-xl"></i>
+                <button id='bet_modal_{{forloop.counter0}}' style="float: right;" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#BetSelectModal_{{forloop.counter0}}"> Place Bet  <i class="fa-solid fa-coins fa-xl"></i>
                 </button>
+
+                  <!-- Modal -->
+                <div class="modal fade" id="BetSelectModal_{{forloop.counter0}}" tabindex="-1" aria-labelledby="BetSelectModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Select Bet Type</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% include "bookie/bet_tee_time.html" %}
+                        </div>
+                    </div>
+                    </div>
+                </div>
             {% endif %}
                
 
@@ -41,7 +57,8 @@
             
             
         </div>
-    </div> 
+    </div>
+    
 {% endfor %}
 </div>
 <div class="container">
@@ -50,41 +67,6 @@
 
 
 
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="BetSelectModal" tabindex="-1" aria-labelledby="BetSelectModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Select Bet Type</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="playerselected" checked>
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        <i class="fa-solid fa-user-large"></i> Bet against a player
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="teamselected">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        <i class="fa-solid fa-people-group"></i> Bet on a team
-                    </label>
-                </div>
-            
-        </div>
-        <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Confirm</button>
-        </div>
-        </form>
-    </div>
-    </div>
-</div>
 
 
 

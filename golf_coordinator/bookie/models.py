@@ -25,12 +25,16 @@ class GolfBet(models.Model):
     bet_closed = models.BooleanField(default=False)
     bet_winner = models.ForeignKey(Trip_Golfer, related_name='winner', blank=True, null=True, default="N/A",  on_delete=models.PROTECT)
     
+class TeeTimeBet(GolfBet):
+    bet_tee_time = models.ForeignKey(Trip_TeeTime, related_name='bet_tee_time', on_delete=models.PROTECT)
+
     
 class PlayerVsPlayer(GolfBet):
     """Handles a bet between two people directly. THey can be in the same or different teetimes. 
     """
     submitter_tee_time = models.ForeignKey(Trip_TeeTime, related_name='PVP_submitter_tee_time', on_delete=models.PROTECT)
     opponent_tee_time = models.ForeignKey(Trip_TeeTime, related_name='opponent_tee_time', on_delete=models.PROTECT)
+    
 
 
 class ThirdPartyPlayerVsPlayer(GolfBet):
