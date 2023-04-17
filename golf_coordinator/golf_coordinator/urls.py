@@ -27,5 +27,6 @@ urlpatterns = [
     path('round/', include('GolfRound.urls', namespace='round')),
     path('courses/', include('Courses.urls', namespace='courses')),
     path('teams/', include('teams.urls', namespace='teams')),
+    path('bookie/', include('bookie.urls', namespace='bookie')),
 ]
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

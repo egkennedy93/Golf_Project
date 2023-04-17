@@ -1,0 +1,2 @@
+export DJANGO_SETTINGS_MODULE=golf_coordinator.settings
+export PYTHONPATH=/home/egkennedy93/Programming_Projects/Golf_Project/golf_coordinator

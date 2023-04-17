@@ -41,13 +41,20 @@ INSTALLED_APPS = [
     'bootstrap5',
     'fontawesomefree',
     'crispy_forms',
+    'crispy_bootstrap5',
     'Courses',
     'accounts',
     'GolfRound',
     'golf_trip',
     'teams',
+    'bookie',
     'jquery',
 ]
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

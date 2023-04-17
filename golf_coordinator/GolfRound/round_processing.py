@@ -98,7 +98,6 @@ def round_processing(round_formset_data, tee_data):
 
         # get which holes the player gets strokes
          #before maniuplating the data, setting the raw_holes to the gross score.
-
         stroking_holes = []
         for idx, hole_hcp in enumerate(course_hole_hcp_index):
             # if a player is a 13, this will populate the stroking_holes list with the index of which holes those 13 are.
@@ -181,8 +180,8 @@ def teetime_team_scores(team_list, gametype):
         team_score = []
 
         #this for loop is comparing teammate_1's score to teammate_2. This is to figure out who had the best score for each hole
-        for index in range(len(teammate_1['gross_score'])):
-                team_score.append(teammate_1['gross_score'][index])
+        for index in range(len(teammate_1['net_score'])):
+                team_score.append(teammate_1['net_score'][index])
         return team_score
     else:    
         if gametype == '2v2 scramble':
@@ -289,9 +288,6 @@ def determine_bestball_win_2v2_scramble(team_1_score, team_2_score):
     
     team_1_bestball_stroke_score = []
 
-    print(team_1_score)
-    print(team_2_score)
-
     # this for loop looks at each hole's score for team 1 and compares it to score for team 2. Used indexes so it's easier to compare between the two teams 
     for index in range(len(team_1_score)):
 
@@ -313,7 +309,8 @@ def determine_bestball_win_match(team_1_score, team_2_score):
     This only focuses on 1 scoreline, and team_1 is set as the baseline. so if they are -3, that means team 1 lost by 3 holes.
     '''
     team_1_bestball_match_score = []
-
+    print(team_1_score)
+    print(team_2_score)
     for index in range(len(team_1_score)):
         if team_1_score[index] < team_2_score[index]:
             score_diff = 1
@@ -335,19 +332,20 @@ def update_team_scores(team_1, team_2, net_score):
     current_team_2_score = get_object_or_404(Trip_Team, pk=team_2.values_list()[0][0])
     # {'team_1': [-1, -1, 0, -1, -1, 0, -1, 0, -1, -1, -1, 0, 0, -1, -1, -1, -1, 0], 'net_score': -12}]
     if net_score == 0:
-        current_team_1_score.team_score += decimal.Decimal(.5)
-        current_team_2_score.team_score += decimal.Decimal(.5)
+        current_team_1_score.team_score + decimal.Decimal(.5)
+        current_team_2_score.team_score + decimal.Decimal(.5)
 
         current_team_1_score.save()
         current_team_2_score.save()
     elif net_score > 0:
-        current_team_1_score.team_score += 1
+        current_team_1_score.team_score + 1
         current_team_1_score.save()
     else:
-        current_team_2_score.team_score += 1
+        current_team_2_score.team_score + 1
         current_team_2_score.save()
 
     return current_team_1_score, current_team_2_score
+
 
 def update_player_score(processed_score_data):
 
@@ -463,6 +461,10 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
         
         else: 
             raise Exception
+        
+        
+    
+    
 
     def view_teetime_team_scores(team_list):
 

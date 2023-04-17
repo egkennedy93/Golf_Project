@@ -3,6 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.views.generic import TemplateView, DetailView, ListView
 from golf_trip.models import *
+from bookie.models import *
+from bookie.forms import BetTeeTimeForm
 
 
 class EventHistoryView(ListView):
@@ -61,6 +63,11 @@ class EventTeeTimeListView(ListView):
     def get_queryset(self):
         queryset = Trip_TeeTime.objects.all().filter(tee_time_date=self.kwargs['event_day'])
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super(EventTeeTimeListView, self).get_context_data(**kwargs)
+        context['form'] = BetTeeTimeForm()
+        return context
 
 
 class EventTeeTimeDetailView(DetailView):
@@ -87,12 +94,27 @@ class TeamListView(ListView):
     
 class TripStandingsTemplateView(TemplateView):
     template_name = 'golf_trip/trip_standings.html'
-    teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan')   
-    team_1_members = Trip_TeamMember.objects.all().filter(team=teams[0]).order_by('-user__score')
-    team_2_members = Trip_TeamMember.objects.all().filter(team=teams[1]).order_by('-user__score')
+    team_1_members = 'N/A'
+    team_2_members = 'N/A'
+    try:  
+        teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan') 
+        team_1_members = Trip_TeamMember.objects.all().filter(team=teams[0]).order_by('-user__score')
+        team_2_members = Trip_TeamMember.objects.all().filter(team=teams[1]).order_by('-user__score')
+    except:
+        team_1_members = Trip_TeamMember.objects.all().filter(team=9)
+        team_2_members = Trip_TeamMember.objects.all().filter(team=9)
+    
+
     completed_rounds = Trip_TeeTime.objects.all().filter(teeTime_Complete=True)
     
-    extra_context={'team_1': teams[0], 'team_2': teams[1],
+    try:
+        team_1 = teams[0]
+        team_2 = teams[1]
+    except:
+        team_1 = 'N/A'
+        team_2 = 'N/A'
+
+    extra_context={'team_1': team_1, 'team_2': team_2,
                    'team_1_members': team_1_members,
                    'team_2_members': team_2_members,              
                    'trip_events':Trip_Event.objects.all().filter(trip__trip_name='Michigan'),

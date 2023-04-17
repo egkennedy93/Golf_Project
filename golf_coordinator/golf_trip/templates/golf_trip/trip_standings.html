@@ -70,8 +70,7 @@
                         </thead>
                         <tbody>
                           {% for completed in completed_rounds %}
-                          {% comment %} data-href="{% url 'courses:golf_tee_detail' tee.pk %}" {% endcomment %}
-                            <tr class='course-row'>
+                            <tr class='course-row' data-href="{% url 'round:completed_round' completed.pk %}">
                                 <td class="text-center">{{completed.tee_time_date}}</td>
                                 <td class="text-center">{{completed.tee_time_time}} </td>
                                 <td class="text-center">{{completed.gametype}}</td>
