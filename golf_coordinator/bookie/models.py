@@ -22,7 +22,7 @@ class GolfBet(models.Model):
     
     submitter = models.ForeignKey(Trip_Golfer, related_name='submitter', on_delete=models.PROTECT)
     opponent = models.ForeignKey(Trip_Golfer, related_name='opponent', on_delete=models.PROTECT)
-    units = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    units = models.DecimalField(max_digits=5, decimal_places=2)
     bet_closed = models.BooleanField(default=False)
     bet_winner = models.ForeignKey(Trip_Golfer, related_name='winner', blank=True, null=True, default="N/A",  on_delete=models.PROTECT)
     

@@ -16,7 +16,7 @@ class BetTeeTimeForm(forms.ModelForm):
         fields = ['submitter', 'opponent', 'units', 'bet_tee_time']
         model = TeeTimeBet
         widgets = {'bet_tee_time': forms.HiddenInput(), 
-                   'units': forms.TextInput(attrs={'class': 'form-control'}),
+                   'units': forms.TextInput(attrs={'class': 'form-control input-group', 'style': "max-width:5em; margin:auto;", 'placeholder': '5.00'}),
                    'submitter': forms.Select(attrs={'style': "max-width:10em; margin:auto;", 'class': 'form-select'}),
                    'opponent': forms.Select(attrs={'style': "max-width:10em; margin:auto", 'class': 'form-select'}),
                    'bet_type': forms.RadioSelect(attrs={'style': "max-width:10em"}),
