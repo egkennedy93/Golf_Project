@@ -1,6 +1,7 @@
 from django.db import models
 from bookie import models
 from golf_trip.models import * 
+from djmoney.models.fields import MoneyField
 
 
 

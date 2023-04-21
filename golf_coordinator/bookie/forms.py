@@ -15,7 +15,7 @@ class BetTeeTimeForm(forms.ModelForm):
     class Meta():
         fields = ['submitter', 'opponent', 'units', 'bet_tee_time']
         model = TeeTimeBet
-        widgets = {'bet_tee_time': forms.HiddenInput()}
+        widgets = {'bet_tee_time': forms.HiddenInput(), 'units': forms.TextInput(attrs={'class': 'form-control'}),}
 
     def __init__(self, teetime_pk, **kwargs):
         super(BetTeeTimeForm, self).__init__(**kwargs)

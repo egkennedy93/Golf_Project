@@ -32,6 +32,7 @@ class Trip_Golfer(models.Model):
     golfer = models.ForeignKey(Golfer, on_delete=models.PROTECT)
     hcp_index = models.DecimalField(max_digits=3, decimal_places=1, default=0)
     score = models.DecimalField(max_digits=3, decimal_places=2, default=0)
+    bet_winnings = models.DecimalField(max_digits=14, decimal_places=4, null=True, default=0)
 
     def __str__(self):
         return "{}".format(self.golfer.last_name)

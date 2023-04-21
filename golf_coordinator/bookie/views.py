@@ -3,7 +3,7 @@ from bookie.models import PlayerVsPlayer, TeamVsTeam
 from bookie.forms import BetTeeTimeForm
 from django.views.generic import CreateView
 from django.shortcuts import get_object_or_404
-from golf_trip.models import Trip_TeeTime, Trip_TeamMember
+from golf_trip.models import Trip_TeeTime, Trip_TeamMember, Trip_Team
 from GolfRound.round_processing import course_handicap_calculation
 
 
@@ -44,17 +44,23 @@ def BetTeeTimeView(request, teetime_pk):
         player_pks = []
         player_hcp_list = []
 
-        team_1 = []
-        team_2 = []
+        team_1_players = []
+        team_2_players = []
 
+        
         for player in raw_player_list:
             # This is so when players are displayed in the get view for tee times, they are next to their teammate
             players_team = get_object_or_404(Trip_TeamMember, user=player)
-            if players_team.team.id == 7:
-                team_1.append(player)
-            elif players_team.team.id == 8:
-                team_2.append(player)
-            player_list = team_1+team_2
+            
+            teams = Trip_Team.objects.all().exclude(team='N/A')
+            if players_team.team.id == teams[0].id:
+                team_1_players.append(player)
+            elif players_team.team.id == teams[1].id:
+                team_2_players.append(player)
+            else:
+                raise Exception("player doesn't have a team associated")
+
+            player_list = team_1_players+team_2_players
 
         # now that the players have been organized to be by their teammate, need to grab the player meta
         for player in player_list:
@@ -65,7 +71,23 @@ def BetTeeTimeView(request, teetime_pk):
             player_pks.append(player.pk)
 
         form = BetTeeTimeForm(teetime_pk=teetime_pk, initial={'bet_tee_time': teetime_pk})
-    context = {'form': form}
+        teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan')
+
+        try:
+            team_1 = teams[0]
+            team_2 = teams[1]
+        except:
+            team_1 = 'N/A'
+            team_2 = 'N/A'
+
+    context = {'form': form,
+               'team_1': team_1,
+               'team_2': team_2,
+               'team_1_players': team_1_players,
+               'team_2_players': team_2_players,
+               'team_list'
+               'player_list':player_list,
+               }
 
     return render(request, "bookie/bet_tee_time.html", context)
 
