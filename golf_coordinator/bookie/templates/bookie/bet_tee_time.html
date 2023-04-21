@@ -6,52 +6,70 @@
 
 
 <head>
-    <link rel="stylesheet" href="{% static 'css/bet_form.css' %}">
     <style>input {max-width:5em}</style>
 </head>
 
 
-<form method="POST" class="form-control" enctype="multipart/form-data">
-    {% csrf_token %}
+
     <div class="container" id="form-container" >
-        <h1 style="text-align:center">Place Bets</h1>
-        <div class="container">
-            <div class="row gx-5 align-items-center" id=BetBottomLine>
-                <div class="col-lg-6">
-                    <h1 class="fw-bolder mb-3">{{team_1}}</h1>   
+        
+            <div class="container">
+                <div class="row gx-5 align-items-center" id=BetBottomLine>
+                    <div class="col-lg-6">
+                        <h1 class="fw-bolder mb-3" style="text-align:center">{{team_1}}</h1>   
+                            <ul class="list-group">
+                                {% for player in team_1_players  %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        {{player.golfer.first_name}} {{player.golfer.last_name}}<span class="badge bg-danger rounded-pill">HCP {{player.hcp_index}}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <h1 class="fw-bolder mb-3" style="text-align:center">{{team_2}}</h1>
                         <ul class="list-group">
-                            {% for player in team_1_players  %}
+                            {% for player in team_2_players  %}
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    {{player.golfer.first_name}} {{player.golfer.last_name}}<span class="badge bg-danger rounded-pill">HCP {{player.hcp_index}}</span>
+                                    {{player.golfer.first_name}} {{player.golfer.last_name}}<span class="badge bg-primary rounded-pill">HCP {{player.hcp_index}}</span>
                                 </li>
                             {% endfor %}
                         </ul>
-                </div>
-                <div class="col-lg-6">
-                    <h1 class="fw-bolder mb-3">{{team_2}}</h1>
-                    <ul class="list-group">
-                        {% for player in team_2_players  %}
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
-                                {{player.golfer.first_name}} {{player.golfer.last_name}}<span class="badge bg-primary rounded-pill">HCP {{player.hcp_index}}</span>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    </div>
                 </div>
             </div>
+
+    <form method="POST" class="row g-3" enctype="multipart/form-data">
+
+        <div class="row" style="padding-top:50px">
+        <h1 style="text-align:center">Place Bets</h1>
+        <div class="col" style="text-align:center">
+            <h4>{{form.submitter.label_tag}}</h4>
+            {{form.submitter}}
         </div>
-        <div class="container" style="padding-top:100px">
-        {{form.submitter|as_crispy_field }}
-        {{form.opponent|as_crispy_field}}
-        {{form.bet_type|as_crispy_field}}
-        <label class="form-label">Wager </label>
-        <div class="input-group mb-3">
-            <span class="input-group-text">$</span>
-            {{form.units}}
+        <div class="col" style="text-align:center">
+            <h4>{{form.opponent.label_tag}}</h4>
+            {{form.opponent}}
         </div>
-    
-    
-    <input class="btn btn-primary" type="submit" value="Submit"> <a class="btn btn-danger"onClick="javascript:history.go(-1);" role="button">Back</a>
-    </div>
-</form>
+      </div>
+        {% comment %} {% csrf_token %}
+        
+        <div class="col-md-6" style="padding-top:50px">
+            {{form.submitter.label_tag}}
+            {{form.submitter}}
+        <div>
+        <div class="col-md-6">
+        {{form.opponent.label_tag}}
+            {{form.opponent}}
+        </div>
+                {{form.bet_type|as_crispy_field}}
+                <label class="form-label">Wager </label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    {{form.units}}
+                </div>
+            </div> {% endcomment %}
+    </form>
+</div>
+<input class="btn btn-primary" type="submit" value="Submit"> <a class="btn btn-danger"onClick="javascript:history.go(-1);" role="button">Back</a>
 
 {% endblock %}

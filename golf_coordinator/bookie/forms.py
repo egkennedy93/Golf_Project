@@ -15,7 +15,12 @@ class BetTeeTimeForm(forms.ModelForm):
     class Meta():
         fields = ['submitter', 'opponent', 'units', 'bet_tee_time']
         model = TeeTimeBet
-        widgets = {'bet_tee_time': forms.HiddenInput(), 'units': forms.TextInput(attrs={'class': 'form-control'}),}
+        widgets = {'bet_tee_time': forms.HiddenInput(), 
+                   'units': forms.TextInput(attrs={'class': 'form-control'}),
+                   'submitter': forms.Select(attrs={'style': "max-width:10em; margin:auto;", 'class': 'form-select'}),
+                   'opponent': forms.Select(attrs={'style': "max-width:10em; margin:auto", 'class': 'form-select'}),
+                   'bet_type': forms.RadioSelect(attrs={'style': "max-width:10em"}),
+                   }
 
     def __init__(self, teetime_pk, **kwargs):
         super(BetTeeTimeForm, self).__init__(**kwargs)
