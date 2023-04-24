@@ -21,10 +21,11 @@ class BetTeeTimeForm(forms.ModelForm):
                    'opponent': forms.Select(attrs={'style': "max-width:10em; margin:auto", 'class': 'form-select'}),
                    'bet_type': forms.RadioSelect(attrs={'style': "max-width:10em"}),
                    }
+        
 
-    def __init__(self, teetime_pk, **kwargs):
-        super(BetTeeTimeForm, self).__init__(**kwargs)
-        if teetime_pk:
-            pass
+    def __init__(self, *args, **kwargs):
+        teetime_pk = kwargs.pop('teetime_pk')
+        super(BetTeeTimeForm, self).__init__(*args, **kwargs)
+        if teetime_pk != None:
             self.fields['opponent'].queryset = Trip_TeeTime.objects.filter(pk=teetime_pk).values_list('Players__golfer__last_name', flat=True)
             self.fields['bet_tee_time'].queryset = Trip_TeeTime.objects.filter(pk=teetime_pk)

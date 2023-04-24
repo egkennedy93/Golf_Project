@@ -40,7 +40,9 @@
             </div>
     
     <form method="POST" class="row g-3" enctype="multipart/form-data">
+        
         <div class="container bg-light" style="width:50%; margin:auto">
+            {% csrf_token %}
 
             <div class="row">
                 <h1 style="text-align:center">Place Bets</h1>

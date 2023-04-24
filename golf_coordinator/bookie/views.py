@@ -31,9 +31,11 @@ def BetTeeTimeView(request, teetime_pk):
 
     if request.method == "POST":
         
-        betteetime = BetTeeTimeForm(request.POST)
+        betteetime = BetTeeTimeForm(request.POST, teetime_pk=teetime_pk)
         if betteetime.is_valid():
             pass
+
+            betteetime.save()
 
     elif request.method == "GET":
 
@@ -80,16 +82,16 @@ def BetTeeTimeView(request, teetime_pk):
             team_1 = 'N/A'
             team_2 = 'N/A'
 
-    context = {'form': form,
-               'team_1': team_1,
-               'team_2': team_2,
-               'team_1_players': team_1_players,
-               'team_2_players': team_2_players,
-               'team_list'
-               'player_list':player_list,
-               }
+        context = {'form': form,
+                'team_1': team_1,
+                'team_2': team_2,
+                'team_1_players': team_1_players,
+                'team_2_players': team_2_players,
+                'team_list'
+                'player_list':player_list,
+                }
 
-    return render(request, "bookie/bet_tee_time.html", context)
+        return render(request, "bookie/bet_tee_time.html", context)
 
 
 
