@@ -15,7 +15,7 @@ class BetTeeTimeForm(forms.ModelForm):
     class Meta():
         fields = ['submitter', 'opponent', 'units', 'bet_tee_time']
         model = TeeTimeBet
-        widgets = {'bet_tee_time': forms.HiddenInput(), 
+        widgets = { 
                    'units': forms.TextInput(attrs={'class': 'form-control input-group', 'style': "max-width:5em; margin:auto;", 'placeholder': '5.00'}),
                    'submitter': forms.Select(attrs={'style': "max-width:10em; margin:auto;", 'class': 'form-select'}),
                    'opponent': forms.Select(attrs={'style': "max-width:10em; margin:auto", 'class': 'form-select'}),
@@ -26,6 +26,6 @@ class BetTeeTimeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         teetime_pk = kwargs.pop('teetime_pk')
         super(BetTeeTimeForm, self).__init__(*args, **kwargs)
-        if teetime_pk != None:
-            self.fields['opponent'].queryset = Trip_TeeTime.objects.filter(pk=teetime_pk).values_list('Players__golfer__last_name', flat=True)
+        if teetime_pk:
+            # self.fields['opponent'].queryset = Trip_TeeTime.objects.filter(pk=teetime_pk).values_list('Players__golfer', flat=True)
             self.fields['bet_tee_time'].queryset = Trip_TeeTime.objects.filter(pk=teetime_pk)

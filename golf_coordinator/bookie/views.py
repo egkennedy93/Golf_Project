@@ -32,10 +32,19 @@ def BetTeeTimeView(request, teetime_pk):
     if request.method == "POST":
         
         betteetime = BetTeeTimeForm(request.POST, teetime_pk=teetime_pk)
+
+        print(request.POST)
+
         if betteetime.is_valid():
             pass
+        else:
+            print(betteetime.errors)
 
-            betteetime.save()
+        betteetime.save()
+
+
+         # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
+        return render(request,'bookie/successful_bet_placed.html', {'betteetime': betteetime, 'teetime_pk': 'teetime_pk'})
 
     elif request.method == "GET":
 

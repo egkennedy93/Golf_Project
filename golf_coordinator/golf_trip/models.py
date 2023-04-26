@@ -25,7 +25,7 @@ class Trip_Course(models.Model):
     def __str__(self):
         return "{}_{}".format(self.trip.trip_date, self.tee)
 
-1
+
 # extends the golfer model, and then adds an index and score to each golfer for the trip. 
 class Trip_Golfer(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)

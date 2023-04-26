@@ -1,7 +1,6 @@
 from django.db import models
 from bookie import models
 from golf_trip.models import * 
-from djmoney.models.fields import MoneyField
 
 
 
@@ -25,6 +24,7 @@ class GolfBet(models.Model):
     units = models.DecimalField(max_digits=5, decimal_places=2)
     bet_closed = models.BooleanField(default=False)
     bet_winner = models.ForeignKey(Trip_Golfer, related_name='winner', blank=True, null=True, default="N/A",  on_delete=models.PROTECT)
+    test = models.CharField(max_length=500, default="test")
     
 class TeeTimeBet(GolfBet):
     bet_tee_time = models.ForeignKey(Trip_TeeTime, related_name='bet_tee_time', on_delete=models.PROTECT)

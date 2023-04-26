@@ -69,27 +69,15 @@
                         {{form.units}}
                 </div>
             </div>
-        </div>
-        {% comment %} {% csrf_token %}
-        
-        <div class="col-md-6" style="padding-top:50px">
-            {{form.submitter.label_tag}}
-            {{form.submitter}}
-        <div>
-        <div class="col-md-6">
-        {{form.opponent.label_tag}}
-            {{form.opponent}}
-        </div>
-                {{form.bet_type|as_crispy_field}}
-                <label class="form-label">Wager </label>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">$</span>
-                    {{form.units}}
+            <div class="row">
+                    {{form.bet_tee_time}}
                 </div>
-            </div> {% endcomment %}
+            </div>
+        </div>
             <div class="container" style="text-align:center; padding-top:25px">
-            <input class="btn btn-primary" type="submit" value="Submit"> 
-            <a class="btn btn-danger"onClick="javascript:history.go(-1);" role="button">Back</a>
+                <input class="btn btn-primary" type="submit" value="Submit"> 
+                <a class="btn btn-danger"onClick="javascript:history.go(-1);" role="button">Back</a>
+            </div>
     </form>
 </div>
 
