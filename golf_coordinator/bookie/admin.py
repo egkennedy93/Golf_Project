@@ -5,7 +5,4 @@ from bookie.models import *
 
 
 admin.site.register(GolfBet)
-admin.site.register(PlayerVsPlayer)
-admin.site.register(ThirdPartyPlayerVsPlayer)
 admin.site.register(TeamVsTeam)
-admin.site.register(TeeTimeBet)

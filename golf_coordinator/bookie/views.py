@@ -1,18 +1,15 @@
 from django.shortcuts import render
-from bookie.models import PlayerVsPlayer, TeamVsTeam
+from bookie.models import TeamVsTeam, GolfBet
 from bookie.forms import BetTeeTimeForm
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.shortcuts import get_object_or_404
-from golf_trip.models import Trip_TeeTime, Trip_TeamMember, Trip_Team
+from golf_trip.models import Trip_TeeTime, Trip_TeamMember, Trip_Team, Trip_Golfer
 from GolfRound.round_processing import course_handicap_calculation
 
 
-# create view to add another tee to a course
-class BetPVPCreateView(CreateView):
-    model = PlayerVsPlayer
-    fields = ('submitter', 'submitter_tee_time','opponent', 'opponent_tee_time', 'units', 'bet_closed',)
-    context_object_name = 'player_vs_player'
-
+class GolfBetListView(ListView):
+    model = GolfBet
+    
 
 class BetTVTCreateView(CreateView):
     model = TeamVsTeam
@@ -52,7 +49,6 @@ def BetTeeTimeView(request, teetime_pk):
         raw_player_list = teetime_data.Players.all()
         player_list = []
         team_list = []
-        player_pks = []
         player_hcp_list = []
 
         team_1_players = []
@@ -79,10 +75,18 @@ def BetTeeTimeView(request, teetime_pk):
             team_data = get_object_or_404(Trip_TeamMember, user__golfer__last_name = player.golfer.last_name)
             team_list.append(team_data.team)
             player_hcp_list.append(course_handicap_calculation(player.hcp_index,teetime_data.tee.slope, teetime_data.tee.rating, teetime_data.tee.course_par))
-            player_pks.append(player.pk)
+            # player_pks.append(player.pk)
 
         form = BetTeeTimeForm(teetime_pk=teetime_pk, initial={'bet_tee_time': teetime_pk})
-        teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan')
+        
+        # Since the opponent field needs to be filtered down to just the associated teetime's players the players pks need to be queried
+        opponent_players = Trip_TeeTime.objects.filter(pk=teetime_pk).values_list('Players', flat=True)
+
+        #to filter down the opponent list, a queryset is created and is filtering on if the PK is in the opponent_players list
+        form.fields['opponent'].queryset = Trip_Golfer.objects.all().filter(pk__in=list(opponent_players))
+
+        #setting the teetime_PK for the hidden bet_tee_time input
+        form.fields['bet_tee_time'].queryset = Trip_TeeTime.objects.filter(pk=teetime_pk)
 
         try:
             team_1 = teams[0]
@@ -102,10 +106,3 @@ def BetTeeTimeView(request, teetime_pk):
 
         return render(request, "bookie/bet_tee_time.html", context)
 
-
-
-# # Create your views here.
-# def TeeTimeBetView(request, teetime_pk):
-
-#     if request.method == "POST":
-#         teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
