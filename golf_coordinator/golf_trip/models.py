@@ -37,6 +37,9 @@ class Trip_Golfer(models.Model):
 
     def __str__(self):
         return "{}".format(self.golfer.last_name)
+    
+    def get_team_object(self):
+        return self.trip_team_set.all()
 
 
 # teams need to be setup first in the team app, but is ued here to track team scores during the trip.
@@ -82,8 +85,11 @@ class Trip_TeeTime(models.Model):
     Winning_Score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
     Winning_Team = models.ForeignKey(Trip_Team, on_delete=models.PROTECT)
 
-    def teetime_bets(self, teetime_pk):
-        return self.golfbet_tee_time.all().filter(bet_tee_time=teetime_pk)
+    def bets(self):
+        return self.golfbet_tee_time.all()
+    
+    def net_rounds(self):
+        return self.net_round_score_set.all()
         
 
     

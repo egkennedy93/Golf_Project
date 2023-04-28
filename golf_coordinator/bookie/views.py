@@ -47,7 +47,7 @@ def BetTeeTimeView(request, teetime_pk):
 
 
         teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
-        print(teetime_data.teetime_bets(teetime_data.pk))
+        print(teetime_data.net_rounds())
         raw_player_list = teetime_data.Players.all()
         player_list = []
         team_list = []
@@ -107,4 +107,35 @@ def BetTeeTimeView(request, teetime_pk):
                 }
 
         return render(request, "bookie/bet_tee_time.html", context)
+    
+def bet_processing(teetime_pk):
+
+    if teetime_pk.teeTime_Complete:
+
+        teetime_bets = teetime_pk.bets()
+
+        for bet in teetime_bets:
+            # if bet is equal to 'bet against player'
+            if bet.bet_type == 1:
+                submitter = bet.submitter
+                opponent = bet.opponent
+
+                # checking if the submitter is in the teetime
+                if submitter in teetime_pk.Players.all():
+                    # grabbing all the net_scores for the teetime
+                    teetime_net_scores = teetime_pk.net_scores.all()
+                    
+                    submitter_net_score = teetime_net_scores.filter(round_golfer=submitter.last_name)
+                    opponent_net_score = teetime_net_scores.filter(round_golfer=opponent.last_name)
+
+                # the submitter is not in the teetime, so need to check his round
+                else:
+                    pass
+
+
+            # if bet is equal to 'bet against team'
+            if bet.bet_type == 2:
+                pass
+    else:
+        print('error. Teetime hasnt been completed yet')
 
