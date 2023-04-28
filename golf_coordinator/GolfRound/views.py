@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, DetailView
 from GolfRound.forms import scoreform, scoreform_1v1
 from GolfRound.models import Round_Score, Net_Round_Score
 from golf_trip.models import Trip_TeeTime, Trip_Golfer, Trip_Team, Trip_TeamMember
+from bookie.models import GolfBet
 from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores, update_player_score, course_handicap_calculation
 import decimal
 
@@ -97,7 +98,9 @@ def RoundSubmissionView(request, teetime_pk):
                                                                         'round_score_data': round_score_data})
 # this is the GET request to setup the initial form
     else:
+
         teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
+
         raw_player_list = teetime_data.Players.all()
         player_list = []
         team_list = []

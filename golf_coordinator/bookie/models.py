@@ -1,6 +1,7 @@
 from django.db import models
 from bookie import models
-from golf_trip.models import * 
+from golf_trip.models import *
+from django.utils import timezone
 
 
 
@@ -31,6 +32,10 @@ class GolfBet(models.Model):
     bet_winner = models.ForeignKey(Trip_Golfer, related_name='winner', blank=True, null=True,  on_delete=models.PROTECT)
     bet_timestamp = models.DateTimeField(auto_now_add=True)
     bet_type = models.CharField(choices=CHOICES, default='1', max_length=255)
+
+
+    def __str__(self):
+        return "{}_{}_{}_{}".format(self.bet_tee_time.id, self.submitter, self.opponent, self.bet_type)
     
 
 

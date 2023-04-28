@@ -5,6 +5,7 @@ from Courses.models import Golf_Course, Golf_Tee
 from accounts.models import Golfer
 
 
+
 # Create your models here.
 
 # core model. Everything else hasa foreign key to this. Intended to be the contianer for all trip related info.
@@ -81,8 +82,11 @@ class Trip_TeeTime(models.Model):
     Winning_Score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
     Winning_Team = models.ForeignKey(Trip_Team, on_delete=models.PROTECT)
 
-    def __str__(self):
-        return "{}_{}_{}".format(self.trip, self.tee_time_date, self.tee_time_time)
+    def teetime_bets(self, teetime_pk):
+        return self.golfbet_tee_time.all().filter(bet_tee_time=teetime_pk)
+        
+
+    
 
 
 # Trip event is ment to be each round of golf. This can occur multipel times on the same day. 

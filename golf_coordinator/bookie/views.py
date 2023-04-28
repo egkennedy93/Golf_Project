@@ -45,7 +45,9 @@ def BetTeeTimeView(request, teetime_pk):
 
     elif request.method == "GET":
 
+
         teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
+        print(teetime_data.teetime_bets(teetime_data.pk))
         raw_player_list = teetime_data.Players.all()
         player_list = []
         team_list = []
