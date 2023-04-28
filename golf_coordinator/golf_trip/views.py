@@ -66,7 +66,7 @@ class EventTeeTimeListView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super(EventTeeTimeListView, self).get_context_data(**kwargs)
-        context['form'] = BetTeeTimeForm()
+        # context['form'] = BetTeeTimeForm()
         return context
 
 

@@ -26,8 +26,9 @@
                 <a></a>
             {% else %}
                 <a class="btn btn-success btn-sm" href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score  <i class="fa-solid fa-pencil"></i></a>  
-                <button id='bet_modal_{{forloop.counter0}}' style="float: right;" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#BetSelectModal_{{forloop.counter0}}"> Place Bet  <i class="fa-solid fa-coins fa-xl"></i>
-                </button>
+                {% comment %} <button id='bet_modal_{{forloop.counter0}}' style="float: right;" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#BetSelectModal_{{forloop.counter0}}"> Place Bet  <i class="fa-solid fa-coins fa-xl"></i>
+                </button> {% endcomment %}
+                <a style="float: right;" class="btn btn-primary btn-sm" href="{% url 'bookie:bet_teetime' teetime_pk=teetime.pk %}" class="card-link"> Place Bet <i class="fa-solid fa-coins fa-xl"></i></a>
             {% endif %}
                
 
@@ -44,7 +45,7 @@
         </div>
         
     </div>
-     <!-- Modal -->
+     {% comment %} <!-- Modal -->
      <div class="modal fade" id="BetSelectModal_{{forloop.counter0}}" tabindex="-1" aria-labelledby="BetSelectModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
@@ -53,11 +54,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                {% include "bookie/bet_tee_time.html" %}
+                {% include "bookie/bet_tee_time.html" with tee_time=teetime.pk players=teetime.Players.all %}
             </div>
         </div>
         </div>
-    </div>
+    </div> {% endcomment %}
     
 {% endfor %}
 </div>

@@ -1,10 +1,85 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block content %}
 {% load crispy_forms_tags %}
 
-<form method="POST" enctype="multipart/form-data" action="/bookie/teetime/{{ bet_tee_time.id }}">
-    {% csrf_token %}
-    <div class="container">
-    {{ form|crispy }}
+
+
+<head>
+    <style>input {max-width:5em}</style>
+</head>
+
+
+
+    <div class="container" id="form-container" >
+        
+            <div class="container" id="matchups" style="padding-bottom:50px">
+                <div class="row gx-5 align-items-center" id=BetBottomLine>
+                    <h1 style="text-align:center">Tee Time Matchups</h1>
+                    <div class="col-lg-6">
+                        <h2 class="fw-bolder mb-3" style="text-align:center">{{team_1}}</h2>   
+                            <ul class="list-group">
+                                {% for player in team_1_players  %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        {{player.golfer.first_name}} {{player.golfer.last_name}}<span class="badge bg-danger rounded-pill">HCP {{player.hcp_index}}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="fw-bolder mb-3" style="text-align:center">{{team_2}}</h2>
+                        <ul class="list-group">
+                            {% for player in team_2_players  %}
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                    {{player.golfer.first_name}} {{player.golfer.last_name}}<span class="badge bg-primary rounded-pill">HCP {{player.hcp_index}}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    
+    <form method="POST" class="row g-3" enctype="multipart/form-data">
+        
+        <div class="container bg-light" style="width:50%; margin:auto">
+            {% csrf_token %}
+
+            <div class="row">
+                <h1 style="text-align:center">Place Bets</h1>
+                <div class="col" style="text-align:center">
+                    <h4>{{form.submitter.label_tag}}</h4>
+                        {{form.submitter}}
+                </div>
+                <div class="col" style="text-align:center">
+                    <h4>{{form.opponent.label_tag}}</h4>
+                        {{form.opponent}}
+                </div>
+            </div>
+            <div class="row" style="padding-top: 15px">
+                <div class="col" style="text-align:center">
+                    <h4>{{form.bet_type.label_tag}}<span style="padding-left:15px" class="fa-solid fa-circle-exclamation fa-xs" data-toggle="popover" data-bs-html="true" title="Bet Details" 
+                        data-bs-content="<strong>Player</strong>: Submitter will score better in that day's respective tee time compared to the opponent<br/></br>
+                                         <strong>Team</strong>: Submitter's tee time team will score better in that day's respective tee time compared to the select opponent's team">
+                                         </span></h4>
+                        {{form.bet_type}}
+                </div>
+            <div class="row">
+                <div class="col" style="text-align:center; padding-top:15px">
+                    <h4>Wager</h4>
+                        {{form.units}}
+                </div>
+            </div>
+            <div class="row">
+                    {{form.bet_tee_time}}
+                </div>
+            </div>
+        </div>
+            <div class="container" style="text-align:center; padding-top:25px">
+                <input class="btn btn-primary" type="submit" value="Submit"> 
+                <a class="btn btn-danger"onClick="javascript:history.go(-1);" role="button">Back</a>
+            </div>
+    </form>
 </div>
-    <input type="submit" value="Submit">
-</form>
+
+
+{% endblock %}
