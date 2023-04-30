@@ -112,41 +112,51 @@ def bet_processing(teetime_pk):
 
     # checking to make sure the teetime is finished
     if teetime_pk.teeTime_Complete:
+        print("complete")
 
         # grabbing all of the bets associated with the teetime object
         teetime_bets = teetime_pk.bets()
 
         for bet in teetime_bets:
             # if bet is equal to 'bet against player'
-            if bet.bet_type == 1:
+            if bet.bet_type == '1':
                 submitter = bet.submitter
                 opponent = bet.opponent
 
                 # checking if the submitter is in the teetime
-                if submitter in teetime_pk.Players.all():
+                if submitter in teetime_pk.Players.all(): 
                     # grabbing all the net_scores for the teetime
-                    teetime_net_scores = teetime_pk.net_scores.all()
+                    teetime_net_scores = teetime_pk.net_rounds()
                     
-                    submitter_net_score = teetime_net_scores.filter(round_golfer=submitter.last_name)
-                    opponent_net_score = teetime_net_scores.filter(round_golfer=opponent.last_name)
+                    submitter_net_score = teetime_net_scores.filter(round_golfer=submitter.golfer.last_name).values()[0]
+                    opponent_net_score = teetime_net_scores.filter(round_golfer=opponent.golfer.last_name).values()[0]
 
-                    if submitter_net_score.net_score < opponent_net_score.net_score:
+                    if submitter_net_score['net_score'] < opponent_net_score['net_score']:
+                        
                         bet.bet_winner = submitter
                         submitter.distribute_units(bet.units)
                         opponent.distribute_units((-1*bet.units))
-                    else:
+                        bet.bet_closed = True
+                        bet.save()
+                    if opponent_net_score['net_score'] < submitter_net_score['net_score']:
                         bet.bet_winner = opponent
                         opponent.distribute_units(bet.units)
                         submitter.distribute_units((-1*bet.units))
-                    bet.bet_closed = True
+                        bet.bet_closed = True
+                        bet.save()
+                    else:
+                       bet.bet_closed = True
+                       bet.save()
+                    
 
                 # the submitter is not in the teetime, so need to check his round
                 else:
+                    print("Bet is 2")
                     pass
 
 
             # if bet is equal to 'bet against team'
-            if bet.bet_type == 2:
+            if bet.bet_type == '2':
                 pass
     else:
         print('error. Teetime hasnt been completed yet')

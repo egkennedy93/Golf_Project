@@ -101,7 +101,6 @@ def RoundSubmissionView(request, teetime_pk):
 
         
 
-        
         bet_processing(teetime_pk=teetime_data)
         
         # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
