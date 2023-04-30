@@ -30,7 +30,6 @@ def BetTeeTimeView(request, teetime_pk):
         
         betteetime = BetTeeTimeForm(request.POST, teetime_pk=teetime_pk)
 
-        print(request.POST)
 
         if betteetime.is_valid():
             pass
@@ -110,8 +109,11 @@ def BetTeeTimeView(request, teetime_pk):
     
 def bet_processing(teetime_pk):
 
+
+    # checking to make sure the teetime is finished
     if teetime_pk.teeTime_Complete:
 
+        # grabbing all of the bets associated with the teetime object
         teetime_bets = teetime_pk.bets()
 
         for bet in teetime_bets:
@@ -127,6 +129,16 @@ def bet_processing(teetime_pk):
                     
                     submitter_net_score = teetime_net_scores.filter(round_golfer=submitter.last_name)
                     opponent_net_score = teetime_net_scores.filter(round_golfer=opponent.last_name)
+
+                    if submitter_net_score.net_score < opponent_net_score.net_score:
+                        bet.bet_winner = submitter
+                        submitter.distribute_units(bet.units)
+                        opponent.distribute_units((-1*bet.units))
+                    else:
+                        bet.bet_winner = opponent
+                        opponent.distribute_units(bet.units)
+                        submitter.distribute_units((-1*bet.units))
+                    bet.bet_closed = True
 
                 # the submitter is not in the teetime, so need to check his round
                 else:

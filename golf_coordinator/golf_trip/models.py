@@ -40,6 +40,9 @@ class Trip_Golfer(models.Model):
     
     def get_team_object(self):
         return self.trip_team_set.all()
+    
+    def distribute_units(self, unit_amount):
+        self.bet_winnings += unit_amount
 
 
 # teams need to be setup first in the team app, but is ued here to track team scores during the trip.
@@ -90,7 +93,18 @@ class Trip_TeeTime(models.Model):
     
     def net_rounds(self):
         return self.net_round_score_set.all()
-        
+    
+    def complete_round(self):
+        self.teeTime_Complete = True
+        self.save()
+
+    def set_winning_score(self, score):
+        self.Winning_Score = score
+        self.save()
+
+    def set_winning_team(self, team):
+        self.Winning_Team = team
+        self.save()
 
     
 
