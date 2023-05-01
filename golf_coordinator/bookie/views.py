@@ -161,3 +161,5 @@ def bet_processing(teetime_pk):
     else:
         print('error. Teetime hasnt been completed yet')
 
+        
+

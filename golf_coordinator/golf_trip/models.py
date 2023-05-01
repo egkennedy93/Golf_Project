@@ -105,6 +105,10 @@ class Trip_TeeTime(models.Model):
     def set_winning_team(self, team):
         self.Winning_Team = team
         self.save()
+    
+    def __str__(self):
+        return "{}_{}_{}".format(self.tee_time_date, self.tee_time_time, self.tee.course.course_name)
+    
 
     
 

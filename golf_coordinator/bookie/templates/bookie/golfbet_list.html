@@ -23,6 +23,7 @@
             <table class="table table-striped course-table justify-content-center">
                 <thead>
                     <tr class='course-row text-center' >
+                    <th scope="col">Bet Complete</th>
                     <th scope="col">Tee Time</th>
                     <th scope="col">Course</th>
                     <th scope="col">Submitter</th>
@@ -34,15 +35,20 @@
                 </thead>
                 <tbody>
                     {% for bet in golfbet_list %}
+                    {% if bet.closed == true %}
                     <tr>
+                        <td class="text-center" style='text-align: center'><i id="checkmark" class="fa-solid fa-circle-check fa-2xl" ></i></td>
                         <td class="text-center">{{bet.bet_tee_time.tee_time_time}} {{bet.bet_tee_time.tee_time_date}}</td>
+                        
                         <td class="text-center">{{bet.bet_tee_time.tee.course}}</td>
-                        <td class="text-center">{{bet.submitter}}</td>
-                        <td class="text-center">{{bet.opponent}}</td>
-                        <td class="text-center">{{bet.units}}</td>
+                        <td class="text-center">{{bet.submitter}} - {{bet.get_bet_scores.0}}</td>
+                        <td class="text-center">{{bet.opponent}} - {{bet.get_bet_scores.1}}</td>
+                        <td class="text-center">$ {{bet.units}}</td>
                         <td class="text-center">{{bet.bet_timestamp}}</td>
-                        <td class="text-center">{{bet.winner}}</td>
+                        <td class="text-center">{{bet.bet_winner}}</td>
                     </tr>
+                    {% else %}
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
