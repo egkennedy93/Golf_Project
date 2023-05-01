@@ -137,13 +137,21 @@ def bet_processing(teetime_pk):
                         submitter.distribute_units(bet.units)
                         opponent.distribute_units((-1*bet.units))
                         bet.bet_closed = True
+
                         bet.save()
+                        submitter.save()
+                        opponent.save()
+
                     if opponent_net_score['net_score'] < submitter_net_score['net_score']:
                         bet.bet_winner = opponent
                         opponent.distribute_units(bet.units)
                         submitter.distribute_units((-1*bet.units))
                         bet.bet_closed = True
+
                         bet.save()
+                        submitter.save()
+                        opponent.save()
+                        
                     else:
                        bet.bet_closed = True
                        bet.save()

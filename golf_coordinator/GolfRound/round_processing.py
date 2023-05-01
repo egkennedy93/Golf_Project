@@ -338,10 +338,10 @@ def update_team_scores(team_1, team_2, net_score):
         current_team_1_score.save()
         current_team_2_score.save()
     elif net_score > 0:
-        current_team_1_score.team_score + 1
+        current_team_1_score.team_score + decimal.Decimal(1)
         current_team_1_score.save()
     else:
-        current_team_2_score.team_score + 1
+        current_team_2_score.team_score + decimal.Decimal(1)
         current_team_2_score.save()
 
     return current_team_1_score, current_team_2_score
