@@ -3,6 +3,7 @@ from django import template
 from django.urls import reverse
 from Courses.models import Golf_Course, Golf_Tee
 from accounts.models import Golfer
+from decimal import Decimal
 
 
 
@@ -44,6 +45,13 @@ class Trip_Golfer(models.Model):
     def distribute_units(self, unit_amount):
         self.bet_winnings += unit_amount
 
+    def update_score(self, points_earned):
+        self.score + points_earned
+        self.save()
+
+    def full_name(self):
+        return '{} {}'.format(self.golfer.first_name, self.golfer.last_name)
+
 
 # teams need to be setup first in the team app, but is ued here to track team scores during the trip.
 class Trip_Team(models.Model):
@@ -54,6 +62,13 @@ class Trip_Team(models.Model):
 
     def __str__(self):
         return "{}".format(self.team)
+    
+    def update_score(self, points_earned):
+        self.team_score + Decimal(points_earned)
+        self.save()
+
+    def get_score(self):
+        return self.team_score
 
 
 class Trip_TeamMember(models.Model):

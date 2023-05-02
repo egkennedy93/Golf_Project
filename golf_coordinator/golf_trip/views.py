@@ -97,12 +97,14 @@ class TripStandingsTemplateView(TemplateView):
     team_1_members = 'N/A'
     team_2_members = 'N/A'
     try:  
-        teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan') 
-        team_1_members = Trip_TeamMember.objects.all().filter(team=teams[0]).order_by('-user__score')
-        team_2_members = Trip_TeamMember.objects.all().filter(team=teams[1]).order_by('-user__score')
+        teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan')
+        team_1_members = teams[0].members.all().order_by('-score')
+        team_2_members = teams[1].members.all().order_by('-score')
+        # team_1_members = Trip_TeamMember.objects.all().filter(team=teams[0]).order_by('-user__score')
+        # team_2_members = Trip_TeamMember.objects.all().filter(team=teams[1]).order_by('-user__score')
     except:
-        team_1_members = Trip_TeamMember.objects.all().filter(team=9)
-        team_2_members = Trip_TeamMember.objects.all().filter(team=9)
+        team_1_members = teams[2].members.all()
+        team_2_members = teams[2].members.all()
     
 
     completed_rounds = Trip_TeeTime.objects.all().filter(teeTime_Complete=True)

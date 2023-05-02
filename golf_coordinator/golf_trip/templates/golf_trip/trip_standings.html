@@ -16,11 +16,11 @@
             
                 <div class="row gx-5 align-items-center" id=scoreBottomLine>
                     <div class="col-lg-6">
-                        <h1 class="fw-bolder mb-3">{{team_1}}: {{team_1.team_score}} </h1>   
+                        <h1 class="fw-bolder mb-3">{{team_1}}: {{team_1.get_score}} </h1>   
                             <ul class="list-group">
                                 {% for player in team_1_members  %}
                                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        {{player.user.golfer.first_name}} {{player.user.golfer.last_name}}<span class="badge bg-danger rounded-pill">{{player.user.score}}</span>
+                                        {{player.full_name}}<span class="badge bg-danger rounded-pill">{{player.score}}</span>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -28,11 +28,11 @@
                     
                     </div>
                     <div class="col-lg-6">
-                        <h1 class="fw-bolder mb-3">{{team_2}}: {{team_2.team_score}} </h1>
+                        <h1 class="fw-bolder mb-3">{{team_2}}: {{team_2.get_score}} </h1>
                         <ul class="list-group">
                             {% for player in team_2_members  %}
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    {{player.user.golfer.first_name}} {{player.user.golfer.last_name}}<span class="badge bg-primary rounded-pill">{{player.user.score}}</span>
+                                    {{player.full_name}}<span class="badge bg-primary rounded-pill">{{player.score}}</span>
                                 </li>
                             {% endfor %}
                         </ul>

@@ -97,6 +97,7 @@ def RoundSubmissionView(request, teetime_pk):
         teetime_data.complete_round()
         teetime_data.save()
 
+        
         update_team_scores(processed_score_data[0][0]['team'],processed_score_data[1][0]['team'], processed_score_data[2]['net_score'])
         update_player_score(processed_score_data)
 
