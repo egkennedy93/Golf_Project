@@ -46,7 +46,6 @@ def BetTeeTimeView(request, teetime_pk):
 
 
         teetime_data = get_object_or_404(Trip_TeeTime, pk=teetime_pk)
-        print(teetime_data.net_rounds())
         raw_player_list = teetime_data.Players.all()
         player_list = []
         team_list = []

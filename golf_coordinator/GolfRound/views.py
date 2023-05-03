@@ -130,7 +130,7 @@ def RoundSubmissionView(request, teetime_pk):
             elif players_team.team.id == 8:
                 team_2.append(player)
             player_list = team_1+team_2
-
+        print(player_list)
         # now that the players have been organized to be by their teammate, need to grab the player meta
         for player in player_list:
             # player_list.append(player)
@@ -146,10 +146,10 @@ def RoundSubmissionView(request, teetime_pk):
                                                                                 ])                                                                      
                 return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
             else:
-                scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
-                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
-                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
-                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
+                scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0].full_name(), 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
+                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[1].full_name(), 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
+                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[2].full_name(), 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
+                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[3].full_name(), 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
                                                                                     ])                                                                      
                 return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
         except:

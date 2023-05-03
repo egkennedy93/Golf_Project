@@ -37,7 +37,7 @@ class Trip_Golfer(models.Model):
     bet_winnings = models.DecimalField(max_digits=14, decimal_places=4, null=True, default=0)
 
     def __str__(self):
-        return "{}".format(self.golfer.last_name)
+        return "{}".format(self.full_name())
     
     def get_team_object(self):
         return self.trip_team_set.all()
