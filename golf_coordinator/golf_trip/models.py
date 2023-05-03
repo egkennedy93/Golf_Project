@@ -43,11 +43,13 @@ class Trip_Golfer(models.Model):
         return self.trip_team_set.all()
     
     def distribute_units(self, unit_amount):
-        self.bet_winnings += unit_amount
+        self.bet_winnings += Decimal(str(unit_amount))
+        return
 
     def update_score(self, points_earned):
-        self.score + points_earned
+        self.score += Decimal(str(points_earned))
         self.save()
+        return self.score
 
     def full_name(self):
         return '{} {}'.format(self.golfer.first_name, self.golfer.last_name)
@@ -64,7 +66,7 @@ class Trip_Team(models.Model):
         return "{}".format(self.team)
     
     def update_score(self, points_earned):
-        self.team_score + Decimal(points_earned)
+        self.team_score += Decimal(str(points_earned))
         self.save()
 
     def get_score(self):

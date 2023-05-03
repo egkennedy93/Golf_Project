@@ -369,46 +369,38 @@ def update_player_score(processed_score_data):
         # t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).update_fields(score=t2p1_score+decimal.Decimal(.5))
         t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).get()
         t2p1.update_score(decimal.Decimal(.5))
-        t2p1.save()
 
         try:
             t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).get()
             t2p2.update_score(decimal.Decimal(.5))
-            t2p2.save()
         except:
             pass
-
-        
 
     elif processed_score_data[2]['net_score'] > 0:
 
         t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).get()
+        print(t1p1)
         t1p1.update_score(decimal.Decimal(.5))
-        t1p1.save()
         try:
             t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).get()
+            print(t1p2)
             t1p2.update_score(decimal.Decimal(.5))
-            t1p2.save()
         except:
             pass
 
     elif processed_score_data[2]['net_score'] == 0:
         t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).get()
         t1p1.update_score(decimal.Decimal(.25))
-        t1p1.save()
         try:
             t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).get()
             t1p2.update_score(decimal.Decimal(.25))
-            t1p2.save()
         except:
             pass
         t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).get()
         t2p1.update_score(decimal.Decimal(.25))
-        t2p1.save()
         try:
             t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).get()
             t2p2.update_score(decimal.Decimal(.25))
-            t2p2.save()
         except:
             pass
 
