@@ -37,7 +37,7 @@
                     {% for bet in golfbet_list %}
                     {% if bet.bet_closed %}
                       <tr>
-                        <td class="text-center" style='text-align: center'><i id="checkmark" class="fa-solid fa-circle-check fa-2xl" ></i></td>
+                        <td class="text-center" style='text-align: center; padding-right:35px'><i id="checkmark" class="fa-solid fa-circle-check fa-2xl" ></i></td>
                         <td class="text-center">{{bet.bet_tee_time.tee_time_time}} {{bet.bet_tee_time.tee_time_date}}</td>
                         <td class="text-center">{{bet.bet_tee_time.tee.course}}</td>
                         <td class="text-center">{{bet.submitter}} - {{bet.get_bet_scores.0}}</td>
