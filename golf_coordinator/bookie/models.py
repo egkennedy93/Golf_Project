@@ -33,6 +33,17 @@ class GolfBet(models.Model):
     bet_timestamp = models.DateTimeField(auto_now_add=True)
     bet_type = models.CharField(choices=CHOICES, default='1', max_length=255)
 
+    def get_bet_scores(self):
+        scores = []
+        if self.bet_closed:
+            winning_score = self.bet_tee_time.net_rounds().filter(round_golfer=self.submitter.golfer.last_name).values()[0]['net_score']
+            losing_score = self.bet_tee_time.net_rounds().filter(round_golfer=self.opponent.golfer.last_name).values()[0]['net_score']
+            scores.append(winning_score)
+            scores.append(losing_score)
+        else:
+            scores = [0,0]
+
+        return scores
 
     def __str__(self):
         return "{}_{}_{}_{}".format(self.bet_tee_time.id, self.submitter, self.opponent, self.bet_type)

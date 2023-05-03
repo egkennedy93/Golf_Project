@@ -3,6 +3,7 @@ from django import template
 from django.urls import reverse
 from Courses.models import Golf_Course, Golf_Tee
 from accounts.models import Golfer
+from decimal import Decimal
 
 
 
@@ -36,7 +37,22 @@ class Trip_Golfer(models.Model):
     bet_winnings = models.DecimalField(max_digits=14, decimal_places=4, null=True, default=0)
 
     def __str__(self):
-        return "{}".format(self.golfer.last_name)
+        return "{}".format(self.full_name())
+    
+    def get_team_object(self):
+        return self.trip_team_set.all()
+    
+    def distribute_units(self, unit_amount):
+        self.bet_winnings += Decimal(str(unit_amount))
+        return
+
+    def update_score(self, points_earned):
+        self.score += Decimal(str(points_earned))
+        self.save()
+        return self.score
+
+    def full_name(self):
+        return '{} {}'.format(self.golfer.first_name, self.golfer.last_name)
 
 
 # teams need to be setup first in the team app, but is ued here to track team scores during the trip.
@@ -48,6 +64,13 @@ class Trip_Team(models.Model):
 
     def __str__(self):
         return "{}".format(self.team)
+    
+    def update_score(self, points_earned):
+        self.team_score += Decimal(str(points_earned))
+        self.save()
+
+    def get_score(self):
+        return self.team_score
 
 
 class Trip_TeamMember(models.Model):
@@ -82,9 +105,27 @@ class Trip_TeeTime(models.Model):
     Winning_Score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
     Winning_Team = models.ForeignKey(Trip_Team, on_delete=models.PROTECT)
 
-    def teetime_bets(self, teetime_pk):
-        return self.golfbet_tee_time.all().filter(bet_tee_time=teetime_pk)
-        
+    def bets(self):
+        return self.golfbet_tee_time.all()
+    
+    def net_rounds(self):
+        return self.net_round_score_set.all()
+    
+    def complete_round(self):
+        self.teeTime_Complete = True
+        self.save()
+
+    def set_winning_score(self, score):
+        self.Winning_Score = score
+        self.save()
+
+    def set_winning_team(self, team):
+        self.Winning_Team = team
+        self.save()
+    
+    def __str__(self):
+        return "{}_{}_{}".format(self.tee_time_date, self.tee_time_time, self.tee.course.course_name)
+    
 
     
 

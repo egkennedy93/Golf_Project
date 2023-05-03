@@ -26,6 +26,7 @@
     margin-bottom: 0em;
 }
 
+
 /* #bet_icon:link{
     color:black;
 
@@ -35,3 +36,11 @@
     color:black;
 
 } */
+
+#checkmark:before{
+    text-align:center;
+    padding-top: 11px;
+    line-height:0em;
+    position: fixed;
+    color: #32e010;
+}

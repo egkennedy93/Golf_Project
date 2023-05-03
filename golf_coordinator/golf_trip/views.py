@@ -94,28 +94,38 @@ class TeamListView(ListView):
     
 class TripStandingsTemplateView(TemplateView):
     template_name = 'golf_trip/trip_standings.html'
-    team_1_members = 'N/A'
-    team_2_members = 'N/A'
-    try:  
-        teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan') 
-        team_1_members = Trip_TeamMember.objects.all().filter(team=teams[0]).order_by('-user__score')
-        team_2_members = Trip_TeamMember.objects.all().filter(team=teams[1]).order_by('-user__score')
-    except:
-        team_1_members = Trip_TeamMember.objects.all().filter(team=9)
-        team_2_members = Trip_TeamMember.objects.all().filter(team=9)
     
+    def get_context_data(self, *args, **kwargs):
+         # Call the base implementation first to get a context
+        context = super(TripStandingsTemplateView, self).get_context_data(**kwargs)
 
-    completed_rounds = Trip_TeeTime.objects.all().filter(teeTime_Complete=True)
-    
-    try:
-        team_1 = teams[0]
-        team_2 = teams[1]
-    except:
-        team_1 = 'N/A'
-        team_2 = 'N/A'
+        team_1_members = 'N/A'
+        team_2_members = 'N/A'
+        try:  
+            teams = Trip_Team.objects.all().filter(trip__trip_name='Michigan')
+            team_1_members = teams[0].members.all().order_by('-score')
+            team_2_members = teams[1].members.all().order_by('-score')
+        except:
+            team_1_members = teams[2].members.all()
+            team_2_members = teams[2].members.all()
+        
 
-    extra_context={'team_1': team_1, 'team_2': team_2,
-                   'team_1_members': team_1_members,
-                   'team_2_members': team_2_members,              
-                   'trip_events':Trip_Event.objects.all().filter(trip__trip_name='Michigan'),
-                   'completed_rounds': completed_rounds}
+        completed_rounds = Trip_TeeTime.objects.all().filter(teeTime_Complete=True)
+        
+        try:
+            team_1 = teams[0]
+            team_2 = teams[1]
+        except:
+            team_1 = 'N/A'
+            team_2 = 'N/A'
+
+        extra_context={'team_1': team_1, 'team_2': team_2,
+                    'team_1_members': team_1_members,
+                    'team_2_members': team_2_members,              
+                    'trip_events':Trip_Event.objects.all().filter(trip__trip_name='Michigan'),
+                    'completed_rounds': completed_rounds}
+
+        context.update(extra_context)
+
+        return context
+        
