@@ -154,13 +154,45 @@ def bet_processing(teetime_pk):
                     else:
                        bet.bet_closed = True
                        bet.save()
-                    
-
-                # the submitter is not in the teetime, so need to check his round
                 else:
-                    print("Bet is 2")
-                    pass
+                    day = teetime_pk.tee_time_date   
+                    # get the teetime associated with that submitter for the day
+                    submitter_tee_time = Trip_TeeTime.objects.all().filter(tee_time_date = day).filter(Players=submitter).get()
 
+                    if submitter_tee_time == True and teetime_pk == True:
+                        submitter_net_scores = submitter_tee_time.net_rounds()
+                        opponent_net_scores = teetime_pk.net_rounds()
+                        
+                        submitter_net_score = submitter_net_scores.filter(round_golfer=submitter.golfer.last_name).values()[0]
+                        opponent_net_score = opponent_net_scores.filter(round_golfer=opponent.golfer.last_name).values()[0]
+
+
+                    if submitter_net_score['net_score'] < opponent_net_score['net_score']:
+                        
+                        bet.bet_winner = submitter
+                        submitter.distribute_units(bet.units)
+                        opponent.distribute_units((-1*bet.units))
+                        bet.bet_closed = True
+
+                        bet.save()
+                        submitter.save()
+                        opponent.save()
+
+                    if opponent_net_score['net_score'] < submitter_net_score['net_score']:
+                        bet.bet_winner = opponent
+                        opponent.distribute_units(bet.units)
+                        submitter.distribute_units((-1*bet.units))
+                        bet.bet_closed = True
+
+                        bet.save()
+                        submitter.save()
+                        opponent.save()
+                        
+                    else:
+                       bet.bet_closed = True
+                       bet.save()
+
+                
 
             # if bet is equal to 'bet against team'
             if bet.bet_type == '2':

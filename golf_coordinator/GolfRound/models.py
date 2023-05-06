@@ -1,5 +1,5 @@
 from django.db import models
-from golf_trip.models import Trip_TeeTime
+from golf_trip.models import Trip_TeeTime, Trip_Golfer
 
 
     
@@ -7,6 +7,7 @@ from golf_trip.models import Trip_TeeTime
 class Round_Score(models.Model):
     tee_time = models.ForeignKey(Trip_TeeTime, on_delete=models.PROTECT)
     round_golfer = models.CharField(max_length=255)
+    golfer_pk = models.ForeignKey(Trip_Golfer, on_delete=models.PROTECT)
     golfer_index = models.DecimalField(decimal_places=1, max_digits=3)
     hole_1_score = models.IntegerField()
     hole_2_score = models.IntegerField()
@@ -36,6 +37,7 @@ class Round_Score(models.Model):
 class Net_Round_Score(models.Model):
     tee_time = models.ForeignKey(Trip_TeeTime, on_delete=models.PROTECT)
     round_golfer = models.CharField(max_length=255)
+    golfer_pk = models.ForeignKey(Trip_Golfer, on_delete=models.PROTECT)
     hole_1_score = models.IntegerField()
     hole_2_score = models.IntegerField()
     hole_3_score = models.IntegerField()
