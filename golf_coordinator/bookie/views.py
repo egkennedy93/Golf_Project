@@ -127,8 +127,8 @@ def bet_processing(teetime_pk):
                     # grabbing all the net_scores for the teetime
                     teetime_net_scores = teetime_pk.net_rounds()
                     
-                    submitter_net_score = teetime_net_scores.filter(round_golfer=submitter.golfer.last_name).values()[0]
-                    opponent_net_score = teetime_net_scores.filter(round_golfer=opponent.golfer.last_name).values()[0]
+                    submitter_net_score = teetime_net_scores.filter(round_golfer=submitter.full_name()).values()[0]
+                    opponent_net_score = teetime_net_scores.filter(round_golfer=opponent.full_name()).values()[0]
 
                     if submitter_net_score['net_score'] < opponent_net_score['net_score']:
                         
@@ -155,42 +155,42 @@ def bet_processing(teetime_pk):
                        bet.bet_closed = True
                        bet.save()
                 else:
-                    day = teetime_pk.tee_time_date   
-                    # get the teetime associated with that submitter for the day
-                    submitter_tee_time = Trip_TeeTime.objects.all().filter(tee_time_date = day).filter(Players=submitter).get()
 
-                    if submitter_tee_time == True and teetime_pk == True:
+                    # get the teetime associated with that submitter for the day
+                    submitter_tee_time = Trip_TeeTime.objects.all().filter(tee__course__course_name=bet.bet_tee_time.tee.course.course_name).filter(Players=submitter).get()
+
+                    if submitter_tee_time.teeTime_Complete == True and teetime_pk.teeTime_Complete == True:
                         submitter_net_scores = submitter_tee_time.net_rounds()
                         opponent_net_scores = teetime_pk.net_rounds()
                         
-                        submitter_net_score = submitter_net_scores.filter(round_golfer=submitter.golfer.last_name).values()[0]
-                        opponent_net_score = opponent_net_scores.filter(round_golfer=opponent.golfer.last_name).values()[0]
+                        submitter_net_score = submitter_net_scores.filter(round_golfer=submitter.full_name()).values()[0]
+                        opponent_net_score = opponent_net_scores.filter(round_golfer=opponent.full_name()).values()[0]
 
 
-                    if submitter_net_score['net_score'] < opponent_net_score['net_score']:
-                        
-                        bet.bet_winner = submitter
-                        submitter.distribute_units(bet.units)
-                        opponent.distribute_units((-1*bet.units))
-                        bet.bet_closed = True
+                        if submitter_net_score['net_score'] < opponent_net_score['net_score']:
+                            
+                            bet.bet_winner = submitter
+                            submitter.distribute_units(bet.units)
+                            opponent.distribute_units((-1*bet.units))
+                            bet.bet_closed = True
 
-                        bet.save()
-                        submitter.save()
-                        opponent.save()
+                            bet.save()
+                            submitter.save()
+                            opponent.save()
 
-                    if opponent_net_score['net_score'] < submitter_net_score['net_score']:
-                        bet.bet_winner = opponent
-                        opponent.distribute_units(bet.units)
-                        submitter.distribute_units((-1*bet.units))
-                        bet.bet_closed = True
+                        if opponent_net_score['net_score'] < submitter_net_score['net_score']:
+                            bet.bet_winner = opponent
+                            opponent.distribute_units(bet.units)
+                            submitter.distribute_units((-1*bet.units))
+                            bet.bet_closed = True
 
-                        bet.save()
-                        submitter.save()
-                        opponent.save()
-                        
+                            bet.save()
+                            submitter.save()
+                            opponent.save()
+                            
                     else:
-                       bet.bet_closed = True
-                       bet.save()
+                        bet.bet_closed = True
+                        bet.save()
 
                 
 

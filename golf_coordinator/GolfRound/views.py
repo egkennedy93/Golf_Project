@@ -177,8 +177,8 @@ class CompletedRoundView(DetailView):
 
         def convert_data_processing_format(player_scores):
             for player in player_scores:
-                player_team = Trip_Team.objects.all().filter(members__golfer__last_name=player['round_golfer']).values('team')[0]['team']
-                player['team'] = player_team
+                player_id = get_object_or_404(Trip_Golfer, pk=player['golfer_pk_id'])
+                player['team'] = player_id.get_team_object()[0].team
             return player_scores
 
 

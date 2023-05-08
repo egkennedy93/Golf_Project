@@ -349,7 +349,6 @@ def update_team_scores(team_1, team_2, net_score):
 
 
 def update_player_score(processed_score_data):
-    print(processed_score_data)
 
     team_1_player_1 = processed_score_data[0][0]['golfer_pk']
 
@@ -359,7 +358,6 @@ def update_player_score(processed_score_data):
         pass
 
     team_2_player_1 = processed_score_data[1][0]['golfer_pk']
-    print(team_2_player_1)
 
     try:
         team_2_player_2 = processed_score_data[1][1]['golfer_pk']
@@ -370,39 +368,37 @@ def update_player_score(processed_score_data):
     if processed_score_data[2]['net_score'] < 0:
 
         # t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).update_fields(score=t2p1_score+decimal.Decimal(.5))
-        t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer_id=team_2_player_1.pk).get()
+        t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_2_player_1.pk).get()
         t2p1.update_score(decimal.Decimal(.5))
 
         try:
-            t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer_id=team_2_player_2.pk).get()
+            t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_2_player_2.pk).get()
             t2p2.update_score(decimal.Decimal(.5))
         except:
             pass
 
     elif processed_score_data[2]['net_score'] > 0:
 
-        t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer_ide=team_1_player_1.pk).get()
-        print(t1p1)
+        t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_1_player_1.pk).get()
         t1p1.update_score(decimal.Decimal(.5))
         try:
-            t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer_id=team_1_player_2.pk).get()
-            print(t1p2)
+            t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_1_player_2.pk).get()
             t1p2.update_score(decimal.Decimal(.5))
         except:
             pass
 
     elif processed_score_data[2]['net_score'] == 0:
-        t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer_id=team_1_player_1.pk).get()
+        t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_1_player_1.pk).get()
         t1p1.update_score(decimal.Decimal(.25))
         try:
-            t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer_id=team_1_player_2.pk).get()
+            t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_1_player_2.pk).get()
             t1p2.update_score(decimal.Decimal(.25))
         except:
             pass
-        t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer_id=team_2_player_1.pk).get()
+        t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_2_player_1.pk).get()
         t2p1.update_score(decimal.Decimal(.25))
         try:
-            t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer_id=team_2_player_2.pk).get()
+            t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_2_player_2.pk).get()
             t2p2.update_score(decimal.Decimal(.25))
         except:
             pass
