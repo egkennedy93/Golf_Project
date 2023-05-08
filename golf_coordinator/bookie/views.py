@@ -3,12 +3,17 @@ from bookie.models import TeamVsTeam, GolfBet
 from bookie.forms import BetTeeTimeForm
 from django.views.generic import CreateView, ListView
 from django.shortcuts import get_object_or_404
-from golf_trip.models import Trip_TeeTime, Trip_TeamMember, Trip_Team, Trip_Golfer
+from golf_trip.models import Trip_TeeTime, Trip_TeamMember, Trip_Team, Trip_Golfer, Trip_Event
 from GolfRound.round_processing import course_handicap_calculation
 
 
 class GolfBetListView(ListView):
     model = GolfBet
+
+    def get_context_data(self, **kwargs):
+        context = super(GolfBetListView, self).get_context_data(**kwargs)
+        context['trip_dates'] = Trip_Event.objects.all().filter(trip__trip_name='Michigan').distinct()
+        return context
     
 
 class BetTVTCreateView(CreateView):

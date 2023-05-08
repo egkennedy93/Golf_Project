@@ -8,14 +8,25 @@
     <li class="nav-item" role="presentation">
       <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">All Bets</button>
     </li>
-
-    <li class="nav-item" role="presentation">
+    {% for day in trip_dates %}
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bet-tab-pane-{{forloop.counter0}}" type="button" role="tab" aria-controls="bet-tab-pane-{{forloop.counter0}}" aria-selected="false">{{day.course.course.course_name}}</button>
+      </li>
+    
+  
+    {% comment %} <li class="nav-item" role="presentation">
       <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Profile</button>
     </li>
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Contact</button>
-    </li>
-  </ul>
+    </li> {% endcomment %}
+    {% endfor %}
+</ul>
+
+    
+    
+
+
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
         <div class="text-center my-5">
@@ -63,8 +74,55 @@
             </table>
         </div>
     </div>
-    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">def</div>
-    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">ghi</div>
+    {% for day in trip_dates %}
+    <div class="tab-pane fade" id="bet-tab-pane-{{forloop.counter0}}" role="tabpanel" aria-labelledby="bet-tab-{{forloop.counter0}}" tabindex="0">{{day.course.course.course_name}}
+      <div class="text-center my-5">
+        <h1 class="fw-bolder mb-3" id="currentStandingsText">Bets for {{day.course.course.course_name}}</h1>
+        <table class="table table-striped course-table justify-content-center">
+            <thead>
+                <tr class='course-row text-center' >
+                <th scope="col">Bet Status</th>
+                <th scope="col">Tee Time</th>
+                <th scope="col">Course</th>
+                <th scope="col">Submitter</th>
+                <th scope="col">Opponent</th>
+                <th scope="col">Wager</th>
+                <th scope="col">Time Wager Placed</th>
+                <th scope="col">Winner</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bet in golfbet_list %}
+                {% if bet.bet_closed %}
+                  <tr>
+                    <td class="text-center" style='text-align: center; padding-right:35px'><i id="checkmark" class="fa-solid fa-circle-check fa-2xl" ></i></td>
+                    <td class="text-center">{{bet.bet_tee_time.tee_time_time}} {{bet.bet_tee_time.tee_time_date}}</td>
+                    <td class="text-center">{{bet.bet_tee_time.tee.course}}</td>
+                    <td class="text-center">{{bet.submitter}} - {{bet.get_bet_scores.0}}</td>
+                    <td class="text-center">{{bet.opponent}} - {{bet.get_bet_scores.1}}</td>
+                    <td class="text-center">$ {{bet.units}}</td>
+                    <td class="text-center">{{bet.bet_timestamp}}</td>
+                    <td class="text-center">{{bet.bet_winner}}</td>
+                  </tr>
+                {% else %}
+                  <tr>
+                    <td class="text-center" style='text-align: center'>Locked In</td>
+                    <td class="text-center">{{bet.bet_tee_time.tee_time_time}} {{bet.bet_tee_time.tee_time_date}}</td>
+                    <td class="text-center">{{bet.bet_tee_time.tee.course}}</td>
+                    <td class="text-center">{{bet.submitter}}</td>
+                    <td class="text-center">{{bet.opponent}}</td>
+                    <td class="text-center">$ {{bet.units}}</td>
+                    <td class="text-center">{{bet.bet_timestamp}}</td>
+                    <td class="text-center">{{bet.bet_winner}}</td>
+                  </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    </div>
+    {% endfor %}
   </div>
 
 {% endblock %}

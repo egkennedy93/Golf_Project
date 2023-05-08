@@ -6,7 +6,7 @@
 <div class="row gx-5">
     
         {% for teetime in trip_teetime_list %}
-            <div class="card" style="width: 18rem;">
+            <div class="card shadow-sm" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{teetime.tee_time_time}}<span style="float: right" class="fa-solid fa-circle-exclamation" data-toggle="popover" data-bs-html="true" title="Tee Time Details" 
                                                                             data-bs-content="Course: {{ teetime.tee.course.course_name}}<br/>
