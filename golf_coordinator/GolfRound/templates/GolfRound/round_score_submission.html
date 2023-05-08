@@ -38,33 +38,33 @@
           <th class="th-score">17</th>
           <th class="th-score">18</th>
         </tr>
-        <tr>
+        <tr class="bg-info" style="border-bottom: black;">
+          <th class="th-score" >Par</th>
           <th class="th-score" ></th>
-          <th class="th-score" > </th>
-          <th class="th-score" >{{teetime_data.tee.hole_1_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_2_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_3_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_4_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_5_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_6_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_7_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_8_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_9_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_10_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_11_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_12_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_13_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_14_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_15_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_16_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_17_yardage}}</th>
-          <th class="th-score" >{{teetime_data.tee.hole_18_yardage}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_1_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_2_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_3_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_4_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_5_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_6_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_7_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_8_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_9_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_10_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_11_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_12_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_13_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_14_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_15_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_16_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_17_par}}</th>
+          <th class="th-score" >{{teetime_data.tee.hole_18_par}}</th>
         </tr>
         </thead>
         <tbody>
           {{ scoreformset.management_form }}
           {% for scoreform in scoreformset %}
-          <tr>
+          <tr style="border-bottom: black;">
             <th class="td-player">{{scoreform.round_golfer}}</th>
             <th class="td-player">{{scoreform.golfer_index}}</th>
             <td class="td-score">{{scoreform.hole_1_score}}</td>
@@ -93,28 +93,7 @@
          {% endfor %} 
           </tbody>
           <tfoot>
-          <tr style="border-bottom: black;">
-            <th class="th-score" >Par</th>
-            <th class="th-score" ></th>
-            <th class="th-score" >{{teetime_data.tee.hole_1_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_2_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_3_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_4_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_5_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_6_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_7_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_8_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_9_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_10_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_11_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_12_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_13_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_14_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_15_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_16_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_17_par}}</th>
-            <th class="th-score" >{{teetime_data.tee.hole_18_par}}</th>
-          </tr>
+          
           <tr class="bg-dark text-white">
             <th class="th-score" >Index</th>
             <th class="th-score" ></th>

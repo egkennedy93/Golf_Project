@@ -14,7 +14,7 @@
     <h4> {{object.gametype}}
     <table class="table" id='table1' style="table-layout:fixed">
       <thead>
-        <tr>
+        <tr class="bg-dark text-white" style="vertical-align:middle">
           <th class="th-score">Golfer</th>
           <th class="th-score">CHCP</th>
           <th class="th-score">1</th>
@@ -37,32 +37,33 @@
           <th class="th-score">18</th>
           <th class="th-score">Total Score</th>
         </tr>
-        <tr>
+        <tr class="bg-info bg-gradient" style="border-top: black;">
+          <th class="th-score" >Par</th>
           <th class="th-score" ></th>
-          <th class="th-score" > </th>
-          <th class="th-score" >{{object.tee.hole_1_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_2_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_3_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_4_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_5_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_6_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_7_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_8_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_9_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_10_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_11_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_12_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_13_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_14_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_15_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_16_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_17_yardage}}</th>
-          <th class="th-score" >{{object.tee.hole_18_yardage}}</th>
+          <th class="th-score" >{{object.tee.hole_1_par}}</th>
+          <th class="th-score" >{{object.tee.hole_2_par}}</th>
+          <th class="th-score" >{{object.tee.hole_3_par}}</th>
+          <th class="th-score" >{{object.tee.hole_4_par}}</th>
+          <th class="th-score" >{{object.tee.hole_5_par}}</th>
+          <th class="th-score" >{{object.tee.hole_6_par}}</th>
+          <th class="th-score" >{{object.tee.hole_7_par}}</th>
+          <th class="th-score" >{{object.tee.hole_8_par}}</th>
+          <th class="th-score" >{{object.tee.hole_9_par}}</th>
+          <th class="th-score" >{{object.tee.hole_10_par}}</th>
+          <th class="th-score" >{{object.tee.hole_11_par}}</th>
+          <th class="th-score" >{{object.tee.hole_12_par}}</th>
+          <th class="th-score" >{{object.tee.hole_13_par}}</th>
+          <th class="th-score" >{{object.tee.hole_14_par}}</th>
+          <th class="th-score" >{{object.tee.hole_15_par}}</th>
+          <th class="th-score" >{{object.tee.hole_16_par}}</th>
+          <th class="th-score" >{{object.tee.hole_17_par}}</th>
+          <th class="th-score" >{{object.tee.hole_18_par}}</th>
         </tr>
+        
         </thead>
         <tbody>
           {% for player in player_raw_scores %}
-          <tr>
+          <tr style="vertical-align:middle">
             <th class="td-player" style="border-bottom: 0;">{{player|index:'round_golfer'}}</th>
             <th class="td-player" style="border-bottom: 0;">{{player|index:'golfer_index'}}</th>
             <td class="td-score">{{player|index:'hole_1_score'}}</td>
@@ -90,7 +91,7 @@
             <td class="td-post-score">Team: {{i.team}} </td>
             {% endfor %} {% endcomment %}
           
-            <tr>
+            <tr style="vertical-align:middle">
             <td class="td-post-score">Team: {{player|index:'team'}}</td>
             <td class="td-post-score"> </td>
             <td class="td-post-score">{{player_net_scores|index:forloop.counter0|index:'hole_1_score'}}</td>
@@ -116,29 +117,8 @@
          {% endfor %} 
           </tbody>
           <tfoot>
-            <tr>
-              <th class="th-score" >Par</th>
-              <th class="th-score" ></th>
-              <th class="th-score" >{{object.tee.hole_1_par}}</th>
-              <th class="th-score" >{{object.tee.hole_2_par}}</th>
-              <th class="th-score" >{{object.tee.hole_3_par}}</th>
-              <th class="th-score" >{{object.tee.hole_4_par}}</th>
-              <th class="th-score" >{{object.tee.hole_5_par}}</th>
-              <th class="th-score" >{{object.tee.hole_6_par}}</th>
-              <th class="th-score" >{{object.tee.hole_7_par}}</th>
-              <th class="th-score" >{{object.tee.hole_8_par}}</th>
-              <th class="th-score" >{{object.tee.hole_9_par}}</th>
-              <th class="th-score" >{{object.tee.hole_10_par}}</th>
-              <th class="th-score" >{{object.tee.hole_11_par}}</th>
-              <th class="th-score" >{{object.tee.hole_12_par}}</th>
-              <th class="th-score" >{{object.tee.hole_13_par}}</th>
-              <th class="th-score" >{{object.tee.hole_14_par}}</th>
-              <th class="th-score" >{{object.tee.hole_15_par}}</th>
-              <th class="th-score" >{{object.tee.hole_16_par}}</th>
-              <th class="th-score" >{{object.tee.hole_17_par}}</th>
-              <th class="th-score" >{{object.tee.hole_18_par}}</th>
-            </tr>
-            <tr>
+           
+            <tr class="bg-dark text-white">
               <th class="th-score" >Index</th>
               <th class="th-score" ></th>
               <th class="th-score tee-index" >{{object.tee.hole_1_index}}</th>
@@ -159,13 +139,14 @@
               <th class="th-score tee-index" >{{object.tee.hole_16_index}}</th>
               <th class="th-score tee-index" >{{object.tee.hole_17_index}}</th>
               <th class="th-score tee-index" >{{object.tee.hole_18_index}}</th>
+              <th class="th-score" > </th>
             </tr>
             <tr> 
               <td></td>
             </tr>
-            <tr>
-              <th class="th-score" >{{ team_1|index:0|index:0|index:'round_golfer'}} and {{team_1|index:0|index:1|index:'round_golfer'}} VS <br> {{team_2|index:0|index:0|index:'round_golfer'}} and {{team_2|index:0|index:1|index:'round_golfer'}}</th>
-              <th class="th-score">{{team_1|index:0|index:0|index:'round_golfer'}} and {{team_1|index:0|index:1|index:'round_golfer'}}</th>
+            <tr class="bg-danger">
+              <th class="th-score" >{{ team_1|index:0|index:0|index:'team'}} VS <br> {{team_2|index:0|index:0|index:'team'}}</th>
+              <td></td>
               <td class="td-score">{{match_results|index:'team_1'|index:0}}</td>
               <td class="td-score">{{match_results|index:'team_1'|index:1}}</td>
               <td class="td-score">{{match_results|index:'team_1'|index:2}}</td>
@@ -189,13 +170,13 @@
         </tfoot>
       </table>
        <div class="container text-center">
-        <div class="row">
+        <div class="row bg-warning">
           {% if match_results|index:'net_score' == 0 %}
             <h1>DRAW</h1>
           {% elif match_results|index:'net_score' > 0 %}
             <h1>{{ team_1|index:0|index:0|index:'round_golfer'}} and {{team_1|index:0|index:1|index:'round_golfer'}} WIN</h1>
           {% else %}
-            <h1>{{ team_1|index:0|index:0|index:'round_golfer'}} and {{team_1|index:0|index:1|index:'round_golfer'}} LOST</h1>
+            <h1>{{ team_2|index:0|index:0|index:'round_golfer'}} and {{team_2|index:0|index:1|index:'round_golfer'}} WIN</h1>
         {% endif %}
         </div> 
       </div>
