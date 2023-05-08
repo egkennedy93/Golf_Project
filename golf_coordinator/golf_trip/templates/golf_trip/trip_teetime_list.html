@@ -1,76 +1,49 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-<div class="row gx-5">
+<div class='container'>
     <h1 style='text-align: center; padding-bottom: 15px;'>Tee Time Schedule</h1>
-    {% for teetime in trip_teetime_list %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">{{teetime.tee_time_time}}<span style="float: right" class="fa-solid fa-circle-exclamation" data-toggle="popover" data-bs-html="true" title="Tee Time Details" 
-                                                                    data-bs-content="Course: {{ teetime.tee.course.course_name}}<br/>
-                                                                                     Tee: <a href='{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}' class='card-link'>{{teetime.tee.tee_name}}</a><br/>
-                                                                                     Format: {{teetime.gametype}}"></span></h5> 
-                
-            {% comment %} <a href="{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}" class="card-link">{{teetime.tee.tee_name}}</a>
-            <h6 class="card-subtitle mb-2 text-muted"></h6>
-            <h6 class="card-subtitle mb-2 text-muted">Format: {{teetime.gametype}}</h6> {% endcomment %}
-            {% if not teetime.Players.all %}
-                <p class="card-text">No players assigned </p> 
-            {% else %}
-                {% for players in teetime.Players.all  %}
-                    <p class="card-text player-text">Player #{{forloop.counter}}: {{ players.golfer.first_name}} {{ players.golfer.last_name}}</p>
-                {% endfor %}
-            {% endif %}
-            {% if teetime.teeTime_Complete is True %}
-                <a></a>
-            {% else %}
-                <a class="btn btn-success btn-sm" href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score  <i class="fa-solid fa-pencil"></i></a>  
-                {% comment %} <button id='bet_modal_{{forloop.counter0}}' style="float: right;" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#BetSelectModal_{{forloop.counter0}}"> Place Bet  <i class="fa-solid fa-coins fa-xl"></i>
-                </button> {% endcomment %}
-                <a style="float: right;" class="btn btn-primary btn-sm" href="{% url 'bookie:bet_teetime' teetime_pk=teetime.pk %}" class="card-link"> Place Bet <i class="fa-solid fa-coins fa-xl"></i></a>
-            {% endif %}
-               
-
-            {% if teetime.teeTime_Complete is True %}
-            <a class="btn btn-success btn-sm" href="{% url 'round:completed_round' pk=teetime.pk %}" class="card-link" style="padding-right:15px">View Card <i class="fa-solid fa-binoculars"></i></a>
-            <button style="float: right; padding-left:15px"class="btn btn-danger btn-sm">Closed <i class="fa-solid fa-coins fa-xl"></i>
-                {% comment %} <a href="{% url 'round:completed_round' pk=teetime.pk %}" class="card-link">view scorecard</a> <span style="float: right">Bets Closed</span> {% endcomment %}
-                
-            {% else %}
-                <a></a>
-            {% endif %}
-            
-            
-        </div>
-        
-    </div>
-     {% comment %} <!-- Modal -->
-     <div class="modal fade" id="BetSelectModal_{{forloop.counter0}}" tabindex="-1" aria-labelledby="BetSelectModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Select Bet Type</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {% include "bookie/bet_tee_time.html" with tee_time=teetime.pk players=teetime.Players.all %}
-            </div>
-        </div>
-        </div>
-    </div> {% endcomment %}
+<div class="row gx-5">
     
-{% endfor %}
-</div>
-<div class="container">
-    <a class="btn btn-primary" style="float:left" onClick="javascript:history.go(-1);" role="button">Back</a>
-</div>
+        {% for teetime in trip_teetime_list %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{teetime.tee_time_time}}<span style="float: right" class="fa-solid fa-circle-exclamation" data-toggle="popover" data-bs-html="true" title="Tee Time Details" 
+                                                                            data-bs-content="Course: {{ teetime.tee.course.course_name}}<br/>
+                                                                                            Tee: <a href='{% url 'courses:golf_tee_detail' pk=teetime.tee.pk %}' class='card-link'>{{teetime.tee.tee_name}}</a><br/>
+                                                                                            Format: {{teetime.gametype}}"></span>
+                    </h5> 
+                    {% if not teetime.Players.all %}
+                        <p class="card-text">No players assigned </p> 
+                    {% else %}
+                        {% for players in teetime.Players.all  %}
+                            <p class="card-text player-text">Player #{{forloop.counter}}: {{ players.golfer.first_name}} {{ players.golfer.last_name}}</p>
+                        {% endfor %}
+                    {% endif %}
 
+                    {% if teetime.teeTime_Complete is True %}
+                        <a></a>
+                    {% else %}
+                        <a class="btn btn-success btn-sm" href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score  <i class="fa-solid fa-pencil"></i></a>  
+                        <a style="float: right;" class="btn btn-primary btn-sm" href="{% url 'bookie:bet_teetime' teetime_pk=teetime.pk %}" class="card-link"> Place Bet <i class="fa-solid fa-coins fa-xl"></i></a>
+                    {% endif %}
 
+                    {% if teetime.teeTime_Complete is True %}
+                    <a class="btn btn-success btn-sm" href="{% url 'round:completed_round' pk=teetime.pk %}" class="card-link" style="padding-right:15px">View Card <i class="fa-solid fa-binoculars"></i></a>
+                    <button style="float: right; padding-left:15px"class="btn btn-danger btn-sm">Closed <i class="fa-solid fa-coins fa-xl"></i>
+                    {% else %}
+                        <a></a>
+                    {% endif %}       
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
-
+    
+    <a class="btn btn-primary" style="margin-top:75px; " onClick="javascript:history.go(-1);" role="button">Back</a>
 
 
 {% endblock %}
+
 
 

@@ -12,13 +12,11 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
-    {{ form.errors }}
-{{ form.non_field_errors }}
     <h1> {{teetime_data.tee.course.course_name}} - {{teetime_data.tee.tee_name}}</h1>
     <h4> {{teetime_data.gametype}}
     <table class="table" id='table1' >
       <thead>
-        <tr>
+        <tr class="bg-dark text-white">
           <th class="th-score" >Golfer</th>
           <th class="th-score" >Course HCP</th>
           <th class="th-score">1</th>
@@ -95,7 +93,7 @@
          {% endfor %} 
           </tbody>
           <tfoot>
-          <tr>
+          <tr style="border-bottom: black;">
             <th class="th-score" >Par</th>
             <th class="th-score" ></th>
             <th class="th-score" >{{teetime_data.tee.hole_1_par}}</th>
@@ -117,7 +115,7 @@
             <th class="th-score" >{{teetime_data.tee.hole_17_par}}</th>
             <th class="th-score" >{{teetime_data.tee.hole_18_par}}</th>
           </tr>
-          <tr>
+          <tr class="bg-dark text-white">
             <th class="th-score" >Index</th>
             <th class="th-score" ></th>
             <th class="th-score tee-index" >{{teetime_data.tee.hole_1_index}}</th>
