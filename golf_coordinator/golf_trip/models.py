@@ -128,8 +128,6 @@ class Trip_TeeTime(models.Model):
     
 
     
-
-
 # Trip event is ment to be each round of golf. This can occur multipel times on the same day. 
 class Trip_Event(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)

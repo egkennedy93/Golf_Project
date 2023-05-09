@@ -5,6 +5,9 @@ from django.views.generic import CreateView, ListView
 from django.shortcuts import get_object_or_404
 from golf_trip.models import Trip_TeeTime, Trip_TeamMember, Trip_Team, Trip_Golfer, Trip_Event
 from GolfRound.round_processing import course_handicap_calculation
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 class GolfBetListView(ListView):
@@ -12,7 +15,7 @@ class GolfBetListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(GolfBetListView, self).get_context_data(**kwargs)
-        context['trip_dates'] = Trip_Event.objects.all().filter(trip__trip_name='Michigan').distinct()
+        context['trip_dates'] = Trip_Event.objects.all().filter(trip__trip_name='Michigan').values('event_time').distinct()
         return context
     
 
@@ -45,7 +48,10 @@ def BetTeeTimeView(request, teetime_pk):
 
 
          # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
-        return render(request,'bookie/successful_bet_placed.html', {'betteetime': betteetime, 'teetime_pk': 'teetime_pk'})
+        # return render(request, 'golf_trip/trip_event_list.html', {'bet': teetime_data.tee_time_date})
+        messages.success(request, "Your bet has been placed!")
+        return HttpResponseRedirect(reverse('golf_trip:event_teetime', kwargs={'event_day': teetime_data.tee_time_date}),{'redirect': True})
+        # return render(request,'bookie/successful_bet_placed.html', {'betteetime': betteetime, 'teetime_pk': 'teetime_pk'})
 
     elif request.method == "GET":
 

@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
 <div class='container'>
+    
     <h1 style='text-align: center; padding-bottom: 15px;'>Tee Time Schedule</h1>
 <div class="row gx-5">
-    
         {% for teetime in trip_teetime_list %}
             <div class="card shadow-sm" style="width: 18rem;">
                 <div class="card-body">
@@ -40,7 +40,7 @@
     </div>
 
     
-    <a class="btn btn-primary" style="margin-top:75px; " onClick="javascript:history.go(-1);" role="button">Back</a>
+    <a class="btn btn-primary" style="margin-top:75px; " href="{% url 'golf_trip:events_list' %}" role="button">Back</a>
 
 
 {% endblock %}

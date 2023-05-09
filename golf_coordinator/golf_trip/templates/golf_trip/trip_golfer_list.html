@@ -4,30 +4,40 @@
 {% block content %}
 
 
-<h1>Player List</h1>
-
-<table class="table">
+<h1 style="text-align:center">Player List</h1>
+<div class="container shadow">
+<table class="table" style="text-align:center">
     <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
+          <th scope="col">Name</th>
           <th scope="col">Handicap</th>
+          <th scope="col">Contributed Score</th>
+          <th scope="col">Balance</th>
         </tr>
     </thead>
         <tbody>
             {% for golfer in trip_golfer_list %}
             <tr>
                 <th scope="row">{{forloop.counter}}</th>
-                    <td>{{golfer.golfer.first_name}}</td>
-                    <td>{{golfer.golfer.last_name}}</td>
+                    <td>{{golfer.full_name}}</td>
                     <td>{{golfer.hcp_index}}</td>
+                    <td>{{golfer.score}}</td>
+                    {% if golfer.bet_winnings < 0 %}
+                    <td class='bg-danger'>${{golfer.bet_winnings}}</td>
+                    {% elif golfer.bet_winnings > 0 %}
+                    <td class='bg-success'>${{golfer.bet_winnings}}</td>
+                    {% else %}
+                    <td>${{golfer.bet_winnings}}</td>
+                    {% endif %}
+                    
             </tr>
             {% empty %}
             <img class="img-fluid rounded mb-4 mb-lg-0" src="static 'Lost-Golf-Balls-Feature-Image.webp" alt="..." />
             {% endfor %}
       </tbody>
   </table>
+</div>
 
 {% endblock  %}
 
