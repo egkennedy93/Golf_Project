@@ -15,7 +15,7 @@ class GolfBetListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(GolfBetListView, self).get_context_data(**kwargs)
-        context['trip_dates'] = Trip_Event.objects.all().filter(trip__trip_name='Michigan').values('event_time').distinct()
+        context['trip'] = Trip_Event.objects.all().filter(trip__trip_name='Michigan')
         return context
     
 
