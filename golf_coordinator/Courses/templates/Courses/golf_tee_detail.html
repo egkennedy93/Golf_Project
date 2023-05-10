@@ -9,10 +9,113 @@ of a scorecard. {% endcomment %}
 <head>
     <link rel="stylesheet" href="{% static 'css/courses.css' %}">
 </head>
-<div class="centerstage">
+
+
+<div class="table-responsive mx-3">
     <h1> {{golf_tee.course}} - {{golf_tee.tee_name}}</h1>
-    
-    <div class="container text-center">
+
+  <div class="row" id="details_row">
+    <h4>Course Par: {{golf_tee.course_par}}</h4>
+    <h4>Rating: {{golf_tee.rating}}</h4>
+    <div class="col">Slope: {{golf_tee.slope}}</div>
+    <div class="col">Total Yds: {{golf_tee.yardage}}</div>
+  <div>
+    <head>
+      <link rel="stylesheet" href="{% static 'css/golfround.css' %}">
+      <script type="text/javascript" src="{% static 'js/round_submission.js' %}"></script>
+  </head>
+    <table class="table rounded rounded-3 overflow-hidden" id='table1'>
+      <thead>
+        <tr class="bg-dark text-white" style="vertical-align:middle">
+          <th class="th-score border-end-0">Holes:</th>
+          <th class="th-score">1</th>
+          <th class="th-score">2</th>
+          <th class="th-score">3</th>
+          <th class="th-score">4</th>
+          <th class="th-score">5</th>
+          <th class="th-score">6</th>
+          <th class="th-score">7</th>
+          <th class="th-score">8</th>
+          <th class="th-score">9</th>
+          <th class="th-score">10</th>
+          <th class="th-score">11</th>
+          <th class="th-score">12</th>
+          <th class="th-score">13</th>
+          <th class="th-score">14</th>
+          <th class="th-score">15</th>
+          <th class="th-score">16</th>
+          <th class="th-score">17</th>
+          <th class="th-score">18</th>
+        </tr>
+        <tr class=" bg-gradient" style="border-top: black;">
+          <th class="th-score">Par</th>
+          <th class="th-score" >{{golf_tee.hole_1_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_2_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_3_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_4_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_5_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_6_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_7_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_8_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_9_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_10_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_11_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_12_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_13_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_14_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_15_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_16_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_17_par}}</th>
+          <th class="th-score" >{{golf_tee.hole_18_par}}</th>
+        </tr>
+        <tr class="bg-gradient" style="border-top: black;">
+          <th class="th-score" >Yardage</th>
+          <th class="th-score" >{{golf_tee.hole_1_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_2_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_3_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_4_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_5_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_6_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_7_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_8_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_9_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_10_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_11_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_12_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_13_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_14_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_15_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_16_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_17_yardage}}</th>
+          <th class="th-score" >{{golf_tee.hole_18_yardage}}</th>
+        </tr>
+     
+      </thead>
+        <tfoot>
+          <tr class="bg-dark text-white">
+            <th class="th-score" >Index</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_1_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_2_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_3_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_4_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_5_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_6_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_7_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_8_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_9_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_10_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_11_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_12_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_13_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_14_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_15_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_16_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_17_index}}</th>
+            <th class="th-score tee-index" >{{golf_tee.hole_18_index}}</th>
+          </tr>
+        </tfoot>
+    </table>
+    {% comment %} <div class="container text-center">
         <div class="row" id="details_row">
             <div class="col details">Course Par: {{golf_tee.course_par}}</div>
             <div class="col details">Rating: {{golf_tee.rating}}</div>
@@ -103,7 +206,7 @@ of a scorecard. {% endcomment %}
           <div class="col tee_index">{{golf_tee.hole_17_index}}</div>
           <div class="col tee_index">{{golf_tee.hole_18_index}}</div>
         </div>
-        <div style="padding-top:5%"> 
+        <div style="padding-top:5%">  {% endcomment %}
         <a class="btn btn-primary" style="float:left" onClick="javascript:history.go(-1);" role="button">Back</a>
         </div>
     </div>

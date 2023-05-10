@@ -38,6 +38,11 @@ class PlayersListView(ListView):
         queryset = Trip_Golfer.objects.all().filter(trip__trip_name='Michigan').order_by('golfer__first_name')
         
         return queryset
+    
+
+class PlayersDetailView(DetailView):
+    model = Trip_Golfer
+    template_name='golf_trip/trip_golfer_detail.html'
 
 # 
 class EventListView(ListView):

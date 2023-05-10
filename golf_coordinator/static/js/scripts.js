@@ -1,9 +1,8 @@
 
 // for the course list, highlights the rows on hover
 $(document).ready(function(){
-  $(".course-row").not(':first').hover(
+  $(".course-row").hover(
     function () {
-      $(this).css("background","gray");
       $(this).css("cursor", "pointer");
     }, 
     function () {
@@ -13,7 +12,7 @@ $(document).ready(function(){
 
 // When the row for the course list (which is tees) is selected, trigger the href asocaited with the row
 $(document).ready(function(){
-  $('.course-row').not(':first').click(function(){
+  $('.course-row').click(function(){
     window.location = $(this).data('href');
     return false;
   });

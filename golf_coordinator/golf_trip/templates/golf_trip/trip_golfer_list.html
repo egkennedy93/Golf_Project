@@ -18,7 +18,7 @@
     </thead>
         <tbody>
             {% for golfer in trip_golfer_list %}
-            <tr>
+            <tr class='course-row' data-href="{% url 'golf_trip:player_detail' pk=golfer.id%}">
                 <th scope="row">{{forloop.counter}}</th>
                     <td>{{golfer.full_name}}</td>
                     <td>{{golfer.hcp_index}}</td>
