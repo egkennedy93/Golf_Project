@@ -44,6 +44,13 @@ class PlayersDetailView(DetailView):
     model = Trip_Golfer
     template_name='golf_trip/trip_golfer_detail.html'
 
+    # def get_context_data(self, **kwargs):
+    #     context = super(PlayersDetailView, self).get_context_data(**kwargs)
+
+    #     bet_info = 
+            
+    
+
 # 
 class EventListView(ListView):
     model = Trip_Event

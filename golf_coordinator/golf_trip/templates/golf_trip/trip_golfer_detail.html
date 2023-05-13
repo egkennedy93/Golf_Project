@@ -4,7 +4,48 @@
 
 
 {% block content %}
+<div class="container-fluid">
+    <div class="row py-5 ps-5 border-bottom shadow">
+        <div class="col-9">
+            {% for team in trip_golfer.get_team_object  %}
+                <h1>{{trip_golfer.full_name}}</h1>
+                <h4>Team {{team}}</h4>
+            {% endfor %}
+        </div>
+        <div class="col-3">
+            <h1>HCP: {{trip_golfer.hcp_index}}</h1>
+        </div>
+    </div>
+    <div class="row py-2 ps-2">
+        <div class="col-2">
+            <h1 class="text-center">Bets</h1>
+            {% for bet in trip_golfer.submitter.all %}
+                <div class="container border shadow-sm">
+                    <div class="row border-bottom fw-bold">{{bet.bet_tee_time.tee_time_date}} - {{bet.bet_tee_time.tee_time_time}}</div>
+                    <div class="row">Opponent: {{bet.opponent}}</div>
+                    <div class="row">Wager: {{bet.units}}</div>
+                    {% if bet.bet_closed %}
+                        <div class="row">Complete</div>
+                    {% else %}
+                        <div class="row">In Progress</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    
+        <div class="col-8 text-center">
+            <h1 class="text-center">Schedule</h1>
+            {% for tee_time in trip_golfer.get_tee_times  %}
+                {{tee_time.tee.course.course_name}}
+            
+            {% endfor %}
 
-{{trip_golfer.full_name}}
 
+        </div>
+
+
+    </div>
+
+
+</div>
 {% endblock %}
