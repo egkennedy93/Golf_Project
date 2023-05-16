@@ -57,6 +57,12 @@ class Trip_Golfer(models.Model):
     def get_tee_times(self):
         tee_times = Trip_TeeTime.objects.all().filter(Players=self.id)
         return tee_times
+    
+    def get_net_rounds(self):        
+        return self.net_round_score_set.all()
+
+    def get_gross_rounds(self):
+        return self.round_score_set.all()
 
 
 # teams need to be setup first in the team app, but is ued here to track team scores during the trip.

@@ -3,8 +3,10 @@ from django.views.generic import TemplateView, DetailView
 from GolfRound.forms import scoreform, scoreform_1v1
 from GolfRound.models import Round_Score, Net_Round_Score
 from golf_trip.models import Trip_TeeTime, Trip_Golfer, Trip_Team, Trip_TeamMember
-from bookie.models import GolfBet
 from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores, update_player_score, course_handicap_calculation
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 from bookie.views import bet_processing
 from time import sleep
@@ -106,8 +108,9 @@ def RoundSubmissionView(request, teetime_pk):
         bet_processing(teetime_pk=teetime_data)
         
         # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
-        return render(request,'GolfRound/round_submission_POST.html', {'scoreformset': scoreformset, 'teetime_data': teetime_data, 'net_score_list': net_score_list, 'processed_score_data': processed_score_data, 
-                                                                        'round_score_data': round_score_data})
+        return HttpResponseRedirect(reverse('round:completed_round', kwargs={'pk': teetime_data.id}),{'redirect': True})
+        # return render(request,'GolfRound/round_submission_POST.html', {'scoreformset': scoreformset, 'teetime_data': teetime_data, 'net_score_list': net_score_list, 'processed_score_data': processed_score_data, 
+        #                                                                 'round_score_data': round_score_data})
 # this is the GET request to setup the initial form
     else:
 

@@ -419,7 +419,7 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
        
         if teetime_score_data[golfer]['team'] == team_name_1:
             team_1.append(teetime_score_data[golfer])
-        elif teetime_score_data[golfer]['team']== team_name_2:
+        elif teetime_score_data[golfer]['team'] == team_name_2:
             team_2.append(teetime_score_data[golfer])
         
         else: 
@@ -431,8 +431,8 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
 
     def view_teetime_team_scores(team_list):
 
-        teammate_1 = list(team_list[0].values())[3:-3]
-        teammate_2 = list(team_list[1].values())[3:-3]
+        teammate_1 = list(team_list[0].values())[4:-3]
+        teammate_2 = list(team_list[1].values())[4:-3]
 
         team_score = []
         
@@ -447,6 +447,7 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
                
     team_1_score = view_teetime_team_scores(team_1)
     team_2_score = view_teetime_team_scores(team_2)
+    
 
     if teetime_gametype == '2v2 best ball':
         final_results = determine_bestball_win_stroke(team_1_score[1], team_2_score[1])

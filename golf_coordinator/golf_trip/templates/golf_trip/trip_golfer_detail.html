@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="row py-5 ps-5 border-bottom shadow">
+    <div class="row py-5 ps-5 border-bottom shadow-sm">
         <div class="col-9">
             {% for team in trip_golfer.get_team_object  %}
                 <h1>{{trip_golfer.full_name}}</h1>
@@ -32,15 +32,15 @@
                 </div>
             {% endfor %}
         </div>
-    
         <div class="col-8 text-center">
             <h1 class="text-center">Schedule</h1>
             {% for tee_time in trip_golfer.get_tee_times  %}
                 {{tee_time.tee.course.course_name}}
             
             {% endfor %}
-
-
+        </div>
+        <div class="col-2">
+            <h1 class="text-center">Score History</h1>
         </div>
 
 
