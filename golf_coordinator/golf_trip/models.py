@@ -1,9 +1,11 @@
 from django.db import models
+from django.db.models import Q
 from django import template
 from django.urls import reverse
 from Courses.models import Golf_Course, Golf_Tee
 from accounts.models import Golfer
 from decimal import Decimal
+
 
 
 
@@ -41,7 +43,10 @@ class Trip_Golfer(models.Model):
     
     def get_team_object(self):
         return self.trip_team_set.all()
-    
+        
+    def get_team(self):
+        return self.trip_team_set.all().get()
+
     def distribute_units(self, unit_amount):
         self.bet_winnings += Decimal(str(unit_amount))
         return
@@ -58,11 +63,26 @@ class Trip_Golfer(models.Model):
         tee_times = Trip_TeeTime.objects.all().filter(Players=self.id)
         return tee_times
     
+    def get_completed_rounds(self):
+        tee_times = Trip_TeeTime.objects.all().filter(Players=self.id).filter(teeTime_Complete=True)
+        return tee_times
+
     def get_net_rounds(self):        
         return self.net_round_score_set.all()
 
     def get_gross_rounds(self):
         return self.round_score_set.all()
+    
+    def get_associated_bets(self):
+        sub_bets = self.submitter.all()
+        opp_bets = self.opponent.all()
+
+        all_bets = sub_bets.union(opp_bets).order_by("id")
+
+        return all_bets
+    
+   
+
 
 
 # teams need to be setup first in the team app, but is ued here to track team scores during the trip.
