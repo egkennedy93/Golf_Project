@@ -63,6 +63,10 @@ class Trip_Golfer(models.Model):
         tee_times = Trip_TeeTime.objects.all().filter(Players=self.id)
         return tee_times
     
+    def get_uncomplete_tee_times(self):
+        tee_times = Trip_TeeTime.objects.all().filter(Players=self.id).filter(teeTime_Complete=False)
+        return tee_times
+    
     def get_completed_rounds(self):
         tee_times = Trip_TeeTime.objects.all().filter(Players=self.id).filter(teeTime_Complete=True)
         return tee_times

@@ -86,7 +86,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for tee_time in trip_golfer.get_tee_times  %}
+                    {% for tee_time in trip_golfer.get_uncomplete_tee_times  %}
                     <tr>
                         <td class="text-center">{{tee_time.tee_time_date}}</td>
                         <td class="text-center">{{tee_time.tee_time_time}} </td>

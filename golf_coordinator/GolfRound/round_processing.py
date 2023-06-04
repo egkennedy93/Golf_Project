@@ -453,6 +453,11 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
         final_results = determine_bestball_win_stroke(team_1_score[1], team_2_score[1])
     elif teetime_gametype == '2v2 best ball - matchplay':
         final_results = determine_bestball_win_match(team_1_score[1], team_2_score[1])
+    elif teetime_gametype == '2v2 scramble':
+        pass
+    elif teetime_gametype == '1v1 matchplay':
+        pass
+    
 
     return [team_1_score, team_2_score, final_results]
 
