@@ -186,7 +186,26 @@ def teetime_team_scores(team_list, gametype):
         return team_score
     else:    
         if gametype == '2v2 scramble':
+
+            player_A_HCP = team_list[0]['player_course_hcp']
+            player_B_HCP = team_list[1]['player_course_hcp']
+
+          
+
+            scramble_hcp = (decimal.Decimal(.35)*player_A_HCP + decimal.Decimal(.15)*player_B_HCP)
+
+
+            teammate_1 = team_list[0]
+            teammate_2 = team_list[1]
+
+            team_score = []
+
             key_value = 'gross_score'
+
+            #this for loop is comparing teammate_1's score to teammate_2. This is to figure out who had the best score for each hole
+            for index in range(len(teammate_1[key_value])):
+                team_score.append(teammate_1[key_value][index])
+            return team_score
         else:
             key_value = 'net_score'
         
@@ -206,7 +225,6 @@ def teetime_team_scores(team_list, gametype):
             else:
                 team_score.append(teammate_2[key_value][index])
         return team_score
-
 
 # This would work for 1v1 games as well. Doesn't support 4 person scrambles
 def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teetime_gametype):
@@ -256,7 +274,6 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
 
     return [team_1, team_2, final_results]
 
-
 ############Using the data from bestball_team_score, the two team's bestball scores are compared and determined which team wins######################
 def determine_bestball_win_stroke(team_1_score, team_2_score):
     '''
@@ -280,13 +297,10 @@ def determine_bestball_win_stroke(team_1_score, team_2_score):
     score_dict = {'team_1': team_1_bestball_stroke_score, 'net_score': net_stroke_sum}
     return score_dict
 
-
 def determine_bestball_win_2v2_scramble(team_1_score, team_2_score):
     '''
     This only focuses on 1 scoreline, and team_1 is set as the baseline. so if they are -12, that means team 1 lost by 12 strokes.
     '''
-    
-    
     team_1_bestball_stroke_score = []
 
     # this for loop looks at each hole's score for team 1 and compares it to score for team 2. Used indexes so it's easier to compare between the two teams 
@@ -303,7 +317,6 @@ def determine_bestball_win_2v2_scramble(team_1_score, team_2_score):
     score_dict = {'team_1_score': team_1_score, 'team_1_score_sum': sum(team_1_score), 'team_2_score': team_2_score, 'team_2_score_sum': sum(team_2_score), 'team_1': team_1_bestball_stroke_score, 'net_score': net_stroke_sum}
 
     return score_dict
-
 
 def determine_bestball_win_match(team_1_score, team_2_score):
     '''
@@ -325,6 +338,8 @@ def determine_bestball_win_match(team_1_score, team_2_score):
     score_dict = {'team_1': team_1_bestball_match_score, 'net_score': net_match_sum}
     return score_dict
 
+def determine_scramble_win(team_1_score, team_2_score):
+    pass
 
 def update_team_scores(team_1, team_2, net_score):
     current_team_1_score = get_object_or_404(Trip_Team, team=team_1.get())
@@ -344,9 +359,6 @@ def update_team_scores(team_1, team_2, net_score):
     current_team_2_score.save()
     
     return current_team_1_score, current_team_2_score
-
-
-
 
 def update_player_score(processed_score_data):
 
@@ -405,7 +417,6 @@ def update_player_score(processed_score_data):
 
         return "Complete"
 
-
 # This would work for 1v1 games as well. Doesn't support 4 person scrambles
 def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teetime_gametype):
     # Output example:
@@ -454,7 +465,7 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
     elif teetime_gametype == '2v2 best ball - matchplay':
         final_results = determine_bestball_win_match(team_1_score[1], team_2_score[1])
     elif teetime_gametype == '2v2 scramble':
-        pass
+        final_results = determine_scramble_win(team_1_score[1], team_2_score[1])
     elif teetime_gametype == '1v1 matchplay':
         pass
     

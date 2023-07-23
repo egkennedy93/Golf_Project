@@ -6,10 +6,11 @@ from golf_trip.models import Trip_TeeTime, Trip_Golfer, Trip_Team, Trip_TeamMemb
 from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores, update_player_score, course_handicap_calculation
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from decimal import *
 
 
 from bookie.views import bet_processing
-from time import sleep
+
 
 def RoundSubmissionView(request, teetime_pk):
     '''
@@ -147,6 +148,27 @@ def RoundSubmissionView(request, teetime_pk):
                                                                                 {'tee_time': teetime_pk, 'round_golfer': player_list[1], 'golfer_pk': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
                                                                                 ])                                                                      
                 return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
+            if teetime_data.gametype == '2v2 scramble':
+                if player_hcp_list[0].compare(player_hcp_list[1]) == -1 or player_hcp_list[0].compare(player_hcp_list[1]) == 0:
+                    print((player_hcp_list[0] * Decimal(.35),1))
+
+                else:
+                    play_0 = player_hcp_list[0]*.15
+                    play_1 = player_hcp_list[1]*.35
+
+                if player_hcp_list[2] <= player_hcp_list[3]:
+                    play_2 = player_hcp_list[0]*.35
+                    play_3 = player_hcp_list[1]*.15
+                else:
+                    play_2 = player_hcp_list[0]*.15
+                    play_3 = player_hcp_list[1]*.35
+
+
+                scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0].full_name(), 'golfer_pk': player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0], 'scramble_HCP': play_0},  
+                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[1].full_name(), 'golfer_pk': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1], 'scramble_HCP': play_1}, 
+                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[2].full_name(), 'golfer_pk': player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2], 'scramble_HCP': play_2}, 
+                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[3].full_name(), 'golfer_pk': player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3], 'scramble_HCP': play_3},
+                                                                                    ])
             else:
                 scoreformset = scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0].full_name(), 'golfer_pk': player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
                                                                                     {'tee_time': teetime_pk, 'round_golfer': player_list[1].full_name(), 'golfer_pk': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 

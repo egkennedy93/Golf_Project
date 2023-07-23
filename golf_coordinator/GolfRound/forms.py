@@ -40,6 +40,7 @@ class RoundScoreForm(forms.ModelForm):
             'total_score': forms.TextInput(attrs={'class': 'td-score'}),
             'net_score': forms.TextInput(attrs={'class': 'td-score'}),
             'round_golfer': forms.TextInput(attrs={'class': 'td-score'}),
+            'scramble_HCP': forms.TextInput(attrs={'class': 'td-score'}),
         }
     
 

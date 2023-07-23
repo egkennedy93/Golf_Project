@@ -10,6 +10,7 @@
     <script type="text/javascript" src="{% static 'js/round_submission.js' %}"></script>
 </head>
 <div class="table-responsive mx-3">
+  <p>BLAHHHH</p>
   <h1 class="display-5"> {{object.tee.course.course_name}} - {{object.tee.tee_name}}</h1>
   <h4 class=""> {{object.gametype}}</h4>
   <table class="table rounded rounded-3 overflow-hidden" id='table1'>
@@ -65,6 +66,7 @@
         <tr style="vertical-align:middle">
           <th class="td-player" style="border-bottom: 0;">{{player|index:'round_golfer'}}</th>
           <th class="td-player" style="border-bottom: 0;">{{player|index:'golfer_index'}}</th>
+          {% comment %} <th class="td-player" style="border-bottom: 0;">{{player|index:'scramble_HCP'}}</th> {% endcomment %}
           <td class="td-score">{{player|index:'hole_1_score'}}</td>
           <td class="td-score">{{player|index:'hole_2_score'}}</td>
           <td class="td-score">{{player|index:'hole_3_score'}}</td>
@@ -140,7 +142,6 @@
         </tr>
         <tr class="bg-danger">
           <th colspan="2" class="text-xs-left ps-4" >{{ team_1|index:0|index:0|index:'team'}} VS {{team_2|index:0|index:0|index:'team'}}</th>
-
           <td class="td-score">{{match_results|index:'team_1'|index:0}}</td>
           <td class="td-score">{{match_results|index:'team_1'|index:1}}</td>
           <td class="td-score">{{match_results|index:'team_1'|index:2}}</td>
