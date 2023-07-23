@@ -16,15 +16,16 @@ def round_processing(round_formset_data, tee_data):
     teetime_score_data = []
     for players_round in round_formset_data:
         # grab golfer
-        round_golfer = players_round.cleaned_data['round_golfer']
+        round_golfer = players_round.round_golfer
+        round_golfer_pk = players_round.golfer_pk
 
         # golfers assigned team
-        golfer = tee_data.Players.all().filter(golfer__last_name=round_golfer)
+        golfer = tee_data.Players.all().filter(golfer_id=round_golfer_pk.pk)
 
-        golfer_team=team_data.filter(members__golfer__last_name=golfer[0])
+        golfer_team=round_golfer_pk.get_team_object()
 
         # grab course hcp index
-        golfer_index = players_round.cleaned_data['golfer_index']
+        golfer_index = players_round.golfer_index
 
         # determine players course handicap
         # i'm doing handicap outside of this workflow now so that course handicap shows up all the time
@@ -53,24 +54,24 @@ def round_processing(round_formset_data, tee_data):
         
         # get players raw score per hole
         raw_score = []
-        raw_score.append(players_round.cleaned_data['hole_1_score'])
-        raw_score.append(players_round.cleaned_data['hole_2_score'])
-        raw_score.append(players_round.cleaned_data['hole_3_score'])
-        raw_score.append(players_round.cleaned_data['hole_4_score'])
-        raw_score.append(players_round.cleaned_data['hole_5_score'])
-        raw_score.append(players_round.cleaned_data['hole_6_score'])
-        raw_score.append(players_round.cleaned_data['hole_7_score'])
-        raw_score.append(players_round.cleaned_data['hole_8_score'])
-        raw_score.append(players_round.cleaned_data['hole_9_score'])
-        raw_score.append( players_round.cleaned_data['hole_10_score'])
-        raw_score.append( players_round.cleaned_data['hole_11_score'])
-        raw_score.append( players_round.cleaned_data['hole_12_score'])
-        raw_score.append( players_round.cleaned_data['hole_13_score'])
-        raw_score.append( players_round.cleaned_data['hole_14_score'])
-        raw_score.append( players_round.cleaned_data['hole_15_score'])
-        raw_score.append( players_round.cleaned_data['hole_16_score'])
-        raw_score.append( players_round.cleaned_data['hole_17_score'])
-        raw_score.append( players_round.cleaned_data['hole_18_score'])
+        raw_score.append(players_round.hole_1_score)
+        raw_score.append(players_round.hole_2_score)
+        raw_score.append(players_round.hole_3_score)
+        raw_score.append(players_round.hole_4_score)
+        raw_score.append(players_round.hole_5_score)
+        raw_score.append(players_round.hole_6_score)
+        raw_score.append(players_round.hole_7_score)
+        raw_score.append(players_round.hole_8_score)
+        raw_score.append(players_round.hole_9_score)
+        raw_score.append( players_round.hole_10_score)
+        raw_score.append( players_round.hole_11_score)
+        raw_score.append( players_round.hole_12_score)
+        raw_score.append( players_round.hole_13_score)
+        raw_score.append( players_round.hole_14_score)
+        raw_score.append( players_round.hole_15_score)
+        raw_score.append( players_round.hole_16_score)
+        raw_score.append( players_round.hole_17_score)
+        raw_score.append( players_round.hole_18_score)
 
 
         # grab the course hole par to handle ESG
@@ -152,7 +153,7 @@ def round_processing(round_formset_data, tee_data):
         total_gross_score = sum(gross_score)
 
         # context data that gets passed to teetime_score_data for each golfer
-        player_score_data = {'golfer': round_golfer, 'player_course_hcp':player_course_hcp, 'team': golfer_team, 'net_score': raw_score, 'gross_score': gross_score, 'total_net_score': total_net_score, 'total_gross_score': total_gross_score }
+        player_score_data = {'golfer': round_golfer, 'golfer_pk': round_golfer_pk, 'player_course_hcp':player_course_hcp, 'team': golfer_team, 'net_score': raw_score, 'gross_score': gross_score, 'total_net_score': total_net_score, 'total_gross_score': total_gross_score }
 
         teetime_score_data.append(player_score_data)
 
@@ -185,7 +186,26 @@ def teetime_team_scores(team_list, gametype):
         return team_score
     else:    
         if gametype == '2v2 scramble':
+
+            player_A_HCP = team_list[0]['player_course_hcp']
+            player_B_HCP = team_list[1]['player_course_hcp']
+
+          
+
+            scramble_hcp = (decimal.Decimal(.35)*player_A_HCP + decimal.Decimal(.15)*player_B_HCP)
+
+
+            teammate_1 = team_list[0]
+            teammate_2 = team_list[1]
+
+            team_score = []
+
             key_value = 'gross_score'
+
+            #this for loop is comparing teammate_1's score to teammate_2. This is to figure out who had the best score for each hole
+            for index in range(len(teammate_1[key_value])):
+                team_score.append(teammate_1[key_value][index])
+            return team_score
         else:
             key_value = 'net_score'
         
@@ -205,7 +225,6 @@ def teetime_team_scores(team_list, gametype):
             else:
                 team_score.append(teammate_2[key_value][index])
         return team_score
-
 
 # This would work for 1v1 games as well. Doesn't support 4 person scrambles
 def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teetime_gametype):
@@ -237,7 +256,7 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
             team_2.append(teetime_score_data[golfer])
         else: 
             raise Exception
-        
+
     team_1_score = teetime_team_scores(team_1, teetime_gametype)
     team_2_score = teetime_team_scores(team_2, teetime_gametype)
 
@@ -254,7 +273,6 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
         final_results = determine_bestball_win_2v2_scramble(team_1_score, team_2_score)
 
     return [team_1, team_2, final_results]
-
 
 ############Using the data from bestball_team_score, the two team's bestball scores are compared and determined which team wins######################
 def determine_bestball_win_stroke(team_1_score, team_2_score):
@@ -279,13 +297,10 @@ def determine_bestball_win_stroke(team_1_score, team_2_score):
     score_dict = {'team_1': team_1_bestball_stroke_score, 'net_score': net_stroke_sum}
     return score_dict
 
-
 def determine_bestball_win_2v2_scramble(team_1_score, team_2_score):
     '''
     This only focuses on 1 scoreline, and team_1 is set as the baseline. so if they are -12, that means team 1 lost by 12 strokes.
     '''
-    
-    
     team_1_bestball_stroke_score = []
 
     # this for loop looks at each hole's score for team 1 and compares it to score for team 2. Used indexes so it's easier to compare between the two teams 
@@ -302,7 +317,6 @@ def determine_bestball_win_2v2_scramble(team_1_score, team_2_score):
     score_dict = {'team_1_score': team_1_score, 'team_1_score_sum': sum(team_1_score), 'team_2_score': team_2_score, 'team_2_score_sum': sum(team_2_score), 'team_1': team_1_bestball_stroke_score, 'net_score': net_stroke_sum}
 
     return score_dict
-
 
 def determine_bestball_win_match(team_1_score, team_2_score):
     '''
@@ -324,6 +338,8 @@ def determine_bestball_win_match(team_1_score, team_2_score):
     score_dict = {'team_1': team_1_bestball_match_score, 'net_score': net_match_sum}
     return score_dict
 
+def determine_scramble_win(team_1_score, team_2_score):
+    pass
 
 def update_team_scores(team_1, team_2, net_score):
     current_team_1_score = get_object_or_404(Trip_Team, team=team_1.get())
@@ -344,22 +360,19 @@ def update_team_scores(team_1, team_2, net_score):
     
     return current_team_1_score, current_team_2_score
 
-
-
-
 def update_player_score(processed_score_data):
 
-    team_1_player_1 = processed_score_data[0][0]['golfer']
+    team_1_player_1 = processed_score_data[0][0]['golfer_pk']
 
     try:
-        team_1_player_2 = processed_score_data[0][1]['golfer']
+        team_1_player_2 = processed_score_data[0][1]['golfer_pk']
     except IndexError:
         pass
 
-    team_2_player_1 = processed_score_data[1][0]['golfer']
+    team_2_player_1 = processed_score_data[1][0]['golfer_pk']
 
     try:
-        team_2_player_2 = processed_score_data[1][1]['golfer']
+        team_2_player_2 = processed_score_data[1][1]['golfer_pk']
     except IndexError:
         pass
 
@@ -367,45 +380,42 @@ def update_player_score(processed_score_data):
     if processed_score_data[2]['net_score'] < 0:
 
         # t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).update_fields(score=t2p1_score+decimal.Decimal(.5))
-        t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).get()
+        t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_2_player_1.pk).get()
         t2p1.update_score(decimal.Decimal(.5))
 
         try:
-            t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).get()
+            t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_2_player_2.pk).get()
             t2p2.update_score(decimal.Decimal(.5))
         except:
             pass
 
     elif processed_score_data[2]['net_score'] > 0:
 
-        t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).get()
-        print(t1p1)
+        t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_1_player_1.pk).get()
         t1p1.update_score(decimal.Decimal(.5))
         try:
-            t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).get()
-            print(t1p2)
+            t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_1_player_2.pk).get()
             t1p2.update_score(decimal.Decimal(.5))
         except:
             pass
 
     elif processed_score_data[2]['net_score'] == 0:
-        t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_1).get()
+        t1p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_1_player_1.pk).get()
         t1p1.update_score(decimal.Decimal(.25))
         try:
-            t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_1_player_2).get()
+            t1p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_1_player_2.pk).get()
             t1p2.update_score(decimal.Decimal(.25))
         except:
             pass
-        t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_1).get()
+        t2p1 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_2_player_1.pk).get()
         t2p1.update_score(decimal.Decimal(.25))
         try:
-            t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(golfer__last_name=team_2_player_2).get()
+            t2p2 = Trip_Golfer.objects.filter(trip__trip_name='Michigan').filter(pk=team_2_player_2.pk).get()
             t2p2.update_score(decimal.Decimal(.25))
         except:
             pass
 
         return "Complete"
-
 
 # This would work for 1v1 games as well. Doesn't support 4 person scrambles
 def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teetime_gametype):
@@ -420,7 +430,7 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
        
         if teetime_score_data[golfer]['team'] == team_name_1:
             team_1.append(teetime_score_data[golfer])
-        elif teetime_score_data[golfer]['team']== team_name_2:
+        elif teetime_score_data[golfer]['team'] == team_name_2:
             team_2.append(teetime_score_data[golfer])
         
         else: 
@@ -432,8 +442,8 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
 
     def view_teetime_team_scores(team_list):
 
-        teammate_1 = list(team_list[0].values())[3:-3]
-        teammate_2 = list(team_list[1].values())[3:-3]
+        teammate_1 = list(team_list[0].values())[4:-3]
+        teammate_2 = list(team_list[1].values())[4:-3]
 
         team_score = []
         
@@ -448,11 +458,17 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
                
     team_1_score = view_teetime_team_scores(team_1)
     team_2_score = view_teetime_team_scores(team_2)
+    
 
     if teetime_gametype == '2v2 best ball':
         final_results = determine_bestball_win_stroke(team_1_score[1], team_2_score[1])
     elif teetime_gametype == '2v2 best ball - matchplay':
         final_results = determine_bestball_win_match(team_1_score[1], team_2_score[1])
+    elif teetime_gametype == '2v2 scramble':
+        final_results = determine_scramble_win(team_1_score[1], team_2_score[1])
+    elif teetime_gametype == '1v1 matchplay':
+        pass
+    
 
     return [team_1_score, team_2_score, final_results]
 

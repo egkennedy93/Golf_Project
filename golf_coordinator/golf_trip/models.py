@@ -1,9 +1,11 @@
 from django.db import models
+from django.db.models import Q
 from django import template
 from django.urls import reverse
 from Courses.models import Golf_Course, Golf_Tee
 from accounts.models import Golfer
 from decimal import Decimal
+
 
 
 
@@ -34,14 +36,17 @@ class Trip_Golfer(models.Model):
     golfer = models.ForeignKey(Golfer, on_delete=models.PROTECT)
     hcp_index = models.DecimalField(max_digits=3, decimal_places=1, default=0)
     score = models.DecimalField(max_digits=3, decimal_places=2, default=0)
-    bet_winnings = models.DecimalField(max_digits=14, decimal_places=4, null=True, default=0)
+    bet_winnings = models.DecimalField(max_digits=14, decimal_places=2, null=True, default=0)
 
     def __str__(self):
         return "{}".format(self.full_name())
     
     def get_team_object(self):
         return self.trip_team_set.all()
-    
+        
+    def get_team(self):
+        return self.trip_team_set.all().get()
+
     def distribute_units(self, unit_amount):
         self.bet_winnings += Decimal(str(unit_amount))
         return
@@ -53,6 +58,35 @@ class Trip_Golfer(models.Model):
 
     def full_name(self):
         return '{} {}'.format(self.golfer.first_name, self.golfer.last_name)
+    
+    def get_tee_times(self):
+        tee_times = Trip_TeeTime.objects.all().filter(Players=self.id)
+        return tee_times
+    
+    def get_uncomplete_tee_times(self):
+        tee_times = Trip_TeeTime.objects.all().filter(Players=self.id).filter(teeTime_Complete=False)
+        return tee_times
+    
+    def get_completed_rounds(self):
+        tee_times = Trip_TeeTime.objects.all().filter(Players=self.id).filter(teeTime_Complete=True)
+        return tee_times
+
+    def get_net_rounds(self):        
+        return self.net_round_score_set.all()
+
+    def get_gross_rounds(self):
+        return self.round_score_set.all()
+    
+    def get_associated_bets(self):
+        sub_bets = self.submitter.all()
+        opp_bets = self.opponent.all()
+
+        all_bets = sub_bets.union(opp_bets).order_by("id")
+
+        return all_bets
+    
+   
+
 
 
 # teams need to be setup first in the team app, but is ued here to track team scores during the trip.
@@ -128,8 +162,6 @@ class Trip_TeeTime(models.Model):
     
 
     
-
-
 # Trip event is ment to be each round of golf. This can occur multipel times on the same day. 
 class Trip_Event(models.Model):
     trip = models.ForeignKey(Golf_Trip, on_delete=models.PROTECT)

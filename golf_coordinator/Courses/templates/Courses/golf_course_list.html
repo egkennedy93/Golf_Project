@@ -6,8 +6,8 @@
 {% comment %} This template is used to show a list of golf courses, currently tied to the GolfCourseListView {% endcomment %}
 
 <h1 style='text-align: center; padding-bottom: 15px;'>Course List</h1>
-<div class="container">
-<div class="row gx-5">
+<div class="container shadow" style="padding-left:0; padding-right:0;">
+<div class="row">
   <div class="accordion" id="accordionExample">
     {% for course in golf_course_list %}
     <div class="accordion-item">
@@ -22,14 +22,15 @@
          
             <div class="accordion-body">
               <table class="table table-striped course-table">
-              <thead>
-                <tr class='course-row'>
-                  <th scope="col">Tee Name</th>
-                  <th scope="col">Yardage</th>
-                  <th scope="col">Rating</th>
-                  <th scope="col">Slope</th>
-                </tr>
-              </thead>
+                <thead>
+                  <tr'>
+                    <th scope="col">Tee Name</th>
+                    <th scope="col">Yardage</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Slope</th>
+                  </tr>
+                </thead>
+              <tbody>
               {% comment %} sub for loop that for every course, loops through related tees. {% endcomment %}
               {% for tee in tees %}
               {% comment %} if this becomes slow, it's probably better to update the queryset for the view. {% endcomment %}
@@ -42,6 +43,7 @@
                 </tr>
               {% endif %}
               {% endfor %}
+              </tbody>
             </table>
             </div>
           </div>

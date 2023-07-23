@@ -12,28 +12,24 @@
         <div class="col-lg-8 col-xxl-6">
             
             <div class="text-center my-5">
-                <h1 class="fw-bolder mb-3" id="currentStandingsText">Current Standings</h1>
+                <h1 class="fw-bolder mb-3 display-5" id="currentStandingsText">Current Standings</h1>
             
                 <div class="row gx-5 align-items-center" id=scoreBottomLine>
                     <div class="col-lg-6">
-                        <h1 class="fw-bolder mb-3">{{team_1}}: {{team_1.get_score}} </h1>   
-                            <ul class="list-group">
+                        <h1 class="fw-bolder mb-3 display-5">{{team_1}}: {{team_1.get_score}} </h1>
+                            <ul class="list-group shadow-sm">
                                 {% for player in team_1_members  %}
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        {{player.full_name}}<span class="badge bg-danger rounded-pill">{{player.score}}</span>
-                                    </li>
+                                    <a href="{% url 'golf_trip:player_detail' pk=player.id%}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">{{player.full_name}} <span class="badge bg-danger rounded-pill">{{player.score}}</span></a>
                                 {% endfor %}
                             </ul>
                             
                     
                     </div>
                     <div class="col-lg-6">
-                        <h1 class="fw-bolder mb-3">{{team_2}}: {{team_2.get_score}} </h1>
-                        <ul class="list-group">
+                        <h1 class="fw-bolder mb-3 display-5">{{team_2}}: {{team_2.get_score}} </h1>
+                        <ul class="list-group shadow-sm">
                             {% for player in team_2_members  %}
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    {{player.full_name}}<span class="badge bg-primary rounded-pill">{{player.score}}</span>
-                                </li>
+                                <a href="{% url 'golf_trip:player_detail' pk=player.id%}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">{{player.full_name}} <span class="badge bg-primary rounded-pill">{{player.score}}</span></a>
                             {% endfor %}
                         </ul>
                     </div>
@@ -42,19 +38,19 @@
         </div>
     </div>
     <!-- About section one-->
-    <section class="py-5 bg-light" id="scroll-target">
+    <section class="py-1 pt-1 bg-light border-top" id="scroll-target">
         <div class="container px-5 my-5">
             <div class="text-center my-5">
-                <h1 class="fw-bolder mb-3" id="currentStandingsText">Round History</h1>
-                <table class="table table-striped course-table justify-content-center">
-                    <thead>
-                        <tr class='course-row text-center' >
-                        <th scope="col">Date</th>
-                        <th scope="col">Tee Time</th>
-                        <th scope="col">GameType</th>
-                        <th scope="col">Winning Team</th>
-                        <th scope="col">Winning Score</th>
-                        <th scope="col" class="text-center" colspan="4">Players</th>
+                <h1 class="fw-bolder mb-1 display-5" id="currentStandingsText">Round History</h1>
+                <table class="table table-hover course-table justify-content-center border shadow">
+                    <thead class="table-dark">
+                        <tr class='text-center' >
+                            <th scope="col">Date</th>
+                            <th scope="col">Tee Time</th>
+                            <th scope="col">GameType</th>
+                            <th scope="col">Winning Team</th>
+                            <th scope="col">Winning Score</th>
+                            <th scope="col" class="text-center" colspan="4">Players</th>
                         </tr>
                     </thead>
                     <tbody>

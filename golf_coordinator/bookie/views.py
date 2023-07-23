@@ -3,12 +3,20 @@ from bookie.models import TeamVsTeam, GolfBet
 from bookie.forms import BetTeeTimeForm
 from django.views.generic import CreateView, ListView
 from django.shortcuts import get_object_or_404
-from golf_trip.models import Trip_TeeTime, Trip_TeamMember, Trip_Team, Trip_Golfer
+from golf_trip.models import Trip_TeeTime, Trip_TeamMember, Trip_Team, Trip_Golfer, Trip_Event
 from GolfRound.round_processing import course_handicap_calculation
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 class GolfBetListView(ListView):
     model = GolfBet
+
+    def get_context_data(self, **kwargs):
+        context = super(GolfBetListView, self).get_context_data(**kwargs)
+        context['trip'] = Trip_Event.objects.all().filter(trip__trip_name='Michigan')
+        return context
     
 
 class BetTVTCreateView(CreateView):
@@ -40,7 +48,10 @@ def BetTeeTimeView(request, teetime_pk):
 
 
          # the dictionary paseed is what gets rendered for the html template. Whatever is listed there can be access on the template
-        return render(request,'bookie/successful_bet_placed.html', {'betteetime': betteetime, 'teetime_pk': 'teetime_pk'})
+        # return render(request, 'golf_trip/trip_event_list.html', {'bet': teetime_data.tee_time_date})
+        messages.success(request, "Your bet has been placed!")
+        return HttpResponseRedirect(reverse('golf_trip:event_teetime', kwargs={'event_day': teetime_data.tee_time_date}),{'redirect': True})
+        # return render(request,'bookie/successful_bet_placed.html', {'betteetime': betteetime, 'teetime_pk': 'teetime_pk'})
 
     elif request.method == "GET":
 
@@ -127,8 +138,8 @@ def bet_processing(teetime_pk):
                     # grabbing all the net_scores for the teetime
                     teetime_net_scores = teetime_pk.net_rounds()
                     
-                    submitter_net_score = teetime_net_scores.filter(round_golfer=submitter.golfer.last_name).values()[0]
-                    opponent_net_score = teetime_net_scores.filter(round_golfer=opponent.golfer.last_name).values()[0]
+                    submitter_net_score = teetime_net_scores.filter(round_golfer=submitter.full_name()).values()[0]
+                    opponent_net_score = teetime_net_scores.filter(round_golfer=opponent.full_name()).values()[0]
 
                     if submitter_net_score['net_score'] < opponent_net_score['net_score']:
                         
@@ -154,13 +165,45 @@ def bet_processing(teetime_pk):
                     else:
                        bet.bet_closed = True
                        bet.save()
-                    
-
-                # the submitter is not in the teetime, so need to check his round
                 else:
-                    print("Bet is 2")
-                    pass
 
+                    # get the teetime associated with that submitter for the day
+                    submitter_tee_time = Trip_TeeTime.objects.all().filter(tee__course__course_name=bet.bet_tee_time.tee.course.course_name).filter(Players=submitter).get()
+
+                    if submitter_tee_time.teeTime_Complete == True and teetime_pk.teeTime_Complete == True:
+                        submitter_net_scores = submitter_tee_time.net_rounds()
+                        opponent_net_scores = teetime_pk.net_rounds()
+                        
+                        submitter_net_score = submitter_net_scores.filter(round_golfer=submitter.full_name()).values()[0]
+                        opponent_net_score = opponent_net_scores.filter(round_golfer=opponent.full_name()).values()[0]
+
+
+                        if submitter_net_score['net_score'] < opponent_net_score['net_score']:
+                            
+                            bet.bet_winner = submitter
+                            submitter.distribute_units(bet.units)
+                            opponent.distribute_units((-1*bet.units))
+                            bet.bet_closed = True
+
+                            bet.save()
+                            submitter.save()
+                            opponent.save()
+
+                        if opponent_net_score['net_score'] < submitter_net_score['net_score']:
+                            bet.bet_winner = opponent
+                            opponent.distribute_units(bet.units)
+                            submitter.distribute_units((-1*bet.units))
+                            bet.bet_closed = True
+
+                            bet.save()
+                            submitter.save()
+                            opponent.save()
+                            
+                    else:
+                        bet.bet_closed = True
+                        bet.save()
+
+                
 
             # if bet is equal to 'bet against team'
             if bet.bet_type == '2':
