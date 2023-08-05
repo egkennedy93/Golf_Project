@@ -17,7 +17,7 @@ class Trip_GolferAdmin(admin.ModelAdmin):
 
 @admin.register(Trip_TeeTime)
 class Trip_TeeTimeAdmin(admin.ModelAdmin):
-    list_display = ('trip', 'teeTime_Complete', 'Winning_Score', 'Winning_Team')
+    list_display = ('trip', 'tee_time_date', 'tee_time_time', 'teeTime_Complete', 'Winning_Score', 'Winning_Team')
     list_filter = ('trip','teeTime_Complete', 'Winning_Score', 'Winning_Team')
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         filtered_trip_pk = request.GET.get('_changelist_filters', '')

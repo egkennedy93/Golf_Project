@@ -2,6 +2,8 @@ from golf_trip.models import Trip_Team, Trip_Golfer
 from django.shortcuts import get_object_or_404
 import decimal
 
+
+
 def round_processing(round_formset_data, tee_data):
     '''
     This function is responsible for taking the data from the teetime, and the submitted round.
@@ -160,6 +162,127 @@ def round_processing(round_formset_data, tee_data):
     return teetime_score_data
 
 
+def par3_round_processing(round_formset_data, tee_data):
+    teetime_score_data = []
+    for players_round in round_formset_data:
+        # grab golfer
+        round_golfer = players_round.round_golfer
+        round_golfer_pk = players_round.golfer_pk
+
+        # golfers assigned team
+        golfer = tee_data.Players.all().filter(golfer_id=round_golfer_pk.pk)
+
+        golfer_team=round_golfer_pk.get_team_object()
+
+        # grab course hcp index
+        golfer_index = players_round.golfer_index
+
+        # determine players course handicap
+        # i'm doing handicap outside of this workflow now so that course handicap shows up all the time
+        player_course_hcp = golfer_index
+
+        # get hcp index for each hole on the course
+        course_hole_hcp_index = []
+        course_hole_hcp_index.append(tee_data.tee.hole_1_index)
+        course_hole_hcp_index.append(tee_data.tee.hole_2_index)
+        course_hole_hcp_index.append(tee_data.tee.hole_3_index)
+        course_hole_hcp_index.append(tee_data.tee.hole_4_index)
+        course_hole_hcp_index.append(tee_data.tee.hole_5_index)
+        course_hole_hcp_index.append(tee_data.tee.hole_6_index)
+        course_hole_hcp_index.append(tee_data.tee.hole_7_index)
+        course_hole_hcp_index.append(tee_data.tee.hole_8_index)
+        course_hole_hcp_index.append(tee_data.tee.hole_9_index)
+        
+        # get players raw score per hole
+        raw_score = []
+        raw_score.append(players_round.hole_1_score)
+        raw_score.append(players_round.hole_2_score)
+        raw_score.append(players_round.hole_3_score)
+        raw_score.append(players_round.hole_4_score)
+        raw_score.append(players_round.hole_5_score)
+        raw_score.append(players_round.hole_6_score)
+        raw_score.append(players_round.hole_7_score)
+        raw_score.append(players_round.hole_8_score)
+        raw_score.append(players_round.hole_9_score)
+
+
+        # grab the course hole par to handle ESG
+
+        course_hole_par = []
+        course_hole_par.append(tee_data.tee.hole_1_par)
+        course_hole_par.append(tee_data.tee.hole_2_par)
+        course_hole_par.append(tee_data.tee.hole_3_par)
+        course_hole_par.append(tee_data.tee.hole_4_par)
+        course_hole_par.append(tee_data.tee.hole_5_par)
+        course_hole_par.append(tee_data.tee.hole_6_par)
+        course_hole_par.append(tee_data.tee.hole_7_par)
+        course_hole_par.append(tee_data.tee.hole_8_par)
+        course_hole_par.append(tee_data.tee.hole_9_par)
+
+
+        # get which holes the player gets strokes
+         #before maniuplating the data, setting the raw_holes to the gross score.
+        stroking_holes = []
+        for idx, hole_hcp in enumerate(course_hole_hcp_index):
+            # if a player is a 13, this will populate the stroking_holes list with the index of which holes those 13 are.
+            if player_course_hcp >= hole_hcp:
+                stroking_holes.append(idx)
+
+       
+        # adjust each raw score based on HCP and max ESG
+
+        #empty lists to hold the gross and net scores
+        gross_score = []
+        net_score = []
+
+        # had to use extend because if it was net_score=raw_score, anything that got updated for net_score would update raw. Extend lets you create a copy of a list 
+        net_score.extend(raw_score)
+        gross_score.extend(raw_score)
+
+
+        # stroking_holes contains the index of which holes the player gets handicap assistance.
+        for stroke in stroking_holes:
+
+            # getting the players score on the hole he gets a stroke
+            net_hole_score = net_score[stroke]
+
+            # getting the par of that hole
+            hole_par = course_hole_par[stroke]
+
+            # getting the index difficulty of the hole
+            hole_index = course_hole_hcp_index[stroke]
+
+            # this logic is for handling if someone is aboe a 18 handicap
+            # example if the player is a 20, then 20-18 = 2. If the hole is the 1 or 2 handicap hole, the player gets two strokes  
+            if player_course_hcp - 9 >= hole_index:
+                strokes = 2
+            
+            # player gets a normal stroke of 1 
+            else:
+                strokes = 1
+
+            # this is handling net double bogey. If there score is over the holes net double bogey, it gets set to net double bogey
+            if net_hole_score > hole_par + 2 + strokes:
+
+                adjusted_hole_score = hole_par + 2 + strokes
+                raw_score[stroke] = adjusted_hole_score
+            else:
+                adjusted_hole_score = net_hole_score - strokes
+                raw_score[stroke] = adjusted_hole_score
+
+
+        #calculating totals
+        total_net_score = sum(raw_score)
+        total_gross_score = sum(gross_score)
+
+        # context data that gets passed to teetime_score_data for each golfer
+        player_score_data = {'golfer': round_golfer, 'golfer_pk': round_golfer_pk, 'player_course_hcp':player_course_hcp, 'team': golfer_team, 'net_score': raw_score, 'gross_score': gross_score, 'total_net_score': total_net_score, 'total_gross_score': total_gross_score }
+
+        teetime_score_data.append(player_score_data)
+
+    return teetime_score_data
+
+
 def course_handicap_calculation(index, course_slope, course_rating, course_par):
     '''
     Used the USGA Handicap formula: https://www.usga.org/content/usga/home-page/handicapping/roh/Content/rules/6%201%20Course%20Handicap%20Calculation.htm
@@ -167,6 +290,10 @@ def course_handicap_calculation(index, course_slope, course_rating, course_par):
     course_handicap = round(index * (course_slope/113) + (course_rating - course_par),0)
     return course_handicap
 
+
+def par3_handicap_calculation(index):
+    par3_hcp = round(27*(index/72),0)
+    return par3_hcp
 
 ############once the player's teams are determined, the players' scores are looped through, to determine the "best ball" for each hole##############
 def teetime_team_scores(team_list, gametype):

@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, DetailView
-from GolfRound.forms import scoreform, scoreform_1v1
-from GolfRound.models import Round_Score, Net_Round_Score
+from GolfRound.forms import scoreform, scoreform_1v1, par3scoreform
+from GolfRound.models import Round_Score, Net_Round_Score, Par3_Net_Round_Score, Par3_Round_Score
 from golf_trip.models import Trip_TeeTime, Trip_Golfer, Trip_Team, Trip_TeamMember
-from GolfRound.round_processing import round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores, update_player_score, course_handicap_calculation
+from GolfRound.round_processing import round_processing, par3_round_processing, determine_2v2_team_scores, update_team_scores, viewing_determine_2v2_team_scores, update_player_score, course_handicap_calculation, par3_handicap_calculation
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from decimal import *
@@ -22,6 +22,8 @@ def RoundSubmissionView(request, teetime_pk):
 
         if teetime_data.gametype == '1v1 matchplay':
             scoreformset = scoreform_1v1(request.POST)
+        elif teetime_data.tee.course_par == 27:
+            scoreformset = par3scoreform(request.POST)
         else:
             scoreformset = scoreform(request.POST)
 
@@ -31,7 +33,10 @@ def RoundSubmissionView(request, teetime_pk):
             scoreform_tee_time = scoreformset.save(commit=False)
             # takes all of the round scores from the scoreformset, the information for the teetime (specifically the gametype)
             # reference round_processing.py on the output of round_processing, but its a summary of each players scores - net and gross
-            round_score_data = round_processing(scoreform_tee_time, teetime_data)
+            if teetime_data.tee.course_par == 27:
+                round_score_data = par3_round_processing(scoreform_tee_time, teetime_data)
+            else:
+                round_score_data = round_processing(scoreform_tee_time, teetime_data)
 
 
 
@@ -52,7 +57,8 @@ def RoundSubmissionView(request, teetime_pk):
             
 
                 # taking data and adding to a net_round_score model so displaying and retrieving the data is easier in the future
-                net_round_score = Net_Round_Score.objects.create(tee_time=teetime_data, 
+                if teetime_data.tee.course_par == 27:
+                    net_round_score = Par3_Net_Round_Score.objects.create(tee_time=teetime_data, 
                                                                 round_golfer=round.round_golfer,
                                                                 golfer_pk = round.golfer_pk,
                                                                 hole_1_score = round_score_data[idx]['net_score'][0],
@@ -63,21 +69,37 @@ def RoundSubmissionView(request, teetime_pk):
                                                                 hole_6_score = round_score_data[idx]['net_score'][5],
                                                                 hole_7_score = round_score_data[idx]['net_score'][6],
                                                                 hole_8_score = round_score_data[idx]['net_score'][7],
-                                                                hole_9_score = round_score_data[idx]['net_score'][8],
-                                                                hole_10_score = round_score_data[idx]['net_score'][9],
-                                                                hole_11_score = round_score_data[idx]['net_score'][10],
-                                                                hole_12_score = round_score_data[idx]['net_score'][11],
-                                                                hole_13_score = round_score_data[idx]['net_score'][12],
-                                                                hole_14_score = round_score_data[idx]['net_score'][13],
-                                                                hole_15_score = round_score_data[idx]['net_score'][14],
-                                                                hole_16_score = round_score_data[idx]['net_score'][15],
-                                                                hole_17_score = round_score_data[idx]['net_score'][16],
-                                                                hole_18_score = round_score_data[idx]['net_score'][17],
+                                                                hole_9_score = round_score_data[idx]['net_score'][8],                                                           
                                                                 net_score = sum(round_score_data[idx]['net_score']),
                                                                 total_score = sum(round_score_data[idx]['gross_score']))
-            # Using the round_score_data the two team names are passed (which I need to change to be dynamic), and takes in the gametype for the teetime
-            processed_score_data = determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
-        scoreformset.save()
+                    
+                else:
+                    net_round_score = Net_Round_Score.objects.create(tee_time=teetime_data, 
+                                                                    round_golfer=round.round_golfer,
+                                                                    golfer_pk = round.golfer_pk,
+                                                                    hole_1_score = round_score_data[idx]['net_score'][0],
+                                                                    hole_2_score = round_score_data[idx]['net_score'][1],
+                                                                    hole_3_score = round_score_data[idx]['net_score'][2],
+                                                                    hole_4_score = round_score_data[idx]['net_score'][3],
+                                                                    hole_5_score = round_score_data[idx]['net_score'][4],
+                                                                    hole_6_score = round_score_data[idx]['net_score'][5],
+                                                                    hole_7_score = round_score_data[idx]['net_score'][6],
+                                                                    hole_8_score = round_score_data[idx]['net_score'][7],
+                                                                    hole_9_score = round_score_data[idx]['net_score'][8],
+                                                                    hole_10_score = round_score_data[idx]['net_score'][9],
+                                                                    hole_11_score = round_score_data[idx]['net_score'][10],
+                                                                    hole_12_score = round_score_data[idx]['net_score'][11],
+                                                                    hole_13_score = round_score_data[idx]['net_score'][12],
+                                                                    hole_14_score = round_score_data[idx]['net_score'][13],
+                                                                    hole_15_score = round_score_data[idx]['net_score'][14],
+                                                                    hole_16_score = round_score_data[idx]['net_score'][15],
+                                                                    hole_17_score = round_score_data[idx]['net_score'][16],
+                                                                    hole_18_score = round_score_data[idx]['net_score'][17],
+                                                                    net_score = sum(round_score_data[idx]['net_score']),
+                                                                    total_score = sum(round_score_data[idx]['gross_score']))
+                # Using the round_score_data the two team names are passed (which I need to change to be dynamic), and takes in the gametype for the teetime
+                processed_score_data = determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
+            scoreformset.save()
         
 
         if processed_score_data[2]['net_score'] < 0:
@@ -139,7 +161,10 @@ def RoundSubmissionView(request, teetime_pk):
             # player_list.append(player)
             team_data = get_object_or_404(Trip_TeamMember, user__golfer__last_name = player.golfer.last_name)
             team_list.append(team_data.team)
-            player_hcp_list.append(course_handicap_calculation(player.hcp_index,teetime_data.tee.slope, teetime_data.tee.rating, teetime_data.tee.course_par))
+            if teetime_data.tee.course_par == 27:
+                player_hcp_list.append(par3_handicap_calculation(player.hcp_index))
+            else:
+                player_hcp_list.append(course_handicap_calculation(player.hcp_index,teetime_data.tee.slope, teetime_data.tee.rating, teetime_data.tee.course_par))
             player_pks.append(player.pk)
         
         try:
@@ -148,6 +173,16 @@ def RoundSubmissionView(request, teetime_pk):
                                                                                 {'tee_time': teetime_pk, 'round_golfer': player_list[1], 'golfer_pk': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
                                                                                 ])                                                                      
                 return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
+            if teetime_data.tee.course_par == 27:
+                scoreformset = par3scoreform(queryset=Round_Score.objects.none(), initial=[{'tee_time': teetime_pk, 'round_golfer': player_list[0].full_name(), 'golfer_pk': player_list[0], 'golfer_index': player_hcp_list[0], 'golfer_pk': player_pks[0]},  
+                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[1].full_name(), 'golfer_pk': player_list[1], 'golfer_index': player_hcp_list[1], 'golfer_pk': player_pks[1]}, 
+                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[2].full_name(), 'golfer_pk': player_list[2], 'golfer_index': player_hcp_list[2], 'golfer_pk': player_pks[2]}, 
+                                                                                    {'tee_time': teetime_pk, 'round_golfer': player_list[3].full_name(), 'golfer_pk': player_list[3], 'golfer_index': player_hcp_list[3], 'golfer_pk': player_pks[3]},
+                                                                                    ])                                                                      
+                return render(request, "GolfRound/round_score_submission.html", { 'scoreformset': scoreformset, 'teetime_data': teetime_data })
+                
+            
+
             if teetime_data.gametype == '2v2 scramble':
                 if player_hcp_list[0].compare(player_hcp_list[1]) == -1 or player_hcp_list[0].compare(player_hcp_list[1]) == 0:
                     print((player_hcp_list[0] * Decimal(.35),1))
