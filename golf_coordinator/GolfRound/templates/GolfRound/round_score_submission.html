@@ -29,6 +29,9 @@
           <th class="th-score">7</th>
           <th class="th-score">8</th>
           <th class="th-score">9</th>
+          {% if teetime_data.tee.course_par == 27 %}
+          </tr>
+          {% else %}
           <th class="th-score">10</th>
           <th class="th-score">11</th>
           <th class="th-score">12</th>
@@ -38,6 +41,7 @@
           <th class="th-score">16</th>
           <th class="th-score">17</th>
           <th class="th-score">18</th>
+          {% endif %}
         </tr>
         <tr class="bg-info" style="border-bottom: black;">
           <th class="th-score" >Par</th>
@@ -51,6 +55,9 @@
           <th class="th-score" >{{teetime_data.tee.hole_7_par}}</th>
           <th class="th-score" >{{teetime_data.tee.hole_8_par}}</th>
           <th class="th-score" >{{teetime_data.tee.hole_9_par}}</th>
+          {% if teetime_data.tee.course_par == 27 %}
+          </tr>
+          {% else %}
           <th class="th-score" >{{teetime_data.tee.hole_10_par}}</th>
           <th class="th-score" >{{teetime_data.tee.hole_11_par}}</th>
           <th class="th-score" >{{teetime_data.tee.hole_12_par}}</th>
@@ -61,6 +68,7 @@
           <th class="th-score" >{{teetime_data.tee.hole_17_par}}</th>
           <th class="th-score" >{{teetime_data.tee.hole_18_par}}</th>
         </tr>
+        {% endif %}
       </thead>
       <tbody>
         {{ scoreformset.management_form }}
@@ -77,6 +85,9 @@
           <td class="td-score">{{scoreform.hole_7_score}}</td>
           <td class="td-score">{{scoreform.hole_8_score}}</td>
           <td class="td-score">{{scoreform.hole_9_score}}</td>
+          {% if teetime_data.tee.course_par == 27 %}
+          </tr>
+          {% else %}
           <td class="td-score">{{scoreform.hole_10_score}}</td>
           <td class="td-score">{{scoreform.hole_11_score}}</td>
           <td class="td-score">{{scoreform.hole_12_score}}</td>
@@ -87,6 +98,7 @@
           <td class="td-score">{{scoreform.hole_17_score}}</td>
           <td class="td-score">{{scoreform.hole_18_score}}</td>
         </tr>
+        {% endif %}
         <td class="td-score">{{scoreform.total_score.as_hidden}}</td>
         <td class="td-score">{{scoreform.net_score.as_hidden}}</td>
         <td class="th-score">{{scoreform.tee_time.as_hidden}}</td>
@@ -106,6 +118,9 @@
             <th class="th-score tee-index" >{{teetime_data.tee.hole_7_index}}</th>
             <th class="th-score tee-index" >{{teetime_data.tee.hole_8_index}}</th>
             <th class="th-score tee-index" >{{teetime_data.tee.hole_9_index}}</th>
+            {% if teetime_data.tee.course_par == 27 %}
+            </tr>
+            {% else %}
             <th class="th-score tee-index" >{{teetime_data.tee.hole_10_index}}</th>
             <th class="th-score tee-index" >{{teetime_data.tee.hole_11_index}}</th>
             <th class="th-score tee-index" >{{teetime_data.tee.hole_12_index}}</th>
@@ -116,6 +131,7 @@
             <th class="th-score tee-index" >{{teetime_data.tee.hole_17_index}}</th>
             <th class="th-score tee-index" >{{teetime_data.tee.hole_18_index}}</th>
           </tr>
+          {% endif %}
         </tfoot>
     </table>
     <div class="row-col" id="round_submit">
