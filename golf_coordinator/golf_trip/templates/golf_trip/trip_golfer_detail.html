@@ -102,7 +102,7 @@
         </div>
         <div class="col-3">
             <h1 class="text-center">Score History</h1>
-            {% for round in trip_golfer.round_score_set.all  %}
+            {% for round in trip_golfer.round_score_set.all%}
                 <div class="container border shadow-sm">
                     <div class="row-12 text-center fw-bold align-items-center">{{round.tee_time.tee_time_date}} - {{round.tee_time.tee_time_time}}</div>
                     <div class="row">

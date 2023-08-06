@@ -98,7 +98,7 @@ def RoundSubmissionView(request, teetime_pk):
                                                                     net_score = sum(round_score_data[idx]['net_score']),
                                                                     total_score = sum(round_score_data[idx]['gross_score']))
                 # Using the round_score_data the two team names are passed (which I need to change to be dynamic), and takes in the gametype for the teetime
-                processed_score_data = determine_2v2_team_scores(round_score_data, 'Red', 'Blue', teetime_data.gametype)
+                processed_score_data = determine_2v2_team_scores(round_score_data, 'Wild Lightning', 'Super Ninjas', teetime_data.gametype)
             scoreformset.save()
         
 
@@ -229,10 +229,21 @@ class CompletedRoundView(DetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(CompletedRoundView, self).get_context_data(**kwargs)
+        par3_test = context['trip_teetime'].tee.course_par
         # grabbing the dates for all of the events for the trip
-        player_raw_scores = Round_Score.objects.all().filter(tee_time=self.kwargs['pk']).values()
+        if par3_test == 27:
+            player_raw_scores = Par3_Round_Score.objects.all().filter(tee_time=self.kwargs['pk']).values()
+        else:
+            player_raw_scores = Round_Score.objects.all().filter(tee_time=self.kwargs['pk']).values()
         # grabbing all the courses for the trip
-        player_net_scores = Net_Round_Score.objects.all().filter(tee_time=self.kwargs['pk']).values()
+        
+        par3_test = context['trip_teetime'].tee.course_par
+        if par3_test == 27:
+            player_net_scores = Par3_Net_Round_Score.objects.all().filter(tee_time=self.kwargs['pk']).values()
+        else:
+            player_net_scores = Net_Round_Score.objects.all().filter(tee_time=self.kwargs['pk']).values()
+
+
         # print(player_net_scores)
 
         def convert_data_processing_format(player_scores):
@@ -243,7 +254,7 @@ class CompletedRoundView(DetailView):
 
 
         processed_score_data = convert_data_processing_format(player_net_scores)
-        scores = viewing_determine_2v2_team_scores(processed_score_data,'Red', 'Blue', context['object'].gametype)
+        scores = viewing_determine_2v2_team_scores(processed_score_data,'Wild Lightning', 'Super Ninjas', context['object'].gametype)
         context['player_raw_scores'] = convert_data_processing_format(player_raw_scores)
         context['player_net_scores'] = player_net_scores
         context['team_1'] = scores[0]

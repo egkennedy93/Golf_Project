@@ -548,12 +548,14 @@ def update_player_score(processed_score_data):
 def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teetime_gametype):
     # Output example:
     # [[{'id': 742, 'tee_time_id': 1, 'round_golfer': 'Ervin', 'hole_1_score': 4, 'hole_2_score': 2, 'hole_3_score': 4, 'hole_4_score': 3, 'hole_5_score': 3, 'hole_6_score': 2, 'hole_7_score': 2, 'hole_8_score': 3, 'hole_9_score': 2, 'hole_10_score': 2, 'hole_11_score': 4, 'hole_12_score': 3, 'hole_13_score': 2, 'hole_14_score': 3, 'hole_15_score': 4, 'hole_16_score': 2, 'hole_17_score': 2, 'hole_18_score': 3, 'total_score': 72, 'net_score': 50, 'team': 'Red'}, {'id': 744, 'tee_time_id': 1, 'round_golfer': 'Swikle', 'hole_1_score': 4, 'hole_2_score': 3, 'hole_3_score': 4, 'hole_4_score': 3, 'hole_5_score': 4, 'hole_6_score': 2, 'hole_7_score': 3, 'hole_8_score': 3, 'hole_9_score': 2, 'hole_10_score': 3, 'hole_11_score': 4, 'hole_12_score': 3, 'hole_13_score': 2, 'hole_14_score': 3, 'hole_15_score': 5, 'hole_16_score': 3, 'hole_17_score': 2, 'hole_18_score': 3, 'total_score': 72, 'net_score': 56, 'team': 'Red'}], [4, 2, 4, 3, 3, 2, 2, 3, 2, 2, 4, 3, 2, 3, 4, 2, 2, 3]]
-    
+    print(teetime_score_data)
     ################taking the 4 golfers from the teetime data, and breaking them up into two teams#####################
     team_1 = []
     team_2 = []
     #it looks gross, but i'm using the index for the teetime_score_data so I could more easily compare values in the list 
     for golfer in range(len(teetime_score_data)):
+        print(teetime_score_data[golfer])
+        print(teetime_score_data[golfer]['team'])
        
         if teetime_score_data[golfer]['team'] == team_name_1:
             team_1.append(teetime_score_data[golfer])
@@ -570,7 +572,9 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
     def view_teetime_team_scores(team_list):
 
         teammate_1 = list(team_list[0].values())[4:-3]
+        print(teammate_1)
         teammate_2 = list(team_list[1].values())[4:-3]
+        print(teammate_2)
 
         team_score = []
         
