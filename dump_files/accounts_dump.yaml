@@ -103,3 +103,8 @@
   fields:
     first_name: Matt
     last_name: Solomon
+- model: accounts.golfer
+  pk: 22
+  fields:
+    first_name: Paul
+    last_name: Mr. Gonsoroski
