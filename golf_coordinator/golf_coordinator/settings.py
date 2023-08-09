@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['golf-coordinator-dev.us-east-1.elasticbeanstalk.com',]
 
-
 # Application definition
 
 INSTALLED_APPS = [
