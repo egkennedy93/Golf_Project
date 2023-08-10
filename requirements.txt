@@ -29,6 +29,7 @@ icalendar==5.0.4
 idna==3.4
 jmespath==1.0.1
 jsonschema==3.2.0
+misaka==2.1.1
 numpy==1.24.4
 paramiko==3.3.1
 pathspec==0.10.1
