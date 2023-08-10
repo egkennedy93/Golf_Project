@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-cz#wd836hsx6x&mttk4ov#(j*+s*b+t9ahr8!w&adgv3l!hx=_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['golf-coordinator-test.us-east-1.elasticbeanstalk.com',]
+ALLOWED_HOSTS = ['golf-coordinator-dev.us-east-1.elasticbeanstalk.com',]
 
 # Application definition
 
@@ -135,6 +135,7 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'productionfiles'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
