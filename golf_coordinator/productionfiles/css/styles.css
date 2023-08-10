@@ -1,0 +1,50 @@
+#page_row{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+.accordian-button:active{
+    font-size: 50px !important; 
+}
+
+.accordion-button:link, .accordion-button:visited, .accordion-button:hover, .accordion-button:active  {
+    background-color: #b3b3b3 !important;
+      color:#FFF !important;
+      text-decoration: none !important;
+       border: hidden !important;
+         border-color: #FFF !important;
+      box-shadow: 0px !important;
+}
+
+.card-text{
+    
+    margin-bottom: 0em;
+}
+
+
+/* #bet_icon:link{
+    color:black;
+
+}
+
+#bet_icon:visited{
+    color:black;
+
+} */
+
+#checkmark:before{
+    text-align:center;
+    padding-top: 11px;
+    line-height:0em;
+    position: fixed;
+    color: #32e010;
+}
+
+/* body{
+    font-family: Arial;
+} */
