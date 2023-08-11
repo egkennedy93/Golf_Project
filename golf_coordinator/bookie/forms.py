@@ -7,7 +7,6 @@ from django.forms import modelformset_factory
 class BetTeeTimeForm(forms.ModelForm):
     CHOICES = [
         ('1', 'Bet against Player'),
-        ('2', 'Bet against Team'),
     ]
 
 
