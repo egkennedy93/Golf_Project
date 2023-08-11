@@ -42,10 +42,13 @@ class GolfBet(models.Model):
         #     winning_score = self.bet_tee_time.net_rounds().fiter(tee_time__tee__course_name=self.opponent.tee_time.tee.course_name).filter(round_golfer=self.submitter.full_name()).values()[0]['net_score']
 
         if self.bet_closed:
-            winning_score = Net_Round_Score.objects.all().filter(tee_time__tee__course__course_name=self.bet_tee_time.tee.course.course_name).filter(round_golfer=self.submitter.full_name()).values()[0]['net_score']
-            losing_score = self.bet_tee_time.net_rounds().filter(round_golfer=self.opponent.full_name()).values()[0]['net_score']
-            scores.append(winning_score)
-            scores.append(losing_score)
+            try:
+                winning_score = Net_Round_Score.objects.all().filter(tee_time__tee__course__course_name=self.bet_tee_time.tee.course.course_name).filter(round_golfer=self.submitter.full_name()).values()[0]['net_score']
+                losing_score = self.bet_tee_time.net_rounds().filter(round_golfer=self.opponent.full_name()).values()[0]['net_score']
+                scores.append(winning_score)
+                scores.append(losing_score)
+            except IndexError:
+                pass
         
         else:
             scores = [0,0]

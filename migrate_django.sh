@@ -8,4 +8,12 @@ python golf_coordinator/manage.py makemigrations bookie
 
 python golf_coordinator/manage.py makemigrations
 python golf_coordinator/manage.py migrate
-python golf_coordinator/manage.py runserver
+
+python golf_coordinator/manage.py loaddata dump_files/accounts_dump.yaml
+python golf_coordinator/manage.py loaddata dump_files/courses_dump.yaml
+python golf_coordinator/manage.py loaddata dump_files/golf_trip_dump.yaml
+python golf_coordinator/manage.py loaddata dump_files/golfround_dump.yaml
+
+python golf_coordinator/manage.py createsuperuser
+
+

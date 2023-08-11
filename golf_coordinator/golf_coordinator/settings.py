@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-cz#wd836hsx6x&mttk4ov#(j*+s*b+t9ahr8!w&adgv3l!hx=_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['golf-coordinator.us-east-1.elasticbeanstalk.com','golf-coordinator.everettkennedy.com']
 
 # Application definition
 
@@ -91,11 +90,17 @@ WSGI_APPLICATION = 'golf_coordinator.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default':{
+        'ENGINE': os.environ['DBENGINE'],
+        'NAME': os.environ['DBNAME'],
+        'USER': os.environ['DBUSER'],
+        'PASSWORD': os.environ['DBPASS'],
+        'HOST': os.environ['DBHOST'],
+        'PORT': os.environ['DBPORT'],
     }
 }
+
+
 
 
 # Password validation
@@ -136,13 +141,14 @@ USE_L10N = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'static/images'),
-    os.path.join(BASE_DIR, 'Courses/static')
+    os.path.join(BASE_DIR, 'Courses/static'),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # MEDIA_ROOT = os.path.join(STATIC_ROOT, 'images')
 # MEDIA_URL = 'images/'

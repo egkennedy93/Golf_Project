@@ -122,7 +122,6 @@ def bet_processing(teetime_pk):
 
     # checking to make sure the teetime is finished
     if teetime_pk.teeTime_Complete:
-        print("complete")
 
         # grabbing all of the bets associated with the teetime object
         teetime_bets = teetime_pk.bets()
@@ -166,7 +165,6 @@ def bet_processing(teetime_pk):
                        bet.bet_closed = True
                        bet.save()
                 else:
-
                     # get the teetime associated with that submitter for the day
                     submitter_tee_time = Trip_TeeTime.objects.all().filter(tee__course__course_name=bet.bet_tee_time.tee.course.course_name).filter(Players=submitter).get()
 
@@ -200,7 +198,7 @@ def bet_processing(teetime_pk):
                             opponent.save()
                             
                     else:
-                        bet.bet_closed = True
+                        bet.bet_closed = False
                         bet.save()
 
                 

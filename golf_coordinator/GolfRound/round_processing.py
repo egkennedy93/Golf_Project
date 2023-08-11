@@ -17,6 +17,7 @@ def round_processing(round_formset_data, tee_data):
 
     teetime_score_data = []
     for players_round in round_formset_data:
+        # print(players_round)
         # grab golfer
         round_golfer = players_round.round_golfer
         round_golfer_pk = players_round.golfer_pk
@@ -154,11 +155,32 @@ def round_processing(round_formset_data, tee_data):
         total_net_score = sum(raw_score)
         total_gross_score = sum(gross_score)
 
+        
+
         # context data that gets passed to teetime_score_data for each golfer
         player_score_data = {'golfer': round_golfer, 'golfer_pk': round_golfer_pk, 'player_course_hcp':player_course_hcp, 'team': golfer_team, 'net_score': raw_score, 'gross_score': gross_score, 'total_net_score': total_net_score, 'total_gross_score': total_gross_score }
-
         teetime_score_data.append(player_score_data)
 
+    if tee_data.gametype == '2v2 scramble':
+        scramble_hcps = []
+        for player in teetime_score_data:
+            scramble_hcps.append(player['player_course_hcp'])
+        adjusted_hcps = []
+        if scramble_hcps[0] < scramble_hcps[1]:
+            adjusted_hcps.append(scramble_hcps[0])
+            adjusted_hcps.append(scramble_hcps[1])
+        else:
+            adjusted_hcps.append(scramble_hcps[1])
+            adjusted_hcps.append(scramble_hcps[0])
+        if scramble_hcps[2] < scramble_hcps[3]:
+            adjusted_hcps.append(scramble_hcps[2])
+            adjusted_hcps.append(scramble_hcps[3])
+        else:
+            adjusted_hcps.append(scramble_hcps[3])
+            adjusted_hcps.append(scramble_hcps[2])
+
+        finalized_team_hcps = {'team_1': round(decimal.Decimal(.35) *adjusted_hcps[0] + decimal.Decimal(.15) * adjusted_hcps[1]), 'team_2': round(decimal.Decimal(.35) *adjusted_hcps[2] + decimal.Decimal(.15) * adjusted_hcps[3])}
+        teetime_score_data.append(finalized_team_hcps)
     return teetime_score_data
 
 
@@ -287,7 +309,7 @@ def course_handicap_calculation(index, course_slope, course_rating, course_par):
     '''
     Used the USGA Handicap formula: https://www.usga.org/content/usga/home-page/handicapping/roh/Content/rules/6%201%20Course%20Handicap%20Calculation.htm
     '''
-    course_handicap = round(index * (course_slope/113) + (course_rating - course_par),0)
+    course_handicap = round(decimal.Decimal(index) * (course_slope/113) + (course_rating - course_par),0)
     return course_handicap
 
 
@@ -312,29 +334,8 @@ def teetime_team_scores(team_list, gametype):
                 team_score.append(teammate_1['net_score'][index])
         return team_score
     else:    
-        if gametype == '2v2 scramble':
-
-            player_A_HCP = team_list[0]['player_course_hcp']
-            player_B_HCP = team_list[1]['player_course_hcp']
-
-          
-
-            scramble_hcp = (decimal.Decimal(.35)*player_A_HCP + decimal.Decimal(.15)*player_B_HCP)
-
-
-            teammate_1 = team_list[0]
-            teammate_2 = team_list[1]
-
-            team_score = []
-
-            key_value = 'gross_score'
-
-            #this for loop is comparing teammate_1's score to teammate_2. This is to figure out who had the best score for each hole
-            for index in range(len(teammate_1[key_value])):
-                team_score.append(teammate_1[key_value][index])
-            return team_score
-        else:
-            key_value = 'net_score'
+        
+        key_value = 'net_score'
         
         '''
         the return value from determine_team_scores() is passed in for each team. Right now this only supports teams of 2.
@@ -376,13 +377,15 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
     for golfer in range(len(teetime_score_data)):
         #['team'] is a queryset object, so the index has to be passed in to use the data
         # I want to look at not passing in the team_name as a variable to the function, but was a quicker solution for now
-        # print(teetime_score_data)
-        if teetime_score_data[golfer]['team'][0].team == team_name_1:
-            team_1.append(teetime_score_data[golfer])
-        elif teetime_score_data[golfer]['team'][0].team == team_name_2:
-            team_2.append(teetime_score_data[golfer])
-        else: 
-            raise Exception
+        try:
+            if teetime_score_data[golfer]['team'][0].team == team_name_1:
+                team_1.append(teetime_score_data[golfer])
+            elif teetime_score_data[golfer]['team'][0].team == team_name_2:
+                team_2.append(teetime_score_data[golfer])
+            else: 
+                raise Exception
+        except KeyError:
+            pass
 
     team_1_score = teetime_team_scores(team_1, teetime_gametype)
     team_2_score = teetime_team_scores(team_2, teetime_gametype)
@@ -397,7 +400,7 @@ def determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teet
         final_results = determine_bestball_win_match(team_1_score, team_2_score)
 
     elif teetime_gametype == '2v2 scramble':
-        final_results = determine_bestball_win_2v2_scramble(team_1_score, team_2_score)
+        final_results = determine_bestball_win_stroke(team_1_score, team_2_score)
 
     return [team_1, team_2, final_results]
 
@@ -422,27 +425,6 @@ def determine_bestball_win_stroke(team_1_score, team_2_score):
 
     net_stroke_sum = sum(team_1_bestball_stroke_score)
     score_dict = {'team_1': team_1_bestball_stroke_score, 'net_score': net_stroke_sum}
-    return score_dict
-
-def determine_bestball_win_2v2_scramble(team_1_score, team_2_score):
-    '''
-    This only focuses on 1 scoreline, and team_1 is set as the baseline. so if they are -12, that means team 1 lost by 12 strokes.
-    '''
-    team_1_bestball_stroke_score = []
-
-    # this for loop looks at each hole's score for team 1 and compares it to score for team 2. Used indexes so it's easier to compare between the two teams 
-    for index in range(len(team_1_score)):
-
-        if team_1_score[index] <= team_2_score[index]:
-            score_diff = team_2_score[index] - team_1_score[index]
-            team_1_bestball_stroke_score.append(score_diff)
-        else:
-            score_diff = team_2_score[index] - team_1_score[index]
-            team_1_bestball_stroke_score.append(score_diff)
-
-    net_stroke_sum = sum(team_1_bestball_stroke_score)
-    score_dict = {'team_1_score': team_1_score, 'team_1_score_sum': sum(team_1_score), 'team_2_score': team_2_score, 'team_2_score_sum': sum(team_2_score), 'team_1': team_1_bestball_stroke_score, 'net_score': net_stroke_sum}
-
     return score_dict
 
 def determine_bestball_win_match(team_1_score, team_2_score):
@@ -548,7 +530,6 @@ def update_player_score(processed_score_data):
 def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name_2, teetime_gametype):
     # Output example:
     # [[{'id': 742, 'tee_time_id': 1, 'round_golfer': 'Ervin', 'hole_1_score': 4, 'hole_2_score': 2, 'hole_3_score': 4, 'hole_4_score': 3, 'hole_5_score': 3, 'hole_6_score': 2, 'hole_7_score': 2, 'hole_8_score': 3, 'hole_9_score': 2, 'hole_10_score': 2, 'hole_11_score': 4, 'hole_12_score': 3, 'hole_13_score': 2, 'hole_14_score': 3, 'hole_15_score': 4, 'hole_16_score': 2, 'hole_17_score': 2, 'hole_18_score': 3, 'total_score': 72, 'net_score': 50, 'team': 'Red'}, {'id': 744, 'tee_time_id': 1, 'round_golfer': 'Swikle', 'hole_1_score': 4, 'hole_2_score': 3, 'hole_3_score': 4, 'hole_4_score': 3, 'hole_5_score': 4, 'hole_6_score': 2, 'hole_7_score': 3, 'hole_8_score': 3, 'hole_9_score': 2, 'hole_10_score': 3, 'hole_11_score': 4, 'hole_12_score': 3, 'hole_13_score': 2, 'hole_14_score': 3, 'hole_15_score': 5, 'hole_16_score': 3, 'hole_17_score': 2, 'hole_18_score': 3, 'total_score': 72, 'net_score': 56, 'team': 'Red'}], [4, 2, 4, 3, 3, 2, 2, 3, 2, 2, 4, 3, 2, 3, 4, 2, 2, 3]]
-    
     ################taking the 4 golfers from the teetime data, and breaking them up into two teams#####################
     team_1 = []
     team_2 = []
@@ -592,7 +573,7 @@ def viewing_determine_2v2_team_scores(teetime_score_data, team_name_1, team_name
     elif teetime_gametype == '2v2 best ball - matchplay':
         final_results = determine_bestball_win_match(team_1_score[1], team_2_score[1])
     elif teetime_gametype == '2v2 scramble':
-        final_results = determine_scramble_win(team_1_score[1], team_2_score[1])
+        final_results = determine_bestball_win_stroke(team_1_score[1], team_2_score[1])
     elif teetime_gametype == '1v1 matchplay':
         pass
     
