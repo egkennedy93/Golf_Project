@@ -12,10 +12,22 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import subprocess
+import ast
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
+def get_environ_vars():
+        completed_process = subprocess.run(
+            ['/opt/elasticbeanstalk/bin/get-config', 'environment'],
+            stdout=subprocess.PIPE,
+            text=True,
+            check=True
+        )
+
+        return ast.literal_eval(completed_process.stdout)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
