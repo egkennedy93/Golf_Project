@@ -89,30 +89,21 @@ WSGI_APPLICATION = 'golf_coordinator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DBENGINE = os.environ['DBENGINE']
-DBNAME = os.environ['DBNAME']
-DBUSER = os.environ['DBUSER']
-DBPASS = os.environ['DBPASS']
-DBHOST = os.environ['DBHOST']
-DBPORT = os.environ['DBPORT']
-
 DATABASES = {
-    'default':{
-        'ENGINE': DBENGINE,
-        'NAME': DBNAME,
-        'USER': DBUSER,
-        'PASSWORD': DBPASS,
-        'HOST': DBHOST,
-        'PORT': DBPORT,
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ebdb',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'awseb-e-iu5x4zsmfw-stack-awsebrdsdatabase-fphzi9lvhets.ccvb2gfkj2jw.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
+        }
     }
-}
-
-
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-f
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
