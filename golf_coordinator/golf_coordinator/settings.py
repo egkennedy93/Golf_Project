@@ -90,15 +90,17 @@ WSGI_APPLICATION = 'golf_coordinator.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ebdb',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'awseb-e-iu5x4zsmfw-stack-awsebrdsdatabase-fphzi9lvhets.ccvb2gfkj2jw.us-east-1.rds.amazonaws.com',
-        'PORT': '5432',
-        }
+    'default':{
+        'ENGINE': os.environ['DBENGINE'],
+        'NAME': os.environ['DBNAME'],
+        'USER': os.environ['DBUSER'],
+        'PASSWORD': os.environ['DBPASS'],
+        'HOST': os.environ['DBHOST'],
+        'PORT': os.environ['DBPORT'],
     }
+}
+
+
 
 
 # Password validation
