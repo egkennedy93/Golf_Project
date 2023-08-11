@@ -89,16 +89,15 @@ WSGI_APPLICATION = 'golf_coordinator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DBENGINE = os.environ['DBENGINE']
-DBNAME = os.environ['DBNAME']
-DBUSER = os.environ['DBUSER']
-DBPASS = os.environ['DBPASS']
-DBHOST = os.environ['DBHOST']
-DBPORT = os.environ['DBPORT']
+
+DBNAME = os.environ.get['RDS_DB_NAME']
+DBUSER = os.environ.get['RDS_USERNAME']
+DBPASS = os.environ.get['RDS_PASSWORD']
+DBHOST = os.environ.get['RDS_HOSTNAME']
+DBPORT = os.environ.get['RDS_PORT']
 
 DATABASES = {
     'default':{
-        'ENGINE': DBENGINE,
         'NAME': DBNAME,
         'USER': DBUSER,
         'PASSWORD': DBPASS,
