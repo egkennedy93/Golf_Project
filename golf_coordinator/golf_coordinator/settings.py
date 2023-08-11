@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-cz#wd836hsx6x&mttk4ov#(j*+s*b+t9ahr8!w&adgv3l!hx=_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['golf-coordinator.us-east-1.elasticbeanstalk.com',]
+ALLOWED_HOSTS = ['golf-coordinator.us-east-1.elasticbeanstalk.com','golf-coordinator.everettkennedy.net']
 
 # Application definition
 
