@@ -91,12 +91,12 @@ WSGI_APPLICATION = 'golf_coordinator.wsgi.application'
 
 DATABASES = {
     'default':{
-        'ENGINE': os.environ['DBENGINE'],
-        'NAME': os.environ['DBNAME'],
-        'USER': os.environ['DBUSER'],
-        'PASSWORD': os.environ['DBPASS'],
-        'HOST': os.environ['DBHOST'],
-        'PORT': os.environ['DBPORT'],
+        'ENGINE': os.environ['RDS_HOSTNAME'],
+        'NAME': os.environ['RDS_DB_NAME'],
+        'USER': os.environ['RDS_USERNAME'],
+        'PASSWORD': os.environ['RDS_PASSWORD'],
+        'HOST': os.environ['RDS_HOSTNAME'],
+        'PORT': os.environ['RDS_PORT'],
     }
 }
 
@@ -105,7 +105,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
+f
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
