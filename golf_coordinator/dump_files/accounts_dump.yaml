@@ -1,0 +1,110 @@
+- model: accounts.golfer
+  pk: 1
+  fields:
+    first_name: Everett
+    last_name: Kennedy
+- model: accounts.golfer
+  pk: 2
+  fields:
+    first_name: Jason
+    last_name: Ervin
+- model: accounts.golfer
+  pk: 3
+  fields:
+    first_name: Michael
+    last_name: Ruff
+- model: accounts.golfer
+  pk: 4
+  fields:
+    first_name: Brett
+    last_name: Swikle
+- model: accounts.golfer
+  pk: 5
+  fields:
+    first_name: Nick
+    last_name: Van Nice
+- model: accounts.golfer
+  pk: 6
+  fields:
+    first_name: Julian
+    last_name: Velasquez
+- model: accounts.golfer
+  pk: 7
+  fields:
+    first_name: Daniel
+    last_name: Carnrike
+- model: accounts.golfer
+  pk: 8
+  fields:
+    first_name: Evan
+    last_name: Appold
+- model: accounts.golfer
+  pk: 9
+  fields:
+    first_name: Jordan
+    last_name: Zeider
+- model: accounts.golfer
+  pk: 10
+  fields:
+    first_name: Justin
+    last_name: Laureys
+- model: accounts.golfer
+  pk: 11
+  fields:
+    first_name: Luke
+    last_name: Lacy
+- model: accounts.golfer
+  pk: 12
+  fields:
+    first_name: Marc
+    last_name: Uber
+- model: accounts.golfer
+  pk: 13
+  fields:
+    first_name: Evan
+    last_name: Kruger
+- model: accounts.golfer
+  pk: 14
+  fields:
+    first_name: Addison
+    last_name: Bullock
+- model: accounts.golfer
+  pk: 15
+  fields:
+    first_name: Daniel
+    last_name: Gonsoroski
+- model: accounts.golfer
+  pk: 16
+  fields:
+    first_name: Kyle
+    last_name: Jones
+- model: accounts.golfer
+  pk: 17
+  fields:
+    first_name: Matt
+    last_name: Magee
+- model: accounts.golfer
+  pk: 18
+  fields:
+    first_name: Nathan
+    last_name: Kintz
+- model: accounts.golfer
+  pk: 19
+  fields:
+    first_name: Sean
+    last_name: Wilson
+- model: accounts.golfer
+  pk: 20
+  fields:
+    first_name: Daniel
+    last_name: Koester
+- model: accounts.golfer
+  pk: 21
+  fields:
+    first_name: Matt
+    last_name: Solomon
+- model: accounts.golfer
+  pk: 22
+  fields:
+    first_name: Paul
+    last_name: Mr. Gonsoroski
