@@ -12,22 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-import subprocess
-import ast
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-
-def get_environ_vars():
-        completed_process = subprocess.run(
-            ['/opt/elasticbeanstalk/bin/get-config', 'environment'],
-            stdout=subprocess.PIPE,
-            text=True,
-            check=True
-        )
-
-        return ast.literal_eval(completed_process.stdout)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -101,40 +89,21 @@ WSGI_APPLICATION = 'golf_coordinator.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
-DBNAME = os.environ['RDS_DB_NAME']
-DBUSER = os.environ['RDS_USERNAME']
-DBPASS = os.environ['RDS_PASSWORD']
-DBHOST = os.environ['RDS_HOSTNAME']
-DBPORT = os.environ['RDS_PORT']
-
 DATABASES = {
-        'default': {
-            'NAME': DBNAME,
-            'USER': DBUSER,
-            'PASSWORD': DBPASS,
-            'HOST': DBHOST,
-            'PORT': DBPORT,
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ebdb',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'awseb-e-iu5x4zsmfw-stack-awsebrdsdatabase-fphzi9lvhets.ccvb2gfkj2jw.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
+        }
     }
-}
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'ebdb',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'awseb-e-iu5x4zsmfw-stack-awsebrdsdatabase-fphzi9lvhets.ccvb2gfkj2jw.us-east-1.rds.amazonaws.com',
-#         'PORT': '5432',
-#         }
-#     }
-
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-f
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
