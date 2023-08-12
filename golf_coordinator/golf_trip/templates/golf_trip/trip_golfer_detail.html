@@ -19,127 +19,112 @@
             </div>
         </div>
     </div>
-    <div class="row py-2 ps-2 align-items-start">
-        <div class="col-2">
-            <h1 class="text-center">Bets</h1>
-            {% for bet in trip_golfer.get_associated_bets %}
-                <div class="container border shadow-sm">
-                    <div class="row fw-bold">{{bet.bet_tee_time.tee_time_date}} - {{bet.bet_tee_time.tee_time_time}}</div>
-                    {% if bet.bet_closed %}
-                    
-                        {% if bet.bet_winner == bet.submitter %}
-                            <div class="row">
-                                <div class="col-10 px-0 d-flex">
-                                    submitter: {{bet.submitter}}
-                                </div>
-                                <div class="col-2 px-0 d-flex align-items-center float-start">
-                                    <i class="fa-solid fa-circle-check fa-lg" style="color: #37ff00;"></i>
-                                </div>
-                                    <div class="row">
-                                    opponent: {{bet.opponent}}
-                                </div>
-                               
-                            </div>
-                        {% else %}
-                            <div class="row">
-                                <div class="row">submitter: {{bet.submitter}}</div>
-                                <div class="col-10 px-0 d-flex">
-                                    Opponent: {{bet.opponent}}
-                                </div>
-                                <div class="col-2 px-0 d-flex align-items-center float-start">
-                                    <i class="fa-solid fa-circle-check fa-lg" style="color: #37ff00;"></i>
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% else %}
-                        <div class="row">
-                            <div class="col-10 px-0 d-flex">
-                                Submitter: {{bet.submitter}}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-10 px-0 d-flex">
-                                Opponent: {{bet.opponent}}
-                            </div>
-                        </div>  
-                    {% endif %}
-                    <div class="row">Wager: {{bet.units}}</div>
-                    {% if bet.bet_closed %}
-                        <div class="row">Complete</div>
-                    {% else %}
-                        <div class="row">In Progress</div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-        <div class="col-7 text-center">
-            <h1 class="text-center">Schedule</h1>
-            
-            <table class="table table-hover course-table justify-content-center border shadow-sm">
-                <thead class="table">
-                    <tr class='text-center' >
-                        <th scope="col">Date</th>
-                        <th scope="col">Tee Time</th>
-                        <th scope="col">Course</th>
-                        <th scope="col">GameType</th>
-                        <th scope="col" class="text-center" colspan="4">Players</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for tee_time in trip_golfer.get_uncomplete_tee_times  %}
-                    <tr>
-                        <td class="text-center">{{tee_time.tee_time_date}}</td>
-                        <td class="text-center">{{tee_time.tee_time_time}} </td>
-                        <td class="text-center">{{tee_time.tee.course.course_name}}</td>
-                        <td class="text-center">{{tee_time.gametype}}</td>
-                        {% for player in tee_time.Players.all %}
-                            <td class="text-center">{{player.golfer.first_name}}</td>
-                        {% endfor %}
-                    </tr>
+    
+    <div class="row text-center pt-5">
+        <h1 class="text-center">Schedule</h1>
+        
+        <table class="table table-hover course-table justify-content-center border shadow-sm">
+            <thead class="table">
+                <tr class='text-center' >
+                    <th scope="col">Date</th>
+                    <th scope="col">Tee Time</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">GameType</th>
+                    <th scope="col" class="text-center" colspan="4">Players</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tee_time in trip_golfer.get_uncomplete_tee_times  %}
+                <tr class='course-row' data-href="{% url 'round:round_submit' tee_time.pk %}">
+                    <td class="text-center">{{tee_time.tee_time_date}}</td>
+                    <td class="text-center">{{tee_time.tee_time_time}} </td>
+                    <td class="text-center">{{tee_time.tee.course.course_name}}</td>
+                    <td class="text-center">{{tee_time.gametype}}</td>
+                    {% for player in tee_time.Players.all %}
+                        <td class="text-center">{{player.golfer.first_name}}</td>
                     {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col-3">
-            <h1 class="text-center">Score History</h1>
-            {% for round in trip_golfer.round_score_set.all%}
-                <div class="container border shadow-sm">
-                    <div class="row-12 text-center fw-bold align-items-center">{{round.tee_time.tee_time_date}} - {{round.tee_time.tee_time_time}}</div>
-                    <div class="row">
-                        <div class="col-6 justify-content-end pe-0" style="text-align:right">
-                            gross: {{round.total_score}}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h1 class="text-center mt-5 mb-1">Score History</h1>
+        {% for round in trip_golfer.round_score_set.all%}
+            <div class="container border shadow-sm">
+                <div class="text-center fw-bold align-items-center">{{round.tee_time.tee_time_date}} - {{round.tee_time.tee_time_time}}</div>
+                <div class="row">
+                    <div class="col-6 justify-content-end pe-0" style="text-align:right">
+                        gross: {{round.total_score}}
+                    </div>
+                    <div class="col-6" style="text-align:left">
+                        net: {{round.net_score}}
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    {% if round.golfer_pk.get_team.id == round.tee_time.Winning_Team.id %}
+                    <div class="row ">
+                        <div class="col-6 px-0" style="text-align:right">
+                            Won
                         </div>
-                        <div class="col-6" style="text-align:left">
-                            net: {{round.net_score}}
+                        <div class="col-2 d-flex align-items-center float-start">
+                            <i class="fa-solid fa-circle-check fa-lg" style="color: #37ff00;"></i>
                         </div>
                     </div>
+                    {% else %}
                     <div class="row">
-                        {% if round.golfer_pk.get_team.id == round.tee_time.Winning_Team.id %}
+                        <div class="col-6" style="text-align:right">
+                            Lost
+                        </div>
+                        <div class="col-2 d-flex align-items-center float-start">
+                            <i class="fa-sharp fa-solid fa-circle-xmark fa-lg" style="color: #ff0000;"></i>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}         
+    </div>
+    <div class="row mt-5">
+        <h1 class="text-center" >Bets</h1>
+        {% for bet in trip_golfer.get_associated_bets %}
+            <div class="container-6 border shadow-sm pt-1 pb-1">
+                <div class="row fw-bold justify-content-center">{{bet.bet_tee_time.tee_time_date}} - {{bet.bet_tee_time.tee_time_time}}</div>
+                {% if bet.bet_closed %}
+                    {% if bet.bet_winner == bet.submitter %}
+                        <div class="row justify-content-center">
+                                <p class="text-center mb-0">submitter: {{bet.submitter}} <i class="fa-solid fa-circle-check fa-lg" style="color: #37ff00;"></i></p>                   
+                                <div class="row justify-content-center">
+                                    opponent: {{bet.opponent}}
+                                </div>
+                        </div>
+                    {% else %}
                         <div class="row">
-                            <div class="col-6 px-0" style="text-align:right">
-                                Won
-                            </div>
-                            <div class="col-2 d-flex align-items-center float-start">
+                            <div class="row justify-content-center">submitter: {{bet.submitter}}</div>
+                                Opponent: {{bet.opponent}}
+                            <div class="col-2 px-0 d-flex align-items-center float-start">
                                 <i class="fa-solid fa-circle-check fa-lg" style="color: #37ff00;"></i>
                             </div>
                         </div>
-                        {% else %}
-                        <div class="row">
-                            <div class="col-6" style="text-align:right">
-                                Lost
-                            </div>
-                            <div class="col-2 d-flex align-items-center float-start">
-                                <i class="fa-sharp fa-solid fa-circle-xmark fa-lg" style="color: #ff0000;"></i>
-                            </div>
-                        </div>
-                        {% endif %}
-            {% endfor %}
-            
-        </div>
-
-
+                    {% endif %}
+                {% else %}
+                    <div class="row justify-content-center">                      
+                            Submitter: {{bet.submitter}}                     
+                    </div>
+                    <div class="row justify-content-center">
+                        
+                            Opponent: {{bet.opponent}}
+                        
+                    </div>  
+                {% endif %}
+                <div class="row justify-content-center">Wager: {{bet.units}}</div>
+                {% if bet.bet_closed %}
+                    <div class="row justify-content-center">Complete</div>
+                {% else %}
+                    <div class="row justify-content-center">In Progress</div>
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
-
-
 </div>
 {% endblock %}

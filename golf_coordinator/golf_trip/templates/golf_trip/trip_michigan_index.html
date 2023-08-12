@@ -9,9 +9,8 @@
                             <div class="my-5 text-center text-xl-start">
                                 <h1 class="display-5 fw-bolder text-white mb-2">Golf Trip 2023</h1>
                                 <p class="lead fw-normal text-white-50 mb-4">Arcadia Bluffs and Treetops August 17-20 2023</p>
-                                <div class="gap-2" style="margin-right:125px;">
-                                    <a class="btn btn-primary btn-lg me-5" href="{% url 'golf_trip:trip_standings' %}">View Standing</a>
-                                </div>
+                                <a class="btn btn-primary btn-lg " href="{% url 'golf_trip:trip_standings' %}">View Standing</a>
+
                             </div>
                         </div>
                         <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'GTP_logo.jpg' %}"  width=500/></div>
@@ -22,13 +21,15 @@
             <section class="py-5" id="features">
                 <div class="container px-5 my-5">
                     <div class="row gx-5">
-                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Trip Information</h2></div>
+                        <div class="col-lg-4 mb-5 mb-lg-0 text-center">
+                            <h2 class="fw-bolder mb-0 ">Trip Information</h2>
+                        </div>
                         <div class="col-lg-8">
-                            <div class="row gx-5 row-cols-1 row-cols-md-2">
+                            <div class="row gx-5 row-cols-1 row-cols-md-2 text-center">
                                 <div class="col mb-5 mb-md-0 h-100">
                                     <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'golf_trip:events_list' %}"><i class="fa-regular fa-calendar-days"></i></a>
                                     <h2 class="h5">Schedule</h2>
-                                    <p class="mb-0">Breakdown of each day's tee time to see who, when, and where</p>
+                                    <p class="mb-0">Day's Events and Tee time</p>
                                 </div>
                                 <div class="col mb-5 h-100">
                                     <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'golf_trip:players_list' %}"><i class="fa-solid fa-users"></i></a>
