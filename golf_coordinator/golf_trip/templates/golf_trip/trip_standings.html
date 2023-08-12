@@ -50,7 +50,7 @@
                             <th scope="col">GameType</th>
                             <th scope="col">Winning Team</th>
                             <th scope="col">Winning Score</th>
-                            <th scope="col" class="text-center" colspan="4">Players</th>
+                            {% comment %} <th scope="col" class="text-center" colspan="4">Players</th> {% endcomment %}
                         </tr>
                     </thead>
                     <tbody>
@@ -61,9 +61,9 @@
                             <td class="text-center">{{completed.gametype}}</td>
                             <td class="text-center">{{completed.Winning_Team}}</td>
                             <td class="text-center">{{completed.Winning_Score}}</td>
-                            {% for player in completed.Players.all %}
+                            {% comment %} {% for player in completed.Players.all %}
                                 <td class="text-center">{{player.golfer.first_name}}</td>
-                            {% endfor %}
+                            {% endfor %} {% endcomment %}
                         </tr>
                         {% endfor %}
                     </tbody>
