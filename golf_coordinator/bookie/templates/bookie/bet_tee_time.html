@@ -75,7 +75,10 @@
             </div>
         </div>
             <div class="container" style="text-align:center; padding-top:25px">
-                <input class="btn btn-primary" type="submit" value="Submit"> 
+                {% if user.is_authenticated %}
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                {% else %}
+                   <p> Please login to submit forms</p>
                 <a class="btn btn-danger"onClick="javascript:history.go(-1);" role="button">Back</a>
             </div>
     </form>
