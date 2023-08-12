@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib import auth
 from django.contrib.auth.models import User
-
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
 
 
 # Model that extends the contrib.auth package to support golfer specific attributes.
@@ -15,6 +17,11 @@ class Golfer(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
+    
+@receiver(post_save, sender=User)
+def user_to_inactive(sender, instance, created, update_fields, **kwargs):
+    if created:
+        instance.is_active = False
     
 
 
