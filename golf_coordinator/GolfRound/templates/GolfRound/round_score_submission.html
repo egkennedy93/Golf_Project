@@ -134,7 +134,7 @@
           {% endif %}
         </tfoot>
     </table>
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated && user.is_active %}
       <div class="row-col" id="round_submit">
         <input class="btn btn-primary" style="float:right; margin-right: 50px" type="submit" value="Submit"> <a class="btn btn-danger" style="float:left; margin-left: 50px" onClick="javascript:history.go(-1);" role="button">Back</a>
       </div>

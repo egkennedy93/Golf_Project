@@ -75,7 +75,7 @@
             </div>
         </div>
             <div class="container" style="text-align:center; padding-top:25px">
-                {% if user.is_authenticated %}
+                {% if user.is_authenticated && user.is_active %}
                     <input class="btn btn-primary" type="submit" value="Submit">
                 {% else %}
                    <p> Please login to submit forms</p>
