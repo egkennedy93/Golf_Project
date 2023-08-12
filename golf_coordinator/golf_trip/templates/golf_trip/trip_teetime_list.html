@@ -4,7 +4,7 @@
 <div class='container'>
     
     <h1 style='text-align: center; padding-bottom: 15px;'>Tee Time Schedule</h1>
-<div class="row gx-5">
+<div class="row  justify-content-center">
         {% for teetime in trip_teetime_list %}
             <div class="card shadow-sm" style="width: 18rem;">
                 <div class="card-body">
@@ -24,8 +24,8 @@
                     {% if teetime.teeTime_Complete is True %}
                         <a></a>
                     {% else %}
-                        <a class="btn btn-success btn-sm" href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score  <i class="fa-solid fa-pencil"></i></a>  
-                        <a style="float: right;" class="btn btn-primary btn-sm" href="{% url 'bookie:bet_teetime' teetime_pk=teetime.pk %}" class="card-link"> Place Bet <i class="fa-solid fa-coins fa-xl"></i></a>
+                        <a class="btn btn-success btn-sm mt-1" href="{% url 'round:round_submit' teetime_pk=teetime.pk %}" class="card-link">Enter Score  <i class="fa-solid fa-pencil"></i></a>  
+                        <a  class="btn btn-primary btn-sm mt-1" href="{% url 'bookie:bet_teetime' teetime_pk=teetime.pk %}" class="card-link"> Place Bets    <i class="fa-solid fa-coins fa-xl"></i></a>
                     {% endif %}
 
                     {% if teetime.teeTime_Complete is True %}
@@ -39,9 +39,9 @@
         {% endfor %}
     </div>
 
-    
-    <a class="btn btn-primary" style="margin-top:75px; " href="{% url 'golf_trip:events_list' %}" role="button">Back</a>
-
+    <div class="d-grid gap-2 col-4 pt-1 mx-auto text-center">
+        <a class="btn-lg btn-primary " href="{% url 'golf_trip:events_list' %}" role="button">Back</a>
+    </div>
 
 {% endblock %}
 
