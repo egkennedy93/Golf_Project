@@ -40,9 +40,9 @@
                     <td class="text-center">{{tee_time.tee_time_time}} </td>
                     <td class="text-center">{{tee_time.tee.course.course_name}}</td>
                     <td class="text-center">{{tee_time.gametype}}</td>
-                    {% for player in tee_time.Players.all %}
+                    {% comment %} {% for player in tee_time.Players.all %}
                         <td class="text-center">{{player.golfer.first_name}}</td>
-                    {% endfor %}
+                    {% endfor %} {% endcomment %}
                 </tr>
                 {% endfor %}
             </tbody>
