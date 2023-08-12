@@ -22,7 +22,6 @@ class GolfBet(models.Model):
     """
     CHOICES = [
         ('1', 'Bet against Player'),
-        ('2', 'Bet against Team'),
     ]
 
     bet_tee_time = models.ForeignKey(Trip_TeeTime, related_name='golfbet_tee_time', on_delete=models.PROTECT)

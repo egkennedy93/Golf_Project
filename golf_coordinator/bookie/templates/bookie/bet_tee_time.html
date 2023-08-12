@@ -58,8 +58,8 @@
             <div class="row" style="padding-top: 15px">
                 <div class="col" style="text-align:center">
                     <h4>{{form.bet_type.label_tag}}<span style="padding-left:15px" class="fa-solid fa-circle-exclamation fa-xs" data-toggle="popover" data-bs-html="true" title="Bet Details" 
-                        data-bs-content="<strong>Player</strong>: Submitter will score better in that day's respective tee time compared to the opponent<br/></br>
-                                         <strong>Team</strong>: Submitter's tee time team will score better in that day's respective tee time compared to the select opponent's team">
+                        data-bs-content="<strong>Player</strong>: Submitter will score better in that day's respective tee time compared to the opponent<br/></br>">
+                                         {% comment %} <strong>Team</strong>: Submitter's tee time team will score better in that day's respective tee time compared to the select opponent's team {% endcomment %}
                                          </span></h4>
                         {{form.bet_type}}
                 </div>
